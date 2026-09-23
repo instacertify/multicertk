@@ -1,14 +1,46 @@
-import { getTranslations } from "next-intl/server";
+"use client";
+
+import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 
-export async function PriceReassurance({
+export function PriceOffer({ className = "" }: { className?: string }) {
+  const t = useTranslations("price");
+  return (
+    <Link
+      href="/contact"
+      className={`mt-1 block font-semibold text-gold-600 hover:underline ${className}`}
+    >
+      {t("inline")}
+    </Link>
+  );
+}
+
+export function ListedPrice({
+  amount,
+  className = "",
+}: {
+  amount: string;
+  className?: string;
+}) {
+  if (!amount || amount === "—") {
+    return <span className={className}>{amount || "—"}</span>;
+  }
+  return (
+    <div className={className}>
+      <p className="font-semibold text-navy">{amount}</p>
+      <PriceOffer />
+    </div>
+  );
+}
+
+export function PriceReassurance({
   compact = false,
   className = "",
 }: {
   compact?: boolean;
   className?: string;
 }) {
-  const t = await getTranslations("price");
+  const t = useTranslations("price");
 
   return (
     <aside

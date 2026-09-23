@@ -1,6 +1,6 @@
 import { setRequestLocale } from "next-intl/server";
 import { CatalogFilter } from "@/components/catalog-filter";
-import { PriceReassurance } from "@/components/price-reassurance";
+import { PriceOffer, PriceReassurance } from "@/components/price-reassurance";
 import { Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
 import { filterLabs, formatRange, labs } from "@/data/catalog";
 import { getPage } from "@/lib/cms";
@@ -55,13 +55,17 @@ export default async function LabsPage({
       </CatalogFilter>
       <div className="mt-8 grid gap-4 md:grid-cols-2">
         {rows.map((lab) => (
-          <CardLink
-            key={lab.slug}
-            href={`/labs/${lab.slug}`}
-            title={lab.name}
-            meta={`${lab.city}, ${lab.state} · ${formatRange(lab.costMin, lab.costMax)} · ${lab.scopes} scopes`}
-            body={lab.standardCodes.slice(0, 8).join(" · ")}
-          />
+          <div key={lab.slug} className="rounded-2xl border border-line p-1">
+            <CardLink
+              href={`/labs/${lab.slug}`}
+              title={lab.name}
+              meta={`${lab.city}, ${lab.state} · ${formatRange(lab.costMin, lab.costMax)} · ${lab.scopes} scopes`}
+              body={lab.standardCodes.slice(0, 8).join(" · ")}
+            />
+            <div className="px-5 pb-4">
+              <PriceOffer />
+            </div>
+          </div>
         ))}
       </div>
     </div>

@@ -1,7 +1,7 @@
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { CatalogFilter } from "@/components/catalog-filter";
-import { PriceReassurance } from "@/components/price-reassurance";
+import { ListedPrice, PriceReassurance } from "@/components/price-reassurance";
 import { Badge, Breadcrumbs, StatusBadge } from "@/components/ui";
 import { categories, filterProducts, formatRange, schemes } from "@/data/catalog";
 import { pageMetadata } from "@/lib/seo";
@@ -108,7 +108,9 @@ export default async function AllProductsPage({
                     ))}
                   </div>
                 </td>
-                <td className="px-4 py-3">{formatRange(product.testCostMin, product.testCostMax)}</td>
+                <td className="px-4 py-3">
+                  <ListedPrice amount={formatRange(product.testCostMin, product.testCostMax)} />
+                </td>
               </tr>
             ))}
           </tbody>

@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { LeadForm } from "@/components/lead-form";
-import { PriceReassurance } from "@/components/price-reassurance";
+import { ListedPrice, PriceReassurance } from "@/components/price-reassurance";
 import { Breadcrumbs, CardLink } from "@/components/ui";
 import { beeProducts, euSectors, getBee, getEu, getGmark, getProduct, getScheme, gmarkProducts } from "@/data/catalog";
 import { pageMetadata } from "@/lib/seo";
@@ -87,7 +87,9 @@ export default async function SchemeProductPage({
               .map(([dt, dd]) => (
                 <div key={dt} className="rounded-2xl border border-line p-4">
                   <dt className="text-xs uppercase tracking-wide text-muted">{dt}</dt>
-                  <dd className="mt-1 text-sm text-navy">{dd}</dd>
+                  <dd className="mt-1 text-sm text-navy">
+                    {dt === "Indicative test price" ? <ListedPrice amount={String(dd)} /> : dd}
+                  </dd>
                 </div>
               ))}
           </dl>

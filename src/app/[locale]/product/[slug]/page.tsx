@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { LeadForm } from "@/components/lead-form";
-import { PriceReassurance } from "@/components/price-reassurance";
+import { ListedPrice, PriceReassurance } from "@/components/price-reassurance";
 import { Badge, Breadcrumbs, CardLink, JsonLd, StatusBadge } from "@/components/ui";
 import {
   beeForProduct,
@@ -119,14 +119,16 @@ export default async function ProductPage({
 
       <dl className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {[
-          ["IS standard", product.standard],
-          ["HSN code", product.hsn || product.hsn4 || "—"],
-          ["Test cost range", formatRange(product.testCostMin, product.testCostMax)],
-          ["Typical timeline", product.timeline],
-        ].map(([dt, dd]) => (
-          <div key={dt} className="rounded-2xl border border-line bg-paper p-4">
+          ["IS standard", product.standard, false],
+          ["HSN code", product.hsn || product.hsn4 || "—", false],
+          ["Test cost range", formatRange(product.testCostMin, product.testCostMax), true],
+          ["Typical timeline", product.timeline, false],
+        ].map(([dt, dd, isPrice]) => (
+          <div key={String(dt)} className="rounded-2xl border border-line bg-paper p-4">
             <dt className="text-xs uppercase tracking-wide text-muted">{dt}</dt>
-            <dd className="mt-1 font-semibold text-navy">{dd}</dd>
+            <dd className="mt-1 font-semibold text-navy">
+              {isPrice ? <ListedPrice amount={String(dd)} /> : dd}
+            </dd>
           </div>
         ))}
       </dl>
@@ -143,10 +145,11 @@ export default async function ProductPage({
         {Object.entries(product.markingFee).map(([size, value]) => (
           <div key={size} className="rounded-2xl border border-line p-4">
             <p className="text-xs uppercase text-muted">{size}</p>
-            <p className="font-semibold text-navy">{formatInr(value)}</p>
+            <ListedPrice amount={formatInr(value)} />
           </div>
         ))}
       </div>
+      <PriceReassurance compact className="mt-4" />
 
       {qco ? (
         <p className="mt-6 text-sm">
@@ -197,7 +200,9 @@ export default async function ProductPage({
                         </Link>
                       </td>
                       <td className="px-4 py-3 text-muted">{scope.productScope || scope.standard}</td>
-                      <td className="px-4 py-3">{formatInr(scope.price)}</td>
+                      <td className="px-4 py-3">
+                        <ListedPrice amount={formatInr(scope.price)} />
+                      </td>
                     </tr>
                   );
                 })}

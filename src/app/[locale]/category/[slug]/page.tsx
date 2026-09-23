@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
+import { ListedPrice } from "@/components/price-reassurance";
 import { Breadcrumbs, CardLink, JsonLd, StatusBadge } from "@/components/ui";
-import { categories, getCategory, productsByCategory } from "@/data/catalog";
+import { categories, formatRange, getCategory, productsByCategory } from "@/data/catalog";
 import { breadcrumbLd, pageMetadata } from "@/lib/seo";
 
 export function generateStaticParams() {
@@ -61,6 +62,7 @@ export default async function CategoryPage({
           <article key={product.slug} className="rounded-2xl border border-line p-5">
             <StatusBadge status={product.qcoStatus} />
             <CardLink href={`/product/${product.slug}`} title={product.name} meta={product.standard} body={product.excerpt} />
+            <ListedPrice className="mt-3" amount={formatRange(product.testCostMin, product.testCostMax)} />
           </article>
         ))}
       </div>

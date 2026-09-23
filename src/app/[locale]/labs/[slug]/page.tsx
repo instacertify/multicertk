@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { PriceReassurance } from "@/components/price-reassurance";
+import { ListedPrice, PriceReassurance } from "@/components/price-reassurance";
 import { Badge, Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
 import {
   formatInr,
@@ -80,8 +80,9 @@ export default async function LabPage({
       />
       <h1 className="mt-4 font-display text-4xl text-navy">{lab.name}</h1>
       <p className="lead mt-2 text-muted">
-        {lab.city}, {lab.state} · {formatRange(lab.costMin, lab.costMax)}
+        {lab.city}, {lab.state}
       </p>
+      <ListedPrice className="mt-2" amount={formatRange(lab.costMin, lab.costMax)} />
       <PriceReassurance compact className="mt-4" />
       <p className="mt-2 text-sm text-muted">
         {cms?.intro ||
@@ -120,7 +121,9 @@ export default async function LabPage({
                 <tr key={`${scope.standard}-${scope.productScope}`} className="border-t border-line">
                   <td className="px-4 py-3 font-semibold text-navy">{scope.standard}</td>
                   <td className="px-4 py-3 text-muted">{scope.productScope || "—"}</td>
-                  <td className="px-4 py-3">{formatInr(scope.price)}</td>
+                  <td className="px-4 py-3">
+                    <ListedPrice amount={formatInr(scope.price)} />
+                  </td>
                   <td className="px-4 py-3">
                     {linked.length
                       ? linked.map((product) => (
@@ -138,6 +141,7 @@ export default async function LabPage({
           </tbody>
         </table>
       </div>
+      <PriceReassurance compact className="mt-4" />
       <h2 className="mt-10 font-display text-2xl text-navy">{sectionHeading(cms, "products", "Products / schemes this lab unlocks")}</h2>
       <div className="mt-4 grid gap-4 md:grid-cols-2">
         {mapped.map((product) => (
