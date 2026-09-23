@@ -38,7 +38,7 @@ export function CardLink({
     >
       {meta ? <p className="text-xs font-semibold uppercase tracking-wide text-gold-600">{meta}</p> : null}
       <h4 className="mt-1 font-display text-navy">{title}</h4>
-      {body ? <p className="mt-2 text-sm leading-6 text-muted">{body}</p> : null}
+      {body ? <p className="mt-2 text-muted">{body}</p> : null}
     </Link>
   );
 }
@@ -81,7 +81,7 @@ export function JsonLd({ data }: { data: Record<string, unknown> | Record<string
 
 export function Breadcrumbs({ items }: { items: { href: string; label: string }[] }) {
   return (
-    <nav aria-label="Breadcrumb" className="text-sm text-muted">
+    <nav aria-label="Breadcrumb" className="caption text-muted">
       <ol className="flex flex-wrap gap-2">
         {items.map((item, index) => (
           <li key={item.href} className="flex items-center gap-2">

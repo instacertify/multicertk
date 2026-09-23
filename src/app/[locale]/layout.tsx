@@ -66,6 +66,9 @@ export default async function LocaleLayout({
     <html
       lang={meta.htmlLang}
       dir={meta.dir}
+      data-font={
+        locale === "hi" ? "noto-sans-devanagari" : locale === "zh" ? "noto-sans-sc" : locale === "ar" ? "noto-sans-arabic" : "inter"
+      }
       className={`${inter.variable} ${hindi.variable} ${arabic.variable} ${chinese.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-white font-sans text-ink">
