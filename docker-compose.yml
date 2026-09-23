@@ -20,6 +20,26 @@ services:
     volumes:
       - certko_meili:/meili_data
 
+  directus:
+    image: directus/directus:11
+    ports:
+      - "8055:8055"
+    environment:
+      KEY: certko-directus-key
+      SECRET: certko-directus-secret
+      ADMIN_EMAIL: admin@certko.com
+      ADMIN_PASSWORD: certko-admin
+      DB_CLIENT: pg
+      DB_HOST: postgres
+      DB_PORT: "5432"
+      DB_DATABASE: certko
+      DB_USER: certko
+      DB_PASSWORD: certko
+      WEBSOCKETS_ENABLED: "false"
+      PUBLIC_URL: http://localhost:8055
+    depends_on:
+      - postgres
+
 volumes:
   certko_pg:
   certko_meili:

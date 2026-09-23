@@ -7,12 +7,12 @@ import {
   euSectors,
   gmarkProducts,
   labs,
-  posts,
   products,
   qcos,
   schemes,
   tests,
 } from "@/data/catalog";
+import { listArticles } from "@/lib/cms";
 import { languageAlternates, site } from "@/lib/site";
 
 function entry(path: string, changefreq: MetadataRoute.Sitemap[number]["changeFrequency"], priority: number) {
@@ -60,6 +60,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...gmarkProducts.map((item) => entry(`/certifications/g-mark/products/${item.slug}`, "monthly", 0.6)),
     ...euSectors.map((item) => entry(`/certifications/ce/products/${item.slug}`, "monthly", 0.6)),
     ...qcos.map((item) => entry(`/qco/${item.slug}`, "weekly", 0.6)),
-    ...posts.map((item) => entry(`/blog/${item.slug}`, "monthly", 0.5)),
+    ...listArticles("en").map((item) => entry(`/blog/${item.slug}`, "monthly", 0.5)),
   ];
 }

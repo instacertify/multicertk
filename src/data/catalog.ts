@@ -1,5 +1,6 @@
 import library from "./generated/library.json";
 import { countries } from "./countries";
+import { listArticles } from "@/lib/cms";
 import { posts } from "./qcos";
 import { schemes } from "./schemes";
 import { tests as seedTests } from "./tests";
@@ -534,7 +535,7 @@ export function buildSearchDocuments(): SearchDocument[] {
     });
   }
 
-  for (const post of posts) {
+  for (const post of listArticles("en")) {
     docs.push({
       id: `post:${post.slug}`,
       type: "post",

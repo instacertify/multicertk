@@ -12,7 +12,8 @@
     "db:seed": "tsx src/db/seed.ts",
     "search:index": "tsx src/db/index-search.ts",
     "library:import": "tsx scripts/import-library.ts",
-    "library:build": "python3 scripts/build-catalog.py"
+    "library:build": "python3 scripts/build-catalog.py",
+    "cms:bootstrap": "tsx scripts/bootstrap-directus.ts"
   },
   "dependencies": {
     "drizzle-orm": "^0.45.3",

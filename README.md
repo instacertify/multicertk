@@ -11,7 +11,8 @@ Certification and compliance catalogue for **certko.com** — rebuilt on Next.js
 | UI | Tailwind CSS |
 | Routing / i18n | next-intl (`en`, `hi`, `zh`, `es`, `fr`, `ar`, `ru`) — English unprefixed to match the public sitemap |
 | Validation | Zod |
-| Database | PostgreSQL + Drizzle ORM |
+| Database | PostgreSQL + Drizzle ORM (optional; catalogue ships as generated JSON) |
+| CMS | Directus — page headings, section copy and blog articles (`/admin/content`) |
 | Search | Meilisearch Community Edition, with an in-process catalogue fallback |
 | Translation | AI translation API + human review queue at `/admin/translations` |
 | SEO | Metadata API, `sitemap.xml`, hreflang alternates, Schema.org JSON-LD |
@@ -34,6 +35,14 @@ Open [http://localhost:3000](http://localhost:3000). Search works immediately ag
 ```bash
 docker compose up -d
 cp .env.example .env
+npm run cms:bootstrap
+```
+
+Directus Studio is at [http://localhost:8055](http://localhost:8055) (`admin@certko.com` / `certko-admin`). Create a static token and set `DIRECTUS_TOKEN`. Until Directus is running, `/admin/content` still edits headings and articles on the site.
+
+The product catalogue stays in `src/data/generated/library.json` — do not put 1,700 IS records into Directus.
+
+```bash
 npm run db:generate
 npm run db:migrate
 npm run db:seed

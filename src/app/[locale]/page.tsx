@@ -9,6 +9,7 @@ import {
   productsByCategory,
 } from "@/data/catalog";
 import { schemes } from "@/data/schemes";
+import { getPage, sectionHeading } from "@/lib/cms";
 import { breadcrumbLd, faqLd, organizationLd, pageMetadata, websiteLd } from "@/lib/seo";
 
 const faqs = [
@@ -45,6 +46,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("home");
+  const cms = await getPage("home", locale);
   const stats = catalogStats();
   const featured = featuredProducts();
 
@@ -55,8 +57,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold">{t("eyebrow")}</p>
-            <h1 className="mt-3 font-display text-4xl leading-tight sm:text-5xl">{t("title")}</h1>
-            <p className="mt-4 max-w-2xl text-base leading-7 text-white/75">{t("subtitle")}</p>
+            <h1 className="mt-3 font-display text-4xl leading-tight sm:text-5xl">{cms?.title ?? t("title")}</h1>
+            <p className="mt-4 max-w-2xl text-base leading-7 text-white/75">{cms?.intro ?? t("subtitle")}</p>
             <div className="mt-8 max-w-2xl text-navy">
               <SearchBox />
             </div>
@@ -77,7 +79,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </div>
       </section>
 
-      <Section title={t("needTitle")}>
+      <Section title={sectionHeading(cms, "need", t("needTitle"))}>
         <div className="grid gap-5 md:grid-cols-2">
           <div className="rounded-2xl border border-line bg-paper p-6">
             <h3 className="font-display text-2xl text-navy">{t("needCert")}</h3>
@@ -102,7 +104,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </div>
       </Section>
 
-      <Section title={t("marketsTitle")} eyebrow="Global market access">
+      <Section title={sectionHeading(cms, "markets", t("marketsTitle"))} eyebrow="Global market access">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {[
             ["india", "India", "BIS · BEE · WPC · TEC"],
@@ -116,7 +118,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </div>
       </Section>
 
-      <Section title={t("howTitle")}>
+      <Section title={sectionHeading(cms, "how", t("howTitle"))}>
         <ol className="grid gap-4 md:grid-cols-3">
           {[
             [t("step1"), t("step1Body")],
@@ -132,7 +134,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </ol>
       </Section>
 
-      <Section title={t("popular")}>
+      <Section title={sectionHeading(cms, "popular", t("popular"))}>
         <div className="grid gap-4 md:grid-cols-2">
           {featured.map((product) =>
             product ? (
@@ -148,7 +150,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </div>
       </Section>
 
-      <Section title={t("categories")}>
+      <Section title={sectionHeading(cms, "categories", t("categories"))}>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {categories.map((category) => (
             <CardLink

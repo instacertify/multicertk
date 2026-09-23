@@ -9,12 +9,12 @@ import {
   euSectors,
   gmarkProducts,
   labs,
-  posts,
   products,
   qcos,
   schemes,
   tests,
 } from "@/data/catalog";
+import { listArticles } from "@/lib/cms";
 import { pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -63,7 +63,7 @@ export default async function HtmlSitemapPage({ params }: { params: Promise<{ lo
     { title: "G-Mark products", links: gmarkProducts.map((item) => ({ href: `/certifications/g-mark/products/${item.slug}`, label: item.name })) },
     { title: "EU / CE sectors", links: euSectors.map((item) => ({ href: `/certifications/ce/products/${item.slug}`, label: item.name })) },
     { title: "Quality Control Orders", links: qcos.map((item) => ({ href: `/qco/${item.slug}`, label: item.name })) },
-    { title: "Blog", links: posts.map((item) => ({ href: `/blog/${item.slug}`, label: item.title })) },
+    { title: "Blog", links: listArticles("en").map((item) => ({ href: `/blog/${item.slug}`, label: item.title })) },
   ];
 
   return (
