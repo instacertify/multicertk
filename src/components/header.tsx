@@ -81,7 +81,7 @@ export function Header({ menu }: { menu: NavItem[] }) {
 
   return (
     <header
-      className="sticky top-0 z-40 border-b border-line/80 bg-white/95 backdrop-blur"
+      className="relative sticky top-0 z-40 border-b border-line/80 bg-white/95 backdrop-blur"
       onMouseLeave={() => setOpenId(null)}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2.5">
@@ -144,7 +144,7 @@ export function Header({ menu }: { menu: NavItem[] }) {
       </div>
       {openItem && mega ? (
         <div
-          className="mega-menu hidden border-t border-line bg-white shadow-lg lg:block"
+          className="mega-menu absolute inset-x-0 top-full hidden border-t border-line bg-white shadow-lg lg:block"
           onMouseEnter={() => setOpenId(openItem.id)}
           onMouseLeave={() => setOpenId(null)}
         >
