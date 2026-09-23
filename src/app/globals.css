@@ -11,30 +11,30 @@
   --line: #d5dee8;
   --muted: #5b6b7c;
   --font-ui: var(--font-inter);
-  --fs-h1: 34px;
-  --fs-h2: 27px;
-  --fs-h3: 22px;
-  --fs-h4: 21px;
-  --fs-body: 16.5px;
-  --fs-lead: 18px;
-  --fs-nav: 14.5px;
-  --fs-btn: 15px;
-  --fs-table: 13.5px;
-  --fs-caption: 13px;
+  --fs-h1: 28px;
+  --fs-h2: 22px;
+  --fs-h3: 18px;
+  --fs-h4: 17px;
+  --fs-body: 15px;
+  --fs-lead: 16px;
+  --fs-nav: 13.5px;
+  --fs-btn: 14px;
+  --fs-table: 12.5px;
+  --fs-caption: 12px;
 }
 
 @media (min-width: 768px) {
   :root {
-    --fs-h1: 44px;
-    --fs-h2: 34px;
-    --fs-h3: 26px;
-    --fs-h4: 21px;
-    --fs-body: 17px;
-    --fs-lead: 19px;
-    --fs-nav: 15px;
-    --fs-btn: 15px;
-    --fs-table: 14.5px;
-    --fs-caption: 13px;
+    --fs-h1: 33px;
+    --fs-h2: 26px;
+    --fs-h3: 20px;
+    --fs-h4: 18px;
+    --fs-body: 16px;
+    --fs-lead: 17px;
+    --fs-nav: 14px;
+    --fs-btn: 14px;
+    --fs-table: 13px;
+    --fs-caption: 12px;
   }
 }
 
