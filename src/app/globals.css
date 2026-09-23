@@ -44,6 +44,14 @@ html[lang="ar"] body {
   font-family: var(--font-arabic), var(--font-sans), ui-sans-serif, sans-serif;
 }
 
+html[lang="zh-Hans"] body {
+  font-family: var(--font-cjk), var(--font-sans), ui-sans-serif, sans-serif;
+}
+
+html[lang="ru"] body {
+  font-family: var(--font-cyrillic), var(--font-sans), ui-sans-serif, sans-serif;
+}
+
 h1,
 h2,
 h3,

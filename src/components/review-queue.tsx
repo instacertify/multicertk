@@ -24,7 +24,7 @@ interface RecordRow {
 
 export function ReviewQueue({ seeds }: { seeds: Seed[] }) {
   const [rows, setRows] = useState<RecordRow[]>([]);
-  const [locale, setLocale] = useState<"hi" | "ar">("hi");
+  const [locale, setLocale] = useState<"hi" | "zh" | "es" | "fr" | "ar" | "ru">("zh");
   const [busy, setBusy] = useState(false);
 
   async function refresh() {
@@ -64,11 +64,17 @@ export function ReviewQueue({ seeds }: { seeds: Seed[] }) {
           Target locale{" "}
           <select
             value={locale}
-            onChange={(event) => setLocale(event.target.value as "hi" | "ar")}
+            onChange={(event) =>
+              setLocale(event.target.value as "hi" | "zh" | "es" | "fr" | "ar" | "ru")
+            }
             className="ml-2 rounded-lg border border-line px-2 py-1"
           >
-            <option value="hi">Hindi</option>
+            <option value="zh">Chinese</option>
+            <option value="es">Spanish</option>
+            <option value="fr">French</option>
             <option value="ar">Arabic</option>
+            <option value="ru">Russian</option>
+            <option value="hi">Hindi</option>
           </select>
         </label>
       </div>

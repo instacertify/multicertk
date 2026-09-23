@@ -1,0 +1,74 @@
+{
+  "meta": {
+    "homeTitle": "Socio de certificación y cumplimiento",
+    "homeDescription": "Busque productos, códigos HSN y normas IS. Certko conecta BIS, BEE, GMARK, CE, FCC, SABER, WPC y los laboratorios que los desbloquean."
+  },
+  "nav": {
+    "products": "Productos",
+    "certifications": "Certificaciones",
+    "testing": "Ensayos",
+    "labs": "Laboratorios",
+    "qco": "QCO",
+    "guide": "Guía",
+    "blog": "Blog",
+    "contact": "Contacto",
+    "search": "Buscar",
+    "countries": "Mercados"
+  },
+  "cta": {
+    "quote": "Cotización gratuita",
+    "talk": "Hablar con un experto",
+    "search": "Buscar esquemas, normas, HSN",
+    "bookTesting": "Reservar ensayo",
+    "bookConsulting": "Reservar consultoría"
+  },
+  "home": {
+    "eyebrow": "Compliance. Assured.",
+    "title": "Encuentre la certificación y el ensayo correctos para su producto",
+    "subtitle": "Escriba un nombre de producto, una norma IS o un HSN. Mostraremos los esquemas que suelen aplicar — BIS, BEE, GMARK, CE, FCC, SABER, WPC — más ensayos, laboratorios y costes orientativos.",
+    "statsProducts": "Productos mapeados",
+    "statsTests": "Soluciones de ensayo",
+    "statsLabs": "Laboratorios reconocidos",
+    "statsSchemes": "Esquemas de certificación",
+    "needTitle": "¿Qué necesita para este producto?",
+    "needCert": "La certificación correcta",
+    "needTest": "El ensayo correcto",
+    "marketsTitle": "¿Dónde vende?",
+    "howTitle": "Cómo funciona",
+    "step1": "Busque su producto o HSN",
+    "step1Body": "Empiece por el nombre, la norma IS o el HSN. Certko mapea las rutas de certificación y ensayo que suelen aplicar.",
+    "step2": "Elija la certificación correcta",
+    "step2Body": "Compare BIS, BEE, GMARK, CE, FCC, SABER, WPC — con notas sobre lo obligatorio frente a lo exigido por el comprador.",
+    "step3": "Fije la ruta de ensayo",
+    "step3Body": "Vea tarifas indicativas, laboratorios reconocidos y el siguiente paso.",
+    "popular": "Productos populares",
+    "categories": "Soluciones de certificación y categorías"
+  },
+  "search": {
+    "submit": "Buscar",
+    "placeholder": "Buscar producto, norma IS, HSN, laboratorio o esquema",
+    "empty": "Escriba al menos dos caracteres para buscar el catálogo interconectado.",
+    "noResults": "Sin coincidencias. Pruebe un número IS (p. ej. IS 302), un HSN o un esquema como BIS o GMARK.",
+    "engineCatalog": "Buscando en el catálogo local",
+    "engineMeili": "Buscando en Meilisearch"
+  },
+  "footer": {
+    "blurb": "Su socio de certificación y cumplimiento. Cada norma de laboratorio y esquema está interconectado y es buscable.",
+    "contact": "Contacto",
+    "legal": "Legal",
+    "explore": "Explorar"
+  },
+  "lead": {
+    "title": "¿No encuentra la solución?",
+    "body": "Si su producto, HSN o mercado no está claro, hable con un experto. Mapeamos la ruta en 24 horas, sin coste.",
+    "name": "Nombre",
+    "email": "Email profesional",
+    "company": "Empresa",
+    "phone": "Teléfono",
+    "interest": "¿Qué necesita?",
+    "message": "Producto, HSN o norma",
+    "submit": "Pedir cotización",
+    "success": "Gracias — un especialista de Certko responderá en 24 horas.",
+    "error": "Revise el formulario e inténtelo de nuevo."
+  }
+}

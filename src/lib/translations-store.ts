@@ -69,9 +69,18 @@ export async function patchTranslation(
   return rows[index];
 }
 
-export async function generateAiTranslation(locale: "hi" | "ar", sourceText: string) {
+const languageNames: Record<string, string> = {
+  hi: "Hindi",
+  zh: "Simplified Chinese",
+  es: "Spanish",
+  fr: "French",
+  ar: "Arabic",
+  ru: "Russian",
+};
+
+export async function generateAiTranslation(locale: string, sourceText: string) {
   const apiKey = process.env.OPENAI_API_KEY;
-  const language = locale === "hi" ? "Hindi" : "Arabic";
+  const language = languageNames[locale] ?? locale;
 
   if (!apiKey) {
     return {

@@ -28,7 +28,7 @@ export const searchQuerySchema = z.object({
 });
 
 export const translationGenerateSchema = z.object({
-  locale: z.enum(["hi", "ar"]),
+  locale: z.enum(["hi", "zh", "es", "fr", "ar", "ru"]),
   entityType: z.enum(["product", "scheme", "ui"]),
   entityId: z.string().trim().min(1).max(180),
   field: z.string().trim().min(1).max(40),

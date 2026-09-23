@@ -1,3 +1,5 @@
+import { locales, type Locale } from "@/i18n/routing";
+
 export const site = {
   name: "Certko",
   tagline: "Compliance. Assured.",
@@ -11,10 +13,17 @@ export const site = {
     "Find the right certification and testing for your product. Certko maps BIS, BEE, GMARK, CE, FCC, SABER, WPC and lab standards so every scheme is searchable and interlinked.",
 } as const;
 
-export const localesMeta = {
-  en: { htmlLang: "en", dir: "ltr" as const, label: "English", hreflang: "en" },
-  hi: { htmlLang: "hi", dir: "ltr" as const, label: "हिन्दी", hreflang: "hi" },
-  ar: { htmlLang: "ar", dir: "rtl" as const, label: "العربية", hreflang: "ar" },
+export const localesMeta: Record<
+  Locale,
+  { htmlLang: string; dir: "ltr" | "rtl"; label: string; hreflang: string }
+> = {
+  en: { htmlLang: "en", dir: "ltr", label: "English", hreflang: "en" },
+  hi: { htmlLang: "hi", dir: "ltr", label: "हिन्दी", hreflang: "hi" },
+  zh: { htmlLang: "zh-Hans", dir: "ltr", label: "中文", hreflang: "zh-Hans" },
+  es: { htmlLang: "es", dir: "ltr", label: "Español", hreflang: "es" },
+  fr: { htmlLang: "fr", dir: "ltr", label: "Français", hreflang: "fr" },
+  ar: { htmlLang: "ar", dir: "rtl", label: "العربية", hreflang: "ar" },
+  ru: { htmlLang: "ru", dir: "ltr", label: "Русский", hreflang: "ru" },
 };
 
 export function absUrl(path = "/") {
@@ -29,10 +38,9 @@ export function localizedPath(locale: string, path: string) {
 }
 
 export function languageAlternates(path: string) {
-  return {
-    en: absUrl(localizedPath("en", path)),
-    hi: absUrl(localizedPath("hi", path)),
-    ar: absUrl(localizedPath("ar", path)),
-    "x-default": absUrl(localizedPath("en", path)),
-  };
+  const languages: Record<string, string> = { "x-default": absUrl(localizedPath("en", path)) };
+  for (const locale of locales) {
+    languages[localesMeta[locale].hreflang] = absUrl(localizedPath(locale, path));
+  }
+  return languages;
 }

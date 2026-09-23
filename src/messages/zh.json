@@ -1,0 +1,74 @@
+{
+  "meta": {
+    "homeTitle": "认证与合规解决方案伙伴",
+    "homeDescription": "搜索产品、HSN 和 IS 标准。Certko 将 BIS、BEE、GMARK、CE、FCC、SABER、WPC 与对应实验室互联。"
+  },
+  "nav": {
+    "products": "产品",
+    "certifications": "认证",
+    "testing": "检测",
+    "labs": "实验室",
+    "qco": "QCO",
+    "guide": "指南",
+    "blog": "博客",
+    "contact": "联系",
+    "search": "搜索",
+    "countries": "市场"
+  },
+  "cta": {
+    "quote": "获取免费报价",
+    "talk": "咨询专家",
+    "search": "搜索体系、标准、HSN",
+    "bookTesting": "预约检测",
+    "bookConsulting": "预约咨询"
+  },
+  "home": {
+    "eyebrow": "Compliance. Assured.",
+    "title": "为您的产品找到正确的认证与检测",
+    "subtitle": "输入产品名称、IS 标准或 HSN。我们将显示通常适用的体系——BIS、BEE、GMARK、CE、FCC、SABER、WPC——以及检测、实验室和大致费用。",
+    "statsProducts": "已映射产品",
+    "statsTests": "检测方案",
+    "statsLabs": "认可实验室",
+    "statsSchemes": "认证体系",
+    "needTitle": "该产品您需要什么？",
+    "needCert": "正确的认证",
+    "needTest": "正确的检测",
+    "marketsTitle": "您销往哪里？",
+    "howTitle": "如何运作",
+    "step1": "搜索产品或 HSN",
+    "step1Body": "从产品名称、IS 标准或 HSN 开始。Certko 映射通常适用的认证与检测路径。",
+    "step2": "选择正确的认证",
+    "step2Body": "比较 BIS、BEE、GMARK、CE、FCC、SABER、WPC——并标明强制与买方驱动的区别。",
+    "step3": "锁定检测路径",
+    "step3Body": "查看指示性实验室费用、认可实验室以及下一步该预约什么。",
+    "popular": "热门产品",
+    "categories": "认证方案与产品类别"
+  },
+  "search": {
+    "submit": "搜索",
+    "placeholder": "搜索产品、IS 标准、HSN、实验室或体系",
+    "empty": "至少输入两个字符以搜索互联目录。",
+    "noResults": "无匹配。请尝试 IS 编号（如 IS 302）、HSN，或 BIS / GMARK 等体系名称。",
+    "engineCatalog": "正在搜索本地目录",
+    "engineMeili": "正在通过 Meilisearch 搜索"
+  },
+  "footer": {
+    "blurb": "您的认证与合规解决方案伙伴。每一项实验室标准和认证体系均可搜索并相互链接。",
+    "contact": "联系",
+    "legal": "法律",
+    "explore": "探索"
+  },
+  "lead": {
+    "title": "找不到合适的方案？",
+    "body": "如果产品、HSN 或市场路径不清楚，请咨询认证专家。我们将在 24 小时内免费绘制认证与检测路线。",
+    "name": "姓名",
+    "email": "工作邮箱",
+    "company": "公司",
+    "phone": "电话",
+    "interest": "您需要什么？",
+    "message": "产品、HSN 或标准",
+    "submit": "请求报价",
+    "success": "谢谢——Certko 专家将在 24 小时内回复。",
+    "error": "请检查表单后重试。"
+  }
+}

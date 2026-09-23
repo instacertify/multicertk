@@ -1,7 +1,14 @@
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
-import { Plus_Jakarta_Sans, Fraunces, Noto_Sans_Devanagari, Noto_Naskh_Arabic } from "next/font/google";
+import {
+  Plus_Jakarta_Sans,
+  Fraunces,
+  Noto_Sans_Devanagari,
+  Noto_Naskh_Arabic,
+  Noto_Sans_SC,
+  Noto_Sans,
+} from "next/font/google";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { routing } from "@/i18n/routing";
@@ -26,6 +33,16 @@ const hindi = Noto_Sans_Devanagari({
 const arabic = Noto_Naskh_Arabic({
   subsets: ["arabic"],
   variable: "--font-arabic",
+});
+
+const cjk = Noto_Sans_SC({
+  subsets: ["latin"],
+  variable: "--font-cjk",
+});
+
+const cyrillic = Noto_Sans({
+  subsets: ["cyrillic", "latin", "latin-ext"],
+  variable: "--font-cyrillic",
 });
 
 export function generateStaticParams() {
@@ -56,7 +73,11 @@ export default async function LocaleLayout({
   const meta = localesMeta[locale as keyof typeof localesMeta];
 
   return (
-    <html lang={meta.htmlLang} dir={meta.dir} className={`${sans.variable} ${display.variable} ${hindi.variable} ${arabic.variable} h-full antialiased`}>
+    <html
+      lang={meta.htmlLang}
+      dir={meta.dir}
+      className={`${sans.variable} ${display.variable} ${hindi.variable} ${arabic.variable} ${cjk.variable} ${cyrillic.variable} h-full antialiased`}
+    >
       <body className="flex min-h-full flex-col bg-white font-sans text-ink">
         <NextIntlClientProvider messages={messages}>
           <Header />
