@@ -25,7 +25,7 @@ export default async function MediaAdmin({ params }: { params: Promise<{ locale:
     <div className="mx-auto max-w-3xl px-4 py-10">
       <Breadcrumbs
         items={[
-          { href: "/admin", label: "Backend" },
+          { href: "/admin", label: "Editor" },
           { href: "/admin/content", label: "Content" },
           { href: "/admin/content/media", label: "Logos & reviews" },
         ]}

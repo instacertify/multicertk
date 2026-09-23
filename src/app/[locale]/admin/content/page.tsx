@@ -28,7 +28,7 @@ export default async function ContentIndex({ params }: { params: Promise<{ local
     <div className="mx-auto max-w-5xl px-4 py-10">
       <Breadcrumbs
         items={[
-          { href: "/admin", label: "Backend" },
+          { href: "/admin", label: "Editor" },
           { href: "/admin/content", label: "Content" },
         ]}
       />
@@ -46,8 +46,20 @@ export default async function ContentIndex({ params }: { params: Promise<{ local
         <CardLink
           href="/admin/content/menu"
           title="Header menu"
-          meta="Certification · Testing · QCOs · Labs"
+          meta="Certification · Testing · QCOs · Labs · Resources"
           body="Rename items, add submenu links, or reorder the public header."
+        />
+        <CardLink
+          href="/admin/content/seo"
+          title="SEO"
+          meta="Titles and robots"
+          body="Default title, description, share image and whether public pages may be indexed."
+        />
+        <CardLink
+          href="/admin/content/cookies"
+          title="Cookies & consent"
+          meta="DPDP · GDPR"
+          body="Banner copy and optional analytics after consent."
         />
       </div>
       <h2 className="mt-10 font-display text-2xl text-navy">Pages / sections</h2>
@@ -77,7 +89,7 @@ export default async function ContentIndex({ params }: { params: Promise<{ local
       </div>
       <p className="mt-8 text-sm">
         <Link href="/admin" className="font-semibold text-navy underline">
-          Back to the backend home →
+          Back to the editor →
         </Link>
       </p>
     </div>

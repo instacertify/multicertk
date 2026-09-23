@@ -40,7 +40,7 @@ export default async function AdminTranslationsPage({
   return (
     <div className="mx-auto max-w-5xl px-4 py-10">
       <p className="text-xs font-semibold uppercase tracking-wide text-gold-600">
-        <a href="/admin" className="hover:underline">Backend</a> · Human review queue
+        <a href="/admin" className="hover:underline">Editor</a> · Human review queue
       </p>
       <h1 className="mt-2 font-display text-4xl text-navy">AI translations + reviewer sign-off</h1>
       <p className="lead mt-3 max-w-3xl text-muted">

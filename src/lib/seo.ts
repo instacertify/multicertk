@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getSeo } from "./site-settings";
 import { languageAlternates, localizedPath, site } from "./site";
 
 export function pageMetadata({
@@ -15,14 +16,17 @@ export function pageMetadata({
   index?: boolean;
 }): Metadata {
   const canonical = localizedPath(locale, path);
+  const seo = getSeo();
+  const allowIndex = index && seo.indexable;
   return {
     title,
     description,
+    keywords: seo.keywords || undefined,
     alternates: {
       canonical,
       languages: languageAlternates(path),
     },
-    robots: index ? { index: true, follow: true } : { index: false, follow: false },
+    robots: allowIndex ? { index: true, follow: true } : { index: false, follow: false },
     openGraph: {
       title: `${title} | ${site.name}`,
       description,
@@ -30,7 +34,7 @@ export function pageMetadata({
       siteName: site.name,
       locale,
       type: "website",
-      images: [{ url: "/certko-logo.png", width: 1416, height: 391, alt: site.name }],
+      images: [{ url: seo.ogImage || "/certko-logo.png", width: 1416, height: 391, alt: site.name }],
     },
     twitter: {
       card: "summary_large_image",

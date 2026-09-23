@@ -56,7 +56,10 @@ export function siteMediaExists() {
 }
 
 export function getMenu() {
-  return readSiteMedia().menu;
+  const menu = readSiteMedia().menu;
+  if (menu.some((item) => item.id === "resources")) return menu;
+  const extra = defaultMenu.filter((item) => !menu.some((current) => current.id === item.id));
+  return [...menu, ...extra];
 }
 
 export function getLogos() {

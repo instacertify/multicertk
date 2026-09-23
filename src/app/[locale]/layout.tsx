@@ -2,11 +2,13 @@ import { notFound } from "next/navigation";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { Inter, Noto_Sans_Arabic, Noto_Sans_Devanagari, Noto_Sans_SC } from "next/font/google";
+import { CookieBanner } from "@/components/cookie-banner";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { SocialProof } from "@/components/trusted-by";
 import { routing } from "@/i18n/routing";
 import { getLogos, getMenu, getReviews } from "@/lib/site-media";
+import { getCookieSettings, getSeo } from "@/lib/site-settings";
 import { localesMeta, site } from "@/lib/site";
 import "../globals.css";
 
@@ -43,15 +45,24 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export const metadata = {
-  metadataBase: new URL(site.url),
-  title: {
-    default: `${site.name} | ${site.tagline}`,
-    template: `%s | ${site.name}`,
-  },
-  description: site.description,
-  icons: { icon: "/certko-logo.png" },
-};
+export async function generateMetadata() {
+  const seo = getSeo();
+  return {
+    metadataBase: new URL(site.url),
+    title: {
+      default: seo.defaultTitle,
+      template: seo.titleTemplate,
+    },
+    description: seo.defaultDescription,
+    keywords: seo.keywords || undefined,
+    icons: { icon: "/certko-logo.png" },
+    robots: seo.indexable ? { index: true, follow: true } : { index: false, follow: false },
+    verification: {
+      google: seo.googleSiteVerification || undefined,
+      other: seo.bingSiteVerification ? { "msvalidate.01": seo.bingSiteVerification } : undefined,
+    },
+  };
+}
 
 export default async function LocaleLayout({
   children,
@@ -69,6 +80,7 @@ export default async function LocaleLayout({
   const logos = getLogos();
   const reviews = getReviews();
   const navCopy = (messages as { nav?: { trustedBy?: string; reviewsTitle?: string } }).nav;
+  const cookies = getCookieSettings();
 
   return (
     <html
@@ -90,6 +102,7 @@ export default async function LocaleLayout({
             reviewsHeading={navCopy?.reviewsTitle || "What customers say"}
           />
           <Footer />
+          <CookieBanner settings={cookies} />
         </NextIntlClientProvider>
       </body>
     </html>

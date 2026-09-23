@@ -376,6 +376,123 @@ export const seedPages: CmsPage[] = [
     sections: [{ key: "linked", heading: "Linked IS / product record", body: [] }],
   },
   {
+    slug: "privacy",
+    path: "/privacy",
+    locale: "en",
+    title: "Privacy policy",
+    intro:
+      "How Instacertify Labs Private Limited collects and uses personal data when you use Certko — aligned with India’s DPDP Act, 2023 and, where it applies, the EU / UK GDPR.",
+    sections: [
+      {
+        key: "about",
+        heading: "Who we are",
+        body: [
+          "Certko is a certification and compliance information platform operated by Instacertify Labs Private Limited, A-34, 4th Floor, Sector 63A, Noida, Uttar Pradesh 201301, India.",
+          "Certko is not a certification body, testing laboratory or government authority unless a page says otherwise.",
+        ],
+      },
+      {
+        key: "collect",
+        heading: "What we collect",
+        body: [
+          "Quote forms store your name, work email, company, phone and the product, HSN or standard you submit so we can reply.",
+          "The site also records technical logs (IP, browser, locale) needed to serve pages securely. We do not sell personal data.",
+        ],
+      },
+      {
+        key: "use",
+        heading: "Why we use it",
+        body: [
+          "To answer enquiries, map a certification path, keep the catalogue working, meet legal duties, and stop abuse.",
+          "Where a law asks for a legal basis we rely on consent, a contract you requested, legitimate interests in running a secure site, or a legal obligation.",
+        ],
+      },
+      {
+        key: "cookies",
+        heading: "Cookies",
+        body: [
+          "Necessary cookies keep locale and security working. Analytics and marketing cookies stay off until you allow them in the cookie banner.",
+          "Read the cookie policy and GDPR / DPDP note, or change your choice at any time from Cookie settings in the footer.",
+        ],
+      },
+      {
+        key: "rights",
+        heading: "Your rights",
+        body: [
+          "You may ask for access, correction, deletion, restriction, portability or to withdraw consent, subject to the DPDP Act and, where it applies, GDPR.",
+          "Use the data-request form or email info@certko.com. We may need to confirm it is you before we reply.",
+        ],
+      },
+      {
+        key: "contact",
+        heading: "Privacy contact",
+        body: [
+          "Privacy Officer, Instacertify Labs Private Limited, A-34, 4th Floor, Sector 63A, Noida, Uttar Pradesh 201301, India. Email info@certko.com. Phone +91-9999118039.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "cookies",
+    path: "/privacy/cookies",
+    locale: "en",
+    title: "Cookie policy",
+    intro: "Certko uses a small set of cookies. You choose analytics and marketing. Necessary cookies stay on so the site can run.",
+    sections: [
+      {
+        key: "necessary",
+        heading: "Necessary cookies",
+        body: [
+          "These remember your locale, keep a page secure, and store the cookie choice you just made. The site cannot work without them.",
+        ],
+      },
+      {
+        key: "optional",
+        heading: "Analytics and marketing",
+        body: [
+          "These load only after you press Allow all, and only if they are switched on in the editor. You can switch back to Essential only at any time.",
+        ],
+      },
+      {
+        key: "manage",
+        heading: "How to change your choice",
+        body: [
+          "Open Cookie settings in the footer, or use your browser controls. See also the privacy policy and the GDPR / DPDP note.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "gdpr-and-dpdp",
+    path: "/privacy/gdpr-and-dpdp",
+    locale: "en",
+    title: "GDPR and DPDP",
+    intro: "Certko is run from India. EU / UK GDPR and India’s Digital Personal Data Protection Act, 2023 can both apply to a quote request.",
+    sections: [
+      {
+        key: "gdpr",
+        heading: "GDPR (EU / EEA / UK)",
+        body: [
+          "Where GDPR applies we process personal data on consent, contract, legitimate interests or a legal duty. You may ask for access, correction, erasure, restriction, portability or to object, and you may complain to your local supervisory authority.",
+        ],
+      },
+      {
+        key: "dpdp",
+        heading: "DPDP Act, 2023 (India)",
+        body: [
+          "We act as a Data Fiduciary for personal data whose purpose we decide. You may ask for access, correction, erasure and withdrawal of consent, subject to the Act and its rules. Grievances go to our Privacy Officer and, where the Act allows, the Data Protection Board of India.",
+        ],
+      },
+      {
+        key: "request",
+        heading: "How to raise a request",
+        body: [
+          "Use the data-request form or email info@certko.com. We reply after we can match the request to the person it concerns.",
+        ],
+      },
+    ],
+  },
+  {
     slug: "terms",
     path: "/terms",
     locale: "en",

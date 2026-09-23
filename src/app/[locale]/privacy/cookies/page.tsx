@@ -1,22 +1,15 @@
 import { setRequestLocale } from "next-intl/server";
-import { SimplePage } from "@/components/simple-page";
-import { pageMetadata } from "@/lib/seo";
+import { CmsSimplePage, cmsPageMetadata } from "@/components/cms-page";
+
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  return pageMetadata({ locale, path: "/privacy/cookies", title: "Cookie policy", description: "Cookies used by Certko." });
+  return cmsPageMetadata(locale, "cookies", "Cookie policy", "Cookies used by Certko and how to change your choice.");
 }
 
 export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  return (
-    <SimplePage
-      showLead={false}
-      title="Cookie policy"
-      path="/privacy/cookies"
-      intro="Essential cookies keep the locale and form state working. Analytics cookies, if enabled, are optional."
-      sections={[{ heading: "Locale", body: ["next-intl may store a locale preference so /hi and /ar routes stay consistent."] }]}
-    />
-  );
+  return <CmsSimplePage slug="cookies" locale={locale} showLead={false} />;
 }

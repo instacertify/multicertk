@@ -37,7 +37,7 @@ export default async function EditPage({
     <div className="mx-auto max-w-3xl px-4 py-10">
       <Breadcrumbs
         items={[
-          { href: "/admin", label: "Backend" },
+          { href: "/admin", label: "Editor" },
           { href: "/admin/content", label: "Content" },
           { href: `/admin/content/page/${page.slug}`, label: page.title },
         ]}

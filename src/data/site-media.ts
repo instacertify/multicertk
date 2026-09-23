@@ -67,8 +67,30 @@ export const defaultMenu: NavItem[] = [
       { id: "mechanical", label: "Mechanical", href: "/testing/mechanical-testing" },
     ],
   },
-  { id: "qcos", label: "QCOs", href: "/qco" },
-  { id: "labs", label: "Labs", href: "/labs" },
+  {
+    id: "qcos",
+    label: "QCOs",
+    href: "/qco",
+    children: [
+      { id: "all-qco", label: "All QCOs", href: "/qco" },
+      { id: "products", label: "Mapped products", href: "/products" },
+      { id: "guide", label: "BIS guide", href: "/guide" },
+    ],
+  },
+  { id: "labs", label: "Labs", href: "/labs", children: [{ id: "labs-dir", label: "Lab directory", href: "/labs" }] },
+  {
+    id: "resources",
+    label: "Resources",
+    href: "/blog",
+    children: [
+      { id: "blog", label: "Blog", href: "/blog" },
+      { id: "guide", label: "BIS guide", href: "/guide" },
+      { id: "tenders", label: "Tenders", href: "/tenders" },
+      { id: "marketplaces", label: "Marketplaces", href: "/marketplaces" },
+      { id: "consulting", label: "Consulting", href: "/bis-certification-consulting" },
+      { id: "about", label: "About", href: "/about" },
+    ],
+  },
 ];
 
 export const seedLogos: CustomerLogo[] = [

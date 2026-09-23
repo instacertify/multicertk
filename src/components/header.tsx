@@ -7,11 +7,12 @@ import type { NavItem } from "@/data/site-media";
 import { LocaleSwitcher } from "./locale-switcher";
 import { Logo } from "./logo";
 
-const localeKeys: Record<string, "certification" | "testing" | "qcos" | "labs"> = {
+const localeKeys: Record<string, "certification" | "testing" | "qcos" | "labs" | "resources"> = {
   certification: "certification",
   testing: "testing",
   qcos: "qcos",
   labs: "labs",
+  resources: "resources",
 };
 
 export function Header({ menu }: { menu: NavItem[] }) {
