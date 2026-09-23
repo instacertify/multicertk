@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { CmsArticles } from "@/components/cms-copy";
+import { PageMedia } from "@/components/page-hero";
 import { LeadForm } from "@/components/lead-form";
 import { ListedPrice, PriceReassurance } from "@/components/price-reassurance";
 import { Breadcrumbs, CardLink } from "@/components/ui";
@@ -71,6 +72,7 @@ export default async function SchemeProductPage({
       />
       <h1 className="mt-4 font-display text-4xl text-navy">{item.name}</h1>
       <p className="lead mt-3 text-muted">{item.summary}</p>
+      <PageMedia src={cms?.heroImageUrl} alt={cms?.heroImageAlt || item.name} gallery={cms?.galleryUrls} />
       <p className="mt-6 text-sm">
         Scheme:{" "}
         <Link href={`/certifications/${scheme.slug}`} className="font-semibold underline">

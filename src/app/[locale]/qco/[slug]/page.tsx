@@ -5,6 +5,7 @@ import { LeadForm } from "@/components/lead-form";
 import { Breadcrumbs, CardLink, JsonLd, StatusBadge } from "@/components/ui";
 import { getProduct, getQco, qcos } from "@/data/catalog";
 import { CmsArticles } from "@/components/cms-copy";
+import { PageMedia } from "@/components/page-hero";
 import { getPage, sectionHeading } from "@/lib/cms";
 import { breadcrumbLd, pageMetadata } from "@/lib/seo";
 
@@ -72,6 +73,7 @@ export default async function QcoDetailPage({
         {qco.standard ? ` · ${qco.standard}` : ""}
       </p>
       <p className="mt-4 max-w-3xl text-muted">{qco.summary}</p>
+      <PageMedia src={cms?.heroImageUrl} alt={cms?.heroImageAlt || qco.name} gallery={cms?.galleryUrls} />
       <h2 className="mt-10 font-display text-2xl text-navy">{sectionHeading(cms, "mapped", "Mapped products & standards")}</h2>
       <div className="mt-4 grid gap-4 md:grid-cols-2">
         {mapped.map((product) =>

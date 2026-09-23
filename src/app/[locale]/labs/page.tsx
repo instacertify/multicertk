@@ -1,6 +1,6 @@
 import { setRequestLocale } from "next-intl/server";
 import { CatalogFilter } from "@/components/catalog-filter";
-import { PageHero } from "@/components/page-hero";
+import { PageMedia } from "@/components/page-hero";
 import { PriceOffer, PriceReassurance } from "@/components/price-reassurance";
 import { Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
 import { filterLabs, formatRange, labs } from "@/data/catalog";
@@ -42,7 +42,7 @@ export default async function LabsPage({
         {cms?.intro ??
           `${rows.length} recognised testing laboratories from the library — compare locations, scopes and indicative charges, then open the standards they unlock.`}
       </p>
-      <PageHero src={cms?.heroImageUrl} alt={cms?.heroImageAlt || cms?.title || "Labs"} />
+      <PageMedia src={cms?.heroImageUrl} alt={cms?.heroImageAlt || cms?.title || "Labs"} gallery={cms?.galleryUrls} />
       <PriceReassurance className="mt-6" />
       <CatalogFilter q={filters.q}>
         <label className="text-sm">

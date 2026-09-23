@@ -17,3 +17,35 @@ export function SectionImage({ src, alt }: { src?: string; alt: string }) {
     </figure>
   );
 }
+
+export function PageGallery({ urls, alt }: { urls?: string[]; alt: string }) {
+  const images = urls?.filter(Boolean) ?? [];
+  if (!images.length) return null;
+  return (
+    <div className="mt-4 grid gap-3 sm:grid-cols-2">
+      {images.map((src) => (
+        <figure key={src} className="overflow-hidden rounded-2xl border border-line bg-paper">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={src} alt={alt} className="max-h-56 w-full object-cover" />
+        </figure>
+      ))}
+    </div>
+  );
+}
+
+export function PageMedia({
+  src,
+  alt,
+  gallery,
+}: {
+  src?: string;
+  alt: string;
+  gallery?: string[];
+}) {
+  return (
+    <>
+      <PageHero src={src} alt={alt} />
+      <PageGallery urls={gallery} alt={alt} />
+    </>
+  );
+}

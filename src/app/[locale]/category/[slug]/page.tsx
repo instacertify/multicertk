@@ -1,9 +1,13 @@
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
+import { PageMedia } from "@/components/page-hero";
 import { ListedPrice } from "@/components/price-reassurance";
 import { Breadcrumbs, CardLink, JsonLd, StatusBadge } from "@/components/ui";
 import { categories, formatRange, getCategory, productsByCategory } from "@/data/catalog";
+import { getPage } from "@/lib/cms";
 import { breadcrumbLd, pageMetadata } from "@/lib/seo";
+
+export const dynamic = "force-dynamic";
 
 export function generateStaticParams() {
   return categories.map((category) => ({ slug: category.slug }));
@@ -35,6 +39,7 @@ export default async function CategoryPage({
   const category = getCategory(slug);
   if (!category) notFound();
   const mapped = productsByCategory(category.slug);
+  const cms = await getPage("category-detail", locale);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10">
@@ -57,6 +62,7 @@ export default async function CategoryPage({
       />
       <h1 className="mt-4 font-display text-4xl text-navy">{category.name}</h1>
       <p className="lead mt-3 max-w-3xl text-muted">{category.summary}</p>
+      <PageMedia src={cms?.heroImageUrl} alt={cms?.heroImageAlt || category.name} gallery={cms?.galleryUrls} />
       <div className="mt-8 grid gap-4 md:grid-cols-2">
         {mapped.map((product) => (
           <article key={product.slug} className="rounded-2xl border border-line p-5">

@@ -35,6 +35,7 @@ export function PageEditor({ page, locale }: { page: CmsPage; locale: string }) 
   const [intro, setIntro] = useState(page.intro);
   const [heroImageUrl, setHeroImageUrl] = useState(page.heroImageUrl || "");
   const [heroImageAlt, setHeroImageAlt] = useState(page.heroImageAlt || "");
+  const [galleryUrls, setGalleryUrls] = useState<string[]>(page.galleryUrls ?? []);
   const [sections, setSections] = useState(page.sections);
   const [status, setStatus] = useState("");
 
@@ -52,6 +53,7 @@ export function PageEditor({ page, locale }: { page: CmsPage; locale: string }) 
         intro,
         heroImageUrl,
         heroImageAlt,
+        galleryUrls: galleryUrls.filter(Boolean),
         sections,
       }),
     });
@@ -80,6 +82,29 @@ export function PageEditor({ page, locale }: { page: CmsPage; locale: string }) 
         <span className="mb-1 block text-xs uppercase tracking-wide text-muted">Page image alt text</span>
         <input value={heroImageAlt} onChange={(event) => setHeroImageAlt(event.target.value)} className="w-full rounded-xl border border-line px-3 py-2" />
       </label>
+      <div className="space-y-3 rounded-2xl border border-line p-4">
+        <p className="caption font-semibold uppercase tracking-wide text-gold-600">More page images</p>
+        {galleryUrls.map((url, index) => (
+          <div key={`${url}-${index}`}>
+            <ImageUpload
+              label={`Extra image ${index + 1}`}
+              folder="pages"
+              value={url}
+              onChange={(next) => {
+                const copy = [...galleryUrls];
+                copy[index] = next;
+                setGalleryUrls(copy);
+              }}
+            />
+            <button type="button" className="mt-2 text-sm font-semibold text-red-700 underline" onClick={() => setGalleryUrls(galleryUrls.filter((_, i) => i !== index))}>
+              Remove image
+            </button>
+          </div>
+        ))}
+        <button type="button" className="rounded-xl border border-line px-3 py-2 text-sm font-semibold" onClick={() => setGalleryUrls([...galleryUrls, ""])}>
+          Add another image
+        </button>
+      </div>
       {sections.map((section, index) => (
         <fieldset key={section.key} className="rounded-2xl border border-line p-4">
           <legend className="px-1 text-xs font-semibold uppercase tracking-wide text-gold-600">Section {index + 1}</legend>
@@ -154,6 +179,7 @@ export function NewArticleForm({ locale }: { locale: string }) {
   const [heading, setHeading] = useState("");
   const [excerpt, setExcerpt] = useState("");
   const [body, setBody] = useState("");
+  const [heroImageUrl, setHeroImageUrl] = useState("");
   const [status, setStatus] = useState("");
 
   async function onSubmit(event: React.FormEvent) {
@@ -174,6 +200,7 @@ export function NewArticleForm({ locale }: { locale: string }) {
         title,
         heading: heading || title,
         excerpt,
+        heroImageUrl,
         body: splitBody(body || title),
         blocks: splitBody(body || title).map((text) => ({ id: newId(), type: "paragraph", text })),
         date: new Date().toISOString().slice(0, 10),
@@ -187,6 +214,7 @@ export function NewArticleForm({ locale }: { locale: string }) {
       setHeading("");
       setExcerpt("");
       setBody("");
+      setHeroImageUrl("");
     }
   }
 
@@ -209,6 +237,8 @@ export function NewArticleForm({ locale }: { locale: string }) {
         <span className="mb-1 block text-xs uppercase tracking-wide text-muted">Excerpt</span>
         <textarea value={excerpt} onChange={(event) => setExcerpt(event.target.value)} rows={2} className="w-full rounded-xl border border-line px-3 py-2" />
       </label>
+      <ImageUpload label="Article image" folder="blogs" value={heroImageUrl} onChange={setHeroImageUrl} />
+      <p className="caption text-muted">After publish, open the article to add tables, bars, spacers and more images.</p>
       <button type="submit" className="rounded-xl bg-navy px-4 py-2 text-sm font-semibold text-white">
         Publish article
       </button>

@@ -1,9 +1,13 @@
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
+import { PageMedia } from "@/components/page-hero";
 import { Breadcrumbs, CardLink } from "@/components/ui";
 import { disciplines, testsByDiscipline } from "@/data/catalog";
 import type { TestDiscipline } from "@/data/types";
+import { getPage } from "@/lib/cms";
 import { pageMetadata } from "@/lib/seo";
+
+export const dynamic = "force-dynamic";
 
 export function generateStaticParams() {
   return disciplines.map((item) => ({ discipline: item.slug }));
@@ -35,6 +39,7 @@ export default async function DisciplinePage({
   const item = disciplines.find((row) => row.slug === discipline);
   if (!item) notFound();
   const mapped = testsByDiscipline(item.slug as TestDiscipline);
+  const cms = await getPage("testing", locale);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10">
@@ -47,6 +52,7 @@ export default async function DisciplinePage({
       />
       <h1 className="mt-4 font-display text-4xl text-navy">{item.name}</h1>
       <p className="lead mt-3 max-w-3xl text-muted">{item.summary}</p>
+      <PageMedia src={cms?.heroImageUrl} alt={cms?.heroImageAlt || item.name} gallery={cms?.galleryUrls} />
       <div className="mt-8 grid gap-4 md:grid-cols-2">
         {mapped.map((test) => (
           <CardLink

@@ -1,4 +1,5 @@
 import { setRequestLocale } from "next-intl/server";
+import { PageMedia } from "@/components/page-hero";
 import { Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
 import { countries } from "@/data/catalog";
 import { getPage } from "@/lib/cms";
@@ -43,6 +44,7 @@ export default async function CountriesPage({ params }: { params: Promise<{ loca
       />
       <h1 className="mt-4 font-display text-4xl text-navy">{cms?.title ?? "Destination markets"}</h1>
       {cms?.intro ? <p className="lead mt-3 max-w-3xl text-muted">{cms.intro}</p> : null}
+      <PageMedia src={cms?.heroImageUrl} alt={cms?.heroImageAlt || cms?.title || "Markets"} gallery={cms?.galleryUrls} />
       {regions.map((region) => (
         <section key={region} className="mt-10">
           <h2 className="font-display text-2xl text-navy">{region}</h2>

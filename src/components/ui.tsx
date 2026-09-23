@@ -25,20 +25,28 @@ export function CardLink({
   title,
   meta,
   body,
+  image,
 }: {
   href: string;
   title: string;
   meta?: string;
   body?: string;
+  image?: string;
 }) {
   return (
     <Link
       href={href}
-      className="block rounded-2xl border border-line bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-gold"
+      className="block overflow-hidden rounded-2xl border border-line bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-gold"
     >
+      {image ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={image} alt="" className="h-40 w-full object-cover" />
+      ) : null}
+      <div className="p-5">
       {meta ? <p className="text-xs font-semibold uppercase tracking-wide text-gold-600">{meta}</p> : null}
       <h4 className="mt-1 font-display text-navy">{title}</h4>
       {body ? <p className="mt-2 text-muted">{body}</p> : null}
+      </div>
     </Link>
   );
 }

@@ -1,4 +1,4 @@
-import { PageHero, SectionImage } from "./page-hero";
+import { PageMedia, SectionImage } from "./page-hero";
 import { Breadcrumbs } from "./ui";
 import { LeadForm } from "./lead-form";
 
@@ -8,6 +8,7 @@ export function SimplePage({
   intro,
   heroImageUrl,
   heroImageAlt,
+  galleryUrls,
   sections,
   showLead = true,
 }: {
@@ -16,6 +17,7 @@ export function SimplePage({
   intro: string;
   heroImageUrl?: string;
   heroImageAlt?: string;
+  galleryUrls?: string[];
   sections: { heading: string; body: string[]; imageUrl?: string; imageAlt?: string }[];
   showLead?: boolean;
 }) {
@@ -24,7 +26,7 @@ export function SimplePage({
       <Breadcrumbs items={[{ href: "/", label: "Home" }, { href: path, label: title }]} />
       <h1 className="mt-4 font-display text-navy">{title}</h1>
       <p className="lead mt-3 text-muted">{intro}</p>
-      <PageHero src={heroImageUrl} alt={heroImageAlt || title} />
+      <PageMedia src={heroImageUrl} alt={heroImageAlt || title} gallery={galleryUrls} />
       {sections.map((section) => (
         <section key={section.heading} className="mt-8">
           <h2 className="font-display text-navy">{section.heading}</h2>

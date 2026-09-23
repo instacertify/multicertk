@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { CmsArticles } from "@/components/cms-copy";
+import { PageMedia } from "@/components/page-hero";
 import { LeadForm } from "@/components/lead-form";
 import { Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
 import { beeProducts, euSectors, getCountry, getScheme, gmarkProducts, productsByScheme, schemes } from "@/data/catalog";
@@ -74,6 +75,7 @@ export default async function SchemePage({
       <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-gold-600">{scheme.regulator}</p>
       <h1 className="mt-2 font-display text-4xl text-navy">{scheme.name}</h1>
       <p className="lead mt-3 max-w-3xl text-muted">{scheme.summary}</p>
+      <PageMedia src={cms?.heroImageUrl} alt={cms?.heroImageAlt || scheme.name} gallery={cms?.galleryUrls} />
       <p className="mt-3 text-sm text-muted">{scheme.whoNeedsIt}</p>
 
       <h2 className="mt-10 font-display text-2xl text-navy">{sectionHeading(cms, "process", "Process")}</h2>

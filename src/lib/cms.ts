@@ -23,6 +23,7 @@ function applyPageOverride(page: CmsPage, override?: Partial<CmsPage>): CmsPage 
     intro: override.intro ?? page.intro,
     heroImageUrl: override.heroImageUrl ?? page.heroImageUrl,
     heroImageAlt: override.heroImageAlt ?? page.heroImageAlt,
+    galleryUrls: override.galleryUrls ?? page.galleryUrls,
     sections: override.sections ?? page.sections,
   };
 }

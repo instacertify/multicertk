@@ -4,6 +4,7 @@ import { LeadForm } from "@/components/lead-form";
 import { Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
 import { getLab, getProduct, getTest, tests } from "@/data/catalog";
 import { CmsArticles } from "@/components/cms-copy";
+import { PageMedia } from "@/components/page-hero";
 import { getPage, sectionHeading } from "@/lib/cms";
 import { breadcrumbLd, pageMetadata } from "@/lib/seo";
 
@@ -63,6 +64,7 @@ export default async function TestPage({
       <h1 className="mt-4 font-display text-4xl text-navy">{test.name}</h1>
       <p className="mt-2 text-sm font-semibold text-gold-600">{test.standard} · {test.turnaround}</p>
       <p className="mt-3 text-muted">{test.summary}</p>
+      <PageMedia src={cms?.heroImageUrl} alt={cms?.heroImageAlt || test.name} gallery={cms?.galleryUrls} />
       <h2 className="mt-10 font-display text-2xl text-navy">{sectionHeading(cms, "products", "Standards / products this unlocks")}</h2>
       <div className="mt-4 grid gap-4 md:grid-cols-2">
         {test.productSlugs.map((productSlug) => {

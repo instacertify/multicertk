@@ -4,6 +4,7 @@ import { Link } from "@/i18n/navigation";
 import { Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
 import { countries, getCountry, getScheme, productsByCountry } from "@/data/catalog";
 import { CmsArticles } from "@/components/cms-copy";
+import { PageMedia } from "@/components/page-hero";
 import { getPage, sectionHeading } from "@/lib/cms";
 import { breadcrumbLd, pageMetadata } from "@/lib/seo";
 
@@ -64,6 +65,7 @@ export default async function CountryPage({
       <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-gold-600">{country.region}</p>
       <h1 className="mt-2 font-display text-4xl text-navy">{country.name} certifications</h1>
       <p className="lead mt-3 max-w-3xl text-muted">{country.summary}</p>
+      <PageMedia src={cms?.heroImageUrl} alt={cms?.heroImageAlt || country.name} gallery={cms?.galleryUrls} />
       <h2 className="mt-10 font-display text-2xl text-navy">{sectionHeading(cms, "checklist", "Scoping checklist")}</h2>
       <ol className="mt-4 grid gap-3 md:grid-cols-2">
         {country.checklist.map((item, index) => (

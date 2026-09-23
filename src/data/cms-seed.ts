@@ -16,6 +16,7 @@ export interface CmsPage {
   intro: string;
   heroImageUrl?: string;
   heroImageAlt?: string;
+  galleryUrls?: string[];
   sections: CmsSection[];
 }
 
@@ -376,6 +377,14 @@ export const seedPages: CmsPage[] = [
     sections: [{ key: "linked", heading: "Linked IS / product record", body: [] }],
   },
   {
+    slug: "category-detail",
+    path: "/category",
+    locale: "en",
+    title: "Product category",
+    intro: "Standards and schemes mapped to this product family.",
+    sections: [],
+  },
+  {
     slug: "privacy",
     path: "/privacy",
     locale: "en",
@@ -508,19 +517,51 @@ export const seedPages: CmsPage[] = [
   },
 ];
 
-export const seedArticles: CmsArticle[] = posts.map((post) => ({
-  slug: post.slug,
-  locale: "en",
-  title: post.title,
-  heading: post.title,
-  excerpt: post.excerpt,
-  body: post.body,
-  date: post.date,
-  tags: post.tags,
-  relatedProductSlugs: post.relatedProductSlugs,
-  relatedSchemeSlugs: post.relatedSchemeSlugs,
-  status: "published",
-}));
+export const seedArticles: CmsArticle[] = [
+  ...posts.map((post) => ({
+    slug: post.slug,
+    locale: "en",
+    title: post.title,
+    heading: post.title,
+    excerpt: post.excerpt,
+    body: post.body,
+    date: post.date,
+    tags: post.tags,
+    relatedProductSlugs: post.relatedProductSlugs,
+    relatedSchemeSlugs: post.relatedSchemeSlugs,
+    status: "published" as const,
+  })),
+  {
+    slug: "how-a-lab-quote-is-built",
+    locale: "en",
+    title: "How a lab quote is built",
+    heading: "How a lab quote is built",
+    excerpt: "Tables, bars and spacers sit in the same article as the copy — editors add them from the article screen.",
+    body: ["A listed range is only the start. Certko rebuilds the quote from the standard, the lab scope and the scheme."],
+    blocks: [
+      { id: "p1", type: "paragraph", text: "A listed range is only the start. Certko rebuilds the quote from the standard, the lab scope and the scheme." },
+      {
+        id: "t1",
+        type: "table",
+        caption: "Indicative path",
+        rows: [
+          ["Item", "Share"],
+          ["Laboratory testing", "55%"],
+          ["Government fees", "25%"],
+          ["Consulting", "20%"],
+        ],
+      },
+      { id: "b1", type: "bar", label: "Lab testing share", value: 55 },
+      { id: "s1", type: "spacer", size: "md" },
+      { id: "p2", type: "paragraph", text: "If the listed price looks expensive, contact Certko for up to 30% lesser pricing." },
+    ],
+    date: "2026-09-23",
+    tags: ["labs"],
+    relatedProductSlugs: [],
+    relatedSchemeSlugs: ["bis"],
+    status: "published",
+  },
+];
 
 export function pageKey(slug: string, locale: string) {
   return `${slug}:${locale}`;

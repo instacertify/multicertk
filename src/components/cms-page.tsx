@@ -30,6 +30,7 @@ export async function CmsSimplePage({
       intro={page.intro}
       heroImageUrl={page.heroImageUrl}
       heroImageAlt={page.heroImageAlt}
+      galleryUrls={page.galleryUrls}
       sections={page.sections}
       showLead={showLead}
     />

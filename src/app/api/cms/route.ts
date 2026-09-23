@@ -12,6 +12,7 @@ const pageSchema = z.object({
   intro: z.string().trim().max(4000),
   heroImageUrl: z.string().trim().max(240).optional(),
   heroImageAlt: z.string().trim().max(160).optional(),
+  galleryUrls: z.array(z.string().trim().max(240)).max(8).optional(),
   sections: z
     .array(
       z.object({
@@ -82,6 +83,7 @@ export async function POST(request: Request) {
       intro: input.intro,
       heroImageUrl: input.heroImageUrl,
       heroImageAlt: input.heroImageAlt,
+      galleryUrls: input.galleryUrls,
       sections: input.sections,
     });
     const pageResult = await upsertDirectusItem(
