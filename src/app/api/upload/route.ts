@@ -2,7 +2,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { NextResponse } from "next/server";
 
-const folders = new Set(["pages", "blogs", "logos", "reviews"]);
+const folders = new Set(["pages", "blogs", "logos", "reviews", "menu"]);
 const allowed = new Map([
   ["image/png", "png"],
   ["image/jpeg", "jpg"],

@@ -4,15 +4,18 @@ import { getLogos, getMenu, getReviews, readSiteMedia, saveLogos, saveMenu, save
 
 const childSchema = z.object({
   id: z.string().trim().min(1).max(80),
-  label: z.string().trim().min(1).max(80),
+  label: z.string().trim().min(1).max(160),
   href: z.string().trim().min(1).max(180),
+  group: z.string().trim().max(40).optional(),
+  iconUrl: z.string().trim().max(240).optional(),
 });
 
 const menuItemSchema = z.object({
   id: z.string().trim().min(1).max(80),
   label: z.string().trim().min(1).max(80),
   href: z.string().trim().min(1).max(180),
-  children: z.array(childSchema).max(20).optional(),
+  iconUrl: z.string().trim().max(240).optional(),
+  children: z.array(childSchema).max(80).optional(),
 });
 
 const logoSchema = z.object({

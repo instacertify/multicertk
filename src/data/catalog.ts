@@ -346,12 +346,13 @@ export function filterProducts(filters: {
   });
 }
 
-export function filterLabs(filters: { q?: string; state?: string }) {
+export function filterLabs(filters: { q?: string; state?: string; category?: string }) {
   const query = filters.q?.trim().toLowerCase() ?? "";
   return labs.filter((lab) => {
     if (filters.state && lab.state.toLowerCase() !== filters.state.toLowerCase()) return false;
+    if (filters.category && !lab.categorySlugs.includes(filters.category)) return false;
     if (!query) return true;
-    const hay = `${lab.name} ${lab.city} ${lab.state} ${lab.bisCode} ${lab.standardCodes.join(" ")}`.toLowerCase();
+    const hay = `${lab.name} ${lab.city} ${lab.state} ${lab.bisCode} ${lab.standardCodes.join(" ")} ${lab.categorySlugs.join(" ")}`.toLowerCase();
     return hay.includes(query);
   });
 }

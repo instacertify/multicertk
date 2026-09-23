@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { CustomerLogo, CustomerReview, NavItem } from "@/data/site-media";
+import type { CustomerLogo, CustomerReview, NavChild, NavItem } from "@/data/site-media";
 import { ImageUpload } from "./image-upload";
 
 function newId(prefix: string) {
@@ -177,101 +177,214 @@ export function ReviewLibraryEditor({ reviews }: { reviews: CustomerReview[] }) 
   );
 }
 
-export function MenuEditor({ menu }: { menu: NavItem[] }) {
+function moveItem<T>(list: T[], from: number, to: number) {
+  if (to < 0 || to >= list.length) return list;
+  const next = [...list];
+  const [row] = next.splice(from, 1);
+  next.splice(to, 0, row);
+  return next;
+}
+
+export function MenuEditor({
+  menu,
+  categories = [],
+  articles = [],
+}: {
+  menu: NavItem[];
+  categories?: { slug: string; name: string }[];
+  articles?: { slug: string; title: string }[];
+}) {
   const [items, setItems] = useState(menu);
   const [status, setStatus] = useState("");
+
+  function patch(index: number, nextItem: NavItem) {
+    const next = [...items];
+    next[index] = nextItem;
+    setItems(next);
+  }
+
+  function patchChild(index: number, childIndex: number, child: NavChild) {
+    const item = items[index];
+    const children = [...(item.children ?? [])];
+    children[childIndex] = child;
+    patch(index, { ...item, children });
+  }
 
   async function save() {
     setStatus("Saving…");
     const response = await fetch("/api/site-media", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ kind: "menu", menu: items }),
+      body: JSON.stringify({
+        kind: "menu",
+        menu: items.map((item) => ({
+          ...item,
+          iconUrl: item.iconUrl || undefined,
+          children: (item.children ?? []).map((child) => ({
+            ...child,
+            group: child.group || undefined,
+            iconUrl: child.iconUrl || undefined,
+          })),
+        })),
+      }),
     });
-    const json = (await response.json()) as { ok?: boolean };
-    setStatus(json.ok ? "Header menu saved. Open any public page to see it." : "Could not save menu.");
+    const json = (await response.json()) as { ok?: boolean; error?: string };
+    setStatus(json.ok ? "Header menu saved. Open any public page to see it." : json.error || "Could not save menu.");
   }
 
   return (
     <div className="space-y-4">
       {items.map((item, index) => (
         <fieldset key={item.id} className="rounded-2xl border border-line p-4">
-          <legend className="px-1 text-xs font-semibold uppercase tracking-wide text-gold-600">Item {index + 1}</legend>
-          <div className="mt-2 grid gap-3 sm:grid-cols-2">
+          <legend className="px-1 text-xs font-semibold uppercase tracking-wide text-gold-600">
+            {item.label || `Item ${index + 1}`}
+          </legend>
+          <div className="mt-2 grid gap-3 sm:grid-cols-[1fr_1fr_auto]">
             <input
               value={item.label}
-              onChange={(event) => {
-                const next = [...items];
-                next[index] = { ...item, label: event.target.value };
-                setItems(next);
-              }}
+              onChange={(event) => patch(index, { ...item, label: event.target.value })}
               placeholder="Label"
               className="rounded-xl border border-line px-3 py-2"
             />
             <input
               value={item.href}
-              onChange={(event) => {
-                const next = [...items];
-                next[index] = { ...item, href: event.target.value };
-                setItems(next);
-              }}
+              onChange={(event) => patch(index, { ...item, href: event.target.value })}
               placeholder="/certifications"
               className="rounded-xl border border-line px-3 py-2"
             />
+            <div className="flex gap-2">
+              <button type="button" className="text-sm font-semibold text-navy underline" onClick={() => setItems(moveItem(items, index, index - 1))}>
+                Up
+              </button>
+              <button type="button" className="text-sm font-semibold text-navy underline" onClick={() => setItems(moveItem(items, index, index + 1))}>
+                Down
+              </button>
+            </div>
           </div>
-          <div className="mt-3 space-y-2">
-            <p className="caption uppercase tracking-wide text-muted">Submenu</p>
+          <div className="mt-3">
+            <ImageUpload
+              compact
+              label="Header icon / image"
+              folder="menu"
+              value={item.iconUrl}
+              onChange={(url) => patch(index, { ...item, iconUrl: url })}
+            />
+          </div>
+          <div className="mt-3 space-y-3">
+            <p className="caption uppercase tracking-wide text-muted">Submenu by category</p>
             {(item.children ?? []).map((child, childIndex) => (
-              <div key={child.id} className="grid gap-2 sm:grid-cols-[1fr_1fr_auto]">
-                <input
-                  value={child.label}
-                  onChange={(event) => {
-                    const next = [...items];
-                    const children = [...(item.children ?? [])];
-                    children[childIndex] = { ...child, label: event.target.value };
-                    next[index] = { ...item, children };
-                    setItems(next);
-                  }}
-                  className="rounded-xl border border-line px-3 py-2"
-                />
-                <input
-                  value={child.href}
-                  onChange={(event) => {
-                    const next = [...items];
-                    const children = [...(item.children ?? [])];
-                    children[childIndex] = { ...child, href: event.target.value };
-                    next[index] = { ...item, children };
-                    setItems(next);
-                  }}
-                  className="rounded-xl border border-line px-3 py-2"
-                />
-                <button
-                  type="button"
-                  className="text-sm font-semibold text-red-700 underline"
-                  onClick={() => {
-                    const next = [...items];
-                    next[index] = { ...item, children: (item.children ?? []).filter((_, i) => i !== childIndex) };
-                    setItems(next);
-                  }}
-                >
-                  Remove
-                </button>
+              <div key={child.id} className="rounded-xl border border-line/80 p-3">
+                <div className="grid gap-2 sm:grid-cols-3">
+                  <input
+                    value={child.label}
+                    onChange={(event) => patchChild(index, childIndex, { ...child, label: event.target.value })}
+                    placeholder="Label"
+                    className="rounded-xl border border-line px-3 py-2"
+                  />
+                  <input
+                    value={child.href}
+                    onChange={(event) => patchChild(index, childIndex, { ...child, href: event.target.value })}
+                    placeholder="/category/toys"
+                    className="rounded-xl border border-line px-3 py-2"
+                  />
+                  <input
+                    value={child.group || ""}
+                    onChange={(event) => patchChild(index, childIndex, { ...child, group: event.target.value })}
+                    placeholder="Group (Schemes, Product categories, Blogs…)"
+                    className="rounded-xl border border-line px-3 py-2"
+                  />
+                </div>
+                <div className="mt-2">
+                  <ImageUpload
+                    compact
+                    label="Submenu icon"
+                    folder="menu"
+                    value={child.iconUrl}
+                    onChange={(url) => patchChild(index, childIndex, { ...child, iconUrl: url })}
+                  />
+                </div>
+                <div className="mt-2 flex gap-3">
+                  <button
+                    type="button"
+                    className="text-sm font-semibold text-navy underline"
+                    onClick={() => patch(index, { ...item, children: moveItem(item.children ?? [], childIndex, childIndex - 1) })}
+                  >
+                    Up
+                  </button>
+                  <button
+                    type="button"
+                    className="text-sm font-semibold text-navy underline"
+                    onClick={() => patch(index, { ...item, children: moveItem(item.children ?? [], childIndex, childIndex + 1) })}
+                  >
+                    Down
+                  </button>
+                  <button
+                    type="button"
+                    className="text-sm font-semibold text-red-700 underline"
+                    onClick={() =>
+                      patch(index, { ...item, children: (item.children ?? []).filter((_, i) => i !== childIndex) })
+                    }
+                  >
+                    Remove
+                  </button>
+                </div>
               </div>
             ))}
-            <button
-              type="button"
-              className="text-sm font-semibold text-navy underline"
-              onClick={() => {
-                const next = [...items];
-                next[index] = {
-                  ...item,
-                  children: [...(item.children ?? []), { id: newId("child"), label: "New link", href: "/" }],
-                };
-                setItems(next);
-              }}
-            >
-              Add submenu link
-            </button>
+            <div className="flex flex-wrap gap-3">
+              <button
+                type="button"
+                className="text-sm font-semibold text-navy underline"
+                onClick={() =>
+                  patch(index, {
+                    ...item,
+                    children: [...(item.children ?? []), { id: newId("child"), label: "New link", href: "/", group: "Links" }],
+                  })
+                }
+              >
+                Add submenu link
+              </button>
+              {categories.length ? (
+                <button
+                  type="button"
+                  className="text-sm font-semibold text-navy underline"
+                  onClick={() => {
+                    const hrefs = new Set((item.children ?? []).map((child) => child.href));
+                    const labs = item.id === "labs";
+                    const extra = categories
+                      .map((category) => ({
+                        id: `${labs ? "lab-cat" : "cat"}-${category.slug}`,
+                        label: category.name,
+                        href: labs ? `/labs?category=${category.slug}` : `/category/${category.slug}`,
+                        group: labs ? "By category" : "Product categories",
+                      }))
+                      .filter((child) => !hrefs.has(child.href));
+                    patch(index, { ...item, children: [...(item.children ?? []), ...extra] });
+                  }}
+                >
+                  Add product categories
+                </button>
+              ) : null}
+              {item.id === "resources" && articles.length ? (
+                <button
+                  type="button"
+                  className="text-sm font-semibold text-navy underline"
+                  onClick={() => {
+                    const hrefs = new Set((item.children ?? []).map((child) => child.href));
+                    const extra = articles
+                      .map((article) => ({
+                        id: `blog-${article.slug}`,
+                        label: article.title,
+                        href: `/blog/${article.slug}`,
+                        group: "Blogs",
+                      }))
+                      .filter((child) => !hrefs.has(child.href));
+                    patch(index, { ...item, children: [...(item.children ?? []), ...extra] });
+                  }}
+                >
+                  Add blog articles
+                </button>
+              ) : null}
+            </div>
           </div>
           <button type="button" className="mt-3 text-sm font-semibold text-red-700 underline" onClick={() => setItems(items.filter((_, i) => i !== index))}>
             Remove menu item

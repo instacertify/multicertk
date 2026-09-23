@@ -173,6 +173,12 @@ header nav a {
   line-height: 1.4;
 }
 
+.mega-menu a {
+  font-size: var(--fs-nav);
+  font-weight: 500;
+  line-height: 1.35;
+}
+
 .type-btn,
 button,
 a.type-btn,

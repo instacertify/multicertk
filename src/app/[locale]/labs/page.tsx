@@ -3,7 +3,7 @@ import { CatalogFilter } from "@/components/catalog-filter";
 import { PageMedia } from "@/components/page-hero";
 import { PriceOffer, PriceReassurance } from "@/components/price-reassurance";
 import { Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
-import { filterLabs, formatRange, labs } from "@/data/catalog";
+import { categories, filterLabs, formatRange, labs } from "@/data/catalog";
 import { getPage } from "@/lib/cms";
 
 export const dynamic = "force-dynamic";
@@ -24,7 +24,7 @@ export default async function LabsPage({
   searchParams,
 }: {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<{ q?: string; state?: string }>;
+  searchParams: Promise<{ q?: string; state?: string; category?: string }>;
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
@@ -52,6 +52,17 @@ export default async function LabsPage({
             {states.map((state) => (
               <option key={state} value={state}>
                 {state}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className="text-sm">
+          <span className="mb-1 block text-xs uppercase tracking-wide text-muted">Category</span>
+          <select name="category" defaultValue={filters.category ?? ""} className="rounded-xl border border-line bg-white px-3 py-2">
+            <option value="">All categories</option>
+            {categories.map((category) => (
+              <option key={category.slug} value={category.slug}>
+                {category.name}
               </option>
             ))}
           </select>

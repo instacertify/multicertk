@@ -1,6 +1,8 @@
 import { setRequestLocale } from "next-intl/server";
 import { MenuEditor } from "@/components/site-media-editor";
 import { Breadcrumbs } from "@/components/ui";
+import { categories } from "@/data/catalog";
+import { listArticles } from "@/lib/cms";
 import { getMenu } from "@/lib/site-media";
 import { pageMetadata } from "@/lib/seo";
 
@@ -12,7 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     locale,
     path: "/admin/content/menu",
     title: "Edit header menu",
-    description: "Change Certification, Testing, QCOs, Labs and their submenus.",
+    description: "Change Certification, Testing, QCOs, Labs, Resources and their category submenus.",
     index: false,
   });
 }
@@ -22,7 +24,7 @@ export default async function MenuAdmin({ params }: { params: Promise<{ locale: 
   setRequestLocale(locale);
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-10">
+    <div className="mx-auto max-w-5xl px-4 py-10">
       <Breadcrumbs
         items={[
           { href: "/admin", label: "Editor" },
@@ -32,10 +34,14 @@ export default async function MenuAdmin({ params }: { params: Promise<{ locale: 
       />
       <h1 className="mt-4 font-display text-navy">Header menu</h1>
       <p className="mt-3 text-muted">
-        Default items are Certification, Testing, QCOs and Labs, each with a submenu. Add, remove or rename items here — the public header updates immediately.
+        Public header items are Certification, Testing, QCOs, Labs and Resources. Submenus follow category — schemes, product categories, testing disciplines, labs by category, and Resources lists the blog plus each article. Rename, reorder, add icons, or fill categories here.
       </p>
       <div className="mt-8">
-        <MenuEditor menu={getMenu()} />
+        <MenuEditor
+          menu={getMenu()}
+          categories={categories.map((category) => ({ slug: category.slug, name: category.name }))}
+          articles={listArticles(locale).map((article) => ({ slug: article.slug, title: article.title }))}
+        />
       </div>
     </div>
   );

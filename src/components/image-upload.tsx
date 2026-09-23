@@ -7,11 +7,13 @@ export function ImageUpload({
   value,
   folder,
   onChange,
+  compact,
 }: {
   label: string;
   value?: string;
-  folder: "pages" | "blogs" | "logos" | "reviews";
+  folder: "pages" | "blogs" | "logos" | "reviews" | "menu";
   onChange: (url: string) => void;
+  compact?: boolean;
 }) {
   const [status, setStatus] = useState("");
 
@@ -37,7 +39,7 @@ export function ImageUpload({
       {value ? (
         <div className="overflow-hidden rounded-xl border border-line bg-paper">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={value} alt="" className="max-h-40 w-full object-contain" />
+          <img src={value} alt="" className={compact ? "h-10 w-10 object-contain" : "max-h-40 w-full object-contain"} />
         </div>
       ) : null}
       <input
