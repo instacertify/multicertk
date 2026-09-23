@@ -3,6 +3,7 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { Inter, Noto_Sans_Arabic, Noto_Sans_Devanagari, Noto_Sans_SC } from "next/font/google";
 import { CookieBanner } from "@/components/cookie-banner";
+import { ConsentScripts } from "@/components/consent-scripts";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { SocialProof } from "@/components/trusted-by";
@@ -102,6 +103,7 @@ export default async function LocaleLayout({
             reviewsHeading={navCopy?.reviewsTitle || "What customers say"}
           />
           <Footer />
+          <ConsentScripts settings={cookies} />
           <CookieBanner settings={cookies} />
         </NextIntlClientProvider>
       </body>

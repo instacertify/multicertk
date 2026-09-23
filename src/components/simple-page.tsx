@@ -11,6 +11,7 @@ export function SimplePage({
   galleryUrls,
   sections,
   showLead = true,
+  crumbs,
 }: {
   title: string;
   path: string;
@@ -20,10 +21,11 @@ export function SimplePage({
   galleryUrls?: string[];
   sections: { heading: string; body: string[]; imageUrl?: string; imageAlt?: string }[];
   showLead?: boolean;
+  crumbs?: { href: string; label: string }[];
 }) {
   return (
     <div className="mx-auto max-w-3xl px-4 py-10">
-      <Breadcrumbs items={[{ href: "/", label: "Home" }, { href: path, label: title }]} />
+      <Breadcrumbs items={crumbs ?? [{ href: "/", label: "Home" }, { href: path, label: title }]} />
       <h1 className="mt-4 font-display text-navy">{title}</h1>
       <p className="lead mt-3 text-muted">{intro}</p>
       <PageMedia src={heroImageUrl} alt={heroImageAlt || title} gallery={galleryUrls} />

@@ -390,7 +390,7 @@ export const seedPages: CmsPage[] = [
     locale: "en",
     title: "Privacy policy",
     intro:
-      "How Instacertify Labs Private Limited collects and uses personal data when you use Certko — aligned with India’s DPDP Act, 2023 and, where it applies, the EU / UK GDPR.",
+      "How Instacertify Labs Private Limited collects and uses personal data on Certko. This notice follows India’s Digital Personal Data Protection Act, 2023 and, where it applies, the EU / UK GDPR.",
     sections: [
       {
         key: "about",
@@ -401,10 +401,17 @@ export const seedPages: CmsPage[] = [
         ],
       },
       {
+        key: "scope",
+        heading: "Scope",
+        body: [
+          "This notice covers the Certko website, quote forms, search tools and related digital services. It explains what we collect, why, how long we keep it, and how you can exercise your rights.",
+        ],
+      },
+      {
         key: "collect",
         heading: "What we collect",
         body: [
-          "Quote forms store your name, work email, company, phone and the product, HSN or standard you submit so we can reply.",
+          "Quote and data-request forms store your name, work email, company, phone and the product, HSN or standard you submit so we can reply.",
           "The site also records technical logs (IP, browser, locale) needed to serve pages securely. We do not sell personal data.",
         ],
       },
@@ -421,7 +428,29 @@ export const seedPages: CmsPage[] = [
         heading: "Cookies",
         body: [
           "Necessary cookies keep locale and security working. Analytics and marketing cookies stay off until you allow them in the cookie banner.",
-          "Read the cookie policy and GDPR / DPDP note, or change your choice at any time from Cookie settings in the footer.",
+          "Read the cookie policy and the GDPR / DPDP note, or change your choice at any time from Cookie settings in the footer.",
+        ],
+      },
+      {
+        key: "share",
+        heading: "Sharing",
+        body: [
+          "We share personal data with service providers, laboratories or regulators only when needed to answer a request you made or to meet a legal duty, and under contractual or legal safeguards.",
+        ],
+      },
+      {
+        key: "transfers",
+        heading: "International transfers",
+        body: [
+          "Some service providers process data outside India. Where GDPR or DPDP requires a safeguard, we use one that matches that law before the transfer proceeds.",
+        ],
+      },
+      {
+        key: "retain",
+        heading: "Retention and security",
+        body: [
+          "We keep enquiry records only as long as we need them to reply, to keep a secure audit trail, or as the law requires, then delete or anonymise them.",
+          "We use administrative and technical controls to limit access. No internet transmission is perfectly secure; we keep improving the controls.",
         ],
       },
       {
@@ -429,7 +458,7 @@ export const seedPages: CmsPage[] = [
         heading: "Your rights",
         body: [
           "You may ask for access, correction, deletion, restriction, portability or to withdraw consent, subject to the DPDP Act and, where it applies, GDPR.",
-          "Use the data-request form or email info@certko.com. We may need to confirm it is you before we reply.",
+          "Use the data-request form or email info@certko.com. We may need to confirm it is you before we reply. Children should not use Certko; contact us if you think a child submitted data.",
         ],
       },
       {
@@ -459,7 +488,7 @@ export const seedPages: CmsPage[] = [
         key: "optional",
         heading: "Analytics and marketing",
         body: [
-          "These load only after you press Allow all, and only if they are switched on in the editor. You can switch back to Essential only at any time.",
+          "These load only after you allow that category in the banner. You can switch back to Essential only at any time from Cookie settings.",
         ],
       },
       {
@@ -476,20 +505,23 @@ export const seedPages: CmsPage[] = [
     path: "/privacy/gdpr-and-dpdp",
     locale: "en",
     title: "GDPR and DPDP",
-    intro: "Certko is run from India. EU / UK GDPR and India’s Digital Personal Data Protection Act, 2023 can both apply to a quote request.",
+    intro:
+      "Two privacy laws can apply to a Certko quote: the EU / UK GDPR and India’s Digital Personal Data Protection Act, 2023. This page is a plain-language guide, not legal advice.",
     sections: [
       {
         key: "gdpr",
         heading: "GDPR (EU / EEA / UK)",
         body: [
-          "Where GDPR applies we process personal data on consent, contract, legitimate interests or a legal duty. You may ask for access, correction, erasure, restriction, portability or to object, and you may complain to your local supervisory authority.",
+          "The GDPR protects people in the EU and EEA (and UK GDPR in the United Kingdom). It can apply to an organisation outside Europe that offers services to those people or watches their behaviour.",
+          "Where it applies we process personal data on consent, contract, legitimate interests or a legal duty. You may ask for access, correction, erasure, restriction, portability or to object, and you may complain to your local supervisory authority. Non-essential cookies wait for consent.",
         ],
       },
       {
         key: "dpdp",
         heading: "DPDP Act, 2023 (India)",
         body: [
-          "We act as a Data Fiduciary for personal data whose purpose we decide. You may ask for access, correction, erasure and withdrawal of consent, subject to the Act and its rules. Grievances go to our Privacy Officer and, where the Act allows, the Data Protection Board of India.",
+          "We act as a Data Fiduciary for personal data whose purpose we decide. You are a Data Principal. Consent must be free, specific and informed.",
+          "You may ask for access, correction, erasure and withdrawal of consent, subject to the Act and its rules. Grievances go to our Privacy Officer and, where the Act allows, the Data Protection Board of India. Cross-border transfers stay open unless the government restricts a country.",
         ],
       },
       {
@@ -506,12 +538,54 @@ export const seedPages: CmsPage[] = [
     path: "/terms",
     locale: "en",
     title: "Terms of use",
-    intro: "Catalogue figures are indicative. Always confirm lab quotes, QCO status and regulator lists before filing.",
+    intro: "These terms govern use of Certko, operated by Instacertify Labs Private Limited. Catalogue figures are indicative — confirm lab quotes, QCO status and regulator lists before you file.",
     sections: [
       {
+        key: "accept",
+        heading: "Acceptance",
+        body: ["By using Certko you agree to these terms. If you do not agree, do not use the site."],
+      },
+      {
         key: "legal",
-        heading: "No legal advice",
-        body: ["Content is informational. Scheme names and product scopes change — verify against the regulator before quoting."],
+        heading: "No certification or legal advice",
+        body: [
+          "Content is informational. Certko is not a certification body, testing laboratory or government authority unless a page says otherwise. Scheme names and product scopes change — verify against the regulator and qualified counsel before you quote or file.",
+        ],
+      },
+      {
+        key: "use",
+        heading: "Your responsibilities",
+        body: [
+          "Give accurate details on quote forms. Use the site only for lawful purposes. Do not disrupt, scrape or misuse the catalogue.",
+        ],
+      },
+      {
+        key: "ip",
+        heading: "Intellectual property",
+        body: [
+          "Text, data compilations, branding and software belong to Instacertify or its licensors. You may use public pages for personal or internal business reference. Republishing or commercial reuse needs written permission.",
+        ],
+      },
+      {
+        key: "liability",
+        heading: "Limitation of liability",
+        body: [
+          "To the extent the law allows, Certko and Instacertify are not liable for indirect loss, lost profit or reliance on catalogue figures. Pages are provided as-is.",
+        ],
+      },
+      {
+        key: "law",
+        heading: "Governing law",
+        body: [
+          "These terms follow the laws of India. Subject to mandatory consumer protections, courts in New Delhi have exclusive jurisdiction.",
+        ],
+      },
+      {
+        key: "conduct",
+        heading: "Conduct",
+        body: [
+          "Act honestly. Keep confidential information confidential. Do not offer or accept bribes. Disclose conflicts. Treat people with respect. Report suspected misuse to info@certko.com.",
+        ],
       },
     ],
   },

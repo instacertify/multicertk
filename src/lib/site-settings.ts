@@ -1,6 +1,12 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
-import { defaultSettings, type CookieSettings, type SeoSettings, type SiteSettings } from "@/data/site-settings";
+import {
+  defaultCookieRows,
+  defaultSettings,
+  type CookieSettings,
+  type SeoSettings,
+  type SiteSettings,
+} from "@/data/site-settings";
 
 const storePath = path.join(process.cwd(), "data", "site-settings.json");
 
@@ -9,7 +15,11 @@ export function readSiteSettings(): SiteSettings {
     const parsed = JSON.parse(readFileSync(storePath, "utf8")) as Partial<SiteSettings>;
     return {
       seo: { ...defaultSettings.seo, ...parsed.seo },
-      cookies: { ...defaultSettings.cookies, ...parsed.cookies },
+      cookies: {
+        ...defaultSettings.cookies,
+        ...parsed.cookies,
+        rows: parsed.cookies?.rows?.length ? parsed.cookies.rows : defaultCookieRows,
+      },
     };
   } catch {
     return defaultSettings;
@@ -32,10 +42,10 @@ export function getCookieSettings(): CookieSettings {
 
 export function saveSeo(seo: SeoSettings) {
   const store = readSiteSettings();
-  return writeSiteSettings({ ...store, seo });
+  return writeSiteSettings({ ...store, seo }).seo;
 }
 
 export function saveCookies(cookies: CookieSettings) {
   const store = readSiteSettings();
-  return writeSiteSettings({ ...store, cookies });
+  return writeSiteSettings({ ...store, cookies }).cookies;
 }

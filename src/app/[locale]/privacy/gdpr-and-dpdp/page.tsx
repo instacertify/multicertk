@@ -1,5 +1,7 @@
 import { setRequestLocale } from "next-intl/server";
 import { CmsSimplePage, cmsPageMetadata } from "@/components/cms-page";
+import { GdprCompare } from "@/components/legal-extras";
+import { getCookieSettings } from "@/lib/site-settings";
 
 export const dynamic = "force-dynamic";
 
@@ -11,5 +13,18 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  return <CmsSimplePage slug="gdpr-and-dpdp" locale={locale} showLead={false} />;
+  return (
+    <CmsSimplePage
+      slug="gdpr-and-dpdp"
+      locale={locale}
+      showLead={false}
+      crumbs={[
+        { href: "/", label: "Home" },
+        { href: "/privacy", label: "Privacy" },
+        { href: "/privacy/gdpr-and-dpdp", label: "GDPR & DPDP" },
+      ]}
+    >
+      <GdprCompare settings={getCookieSettings()} />
+    </CmsSimplePage>
+  );
 }

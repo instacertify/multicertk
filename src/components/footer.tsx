@@ -1,12 +1,14 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { site } from "@/lib/site";
+import { getCookieSettings } from "@/lib/site-settings";
 import { CookieSettingsButton } from "./cookie-banner";
 import { Logo } from "./logo";
 
 export async function Footer() {
   const t = await getTranslations("footer");
   const nav = await getTranslations("nav");
+  const legal = getCookieSettings();
 
   return (
     <footer className="mt-auto border-t border-navy bg-navy text-white">
@@ -32,10 +34,10 @@ export async function Footer() {
             <li>{site.address}</li>
             <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
             <li><a href={site.phoneHref}>{site.phone}</a></li>
-            <li><Link href="/privacy">Privacy</Link></li>
-            <li><Link href="/privacy/cookies">Cookies</Link></li>
-            <li><Link href="/privacy/gdpr-and-dpdp">GDPR & DPDP</Link></li>
-            <li><Link href="/terms">Terms</Link></li>
+            <li><Link href={legal.privacyPath}>Privacy</Link></li>
+            <li><Link href={legal.cookiesPath}>Cookies</Link></li>
+            <li><Link href={legal.gdprPath}>GDPR & DPDP</Link></li>
+            <li><Link href={legal.termsPath}>Terms</Link></li>
             <li><CookieSettingsButton /></li>
           </ul>
         </div>

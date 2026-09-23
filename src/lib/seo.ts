@@ -40,6 +40,7 @@ export function pageMetadata({
       card: "summary_large_image",
       title: `${title} | ${site.name}`,
       description,
+      creator: seo.twitterHandle || undefined,
     },
   };
 }
@@ -51,10 +52,11 @@ export function jsonLd(data: Record<string, unknown> | Record<string, unknown>[]
 }
 
 export function organizationLd() {
+  const seo = getSeo();
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: site.name,
+    name: seo.organizationName || site.name,
     url: site.url,
     email: site.email,
     telephone: site.phone,

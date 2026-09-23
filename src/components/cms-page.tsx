@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { SimplePage } from "./simple-page";
 import { getPage } from "@/lib/cms";
 import { pageMetadata } from "@/lib/seo";
@@ -16,23 +17,31 @@ export async function CmsSimplePage({
   slug,
   locale,
   showLead = true,
+  crumbs,
+  children,
 }: {
   slug: string;
   locale: string;
   showLead?: boolean;
+  crumbs?: { href: string; label: string }[];
+  children?: ReactNode;
 }) {
   const page = await getPage(slug, locale);
   if (!page) return null;
   return (
-    <SimplePage
-      title={page.title}
-      path={page.path}
-      intro={page.intro}
-      heroImageUrl={page.heroImageUrl}
-      heroImageAlt={page.heroImageAlt}
-      galleryUrls={page.galleryUrls}
-      sections={page.sections}
-      showLead={showLead}
-    />
+    <>
+      <SimplePage
+        title={page.title}
+        path={page.path}
+        intro={page.intro}
+        heroImageUrl={page.heroImageUrl}
+        heroImageAlt={page.heroImageAlt}
+        galleryUrls={page.galleryUrls}
+        sections={page.sections}
+        showLead={showLead}
+        crumbs={crumbs}
+      />
+      {children}
+    </>
   );
 }

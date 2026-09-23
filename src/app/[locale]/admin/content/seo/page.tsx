@@ -31,7 +31,7 @@ export default async function SeoAdmin({ params }: { params: Promise<{ locale: s
       />
       <h1 className="mt-4 font-display text-navy">SEO</h1>
       <p className="mt-3 text-muted">
-        Default title, description, share image and whether public pages may be indexed. Page-level titles still come from each page editor.
+        Default title, description, share image, organisation name and whether public pages may be indexed. /admin and /api stay out of search. Page-level titles still come from each page editor.
       </p>
       <div className="mt-8">
         <SeoEditor seo={getSeo()} />
