@@ -11,9 +11,7 @@ export async function Footer() {
     <footer className="mt-auto border-t border-navy bg-navy text-white">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-4">
         <div className="md:col-span-2">
-          <div className="inline-block rounded-md bg-white px-3 py-2">
-            <Logo className="h-10 w-auto" />
-          </div>
+          <Logo variant="onDark" className="h-12 w-auto sm:h-14" />
           <p className="mt-4 max-w-md text-sm leading-6 text-white/75">{t("blurb")}</p>
         </div>
         <div>

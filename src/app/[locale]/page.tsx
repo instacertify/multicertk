@@ -2,6 +2,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 
 export const dynamic = "force-dynamic";
+import { Logo } from "@/components/logo";
 import { SearchBox } from "@/components/search-box";
 import { Badge, CardLink, JsonLd, Section } from "@/components/ui";
 import {
@@ -58,7 +59,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <section className="bg-navy text-white">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold">{t("eyebrow")}</p>
+            <Logo variant="onDark" className="h-12 w-auto sm:h-14" />
+            <p className="mt-6 text-xs font-semibold uppercase tracking-[0.22em] text-gold">{t("eyebrow")}</p>
             <h1 className="mt-3 font-display text-4xl leading-tight sm:text-5xl">{cms?.title ?? t("title")}</h1>
             <p className="mt-4 max-w-2xl text-base leading-7 text-white/75">{cms?.intro ?? t("subtitle")}</p>
             <div className="mt-8 max-w-2xl text-navy">
