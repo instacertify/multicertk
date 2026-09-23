@@ -2,6 +2,7 @@ import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Breadcrumbs, StatusBadge } from "@/components/ui";
 import { getProduct, qcos } from "@/data/catalog";
+import { getPage } from "@/lib/cms";
 import { pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -17,11 +18,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function QcoPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const cms = await getPage("qco", locale);
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-10">
       <Breadcrumbs items={[{ href: "/", label: "Home" }, { href: "/qco", label: "QCO" }]} />
-      <h1 className="mt-4 font-display text-4xl text-navy">Never miss a new mandatory product</h1>
+      <h1 className="mt-4 font-display text-4xl text-navy">{cms?.title ?? "Never miss a new mandatory product"}</h1>
       <p className="mt-3 text-muted">
         {qcos.length} Quality Control Orders from the library. Each order is a unique page interlinked to the standards and labs it unlocks.
       </p>

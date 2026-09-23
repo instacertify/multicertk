@@ -2,6 +2,7 @@ import { setRequestLocale } from "next-intl/server";
 import { Breadcrumbs, CardLink, JsonLd, Section } from "@/components/ui";
 import { SearchBox } from "@/components/search-box";
 import { categories, productsByCategory, schemes } from "@/data/catalog";
+import { getPage, sectionHeading } from "@/lib/cms";
 import { breadcrumbLd, pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -17,21 +18,22 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function ProductsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const cms = await getPage("products", locale);
 
   return (
     <div className="bg-paper/40">
       <JsonLd data={breadcrumbLd([{ name: "Home", path: "/" }, { name: "Products", path: "/products" }], locale)} />
       <div className="mx-auto max-w-7xl px-4 py-10">
         <Breadcrumbs items={[{ href: "/", label: "Home" }, { href: "/products", label: "Products" }]} />
-        <h1 className="mt-4 font-display text-4xl text-navy">Certification solutions — products by category</h1>
+        <h1 className="mt-4 font-display text-4xl text-navy">{cms?.title ?? "Certification solutions — products by category"}</h1>
         <p className="lead mt-3 max-w-3xl text-muted">
-          Match the right mark to your product, then open the HSN / IS record for QCO status, labs and interlinked tests.
+          {cms?.intro ?? "Match the right mark to your product, then open the HSN / IS record for QCO status, labs and interlinked tests."}
         </p>
         <div className="mt-6 max-w-2xl">
           <SearchBox size="sm" />
         </div>
       </div>
-      <Section title="Start with a scheme">
+      <Section title={sectionHeading(cms, "schemes", "Start with a scheme")}>
         <div className="grid gap-4 md:grid-cols-3">
           {schemes.slice(0, 6).map((scheme) => (
             <CardLink key={scheme.slug} href={`/certifications/${scheme.slug}`} title={scheme.name} body={scheme.summary} />

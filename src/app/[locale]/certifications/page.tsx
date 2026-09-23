@@ -1,6 +1,7 @@
 import { setRequestLocale } from "next-intl/server";
 import { Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
 import { countries, productsByScheme, schemes } from "@/data/catalog";
+import { getPage, sectionHeading } from "@/lib/cms";
 import { breadcrumbLd, pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -16,16 +17,18 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function CertificationsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const cms = await getPage("certifications", locale);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10">
       <JsonLd data={breadcrumbLd([{ name: "Home", path: "/" }, { name: "Certifications", path: "/certifications" }], locale)} />
       <Breadcrumbs items={[{ href: "/", label: "Home" }, { href: "/certifications", label: "Certifications" }]} />
-      <h1 className="mt-4 font-display text-4xl text-navy">Certifications & global market access</h1>
+      <h1 className="mt-4 font-display text-4xl text-navy">{cms?.title ?? "Certifications & global market access"}</h1>
       <p className="lead mt-3 max-w-3xl text-muted">
-        Start with the GMA framework, then open full programmes. Every scheme is interlinked to products, labs, tests and destination countries.
+        {cms?.intro ??
+          "Start with the GMA framework, then open full programmes. Every scheme is interlinked to products, labs, tests and destination countries."}
       </p>
-      <h2 className="mt-10 font-display text-2xl text-navy">How GMA works</h2>
+      <h2 className="mt-10 font-display text-2xl text-navy">{sectionHeading(cms, "how", "How GMA works")}</h2>
       <ol className="mt-4 grid gap-4 md:grid-cols-4">
         {["Regulatory determination", "Testing to the national standard", "Local representation", "Filing & follow-up"].map((step, index) => (
           <li key={step} className="rounded-2xl border border-line p-4">
@@ -34,7 +37,7 @@ export default async function CertificationsPage({ params }: { params: Promise<{
           </li>
         ))}
       </ol>
-      <h2 className="mt-12 font-display text-2xl text-navy">Certification programmes</h2>
+      <h2 className="mt-12 font-display text-2xl text-navy">{sectionHeading(cms, "programmes", "Certification programmes")}</h2>
       <div className="mt-4 grid gap-4 md:grid-cols-2">
         {schemes.map((scheme) => (
           <CardLink
@@ -46,7 +49,7 @@ export default async function CertificationsPage({ params }: { params: Promise<{
           />
         ))}
       </div>
-      <h2 className="mt-12 font-display text-2xl text-navy">Destination markets</h2>
+      <h2 className="mt-12 font-display text-2xl text-navy">{sectionHeading(cms, "markets", "Destination markets")}</h2>
       <p className="mt-2 text-sm">
         <a className="font-semibold text-navy underline" href="/certifications/countries">
           Browse all country guides →

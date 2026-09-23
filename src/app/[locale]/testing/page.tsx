@@ -2,6 +2,7 @@ import { setRequestLocale } from "next-intl/server";
 import { Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
 import { SearchBox } from "@/components/search-box";
 import { disciplines, testsByDiscipline } from "@/data/catalog";
+import { getPage } from "@/lib/cms";
 import { breadcrumbLd, pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -17,14 +18,16 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function TestingPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const cms = await getPage("testing", locale);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10">
       <JsonLd data={breadcrumbLd([{ name: "Home", path: "/" }, { name: "Testing", path: "/testing" }], locale)} />
       <Breadcrumbs items={[{ href: "/", label: "Home" }, { href: "/testing", label: "Testing" }]} />
-      <h1 className="mt-4 font-display text-4xl text-navy">Explore the right quality assurance solutions</h1>
+      <h1 className="mt-4 font-display text-4xl text-navy">{cms?.title ?? "Explore the right quality assurance solutions"}</h1>
       <p className="lead mt-3 max-w-3xl text-muted">
-        Every BIS certification product standard is also a laboratory testing standard — mapped under chemical, electrical, EMC, physical, microbiology and mechanical categories.
+        {cms?.intro ??
+          "Every BIS certification product standard is also a laboratory testing standard — mapped under chemical, electrical, EMC, physical, microbiology and mechanical categories."}
       </p>
       <div className="mt-6 max-w-2xl">
         <SearchBox size="sm" />

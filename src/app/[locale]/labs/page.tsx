@@ -3,6 +3,7 @@ import { CatalogFilter } from "@/components/catalog-filter";
 import { PriceReassurance } from "@/components/price-reassurance";
 import { Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
 import { filterLabs, formatRange, labs } from "@/data/catalog";
+import { getPage } from "@/lib/cms";
 import { breadcrumbLd, pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -27,14 +28,16 @@ export default async function LabsPage({
   const filters = await searchParams;
   const rows = filterLabs(filters);
   const states = [...new Set(labs.map((lab) => lab.state).filter(Boolean))].sort();
+  const cms = await getPage("labs", locale);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10">
       <JsonLd data={breadcrumbLd([{ name: "Home", path: "/" }, { name: "Labs", path: "/labs" }], locale)} />
       <Breadcrumbs items={[{ href: "/", label: "Home" }, { href: "/labs", label: "Labs" }]} />
-      <h1 className="mt-4 font-display text-4xl text-navy">BIS testing labs directory</h1>
+      <h1 className="mt-4 font-display text-4xl text-navy">{cms?.title ?? "BIS testing labs directory"}</h1>
       <p className="lead mt-3 max-w-3xl text-muted">
-        {rows.length} recognised testing laboratories from the library — compare locations, scopes and indicative charges, then open the standards they unlock.
+        {cms?.intro ??
+          `${rows.length} recognised testing laboratories from the library — compare locations, scopes and indicative charges, then open the standards they unlock.`}
       </p>
       <PriceReassurance className="mt-6" />
       <CatalogFilter q={filters.q}>

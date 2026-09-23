@@ -200,3 +200,8 @@ export async function getArticle(slug: string, locale: string): Promise<CmsArtic
 export function sectionHeading(page: CmsPage | undefined, key: string, fallback: string) {
   return page?.sections.find((section) => section.key === key)?.heading || fallback;
 }
+
+export function sectionBody(page: CmsPage | undefined, key: string, fallback = "") {
+  const body = page?.sections.find((section) => section.key === key)?.body ?? [];
+  return body.length ? body.join(" ") : fallback;
+}

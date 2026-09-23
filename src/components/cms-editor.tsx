@@ -64,7 +64,7 @@ export function PageEditor({ page, locale }: { page: CmsPage; locale: string }) 
             />
           </label>
           <label className="mt-3 block text-sm">
-            <span className="mb-1 block text-xs uppercase tracking-wide text-muted">Article / body (blank line = new paragraph)</span>
+            <span className="mb-1 block text-xs uppercase tracking-wide text-muted">Every word of this article (blank line = new paragraph)</span>
             <textarea
               value={joinBody(section.body)}
               onChange={(event) => {
@@ -76,10 +76,29 @@ export function PageEditor({ page, locale }: { page: CmsPage; locale: string }) 
               className="w-full rounded-xl border border-line px-3 py-2"
             />
           </label>
+          <button
+            type="button"
+            className="mt-3 text-sm font-semibold text-red-700 underline"
+            onClick={() => setSections(sections.filter((_, itemIndex) => itemIndex !== index))}
+          >
+            Remove this heading & article
+          </button>
         </fieldset>
       ))}
-      <button type="submit" className="rounded-xl bg-navy px-4 py-2 text-sm font-semibold text-white">
-        Save heading & article
+      <button
+        type="button"
+        className="rounded-xl border border-line px-4 py-2 text-sm font-semibold text-navy"
+        onClick={() =>
+          setSections([
+            ...sections,
+            { key: `section-${Date.now()}`, heading: "New heading", body: ["Write every word of this article here."] },
+          ])
+        }
+      >
+        Add another heading & article
+      </button>
+      <button type="submit" className="ml-3 rounded-xl bg-navy px-4 py-2 text-sm font-semibold text-white">
+        Save every heading & word
       </button>
       {status ? <p className="text-sm text-muted">{status}</p> : null}
     </form>

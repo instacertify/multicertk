@@ -12,6 +12,7 @@ import {
   productsByStandardKey,
   scopesForLab,
 } from "@/data/catalog";
+import { getPage, sectionHeading } from "@/lib/cms";
 import { breadcrumbLd, pageMetadata } from "@/lib/seo";
 
 export const dynamicParams = true;
@@ -43,6 +44,7 @@ export default async function LabPage({
   if (!lab) notFound();
   const mapped = productsByLab(lab.slug);
   const scopes = scopesForLab(lab.slug);
+  const cms = await getPage("lab-detail", locale);
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-10">
@@ -82,7 +84,8 @@ export default async function LabPage({
       </p>
       <PriceReassurance compact className="mt-4" />
       <p className="mt-2 text-sm text-muted">
-        Request a quote to get the recognised lab assigned for your standard. Direct lab addresses and contact details are not published.
+        {cms?.intro ||
+          "Request a quote to get the recognised lab assigned for your standard. Direct lab addresses and contact details are not published."}
       </p>
       <div className="mt-4 flex flex-wrap gap-2">
         {lab.categorySlugs.map((categorySlug) => (
@@ -91,7 +94,7 @@ export default async function LabPage({
           </Link>
         ))}
       </div>
-      <h2 className="mt-10 font-display text-2xl text-navy">Standards in scope</h2>
+      <h2 className="mt-10 font-display text-2xl text-navy">{sectionHeading(cms, "scope", "Standards in scope")}</h2>
       <div className="mt-4 overflow-x-auto rounded-2xl border border-line">
         <table className="min-w-full text-left text-sm">
           <thead className="bg-navy text-white">
@@ -135,7 +138,7 @@ export default async function LabPage({
           </tbody>
         </table>
       </div>
-      <h2 className="mt-10 font-display text-2xl text-navy">Products / schemes this lab unlocks</h2>
+      <h2 className="mt-10 font-display text-2xl text-navy">{sectionHeading(cms, "products", "Products / schemes this lab unlocks")}</h2>
       <div className="mt-4 grid gap-4 md:grid-cols-2">
         {mapped.map((product) => (
           <CardLink key={product.slug} href={`/product/${product.slug}`} title={product.name} meta={product.standard} body={product.excerpt} />

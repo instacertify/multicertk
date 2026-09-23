@@ -18,6 +18,7 @@ import {
   scopesForProduct,
   testsForProduct,
 } from "@/data/catalog";
+import { getPage, sectionBody, sectionHeading } from "@/lib/cms";
 import { breadcrumbLd, faqLd, pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -57,6 +58,7 @@ export default async function ProductPage({
   const scopes = scopesForProduct(product.slug);
   const bee = beeForProduct(product.slug);
   const gmark = gmarkForProduct(product.slug);
+  const cms = await getPage("product-detail", locale);
   const faqs = [
     {
       q: `Is certification mandatory for ${product.name}?`,
@@ -136,7 +138,7 @@ export default async function ProductPage({
         </p>
       ) : null}
 
-      <h2 className="mt-12 font-display text-2xl text-navy">Annual BIS marking fee</h2>
+      <h2 className="mt-12 font-display text-2xl text-navy">{sectionHeading(cms, "marking", "Annual BIS marking fee")}</h2>
       <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-4">
         {Object.entries(product.markingFee).map(([size, value]) => (
           <div key={size} className="rounded-2xl border border-line p-4">
@@ -155,7 +157,7 @@ export default async function ProductPage({
         </p>
       ) : null}
 
-      <h2 className="mt-12 font-display text-2xl text-navy">Recognised labs</h2>
+      <h2 className="mt-12 font-display text-2xl text-navy">{sectionHeading(cms, "labs", "Recognised labs")}</h2>
       <div className="mt-4 grid gap-4 md:grid-cols-2">
         {labs.length ? (
           labs.map((lab) => (
@@ -174,7 +176,7 @@ export default async function ProductPage({
 
       {scopes.length ? (
         <>
-          <h2 className="mt-12 font-display text-2xl text-navy">Scope & indicative test prices</h2>
+          <h2 className="mt-12 font-display text-2xl text-navy">{sectionHeading(cms, "prices", "Scope & indicative test prices")}</h2>
           <div className="mt-4 overflow-x-auto rounded-2xl border border-line">
             <table className="min-w-full text-left text-sm">
               <thead className="bg-navy text-white">
@@ -208,7 +210,7 @@ export default async function ProductPage({
 
       {tests.length ? (
         <>
-          <h2 className="mt-12 font-display text-2xl text-navy">Relevant product testing</h2>
+          <h2 className="mt-12 font-display text-2xl text-navy">{sectionHeading(cms, "tests", "Relevant product testing")}</h2>
           <div className="mt-4 grid gap-4 md:grid-cols-2">
             {tests.map((test) => (
               <CardLink
@@ -225,7 +227,7 @@ export default async function ProductPage({
 
       {bee.length || gmark.length ? (
         <>
-          <h2 className="mt-12 font-display text-2xl text-navy">Stacked energy & export marks</h2>
+          <h2 className="mt-12 font-display text-2xl text-navy">{sectionHeading(cms, "stacked", "Stacked energy & export marks")}</h2>
           <div className="mt-4 grid gap-4 md:grid-cols-2">
             {bee.map((item) => (
               <CardLink
@@ -249,7 +251,7 @@ export default async function ProductPage({
         </>
       ) : null}
 
-      <h2 className="mt-12 font-display text-2xl text-navy">Related standards & schemes</h2>
+      <h2 className="mt-12 font-display text-2xl text-navy">{sectionHeading(cms, "related", "Related standards & schemes")}</h2>
       <div className="mt-4 grid gap-4 md:grid-cols-2">
         {related.map((item) => (
           <CardLink
@@ -264,8 +266,10 @@ export default async function ProductPage({
 
       <div className="mt-12 grid gap-6 lg:grid-cols-2">
         <div>
-          <h2 className="font-display text-2xl text-navy">Need a quote?</h2>
-          <p className="mt-2 text-sm text-muted">Free mapping of the certification and lab path within 24 hours.</p>
+          <h2 className="font-display text-2xl text-navy">{sectionHeading(cms, "quote", "Need a quote?")}</h2>
+          <p className="mt-2 text-sm text-muted">
+            {sectionBody(cms, "quote", "Free mapping of the certification and lab path within 24 hours.")}
+          </p>
         </div>
         <LeadForm sourcePath={`/product/${product.slug}`} />
       </div>

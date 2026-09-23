@@ -33,7 +33,7 @@ export default async function ContentIndex({ params }: { params: Promise<{ local
       />
       <h1 className="mt-4 font-display text-4xl text-navy">Headings & articles</h1>
       <p className="mt-3 text-muted">
-        Pick a page to edit its title and section headings, or open an article. Changes publish on the site and sync to Directus when it is available.
+        Every heading and every article word is editable here — page H1s, section headings, body copy, and blog articles. Add or remove sections, then save. Changes publish on the site and sync to Directus when it is available.
       </p>
       <h2 className="mt-10 font-display text-2xl text-navy">Pages / sections</h2>
       <div className="mt-4 grid gap-4 md:grid-cols-2">
