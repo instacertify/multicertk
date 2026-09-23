@@ -23,5 +23,15 @@ export async function CmsSimplePage({
 }) {
   const page = await getPage(slug, locale);
   if (!page) return null;
-  return <SimplePage title={page.title} path={page.path} intro={page.intro} sections={page.sections} showLead={showLead} />;
+  return (
+    <SimplePage
+      title={page.title}
+      path={page.path}
+      intro={page.intro}
+      heroImageUrl={page.heroImageUrl}
+      heroImageAlt={page.heroImageAlt}
+      sections={page.sections}
+      showLead={showLead}
+    />
+  );
 }

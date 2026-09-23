@@ -1,6 +1,7 @@
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { CatalogFilter } from "@/components/catalog-filter";
+import { PageHero } from "@/components/page-hero";
 import { ListedPrice, PriceReassurance } from "@/components/price-reassurance";
 import { Badge, Breadcrumbs, StatusBadge } from "@/components/ui";
 import { categories, filterProducts, formatRange, schemes } from "@/data/catalog";
@@ -44,6 +45,7 @@ export default async function AllProductsPage({
         {cms?.intro ??
           `${rows.length} unique Indian Standard / CRS records from the Certko library — each opens as its own interlinked page in every language.`}
       </p>
+      <PageHero src={cms?.heroImageUrl} alt={cms?.heroImageAlt || cms?.title || "All products"} />
       <PriceReassurance className="mt-6" />
       <CatalogFilter q={filters.q}>
         <label className="text-sm">

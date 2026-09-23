@@ -4,6 +4,8 @@ export interface CmsSection {
   key: string;
   heading: string;
   body: string[];
+  imageUrl?: string;
+  imageAlt?: string;
 }
 
 export interface CmsPage {
@@ -12,8 +14,17 @@ export interface CmsPage {
   locale: string;
   title: string;
   intro: string;
+  heroImageUrl?: string;
+  heroImageAlt?: string;
   sections: CmsSection[];
 }
+
+export type ArticleBlock =
+  | { id: string; type: "paragraph"; text: string }
+  | { id: string; type: "image"; url: string; alt?: string; caption?: string }
+  | { id: string; type: "table"; caption?: string; rows: string[][] }
+  | { id: string; type: "bar"; label: string; value: number }
+  | { id: string; type: "spacer"; size: "sm" | "md" | "lg" };
 
 export interface CmsArticle {
   slug: string;
@@ -22,11 +33,18 @@ export interface CmsArticle {
   heading: string;
   excerpt: string;
   body: string[];
+  heroImageUrl?: string;
+  blocks?: ArticleBlock[];
   date: string;
   tags: string[];
   relatedProductSlugs: string[];
   relatedSchemeSlugs: string[];
   status: "published" | "draft";
+}
+
+export function articleBlocks(article: CmsArticle): ArticleBlock[] {
+  if (article.blocks?.length) return article.blocks;
+  return article.body.map((text, index) => ({ id: `p-${index}`, type: "paragraph" as const, text }));
 }
 
 export const seedPages: CmsPage[] = [

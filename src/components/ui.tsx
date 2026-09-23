@@ -53,7 +53,7 @@ export function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section className="mx-auto max-w-7xl px-4 py-12">
+    <section className="mx-auto max-w-7xl px-4 py-8 md:py-10">
       {eyebrow ? <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold-600">{eyebrow}</p> : null}
       <h2 className="mt-1 font-display text-3xl text-navy">{title}</h2>
       <div className="mt-6">{children}</div>

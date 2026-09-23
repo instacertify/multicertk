@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { CmsArticles } from "@/components/cms-copy";
+import { PageHero } from "@/components/page-hero";
 import { LeadForm } from "@/components/lead-form";
 import { ListedPrice, PriceReassurance } from "@/components/price-reassurance";
 import { Badge, Breadcrumbs, CardLink, JsonLd, StatusBadge } from "@/components/ui";
@@ -115,8 +116,9 @@ export default async function ProductPage({
           </Link>
         ))}
       </div>
-      <h1 className="mt-4 font-display text-4xl text-navy">{product.name}</h1>
+      <h1 className="mt-4 font-display text-navy">{product.name}</h1>
       <p className="lead mt-3 max-w-3xl text-muted">{product.excerpt}</p>
+      <PageHero src={cms?.heroImageUrl} alt={cms?.heroImageAlt || product.name} />
 
       <dl className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {[

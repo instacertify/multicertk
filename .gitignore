@@ -34,8 +34,10 @@ yarn-error.log*
 .env*
 !.env.example
 
-# runtime lead / translation review stores
+# runtime lead / translation review / media stores
 /data/*.json
+/public/uploads/*
+!/public/uploads/.gitkeep
 
 # vercel
 .vercel

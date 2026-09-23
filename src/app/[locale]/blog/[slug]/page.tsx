@@ -2,8 +2,11 @@ import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 
 export const dynamic = "force-dynamic";
+import { ArticleBlocks } from "@/components/article-blocks";
+import { PageHero } from "@/components/page-hero";
 import { Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
 import { getProduct, getScheme } from "@/data/catalog";
+import { articleBlocks } from "@/data/cms-seed";
 import { getArticle, getPage, listArticles, sectionHeading } from "@/lib/cms";
 import { breadcrumbLd, pageMetadata } from "@/lib/seo";
 
@@ -58,13 +61,10 @@ export default async function PostPage({
         ]}
       />
       <p className="mt-4 text-xs uppercase tracking-wide text-gold-600">{article.date}</p>
-      <h1 className="mt-2 font-display text-4xl text-navy">{article.heading || article.title}</h1>
+      <h1 className="mt-2 font-display text-navy">{article.heading || article.title}</h1>
       <p className="mt-3 text-muted">{article.excerpt}</p>
-      <div className="mt-8 space-y-4 text-base leading-7">
-        {article.body.map((paragraph) => (
-          <p key={paragraph}>{paragraph}</p>
-        ))}
-      </div>
+      <PageHero src={article.heroImageUrl} alt={article.heading || article.title} />
+      <ArticleBlocks blocks={articleBlocks(article)} />
       <h2 className="mt-10 font-display text-2xl text-navy">{sectionHeading(cms, "linked", "Linked schemes & standards")}</h2>
       <div className="mt-4 grid gap-4">
         {article.relatedSchemeSlugs.map((schemeSlug) => {

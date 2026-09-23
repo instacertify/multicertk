@@ -27,7 +27,7 @@ export function SearchBox({
 
   return (
     <form onSubmit={onSubmit} className="w-full" role="search">
-      <div className={`flex overflow-hidden rounded-full border border-line bg-white shadow-sm ${large ? "h-14" : "h-11"}`}>
+      <div className={`flex overflow-hidden rounded-full border border-line bg-white shadow-sm ${large ? "h-11" : "h-9"}`}>
         <input
           name="q"
           value={query}

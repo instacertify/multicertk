@@ -1,5 +1,6 @@
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
+import { PageHero } from "@/components/page-hero";
 import { Breadcrumbs, StatusBadge } from "@/components/ui";
 import { getProduct, qcos } from "@/data/catalog";
 import { getPage } from "@/lib/cms";
@@ -27,8 +28,9 @@ export default async function QcoPage({ params }: { params: Promise<{ locale: st
       <Breadcrumbs items={[{ href: "/", label: "Home" }, { href: "/qco", label: "QCO" }]} />
       <h1 className="mt-4 font-display text-4xl text-navy">{cms?.title ?? "Never miss a new mandatory product"}</h1>
       <p className="mt-3 text-muted">
-        {qcos.length} Quality Control Orders from the library. Each order is a unique page interlinked to the standards and labs it unlocks.
+        {cms?.intro ?? `${qcos.length} Quality Control Orders from the library. Each order is a unique page interlinked to the standards and labs it unlocks.`}
       </p>
+      <PageHero src={cms?.heroImageUrl} alt={cms?.heroImageAlt || cms?.title || "QCOs"} />
       <div className="mt-8 space-y-5">
         {qcos.map((qco) => (
           <article id={qco.slug} key={qco.slug} className="scroll-mt-24 rounded-2xl border border-line p-5">

@@ -64,7 +64,9 @@ export default async function AdminHome({ params }: { params: Promise<{ locale: 
         <li className="rounded-2xl border border-line p-5">
           <p className="text-xs font-semibold uppercase tracking-wide text-gold-600">Step 3</p>
           <h2 className="mt-1 font-display text-2xl text-navy">Choose what to edit</h2>
-          <p className="mt-2 text-sm text-muted">Page titles, section headings and blog articles — or send an AI translation for review.</p>
+          <p className="mt-2 text-sm text-muted">
+            Page titles, section headings, blog articles (images, tables, bars, spacers), the trusted-by logo library, customer reviews, or the header menu.
+          </p>
         </li>
       </ol>
 
@@ -74,6 +76,18 @@ export default async function AdminHome({ params }: { params: Promise<{ locale: 
           title="Headings & articles"
           meta="In-app editor"
           body="Change a page H1, any section heading, or a blog article. Saves on the site immediately."
+        />
+        <CardLink
+          href="/admin/content/media"
+          title="Logos & reviews"
+          meta="Trusted-by library"
+          body="Upload school and customer logos once. Edit the review library that runs on every public page."
+        />
+        <CardLink
+          href="/admin/content/menu"
+          title="Header menu"
+          meta="Certification · Testing · QCOs · Labs"
+          body="Edit the public header and its submenus."
         />
         <CardLink
           href="/admin/translations"

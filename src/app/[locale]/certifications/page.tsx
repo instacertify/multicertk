@@ -1,4 +1,5 @@
 import { setRequestLocale } from "next-intl/server";
+import { PageHero } from "@/components/page-hero";
 import { Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
 import { countries, productsByScheme, schemes } from "@/data/catalog";
 import { getPage, sectionHeading } from "@/lib/cms";
@@ -30,6 +31,7 @@ export default async function CertificationsPage({ params }: { params: Promise<{
         {cms?.intro ??
           "Start with the GMA framework, then open full programmes. Every scheme is interlinked to products, labs, tests and destination countries."}
       </p>
+      <PageHero src={cms?.heroImageUrl} alt={cms?.heroImageAlt || cms?.title || "Certifications"} />
       <h2 className="mt-10 font-display text-2xl text-navy">{sectionHeading(cms, "how", "How GMA works")}</h2>
       <ol className="mt-4 grid gap-4 md:grid-cols-4">
         {["Regulatory determination", "Testing to the national standard", "Local representation", "Filing & follow-up"].map((step, index) => (

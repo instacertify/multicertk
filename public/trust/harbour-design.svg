@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="56" viewBox="0 0 200 56" role="img" aria-label="Harbour Design School">
+  <rect width="200" height="56" rx="8" fill="#f6f3ec"/>
+  <circle cx="32" cy="28" r="12" fill="none" stroke="#061428" stroke-width="2"/>
+  <path d="M24 28 h16 M32 20 v16" stroke="#f5b400" stroke-width="2"/>
+  <text x="54" y="25" font-family="Georgia, serif" font-size="13" fill="#061428">Harbour</text>
+  <text x="54" y="41" font-family="Georgia, serif" font-size="10" fill="#5b6b7c">Design School</text>
+</svg>

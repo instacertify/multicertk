@@ -1,4 +1,5 @@
 import { setRequestLocale } from "next-intl/server";
+import { PageHero } from "@/components/page-hero";
 import { Breadcrumbs, CardLink } from "@/components/ui";
 
 export const dynamic = "force-dynamic";
@@ -21,6 +22,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
       <Breadcrumbs items={[{ href: "/", label: "Home" }, { href: "/blog", label: "Blog" }]} />
       <h1 className="mt-4 font-display text-4xl text-navy">{page?.title ?? "Notes from the certification desk"}</h1>
       {page?.intro ? <p className="mt-3 text-muted">{page.intro}</p> : null}
+      <PageHero src={page?.heroImageUrl} alt={page?.heroImageAlt || page?.title || "Blog"} />
       <div className="mt-8 grid gap-4">
         {articles.map((article) => (
           <CardLink

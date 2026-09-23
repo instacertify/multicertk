@@ -4,7 +4,9 @@ import { getMessages, setRequestLocale } from "next-intl/server";
 import { Inter, Noto_Sans_Arabic, Noto_Sans_Devanagari, Noto_Sans_SC } from "next/font/google";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
+import { SocialProof } from "@/components/trusted-by";
 import { routing } from "@/i18n/routing";
+import { getLogos, getMenu, getReviews } from "@/lib/site-media";
 import { localesMeta, site } from "@/lib/site";
 import "../globals.css";
 
@@ -35,6 +37,8 @@ const chinese = Noto_Sans_SC({
   display: "swap",
 });
 
+export const dynamic = "force-dynamic";
+
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
@@ -61,6 +65,10 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
   const messages = await getMessages();
   const meta = localesMeta[locale as keyof typeof localesMeta];
+  const menu = getMenu();
+  const logos = getLogos();
+  const reviews = getReviews();
+  const navCopy = (messages as { nav?: { trustedBy?: string; reviewsTitle?: string } }).nav;
 
   return (
     <html
@@ -73,8 +81,14 @@ export default async function LocaleLayout({
     >
       <body className="flex min-h-full flex-col bg-white font-sans text-ink">
         <NextIntlClientProvider messages={messages}>
-          <Header />
+          <Header menu={menu} />
           <main className="flex-1">{children}</main>
+          <SocialProof
+            logos={logos}
+            reviews={reviews}
+            trustedHeading={navCopy?.trustedBy || "Trusted by"}
+            reviewsHeading={navCopy?.reviewsTitle || "What customers say"}
+          />
           <Footer />
         </NextIntlClientProvider>
       </body>

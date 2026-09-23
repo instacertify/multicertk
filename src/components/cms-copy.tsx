@@ -1,3 +1,4 @@
+import { SectionImage } from "./page-hero";
 import type { CmsPage } from "@/data/cms-seed";
 
 export function CmsArticles({
@@ -14,6 +15,7 @@ export function CmsArticles({
       {sections.map((section) => (
         <section key={section.key}>
           <h2 className="font-display text-navy">{section.heading}</h2>
+          <SectionImage src={section.imageUrl} alt={section.imageAlt || section.heading} />
           {section.body.map((paragraph) => (
             <p key={paragraph} className="mt-3 text-ink">
               {paragraph}

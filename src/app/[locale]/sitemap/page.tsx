@@ -52,6 +52,8 @@ export default async function HtmlSitemapPage({ params }: { params: Promise<{ lo
         { href: "/contact", label: "Contact" },
         { href: "/admin", label: "Admin / backend" },
         { href: "/admin/content", label: "Edit headings & articles" },
+        { href: "/admin/content/media", label: "Logos & reviews" },
+        { href: "/admin/content/menu", label: "Header menu" },
       ],
     },
     { title: "Schemes", links: schemes.map((item) => ({ href: `/certifications/${item.slug}`, label: item.name })) },

@@ -1,5 +1,6 @@
 import { setRequestLocale } from "next-intl/server";
 import { Breadcrumbs, CardLink, JsonLd, Section } from "@/components/ui";
+import { PageHero } from "@/components/page-hero";
 import { SearchBox } from "@/components/search-box";
 import { categories, productsByCategory, schemes } from "@/data/catalog";
 import { getPage, sectionHeading } from "@/lib/cms";
@@ -31,6 +32,7 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
         <p className="lead mt-3 max-w-3xl text-muted">
           {cms?.intro ?? "Match the right mark to your product, then open the HSN / IS record for QCO status, labs and interlinked tests."}
         </p>
+        <PageHero src={cms?.heroImageUrl} alt={cms?.heroImageAlt || cms?.title || "Products"} />
         <div className="mt-6 max-w-2xl">
           <SearchBox size="sm" />
         </div>

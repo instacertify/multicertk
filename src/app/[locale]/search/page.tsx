@@ -1,5 +1,6 @@
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
+import { PageHero } from "@/components/page-hero";
 import { SearchBox } from "@/components/search-box";
 import { Badge, Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
 import { searchAll } from "@/lib/search";
@@ -49,6 +50,7 @@ export default async function SearchPage({
       <p className="lead mt-2 text-muted">
         {cms?.intro ?? "Products, IS standards, HSN codes, schemes, labs, tests, QCOs and destination markets."}
       </p>
+      <PageHero src={cms?.heroImageUrl} alt={cms?.heroImageAlt || cms?.title || "Search"} />
       <div className="mt-6">
         <SearchBox initialQuery={q} autoFocus />
       </div>

@@ -1,5 +1,6 @@
 import { setRequestLocale } from "next-intl/server";
 import { LeadForm } from "@/components/lead-form";
+import { PageHero } from "@/components/page-hero";
 
 export const dynamic = "force-dynamic";
 import { Breadcrumbs } from "@/components/ui";
@@ -23,6 +24,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
         <Breadcrumbs items={[{ href: "/", label: "Home" }, { href: "/contact", label: "Contact" }]} />
         <h1 className="mt-4 font-display text-4xl text-navy">{page?.title ?? "Get in touch"}</h1>
         <p className="mt-3 text-muted">{page?.intro}</p>
+        <PageHero src={page?.heroImageUrl} alt={page?.heroImageAlt || page?.title || "Contact"} />
         <ul className="mt-6 space-y-2 text-sm">
           <li>{site.address}</li>
           <li>

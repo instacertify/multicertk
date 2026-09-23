@@ -34,8 +34,22 @@ export default async function ContentIndex({ params }: { params: Promise<{ local
       />
       <h1 className="mt-4 font-display text-4xl text-navy">Headings & articles</h1>
       <p className="mt-3 text-muted">
-        Every heading and every article word is editable here — page H1s, section headings, body copy, and blog articles. Add or remove sections, then save. Changes publish on the site and sync to Directus when it is available.
+        Every heading and every article word is editable here — page H1s, section headings, body copy, and blog articles. Add or remove sections, then save. Upload page images on each page. Changes publish on the site and sync to Directus when it is available.
       </p>
+      <div className="mt-6 grid gap-4 md:grid-cols-2">
+        <CardLink
+          href="/admin/content/media"
+          title="Trusted-by logos & reviews"
+          meta="Runs on every public page"
+          body="Upload school and customer logos in one library. Edit the customer review quotes that appear across the site."
+        />
+        <CardLink
+          href="/admin/content/menu"
+          title="Header menu"
+          meta="Certification · Testing · QCOs · Labs"
+          body="Rename items, add submenu links, or reorder the public header."
+        />
+      </div>
       <h2 className="mt-10 font-display text-2xl text-navy">Pages / sections</h2>
       <div className="mt-4 grid gap-4 md:grid-cols-2">
         {pages.map((page) => (

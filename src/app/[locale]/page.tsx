@@ -3,6 +3,7 @@ import { Link } from "@/i18n/navigation";
 
 export const dynamic = "force-dynamic";
 import { Logo } from "@/components/logo";
+import { PageHero } from "@/components/page-hero";
 import { SearchBox } from "@/components/search-box";
 import { Badge, CardLink, JsonLd, Section } from "@/components/ui";
 import {
@@ -57,12 +58,17 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     <>
       <JsonLd data={[organizationLd(), websiteLd(), breadcrumbLd([{ name: "Home", path: "/" }], locale), faqLd(faqs)]} />
       <section className="bg-navy text-white">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 md:py-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
           <div>
-            <Logo variant="onDark" className="h-12 w-auto sm:h-14" />
+            <Logo variant="onDark" className="h-9 w-auto sm:h-10" />
             <p className="mt-6 text-xs font-semibold uppercase tracking-[0.22em] text-gold">{t("eyebrow")}</p>
             <h1 className="mt-3 font-display text-white">{cms?.title ?? t("title")}</h1>
             <p className="lead mt-4 max-w-2xl text-white/75">{cms?.intro ?? t("subtitle")}</p>
+            {cms?.heroImageUrl ? (
+              <div className="mt-5 overflow-hidden rounded-2xl border border-white/10">
+                <PageHero src={cms.heroImageUrl} alt={cms.heroImageAlt || cms.title} />
+              </div>
+            ) : null}
             <div className="mt-8 max-w-2xl text-navy">
               <SearchBox />
             </div>

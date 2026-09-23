@@ -11,7 +11,7 @@ export async function Footer() {
     <footer className="mt-auto border-t border-navy bg-navy text-white">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-4">
         <div className="md:col-span-2">
-          <Logo variant="onDark" className="h-12 w-auto sm:h-14" />
+          <Logo variant="onDark" className="h-9 w-auto sm:h-10" />
           <p className="mt-4 max-w-md text-sm leading-6 text-white/75">{t("blurb")}</p>
         </div>
         <div>
@@ -43,6 +43,8 @@ export async function Footer() {
               </Link>
             </li>
             <li><Link href="/admin/content">Headings & articles</Link></li>
+            <li><Link href="/admin/content/media">Logos & reviews</Link></li>
+            <li><Link href="/admin/content/menu">Header menu</Link></li>
             <li><Link href="/admin/translations">Translations</Link></li>
           </ul>
         </div>

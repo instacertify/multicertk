@@ -21,6 +21,8 @@ function applyPageOverride(page: CmsPage, override?: Partial<CmsPage>): CmsPage 
     ...page,
     title: override.title ?? page.title,
     intro: override.intro ?? page.intro,
+    heroImageUrl: override.heroImageUrl ?? page.heroImageUrl,
+    heroImageAlt: override.heroImageAlt ?? page.heroImageAlt,
     sections: override.sections ?? page.sections,
   };
 }
@@ -62,6 +64,8 @@ function localArticles(locale: string): CmsArticle[] {
         heading: override.heading ?? override.title,
         excerpt: override.excerpt ?? "",
         body: override.body,
+        heroImageUrl: override.heroImageUrl,
+        blocks: override.blocks,
         date: override.date ?? new Date().toISOString().slice(0, 10),
         tags: override.tags ?? [],
         relatedProductSlugs: override.relatedProductSlugs ?? [],

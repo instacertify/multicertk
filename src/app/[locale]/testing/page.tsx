@@ -1,5 +1,6 @@
 import { setRequestLocale } from "next-intl/server";
 import { Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
+import { PageHero } from "@/components/page-hero";
 import { SearchBox } from "@/components/search-box";
 import { disciplines, testsByDiscipline } from "@/data/catalog";
 import { getPage } from "@/lib/cms";
@@ -31,6 +32,7 @@ export default async function TestingPage({ params }: { params: Promise<{ locale
         {cms?.intro ??
           "Every BIS certification product standard is also a laboratory testing standard — mapped under chemical, electrical, EMC, physical, microbiology and mechanical categories."}
       </p>
+      <PageHero src={cms?.heroImageUrl} alt={cms?.heroImageAlt || cms?.title || "Testing"} />
       <div className="mt-6 max-w-2xl">
         <SearchBox size="sm" />
       </div>

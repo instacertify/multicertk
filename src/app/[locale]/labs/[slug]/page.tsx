@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { CmsArticles } from "@/components/cms-copy";
+import { PageHero } from "@/components/page-hero";
 import { ListedPrice, PriceReassurance } from "@/components/price-reassurance";
 import { Badge, Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
 import {
@@ -79,7 +80,7 @@ export default async function LabPage({
           { href: `/labs/${lab.slug}`, label: lab.name },
         ]}
       />
-      <h1 className="mt-4 font-display text-4xl text-navy">{lab.name}</h1>
+      <h1 className="mt-4 font-display text-navy">{lab.name}</h1>
       <p className="lead mt-2 text-muted">
         {lab.city}, {lab.state}
       </p>
@@ -89,6 +90,7 @@ export default async function LabPage({
         {cms?.intro ||
           "Request a quote to get the recognised lab assigned for your standard. Direct lab addresses and contact details are not published."}
       </p>
+      <PageHero src={cms?.heroImageUrl} alt={cms?.heroImageAlt || lab.name} />
       <div className="mt-4 flex flex-wrap gap-2">
         {lab.categorySlugs.map((categorySlug) => (
           <Link key={categorySlug} href={`/category/${categorySlug}`}>
