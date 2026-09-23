@@ -1,5 +1,7 @@
 import { setRequestLocale } from "next-intl/server";
 import { LeadForm } from "@/components/lead-form";
+
+export const dynamic = "force-dynamic";
 import { Breadcrumbs } from "@/components/ui";
 import { getPage } from "@/lib/cms";
 import { cmsPageMetadata } from "@/components/cms-page";

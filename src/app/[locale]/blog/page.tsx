@@ -1,5 +1,7 @@
 import { setRequestLocale } from "next-intl/server";
 import { Breadcrumbs, CardLink } from "@/components/ui";
+
+export const dynamic = "force-dynamic";
 import { getArticles, getPage } from "@/lib/cms";
 import { cmsPageMetadata } from "@/components/cms-page";
 

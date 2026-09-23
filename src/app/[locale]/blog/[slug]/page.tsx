@@ -1,5 +1,7 @@
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
+
+export const dynamic = "force-dynamic";
 import { Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
 import { getProduct, getScheme } from "@/data/catalog";
 import { getArticle, listArticles } from "@/lib/cms";

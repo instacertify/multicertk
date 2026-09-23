@@ -1,5 +1,7 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
+
+export const dynamic = "force-dynamic";
 import { SearchBox } from "@/components/search-box";
 import { Badge, CardLink, JsonLd, Section } from "@/components/ui";
 import {
