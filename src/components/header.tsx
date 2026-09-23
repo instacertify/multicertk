@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { Link } from "@/i18n/navigation";
-import type { NavChild, NavItem } from "@/data/site-media";
+import type { HeaderChrome, NavChild, NavItem } from "@/data/site-media";
 import { LocaleSwitcher } from "./locale-switcher";
 import { Logo } from "./logo";
 
@@ -35,11 +35,11 @@ function splitHref(href: string) {
   return { pathname, query: Object.fromEntries(new URLSearchParams(query)) };
 }
 
-function NavIcon({ src }: { src?: string }) {
+function NavIcon({ src, className }: { src?: string; className?: string }) {
   if (!src) return null;
   return (
     // eslint-disable-next-line @next/next/no-img-element
-    <img src={src} alt="" className="h-4 w-4 shrink-0 object-contain" aria-hidden />
+    <img src={src} alt="" className={className || "h-5 w-5 shrink-0 object-contain"} aria-hidden />
   );
 }
 
@@ -64,7 +64,7 @@ function MenuLink({
   );
 }
 
-export function Header({ menu }: { menu: NavItem[] }) {
+export function Header({ menu, chrome }: { menu: NavItem[]; chrome?: HeaderChrome }) {
   const t = useTranslations("nav");
   const cta = useTranslations("cta");
   const [open, setOpen] = useState(false);
@@ -122,22 +122,25 @@ export function Header({ menu }: { menu: NavItem[] }) {
           ))}
         </nav>
         <div className="flex items-center gap-3">
-          <Link href="/search" className="type-nav hidden text-navy hover:text-gold-600 sm:inline">
+          <Link href="/search" className="type-nav hidden items-center gap-1.5 text-navy hover:text-gold-600 sm:inline-flex">
+            <NavIcon src={chrome?.searchIconUrl} />
             {t("search")}
           </Link>
           <LocaleSwitcher />
           <Link
             href="/contact"
-            className="type-btn hidden rounded-full bg-gold px-3.5 py-1.5 text-navy hover:bg-gold-600 md:inline"
+            className="type-btn hidden items-center gap-1.5 rounded-full bg-gold px-3.5 py-1.5 text-navy hover:bg-gold-600 md:inline-flex"
           >
+            <NavIcon src={chrome?.quoteIconUrl} />
             {cta("quote")}
           </Link>
           <button
             type="button"
-            className="type-btn rounded-md border border-line px-3 py-1.5 lg:hidden"
+            className="type-btn inline-flex items-center gap-1.5 rounded-md border border-line px-3 py-1.5 lg:hidden"
             onClick={() => setOpen((value) => !value)}
             aria-expanded={open}
           >
+            <NavIcon src={chrome?.menuIconUrl} />
             Menu
           </button>
         </div>
@@ -196,10 +199,12 @@ export function Header({ menu }: { menu: NavItem[] }) {
                   : null}
               </div>
             ))}
-            <Link href="/search" onClick={() => setOpen(false)}>
+            <Link href="/search" className="inline-flex items-center gap-2" onClick={() => setOpen(false)}>
+              <NavIcon src={chrome?.searchIconUrl} />
               {t("search")}
             </Link>
-            <Link href="/contact" onClick={() => setOpen(false)}>
+            <Link href="/contact" className="inline-flex items-center gap-2" onClick={() => setOpen(false)}>
+              <NavIcon src={chrome?.quoteIconUrl} />
               {cta("quote")}
             </Link>
           </div>

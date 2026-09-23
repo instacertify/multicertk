@@ -3,11 +3,13 @@ import path from "node:path";
 import { categories } from "@/data/catalog";
 import {
   buildDefaultMenu,
+  defaultHeaderChrome,
   defaultMenu,
   seedLogos,
   seedReviews,
   type CustomerLogo,
   type CustomerReview,
+  type HeaderChrome,
   type NavChild,
   type NavItem,
   type SiteMediaStore,
@@ -23,9 +25,10 @@ export function readSiteMedia(): SiteMediaStore {
       logos: parsed.logos?.length ? parsed.logos : seedLogos,
       reviews: parsed.reviews?.length ? parsed.reviews : seedReviews,
       menu: parsed.menu?.length ? parsed.menu : defaultMenu,
+      chrome: { ...defaultHeaderChrome, ...parsed.chrome },
     };
   } catch {
-    return { logos: seedLogos, reviews: seedReviews, menu: defaultMenu };
+    return { logos: seedLogos, reviews: seedReviews, menu: defaultMenu, chrome: defaultHeaderChrome };
   }
 }
 
@@ -48,11 +51,16 @@ export function saveReviews(reviews: CustomerReview[]) {
   return store;
 }
 
-export function saveMenu(menu: NavItem[]) {
+export function saveMenu(menu: NavItem[], chrome?: HeaderChrome) {
   const store = readSiteMedia();
   store.menu = menu;
+  if (chrome) store.chrome = { ...defaultHeaderChrome, ...chrome };
   writeSiteMedia(store);
   return store;
+}
+
+export function getHeaderChrome(): HeaderChrome {
+  return { ...defaultHeaderChrome, ...readSiteMedia().chrome };
 }
 
 export function siteMediaExists() {
@@ -102,6 +110,7 @@ function mergeMenu(stored: NavItem[], generated: NavItem[]): NavItem[] {
     if (!fallback) return item;
     return {
       ...item,
+      iconUrl: item.iconUrl || fallback.iconUrl,
       children: mergeChildren(item.children ?? [], fallback.children ?? [], item.id),
     };
   });

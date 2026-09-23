@@ -8,7 +8,7 @@ import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { SocialProof } from "@/components/trusted-by";
 import { routing } from "@/i18n/routing";
-import { getLogos, getMenu, getReviews } from "@/lib/site-media";
+import { getHeaderChrome, getLogos, getMenu, getReviews } from "@/lib/site-media";
 import { getCookieSettings, getSeo } from "@/lib/site-settings";
 import { localesMeta, site } from "@/lib/site";
 import "../globals.css";
@@ -88,6 +88,7 @@ export default async function LocaleLayout({
   const messages = stripPublicMessages(await getMessages());
   const meta = localesMeta[locale as keyof typeof localesMeta];
   const menu = getMenu();
+  const chrome = getHeaderChrome();
   const logos = getLogos();
   const reviews = getReviews();
   const navCopy = (messages as { nav?: { trustedBy?: string; reviewsTitle?: string } }).nav;
@@ -104,7 +105,7 @@ export default async function LocaleLayout({
     >
       <body className="flex min-h-full flex-col bg-white font-sans text-ink">
         <NextIntlClientProvider messages={messages}>
-          <Header menu={menu} />
+          <Header menu={menu} chrome={chrome} />
           <main className="flex-1">{children}</main>
           <SocialProof
             logos={logos}

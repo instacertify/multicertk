@@ -54,6 +54,11 @@ export function ImageUpload({
         placeholder="/uploads/… or paste a URL"
         className="w-full rounded-xl border border-line px-3 py-2"
       />
+      {value ? (
+        <button type="button" className="text-sm font-semibold text-red-700 underline" onClick={() => onChange("")}>
+          Remove image
+        </button>
+      ) : null}
       {status ? <p className="caption text-muted">{status}</p> : null}
     </div>
   );

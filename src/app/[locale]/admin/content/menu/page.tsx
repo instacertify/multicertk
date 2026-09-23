@@ -3,7 +3,7 @@ import { MenuEditor } from "@/components/site-media-editor";
 import { Breadcrumbs } from "@/components/ui";
 import { categories } from "@/data/catalog";
 import { listArticles } from "@/lib/cms";
-import { getMenu } from "@/lib/site-media";
+import { getHeaderChrome, getMenu } from "@/lib/site-media";
 import { pageMetadata } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
@@ -34,11 +34,12 @@ export default async function MenuAdmin({ params }: { params: Promise<{ locale: 
       />
       <h1 className="mt-4 font-display text-navy">Header menu</h1>
       <p className="mt-3 text-muted">
-        Public header items are Certification, Testing, QCOs, Labs and Resources. Submenus follow category — schemes, product categories, testing disciplines, labs by category, and Resources lists the blog plus each article. Rename, reorder, add icons, or fill categories here.
+        Public header items are Certification, Testing, QCOs, Labs and Resources. Add an icon or image on any item, submenu link, Search, the quote button or the mobile menu. Submenus follow category.
       </p>
       <div className="mt-8">
         <MenuEditor
           menu={getMenu()}
+          chrome={getHeaderChrome()}
           categories={categories.map((category) => ({ slug: category.slug, name: category.name }))}
           articles={listArticles(locale).map((article) => ({ slug: article.slug, title: article.title }))}
         />

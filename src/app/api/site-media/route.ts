@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { getLogos, getMenu, getReviews, readSiteMedia, saveLogos, saveMenu, saveReviews } from "@/lib/site-media";
+import { getHeaderChrome, getLogos, getMenu, getReviews, readSiteMedia, saveLogos, saveMenu, saveReviews } from "@/lib/site-media";
 
 const childSchema = z.object({
   id: z.string().trim().min(1).max(80),
@@ -49,9 +49,16 @@ const reviewSchema = z.object({
     .max(40),
 });
 
+const chromeSchema = z.object({
+  searchIconUrl: z.string().trim().max(240).optional(),
+  quoteIconUrl: z.string().trim().max(240).optional(),
+  menuIconUrl: z.string().trim().max(240).optional(),
+});
+
 const menuSchema = z.object({
   kind: z.literal("menu"),
   menu: z.array(menuItemSchema).min(1).max(8),
+  chrome: chromeSchema.optional(),
 });
 
 export async function GET() {
@@ -59,6 +66,7 @@ export async function GET() {
     logos: getLogos(),
     reviews: getReviews(),
     menu: getMenu(),
+    chrome: getHeaderChrome(),
   });
 }
 
@@ -78,7 +86,7 @@ export async function POST(request: Request) {
   }
   const menu = menuSchema.safeParse(raw);
   if (menu.success) {
-    const store = saveMenu(menu.data.menu);
+    const store = saveMenu(menu.data.menu, menu.data.chrome);
     return NextResponse.json({ ok: true, saved: "menu", ...store });
   }
   return NextResponse.json({ error: "Invalid site-media payload", current: readSiteMedia() }, { status: 400 });

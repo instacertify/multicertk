@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import type { CustomerLogo, CustomerReview, NavChild, NavItem } from "@/data/site-media";
+import type { CustomerLogo, CustomerReview, HeaderChrome, NavChild, NavItem } from "@/data/site-media";
+import { defaultHeaderChrome } from "@/data/site-media";
 import { ImageUpload } from "./image-upload";
 
 function newId(prefix: string) {
@@ -187,14 +188,17 @@ function moveItem<T>(list: T[], from: number, to: number) {
 
 export function MenuEditor({
   menu,
+  chrome,
   categories = [],
   articles = [],
 }: {
   menu: NavItem[];
+  chrome?: HeaderChrome;
   categories?: { slug: string; name: string }[];
   articles?: { slug: string; title: string }[];
 }) {
   const [items, setItems] = useState(menu);
+  const [actions, setActions] = useState<HeaderChrome>({ ...defaultHeaderChrome, ...chrome });
   const [status, setStatus] = useState("");
 
   function patch(index: number, nextItem: NavItem) {
@@ -217,6 +221,7 @@ export function MenuEditor({
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         kind: "menu",
+        chrome: actions,
         menu: items.map((item) => ({
           ...item,
           iconUrl: item.iconUrl || undefined,
@@ -234,6 +239,15 @@ export function MenuEditor({
 
   return (
     <div className="space-y-4">
+      <fieldset className="rounded-2xl border border-line p-4">
+        <legend className="px-1 text-xs font-semibold uppercase tracking-wide text-gold-600">Header action icons</legend>
+        <p className="mt-1 caption text-muted">Upload or paste an image for Search, the quote button, and the mobile menu. Leave blank to hide that icon.</p>
+        <div className="mt-3 grid gap-4 md:grid-cols-3">
+          <ImageUpload compact label="Search icon" folder="menu" value={actions.searchIconUrl} onChange={(url) => setActions({ ...actions, searchIconUrl: url })} />
+          <ImageUpload compact label="Quote button icon" folder="menu" value={actions.quoteIconUrl} onChange={(url) => setActions({ ...actions, quoteIconUrl: url })} />
+          <ImageUpload compact label="Mobile menu icon" folder="menu" value={actions.menuIconUrl} onChange={(url) => setActions({ ...actions, menuIconUrl: url })} />
+        </div>
+      </fieldset>
       {items.map((item, index) => (
         <fieldset key={item.id} className="rounded-2xl border border-line p-4">
           <legend className="px-1 text-xs font-semibold uppercase tracking-wide text-gold-600">
