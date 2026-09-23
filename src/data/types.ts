@@ -79,10 +79,6 @@ export interface Lab {
   costMin: number;
   costMax: number;
   scopes: number;
-  phone?: string;
-  email?: string;
-  address?: string;
-  contact?: string;
 }
 
 export interface LabScope {
