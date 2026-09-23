@@ -40,7 +40,7 @@ export function SearchBox({
           type="submit"
           className="m-1 rounded-full bg-navy px-5 text-sm font-semibold text-white hover:bg-navy-800"
         >
-          {large ? "Search" : "Go"}
+          {t("submit")}
         </button>
       </div>
     </form>

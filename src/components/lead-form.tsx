@@ -71,6 +71,7 @@ export function LeadForm({ sourcePath }: { sourcePath?: string }) {
         <textarea required name="message" rows={4} className="mt-1 w-full rounded-lg border border-line px-3 py-2" />
       </label>
       <button
+        type="submit"
         disabled={pending}
         className="rounded-full bg-navy px-5 py-2.5 text-sm font-semibold text-white hover:bg-navy-800 disabled:opacity-60"
       >
