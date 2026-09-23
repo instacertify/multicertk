@@ -4,6 +4,8 @@ import { PriceOffer, PriceReassurance } from "@/components/price-reassurance";
 import { Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
 import { filterLabs, formatRange, labs } from "@/data/catalog";
 import { getPage } from "@/lib/cms";
+
+export const dynamic = "force-dynamic";
 import { breadcrumbLd, pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {

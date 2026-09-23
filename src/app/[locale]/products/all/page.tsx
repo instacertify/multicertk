@@ -4,6 +4,7 @@ import { CatalogFilter } from "@/components/catalog-filter";
 import { ListedPrice, PriceReassurance } from "@/components/price-reassurance";
 import { Badge, Breadcrumbs, StatusBadge } from "@/components/ui";
 import { categories, filterProducts, formatRange, schemes } from "@/data/catalog";
+import { getPage } from "@/lib/cms";
 import { pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -27,6 +28,7 @@ export default async function AllProductsPage({
   setRequestLocale(locale);
   const filters = await searchParams;
   const rows = filterProducts(filters);
+  const cms = await getPage("products-all", locale);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10">
@@ -37,9 +39,10 @@ export default async function AllProductsPage({
           { href: "/products/all", label: "All products" },
         ]}
       />
-      <h1 className="mt-4 font-display text-4xl text-navy">All mapped products</h1>
+      <h1 className="mt-4 font-display text-4xl text-navy">{cms?.title ?? "All mapped products"}</h1>
       <p className="lead mt-2 text-muted">
-        {rows.length} unique Indian Standard / CRS records from the Certko library — each opens as its own interlinked page in every language.
+        {cms?.intro ??
+          `${rows.length} unique Indian Standard / CRS records from the Certko library — each opens as its own interlinked page in every language.`}
       </p>
       <PriceReassurance className="mt-6" />
       <CatalogFilter q={filters.q}>

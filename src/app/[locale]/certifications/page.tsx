@@ -2,6 +2,8 @@ import { setRequestLocale } from "next-intl/server";
 import { Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
 import { countries, productsByScheme, schemes } from "@/data/catalog";
 import { getPage, sectionHeading } from "@/lib/cms";
+
+export const dynamic = "force-dynamic";
 import { breadcrumbLd, pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {

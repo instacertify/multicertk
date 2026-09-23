@@ -105,6 +105,73 @@ export function PageEditor({ page, locale }: { page: CmsPage; locale: string }) 
   );
 }
 
+export function NewArticleForm({ locale }: { locale: string }) {
+  const [title, setTitle] = useState("");
+  const [heading, setHeading] = useState("");
+  const [excerpt, setExcerpt] = useState("");
+  const [body, setBody] = useState("");
+  const [status, setStatus] = useState("");
+
+  async function onSubmit(event: React.FormEvent) {
+    event.preventDefault();
+    setStatus("Saving…");
+    const slug = title
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "")
+      .slice(0, 80);
+    const response = await fetch("/api/cms", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        kind: "article",
+        slug: slug || `article-${Date.now()}`,
+        locale,
+        title,
+        heading: heading || title,
+        excerpt,
+        body: splitBody(body || title),
+        date: new Date().toISOString().slice(0, 10),
+        tags: [],
+      }),
+    });
+    const json = (await response.json()) as { ok?: boolean };
+    setStatus(json.ok ? "Article published. Open it from the list below after refresh." : "Could not save.");
+    if (json.ok) {
+      setTitle("");
+      setHeading("");
+      setExcerpt("");
+      setBody("");
+    }
+  }
+
+  return (
+    <form onSubmit={onSubmit} className="mt-6 space-y-4 rounded-2xl border border-line p-5">
+      <p className="caption font-semibold uppercase tracking-wide text-gold-600">Write a new article</p>
+      <label className="block text-sm">
+        <span className="mb-1 block text-xs uppercase tracking-wide text-muted">Title</span>
+        <input required value={title} onChange={(event) => setTitle(event.target.value)} className="w-full rounded-xl border border-line px-3 py-2" />
+      </label>
+      <label className="block text-sm">
+        <span className="mb-1 block text-xs uppercase tracking-wide text-muted">Heading</span>
+        <input value={heading} onChange={(event) => setHeading(event.target.value)} className="w-full rounded-xl border border-line px-3 py-2" />
+      </label>
+      <label className="block text-sm">
+        <span className="mb-1 block text-xs uppercase tracking-wide text-muted">Every word of the article</span>
+        <textarea required value={body} onChange={(event) => setBody(event.target.value)} rows={8} className="w-full rounded-xl border border-line px-3 py-2" />
+      </label>
+      <label className="block text-sm">
+        <span className="mb-1 block text-xs uppercase tracking-wide text-muted">Excerpt</span>
+        <textarea value={excerpt} onChange={(event) => setExcerpt(event.target.value)} rows={2} className="w-full rounded-xl border border-line px-3 py-2" />
+      </label>
+      <button type="submit" className="rounded-xl bg-navy px-4 py-2 text-sm font-semibold text-white">
+        Publish article
+      </button>
+      {status ? <p className="text-sm text-muted">{status}</p> : null}
+    </form>
+  );
+}
+
 export function ArticleEditor({ article, locale }: { article: CmsArticle; locale: string }) {
   const [title, setTitle] = useState(article.title);
   const [heading, setHeading] = useState(article.heading);

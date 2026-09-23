@@ -1,7 +1,10 @@
 import { setRequestLocale } from "next-intl/server";
 import { Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
 import { countries } from "@/data/catalog";
+import { getPage } from "@/lib/cms";
 import { breadcrumbLd, pageMetadata } from "@/lib/seo";
+
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -17,6 +20,7 @@ export default async function CountriesPage({ params }: { params: Promise<{ loca
   const { locale } = await params;
   setRequestLocale(locale);
   const regions = [...new Set(countries.map((item) => item.region))];
+  const cms = await getPage("countries", locale);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10">
@@ -37,7 +41,8 @@ export default async function CountriesPage({ params }: { params: Promise<{ loca
           { href: "/certifications/countries", label: "Markets" },
         ]}
       />
-      <h1 className="mt-4 font-display text-4xl text-navy">Destination markets</h1>
+      <h1 className="mt-4 font-display text-4xl text-navy">{cms?.title ?? "Destination markets"}</h1>
+      {cms?.intro ? <p className="lead mt-3 max-w-3xl text-muted">{cms.intro}</p> : null}
       {regions.map((region) => (
         <section key={region} className="mt-10">
           <h2 className="font-display text-2xl text-navy">{region}</h2>

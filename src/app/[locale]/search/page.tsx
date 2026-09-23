@@ -3,6 +3,7 @@ import { Link } from "@/i18n/navigation";
 import { SearchBox } from "@/components/search-box";
 import { Badge, Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
 import { searchAll } from "@/lib/search";
+import { getPage } from "@/lib/cms";
 import { pageMetadata, websiteLd } from "@/lib/seo";
 import { searchQuerySchema } from "@/lib/validation";
 
@@ -38,13 +39,16 @@ export default async function SearchPage({
   const q = parsed.success ? parsed.data.q : "";
   const type = parsed.success ? parsed.data.type : undefined;
   const result = await searchAll(q, 30, type);
+  const cms = await getPage("search", locale);
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-10">
       <JsonLd data={websiteLd()} />
       <Breadcrumbs items={[{ href: "/", label: "Home" }, { href: "/search", label: "Search" }]} />
-      <h1 className="mt-4 font-display text-4xl text-navy">Search the interlinked catalogue</h1>
-      <p className="lead mt-2 text-muted">Products, IS standards, HSN codes, schemes, labs, tests, QCOs and destination markets.</p>
+      <h1 className="mt-4 font-display text-4xl text-navy">{cms?.title ?? "Search the interlinked catalogue"}</h1>
+      <p className="lead mt-2 text-muted">
+        {cms?.intro ?? "Products, IS standards, HSN codes, schemes, labs, tests, QCOs and destination markets."}
+      </p>
       <div className="mt-6">
         <SearchBox initialQuery={q} autoFocus />
       </div>

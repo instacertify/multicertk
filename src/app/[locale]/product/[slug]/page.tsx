@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
+import { CmsArticles } from "@/components/cms-copy";
 import { LeadForm } from "@/components/lead-form";
 import { ListedPrice, PriceReassurance } from "@/components/price-reassurance";
 import { Badge, Breadcrumbs, CardLink, JsonLd, StatusBadge } from "@/components/ui";
@@ -278,6 +279,7 @@ export default async function ProductPage({
         </div>
         <LeadForm sourcePath={`/product/${product.slug}`} />
       </div>
+      <CmsArticles page={cms} skip={["marking", "labs", "prices", "tests", "stacked", "related", "quote"]} />
     </div>
   );
 }

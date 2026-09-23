@@ -2,6 +2,7 @@ import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 
 export const dynamic = "force-dynamic";
+import { NewArticleForm } from "@/components/cms-editor";
 import { Breadcrumbs, CardLink } from "@/components/ui";
 import { getArticles, getPages } from "@/lib/cms";
 import { pageMetadata } from "@/lib/seo";
@@ -48,6 +49,7 @@ export default async function ContentIndex({ params }: { params: Promise<{ local
         ))}
       </div>
       <h2 className="mt-10 font-display text-2xl text-navy">Articles</h2>
+      <NewArticleForm locale={locale} />
       <div className="mt-4 grid gap-4 md:grid-cols-2">
         {articles.map((article) => (
           <CardLink

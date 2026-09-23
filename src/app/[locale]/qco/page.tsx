@@ -3,6 +3,8 @@ import { Link } from "@/i18n/navigation";
 import { Breadcrumbs, StatusBadge } from "@/components/ui";
 import { getProduct, qcos } from "@/data/catalog";
 import { getPage } from "@/lib/cms";
+
+export const dynamic = "force-dynamic";
 import { pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {

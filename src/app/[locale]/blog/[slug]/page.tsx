@@ -4,7 +4,7 @@ import { setRequestLocale } from "next-intl/server";
 export const dynamic = "force-dynamic";
 import { Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
 import { getProduct, getScheme } from "@/data/catalog";
-import { getArticle, listArticles } from "@/lib/cms";
+import { getArticle, getPage, listArticles, sectionHeading } from "@/lib/cms";
 import { breadcrumbLd, pageMetadata } from "@/lib/seo";
 
 export function generateStaticParams() {
@@ -36,6 +36,7 @@ export default async function PostPage({
   setRequestLocale(locale);
   const article = await getArticle(slug, locale);
   if (!article) notFound();
+  const cms = await getPage("blog-detail", locale);
 
   return (
     <article className="mx-auto max-w-3xl px-4 py-10">
@@ -64,7 +65,7 @@ export default async function PostPage({
           <p key={paragraph}>{paragraph}</p>
         ))}
       </div>
-      <h2 className="mt-10 font-display text-2xl text-navy">Linked schemes & standards</h2>
+      <h2 className="mt-10 font-display text-2xl text-navy">{sectionHeading(cms, "linked", "Linked schemes & standards")}</h2>
       <div className="mt-4 grid gap-4">
         {article.relatedSchemeSlugs.map((schemeSlug) => {
           const scheme = getScheme(schemeSlug);

@@ -3,7 +3,11 @@ import { setRequestLocale } from "next-intl/server";
 import { LeadForm } from "@/components/lead-form";
 import { Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
 import { getLab, getProduct, getTest, tests } from "@/data/catalog";
+import { CmsArticles } from "@/components/cms-copy";
+import { getPage, sectionHeading } from "@/lib/cms";
 import { breadcrumbLd, pageMetadata } from "@/lib/seo";
+
+export const dynamic = "force-dynamic";
 
 export function generateStaticParams() {
   return tests.map((test) => ({ discipline: test.discipline, slug: test.slug }));
@@ -34,6 +38,7 @@ export default async function TestPage({
   setRequestLocale(locale);
   const test = getTest(slug);
   if (!test) notFound();
+  const cms = await getPage("test-detail", locale);
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-10">
@@ -58,7 +63,7 @@ export default async function TestPage({
       <h1 className="mt-4 font-display text-4xl text-navy">{test.name}</h1>
       <p className="mt-2 text-sm font-semibold text-gold-600">{test.standard} · {test.turnaround}</p>
       <p className="mt-3 text-muted">{test.summary}</p>
-      <h2 className="mt-10 font-display text-2xl text-navy">Standards / products this unlocks</h2>
+      <h2 className="mt-10 font-display text-2xl text-navy">{sectionHeading(cms, "products", "Standards / products this unlocks")}</h2>
       <div className="mt-4 grid gap-4 md:grid-cols-2">
         {test.productSlugs.map((productSlug) => {
           const product = getProduct(productSlug);
@@ -68,7 +73,7 @@ export default async function TestPage({
           );
         })}
       </div>
-      <h2 className="mt-10 font-display text-2xl text-navy">Labs that typically run this scope</h2>
+      <h2 className="mt-10 font-display text-2xl text-navy">{sectionHeading(cms, "labs", "Labs that typically run this scope")}</h2>
       <div className="mt-4 grid gap-4 md:grid-cols-2">
         {test.labSlugs.map((labSlug) => {
           const lab = getLab(labSlug);
@@ -76,6 +81,7 @@ export default async function TestPage({
           return <CardLink key={lab.slug} href={`/labs/${lab.slug}`} title={lab.name} meta={`${lab.city}, ${lab.state}`} />;
         })}
       </div>
+      <CmsArticles page={cms} skip={["products", "labs"]} />
       <div className="mt-12 max-w-xl">
         <LeadForm sourcePath={`/testing/${test.discipline}/${test.slug}`} />
       </div>

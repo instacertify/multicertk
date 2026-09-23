@@ -168,12 +168,17 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </div>
       </Section>
 
-      <Section title="Frequently asked questions">
+      <Section title={sectionHeading(cms, "faq", "Frequently asked questions")}>
         <div className="grid gap-4 md:grid-cols-2">
-          {faqs.map((item) => (
+          {(cms?.sections.filter((section) => section.key.startsWith("faq-") && section.body.length).length
+            ? cms.sections
+                .filter((section) => section.key.startsWith("faq-"))
+                .map((section) => ({ q: section.heading, a: section.body.join(" ") }))
+            : faqs
+          ).map((item) => (
             <article key={item.q} className="rounded-2xl border border-line p-5">
               <h3 className="font-display text-lg text-navy">{item.q}</h3>
-              <p className="mt-2 text-sm leading-6 text-muted">{item.a}</p>
+              <p className="mt-2 text-muted">{item.a}</p>
             </article>
           ))}
         </div>

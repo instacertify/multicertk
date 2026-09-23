@@ -3,6 +3,8 @@ import { Breadcrumbs, CardLink, JsonLd, Section } from "@/components/ui";
 import { SearchBox } from "@/components/search-box";
 import { categories, productsByCategory, schemes } from "@/data/catalog";
 import { getPage, sectionHeading } from "@/lib/cms";
+
+export const dynamic = "force-dynamic";
 import { breadcrumbLd, pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {

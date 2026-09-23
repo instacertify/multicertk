@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
+import { CmsArticles } from "@/components/cms-copy";
 import { ListedPrice, PriceReassurance } from "@/components/price-reassurance";
 import { Badge, Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
 import {
@@ -148,6 +149,7 @@ export default async function LabPage({
           <CardLink key={product.slug} href={`/product/${product.slug}`} title={product.name} meta={product.standard} body={product.excerpt} />
         ))}
       </div>
+      <CmsArticles page={cms} skip={["scope", "products"]} />
     </div>
   );
 }
