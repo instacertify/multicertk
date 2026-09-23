@@ -128,7 +128,7 @@ export function CookieSettingsButton() {
   return (
     <button
       type="button"
-      className="text-start hover:underline"
+      className="block w-full text-start hover:underline"
       onClick={() => window.dispatchEvent(new Event("certko-cookie-settings"))}
     >
       Cookie settings

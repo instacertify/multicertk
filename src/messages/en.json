@@ -60,7 +60,8 @@
   "footer": {
     "blurb": "Your solution partner for certification and compliance. Every lab standard and certification scheme is searchable and interlinked.",
     "contact": "Contact",
-    "legal": "Legal",
+    "legal": "About Us",
+    "aboutUs": "About Us",
     "explore": "Explore"
   },
   "price": {

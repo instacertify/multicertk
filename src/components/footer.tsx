@@ -16,6 +16,11 @@ export async function Footer() {
         <div>
           <Logo variant="onDark" className="h-9 w-auto sm:h-10" />
           <p className="mt-4 max-w-md text-sm leading-6 text-white/75">{t("blurb")}</p>
+          <ul className="mt-5 space-y-2 text-sm text-white/80">
+            <li>{site.address}</li>
+            <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+            <li><a href={site.phoneHref}>{site.phone}</a></li>
+          </ul>
         </div>
         <div>
           <h4 className="font-display text-gold">{t("explore")}</h4>
@@ -29,16 +34,13 @@ export async function Footer() {
           </ul>
         </div>
         <div>
-          <h4 className="font-display text-gold">{t("legal")}</h4>
-          <ul className="mt-3 space-y-2 text-sm text-white/80">
-            <li>{site.address}</li>
-            <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
-            <li><a href={site.phoneHref}>{site.phone}</a></li>
-            <li><Link href={legal.privacyPath}>Privacy</Link></li>
-            <li><Link href={legal.cookiesPath}>Cookies</Link></li>
-            <li><Link href={legal.gdprPath}>GDPR & DPDP</Link></li>
-            <li><Link href={legal.termsPath}>Terms</Link></li>
-            <li><CookieSettingsButton /></li>
+          <h4 className="font-display text-gold">{t("aboutUs")}</h4>
+          <ul className="mt-3 flex flex-col gap-2 text-sm text-white/80">
+            <li><Link href={legal.privacyPath} className="block">Privacy</Link></li>
+            <li><Link href={legal.cookiesPath} className="block">Cookies</Link></li>
+            <li><Link href={legal.gdprPath} className="block">GDPR & DPDP</Link></li>
+            <li><Link href={legal.termsPath} className="block">Terms</Link></li>
+            <li className="block"><CookieSettingsButton /></li>
           </ul>
         </div>
       </div>
