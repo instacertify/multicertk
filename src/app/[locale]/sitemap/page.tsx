@@ -6,10 +6,12 @@ import {
   categories,
   countries,
   disciplines,
+  euSectors,
   gmarkProducts,
   labs,
   posts,
   products,
+  qcos,
   schemes,
   tests,
 } from "@/data/catalog";
@@ -59,6 +61,8 @@ export default async function HtmlSitemapPage({ params }: { params: Promise<{ lo
     { title: "Disciplines", links: disciplines.map((item) => ({ href: `/testing/${item.slug}`, label: item.name })) },
     { title: "BEE products", links: beeProducts.map((item) => ({ href: `/certifications/bee/products/${item.slug}`, label: item.name })) },
     { title: "G-Mark products", links: gmarkProducts.map((item) => ({ href: `/certifications/g-mark/products/${item.slug}`, label: item.name })) },
+    { title: "EU / CE sectors", links: euSectors.map((item) => ({ href: `/certifications/ce/products/${item.slug}`, label: item.name })) },
+    { title: "Quality Control Orders", links: qcos.map((item) => ({ href: `/qco/${item.slug}`, label: item.name })) },
     { title: "Blog", links: posts.map((item) => ({ href: `/blog/${item.slug}`, label: item.title })) },
   ];
 

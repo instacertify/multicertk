@@ -1,4 +1,5 @@
 import { setRequestLocale } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { SearchBox } from "@/components/search-box";
 import { Badge, Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
 import { searchAll } from "@/lib/search";
@@ -46,6 +47,31 @@ export default async function SearchPage({
       <p className="mt-2 text-muted">Products, IS standards, HSN codes, schemes, labs, tests, QCOs and destination markets.</p>
       <div className="mt-6">
         <SearchBox initialQuery={q} autoFocus />
+      </div>
+      <div className="mt-4 flex flex-wrap gap-2 text-sm">
+        {[
+          ["", "All"],
+          ["product", "Products"],
+          ["lab", "Labs"],
+          ["scheme", "Schemes"],
+          ["qco", "QCO"],
+          ["bee", "BEE"],
+          ["gmark", "G-Mark"],
+          ["eu", "EU / CE"],
+        ].map(([value, label]) => {
+          const href = q
+            ? `/search?q=${encodeURIComponent(q)}${value ? `&type=${value}` : ""}`
+            : `/search${value ? `?type=${value}` : ""}`;
+          return (
+            <Link
+              key={label}
+              href={href}
+              className={`rounded-full border px-3 py-1 ${type === value || (!type && !value) ? "border-navy bg-navy text-white" : "border-line"}`}
+            >
+              {label}
+            </Link>
+          );
+        })}
       </div>
       <p className="mt-3 text-xs text-muted">
         Engine: {result.engine === "meilisearch" ? "Meilisearch Community Edition" : "in-process catalogue (Meilisearch optional)"}

@@ -22,7 +22,7 @@ export const leadSchema = z.object({
 export const searchQuerySchema = z.object({
   q: z.string().trim().max(160).default(""),
   type: z
-    .enum(["product", "scheme", "lab", "test", "category", "country", "qco", "post"])
+    .enum(["product", "scheme", "lab", "test", "category", "country", "qco", "post", "bee", "gmark", "eu"])
     .optional(),
   limit: z.coerce.number().int().min(1).max(50).default(20),
 });

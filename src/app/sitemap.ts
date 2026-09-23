@@ -4,10 +4,12 @@ import {
   categories,
   countries,
   disciplines,
+  euSectors,
   gmarkProducts,
   labs,
   posts,
   products,
+  qcos,
   schemes,
   tests,
 } from "@/data/catalog";
@@ -56,6 +58,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...tests.map((item) => entry(`/testing/${item.discipline}/${item.slug}`, "weekly", 0.6)),
     ...beeProducts.map((item) => entry(`/certifications/bee/products/${item.slug}`, "monthly", 0.6)),
     ...gmarkProducts.map((item) => entry(`/certifications/g-mark/products/${item.slug}`, "monthly", 0.6)),
+    ...euSectors.map((item) => entry(`/certifications/ce/products/${item.slug}`, "monthly", 0.6)),
+    ...qcos.map((item) => entry(`/qco/${item.slug}`, "weekly", 0.6)),
     ...posts.map((item) => entry(`/blog/${item.slug}`, "monthly", 0.5)),
   ];
 }

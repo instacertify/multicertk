@@ -3,7 +3,7 @@ import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { LeadForm } from "@/components/lead-form";
 import { Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
-import { beeProducts, getCountry, getScheme, gmarkProducts, productsByScheme, schemes } from "@/data/catalog";
+import { beeProducts, euSectors, getCountry, getScheme, gmarkProducts, productsByScheme, schemes } from "@/data/catalog";
 import { breadcrumbLd, pageMetadata } from "@/lib/seo";
 
 export function generateStaticParams() {
@@ -94,8 +94,9 @@ export default async function SchemePage({
       </div>
 
       <h2 className="mt-10 font-display text-2xl text-navy">Mapped products & standards</h2>
+      <p className="mt-2 text-sm text-muted">{mapped.length} library records interlinked to this scheme.</p>
       <div className="mt-4 grid gap-4 md:grid-cols-2">
-        {mapped.map((product) => (
+        {mapped.slice(0, 24).map((product) => (
           <CardLink
             key={product.slug}
             href={`/product/${product.slug}`}
@@ -105,6 +106,13 @@ export default async function SchemePage({
           />
         ))}
       </div>
+      {mapped.length > 24 ? (
+        <p className="mt-4 text-sm">
+          <Link href={`/products/all?scheme=${scheme.slug}`} className="font-semibold text-navy underline">
+            View all {mapped.length} mapped products →
+          </Link>
+        </p>
+      ) : null}
 
       {scheme.slug === "bee" ? (
         <>
@@ -132,6 +140,23 @@ export default async function SchemePage({
                 key={item.slug}
                 href={`/certifications/g-mark/products/${item.slug}`}
                 title={item.name}
+                body={item.summary}
+              />
+            ))}
+          </div>
+        </>
+      ) : null}
+
+      {scheme.slug === "ce" ? (
+        <>
+          <h2 className="mt-10 font-display text-2xl text-navy">EU sector mandates</h2>
+          <div className="mt-4 grid gap-4 md:grid-cols-2">
+            {euSectors.map((item) => (
+              <CardLink
+                key={item.slug}
+                href={`/certifications/ce/products/${item.slug}`}
+                title={item.name}
+                meta={item.legal}
                 body={item.summary}
               />
             ))}

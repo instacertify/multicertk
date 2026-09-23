@@ -11,7 +11,8 @@
     "db:migrate": "drizzle-kit migrate",
     "db:seed": "tsx src/db/seed.ts",
     "search:index": "tsx src/db/index-search.ts",
-    "library:import": "tsx scripts/import-library.ts"
+    "library:import": "tsx scripts/import-library.ts",
+    "library:build": "python3 scripts/build-catalog.py"
   },
   "dependencies": {
     "drizzle-orm": "^0.45.3",

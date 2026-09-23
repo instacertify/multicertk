@@ -1,15 +1,24 @@
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
+import { LeadForm } from "@/components/lead-form";
 import { Breadcrumbs, CardLink } from "@/components/ui";
-import { beeProducts, getProduct, getScheme, gmarkProducts } from "@/data/catalog";
+import { beeProducts, euSectors, getBee, getEu, getGmark, getProduct, getScheme, gmarkProducts } from "@/data/catalog";
 import { pageMetadata } from "@/lib/seo";
 
 export function generateStaticParams() {
   return [
     ...beeProducts.map((item) => ({ slug: "bee", productSlug: item.slug })),
     ...gmarkProducts.map((item) => ({ slug: "g-mark", productSlug: item.slug })),
+    ...euSectors.map((item) => ({ slug: "ce", productSlug: item.slug })),
   ];
+}
+
+function schemeItem(schemeSlug: string, productSlug: string) {
+  if (schemeSlug === "bee") return getBee(productSlug);
+  if (schemeSlug === "g-mark") return getGmark(productSlug);
+  if (schemeSlug === "ce") return getEu(productSlug);
+  return undefined;
 }
 
 export async function generateMetadata({
@@ -19,10 +28,7 @@ export async function generateMetadata({
 }) {
   const { locale, slug, productSlug } = await params;
   const scheme = getScheme(slug);
-  const item =
-    slug === "bee"
-      ? beeProducts.find((row) => row.slug === productSlug)
-      : gmarkProducts.find((row) => row.slug === productSlug);
+  const item = schemeItem(slug, productSlug);
   if (!scheme || !item) return {};
   return pageMetadata({
     locale,
@@ -40,12 +46,13 @@ export default async function SchemeProductPage({
   const { locale, slug, productSlug } = await params;
   setRequestLocale(locale);
   const scheme = getScheme(slug);
-  const item =
-    slug === "bee"
-      ? beeProducts.find((row) => row.slug === productSlug)
-      : gmarkProducts.find((row) => row.slug === productSlug);
+  const item = schemeItem(slug, productSlug);
   if (!scheme || !item) notFound();
-  const related = "relatedProductSlug" in item && item.relatedProductSlug ? getProduct(item.relatedProductSlug) : undefined;
+  const relatedSlug = "relatedProductSlug" in item ? item.relatedProductSlug : undefined;
+  const related = relatedSlug ? getProduct(relatedSlug) : undefined;
+  const bee = slug === "bee" ? getBee(productSlug) : undefined;
+  const gmark = slug === "g-mark" ? getGmark(productSlug) : undefined;
+  const eu = slug === "ce" ? getEu(productSlug) : undefined;
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-10">
@@ -64,6 +71,77 @@ export default async function SchemeProductPage({
           {scheme.name}
         </Link>
       </p>
+
+      {bee ? (
+        <dl className="mt-8 grid gap-4 sm:grid-cols-2">
+          {[
+            ["Regime", bee.regime],
+            ["Test standard", bee.standard],
+            ["Star table", bee.starTable],
+            ["Indicative test price", bee.price],
+            ["Recognised labs", bee.labs],
+          ]
+            .filter(([, value]) => value)
+            .map(([dt, dd]) => (
+              <div key={dt} className="rounded-2xl border border-line p-4">
+                <dt className="text-xs uppercase tracking-wide text-muted">{dt}</dt>
+                <dd className="mt-1 text-sm text-navy">{dd}</dd>
+              </div>
+            ))}
+        </dl>
+      ) : null}
+
+      {gmark ? (
+        <dl className="mt-8 grid gap-4 sm:grid-cols-2">
+          {[
+            ["Family", gmark.family],
+            ["Main standard", gmark.standard],
+            ["Typical tests", gmark.tests],
+            ["EMC required", gmark.emc],
+            ["IECEE CB accepted", gmark.cb],
+            ["GSO notified body", gmark.nb],
+            ["Remarks", gmark.remarks],
+          ]
+            .filter(([, value]) => value)
+            .map(([dt, dd]) => (
+              <div key={dt} className="rounded-2xl border border-line p-4">
+                <dt className="text-xs uppercase tracking-wide text-muted">{dt}</dt>
+                <dd className="mt-1 text-sm text-navy">{dd}</dd>
+              </div>
+            ))}
+        </dl>
+      ) : null}
+
+      {eu ? (
+        <dl className="mt-8 grid gap-4 sm:grid-cols-2">
+          {[
+            ["Mandate", eu.mandate],
+            ["Legal reference", eu.legal],
+            ["Testing", eu.testing],
+            ["Notified body", eu.nb],
+            ["When NB applies", eu.whenNb],
+            ["Conformity route", eu.route],
+            ["Recent updates", eu.updates],
+          ]
+            .filter(([, value]) => value)
+            .map(([dt, dd]) => (
+              <div key={dt} className="rounded-2xl border border-line p-4">
+                <dt className="text-xs uppercase tracking-wide text-muted">{dt}</dt>
+                <dd className="mt-1 text-sm text-navy">{dd}</dd>
+              </div>
+            ))}
+        </dl>
+      ) : null}
+
+      {eu?.url ? (
+        <p className="mt-4 text-sm">
+          Official sector page:{" "}
+          <a href={eu.url} className="font-semibold underline" rel="noreferrer">
+            {eu.url}
+          </a>
+        </p>
+      ) : null}
+
       {related ? (
         <div className="mt-8">
           <h2 className="font-display text-2xl text-navy">Linked IS / product record</h2>
@@ -72,6 +150,10 @@ export default async function SchemeProductPage({
           </div>
         </div>
       ) : null}
+
+      <div className="mt-10 max-w-xl">
+        <LeadForm sourcePath={`/certifications/${scheme.slug}/products/${item.slug}`} />
+      </div>
     </div>
   );
 }

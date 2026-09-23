@@ -1,7 +1,8 @@
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
+import { CatalogFilter } from "@/components/catalog-filter";
 import { Badge, Breadcrumbs, StatusBadge } from "@/components/ui";
-import { formatRange, products } from "@/data/catalog";
+import { categories, filterProducts, formatRange, schemes } from "@/data/catalog";
 import { pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -14,9 +15,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   });
 }
 
-export default async function AllProductsPage({ params }: { params: Promise<{ locale: string }> }) {
+export default async function AllProductsPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<{ q?: string; category?: string; scheme?: string; status?: string }>;
+}) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const filters = await searchParams;
+  const rows = filterProducts(filters);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10">
@@ -28,6 +37,42 @@ export default async function AllProductsPage({ params }: { params: Promise<{ lo
         ]}
       />
       <h1 className="mt-4 font-display text-4xl text-navy">All mapped products</h1>
+      <p className="mt-2 text-sm text-muted">
+        {rows.length} unique Indian Standard / CRS records from the Certko library — each opens as its own interlinked page in every language.
+      </p>
+      <CatalogFilter q={filters.q}>
+        <label className="text-sm">
+          <span className="mb-1 block text-xs uppercase tracking-wide text-muted">Category</span>
+          <select name="category" defaultValue={filters.category ?? ""} className="rounded-xl border border-line bg-white px-3 py-2">
+            <option value="">All categories</option>
+            {categories.map((category) => (
+              <option key={category.slug} value={category.slug}>
+                {category.name}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className="text-sm">
+          <span className="mb-1 block text-xs uppercase tracking-wide text-muted">Scheme</span>
+          <select name="scheme" defaultValue={filters.scheme ?? ""} className="rounded-xl border border-line bg-white px-3 py-2">
+            <option value="">All schemes</option>
+            {schemes.map((scheme) => (
+              <option key={scheme.slug} value={scheme.slug}>
+                {scheme.shortName}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className="text-sm">
+          <span className="mb-1 block text-xs uppercase tracking-wide text-muted">QCO</span>
+          <select name="status" defaultValue={filters.status ?? ""} className="rounded-xl border border-line bg-white px-3 py-2">
+            <option value="">Any status</option>
+            <option value="mandatory">Mandatory</option>
+            <option value="upcoming">Upcoming</option>
+            <option value="voluntary">Voluntary</option>
+          </select>
+        </label>
+      </CatalogFilter>
       <div className="mt-6 overflow-x-auto rounded-2xl border border-line bg-white">
         <table className="min-w-full text-left text-sm">
           <thead className="bg-navy text-white">
@@ -40,7 +85,7 @@ export default async function AllProductsPage({ params }: { params: Promise<{ lo
             </tr>
           </thead>
           <tbody>
-            {products.map((product) => (
+            {rows.map((product) => (
               <tr key={product.slug} className="border-t border-line">
                 <td className="px-4 py-3">
                   <Link href={`/product/${product.slug}`} className="font-semibold text-navy hover:underline">

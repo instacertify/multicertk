@@ -23,7 +23,7 @@ export default async function QcoPage({ params }: { params: Promise<{ locale: st
       <Breadcrumbs items={[{ href: "/", label: "Home" }, { href: "/qco", label: "QCO" }]} />
       <h1 className="mt-4 font-display text-4xl text-navy">Never miss a new mandatory product</h1>
       <p className="mt-3 text-muted">
-        New Quality Control Orders keep adding products to the mandatory BIS list. Each order is interlinked to the standards and labs it unlocks.
+        {qcos.length} Quality Control Orders from the library. Each order is a unique page interlinked to the standards and labs it unlocks.
       </p>
       <div className="mt-8 space-y-5">
         {qcos.map((qco) => (
@@ -32,11 +32,19 @@ export default async function QcoPage({ params }: { params: Promise<{ locale: st
               <StatusBadge status={qco.status} />
               {qco.deadline ? <span className="text-xs text-muted">Deadline {qco.deadline}</span> : null}
             </div>
-            <h2 className="mt-2 font-display text-2xl text-navy">{qco.name}</h2>
-            <p className="text-sm text-muted">{qco.ministry}</p>
+            <h2 className="mt-2 font-display text-2xl text-navy">
+              <Link href={`/qco/${qco.slug}`} className="hover:underline">
+                {qco.name}
+              </Link>
+            </h2>
+            <p className="text-sm text-muted">
+              {qco.ministry}
+              {qco.scheme ? ` · ${qco.scheme}` : ""}
+              {qco.standard ? ` · ${qco.standard}` : ""}
+            </p>
             <p className="mt-2 text-sm leading-6">{qco.summary}</p>
             <ul className="mt-3 space-y-1 text-sm">
-              {qco.productSlugs.map((slug) => {
+              {qco.productSlugs.slice(0, 8).map((slug) => {
                 const product = getProduct(slug);
                 if (!product) return null;
                 return (
@@ -49,6 +57,11 @@ export default async function QcoPage({ params }: { params: Promise<{ locale: st
                 );
               })}
             </ul>
+            <p className="mt-3 text-sm">
+              <Link href={`/qco/${qco.slug}`} className="font-semibold text-navy underline">
+                Open the unique QCO page →
+              </Link>
+            </p>
           </article>
         ))}
       </div>

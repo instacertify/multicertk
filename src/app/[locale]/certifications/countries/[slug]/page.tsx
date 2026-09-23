@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
 import { countries, getCountry, getScheme, productsByCountry } from "@/data/catalog";
 import { breadcrumbLd, pageMetadata } from "@/lib/seo";
@@ -86,10 +87,17 @@ export default async function CountryPage({
         <>
           <h2 className="mt-10 font-display text-2xl text-navy">Products often scoped here</h2>
           <div className="mt-4 grid gap-4 md:grid-cols-2">
-            {mapped.map((product) => (
+            {mapped.slice(0, 24).map((product) => (
               <CardLink key={product.slug} href={`/product/${product.slug}`} title={product.name} meta={product.standard} />
             ))}
           </div>
+          {mapped.length > 24 ? (
+            <p className="mt-4 text-sm">
+              <Link href="/products/all" className="font-semibold text-navy underline">
+                Browse the full product library →
+              </Link>
+            </p>
+          ) : null}
         </>
       ) : null}
     </div>

@@ -13,7 +13,7 @@ function documents() {
 function tokenize(value: string) {
   return value
     .toLowerCase()
-    .replace(/[^a-z0-9\u0900-\u097f\u0600-\u06ff]+/gi, " ")
+    .replace(/[^a-z0-9\u0900-\u097f\u0400-\u04ff\u0600-\u06ff\u4e00-\u9fff]+/gi, " ")
     .split(/\s+/)
     .filter((token) => token.length > 1);
 }

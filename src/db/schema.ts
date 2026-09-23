@@ -55,7 +55,7 @@ export const products = pgTable("products", {
   hsn: varchar("hsn", { length: 16 }).notNull(),
   categorySlug: varchar("category_slug", { length: 80 }).notNull(),
   qcoStatus: qcoStatusEnum("qco_status").notNull(),
-  qcoSlug: varchar("qco_slug", { length: 80 }),
+  qcoSlug: varchar("qco_slug", { length: 120 }),
   testCostMin: integer("test_cost_min").notNull(),
   testCostMax: integer("test_cost_max").notNull(),
   excerpt: text("excerpt").notNull(),

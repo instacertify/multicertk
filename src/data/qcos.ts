@@ -119,7 +119,10 @@ export const posts: BlogPost[] = [
     excerpt: "One HSN can trigger BIS, WPC and BEE in the same market. Here is the scoping order we use on every call.",
     date: "2026-08-12",
     tags: ["HSN", "BIS", "GMA"],
-    relatedProductSlugs: ["information-technology-equipment-safety-part-1-general-requirements", "room-air-conditioners"],
+    relatedProductSlugs: [
+      "laptops-notebooks-is-13252-part-1",
+      "room-air-conditioners-specification-part-1-unitary-air-conditioners-fourth-revision-is-1391-part",
+    ],
     relatedSchemeSlugs: ["bis", "wpc-eta", "bee"],
     body: [
       "Fix the product classification first. A laptop with Wi-Fi is not just 'IT equipment' — it is CRS + WPC, and sometimes a voluntary BEE label.",
@@ -133,7 +136,10 @@ export const posts: BlogPost[] = [
     excerpt: "Why air-conditioners and refrigerators need two filings — and how to avoid burning a second sample batch.",
     date: "2026-07-02",
     tags: ["BIS", "BEE", "Appliances"],
-    relatedProductSlugs: ["room-air-conditioners", "ceiling-fans-specification"],
+    relatedProductSlugs: [
+      "room-air-conditioners-specification-part-1-unitary-air-conditioners-fourth-revision-is-1391-part",
+      "specification-for-ceiling-fans-electrically-operated-is-374",
+    ],
     relatedSchemeSlugs: ["bis", "bee"],
     body: [
       "Safety (IS 302 / particular part) and energy (BEE schedule) are different legal instruments. Passing one never grants the other.",
@@ -146,7 +152,9 @@ export const posts: BlogPost[] = [
     excerpt: "What to book once if the same lot will be sold in India and the EU.",
     date: "2026-05-20",
     tags: ["Tiles", "CE", "BIS"],
-    relatedProductSlugs: ["glazed-ceramic-tiles"],
+    relatedProductSlugs: [
+      "pressed-ceramic-tiles-superseding-is-13753-1993-is-13754-1993-is-13755-1993-and-is-13756-1993-is",
+    ],
     relatedSchemeSlugs: ["bis", "ce"],
     body: [
       "IS 15622 and ISO 10545 share most physical and chemical clauses. Ask the lab to report both references on the same job sheet.",
@@ -159,7 +167,9 @@ export const posts: BlogPost[] = [
     excerpt: "Most retests are avoidable. Read the failing clause, not just the price of a new sample.",
     date: "2026-04-08",
     tags: ["Labs", "BIS"],
-    relatedProductSlugs: ["household-and-similar-electrical-appliances-safety-part-1-general-requirements-i"],
+    relatedProductSlugs: [
+      "household-and-similar-electrical-appliances-safety-part-1-general-requirements-seventh-revision-",
+    ],
     relatedSchemeSlugs: ["bis"],
     body: [
       "Map the failing clause back to a design, BOM or process change. Retesting the same construction wastes the marking-fee clock.",
@@ -172,7 +182,7 @@ export const posts: BlogPost[] = [
     excerpt: "Singapore, Malaysia, Thailand, Indonesia and Vietnam all convert IEC evidence differently.",
     date: "2026-03-15",
     tags: ["ASEAN", "CB Scheme"],
-    relatedProductSlugs: ["audio-video-information-and-communication-technology-equipment-part-1"],
+    relatedProductSlugs: ["electronic-games-video-is-iec-62368-1-2023"],
     relatedSchemeSlugs: ["ce", "bis"],
     body: [
       "A CB Test Certificate plus national-difference testing is still the cheapest multi-ASEAN route for electrical goods.",
@@ -185,7 +195,7 @@ export const posts: BlogPost[] = [
     excerpt: "CRS does not clear a lithium cell for air freight.",
     date: "2026-02-01",
     tags: ["Batteries", "MSDS", "UN 38.3"],
-    relatedProductSlugs: ["secondary-cells-lithium-systems-portable"],
+    relatedProductSlugs: ["sealed-secondary-cells-li-ion-batteries-is-16046-parts-1-2"],
     relatedSchemeSlugs: ["bis", "ce"],
     body: [
       "IS 16046 / IEC 62133 is the product-safety path. UN 38.3 is transport. The SDS / MSDS is hazard communication.",

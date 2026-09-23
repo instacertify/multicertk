@@ -46,11 +46,16 @@ export interface Product {
   slug: string;
   name: string;
   standard: string;
+  standardKey?: string;
   hsn: string;
+  hsn4?: string;
   categorySlug: string;
   schemeSlugs: string[];
+  schemeLabel?: string;
   qcoStatus: QcoStatus;
   qcoSlug?: string;
+  qcoLabel?: string;
+  qcoOrder?: string;
   testCostMin: number;
   testCostMax: number;
   labCount: number;
@@ -60,6 +65,7 @@ export interface Product {
   testSlugs: string[];
   countrySlugs: string[];
   excerpt: string;
+  unit?: string;
 }
 
 export interface Lab {
@@ -73,6 +79,20 @@ export interface Lab {
   costMin: number;
   costMax: number;
   scopes: number;
+  phone?: string;
+  email?: string;
+  address?: string;
+  contact?: string;
+}
+
+export interface LabScope {
+  labSlug: string;
+  standard: string;
+  standardKey: string;
+  productScope: string;
+  category: string;
+  categorySlug: string;
+  price: number;
 }
 
 export interface TestService {
@@ -94,6 +114,8 @@ export interface Qco {
   deadline?: string;
   productSlugs: string[];
   summary: string;
+  standard?: string;
+  scheme?: string;
 }
 
 export interface BlogPost {
@@ -113,11 +135,37 @@ export interface BeeProduct {
   starMandatory: boolean;
   relatedProductSlug?: string;
   summary: string;
+  regime?: string;
+  standard?: string;
+  starTable?: string;
+  price?: string;
+  labs?: string;
 }
 
 export interface GmarkProduct {
   slug: string;
   name: string;
   relatedProductSlug?: string;
+  summary: string;
+  family?: string;
+  standard?: string;
+  tests?: string;
+  emc?: string;
+  cb?: string;
+  nb?: string;
+  remarks?: string;
+}
+
+export interface EuSector {
+  slug: string;
+  name: string;
+  mandate: string;
+  legal: string;
+  testing: string;
+  nb: string;
+  whenNb: string;
+  route: string;
+  url: string;
+  updates: string;
   summary: string;
 }

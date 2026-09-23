@@ -5,20 +5,11 @@ import { Badge, CardLink, JsonLd, Section } from "@/components/ui";
 import {
   catalogStats,
   categories,
-  products,
+  featuredProducts,
   productsByCategory,
 } from "@/data/catalog";
 import { schemes } from "@/data/schemes";
 import { breadcrumbLd, faqLd, organizationLd, pageMetadata, websiteLd } from "@/lib/seo";
-
-const featuredSlugs = [
-  "information-technology-equipment-safety-part-1-general-requirements",
-  "packaged-drinking-water-other-than-packaged-natural-mineral-water",
-  "household-and-similar-electrical-appliances-safety-part-1-general-requirements-i",
-  "audio-video-and-similar-electronic-apparatus-safety-requirements",
-  "audio-video-information-and-communication-technology-equipment-part-1",
-  "packaged-natural-mineral-water",
-];
 
 const faqs = [
   {
@@ -55,7 +46,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   setRequestLocale(locale);
   const t = await getTranslations("home");
   const stats = catalogStats();
-  const featured = featuredSlugs.map((slug) => products.find((item) => item.slug === slug)).filter(Boolean);
+  const featured = featuredProducts();
 
   return (
     <>

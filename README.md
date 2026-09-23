@@ -9,7 +9,7 @@ Certification and compliance catalogue for **certko.com** — rebuilt on Next.js
 | Framework | Next.js (App Router) |
 | Language | TypeScript |
 | UI | Tailwind CSS |
-| Routing / i18n | next-intl (`en`, `hi`, `ar`) — English unprefixed to match the public sitemap |
+| Routing / i18n | next-intl (`en`, `hi`, `zh`, `es`, `fr`, `ar`, `ru`) — English unprefixed to match the public sitemap |
 | Validation | Zod |
 | Database | PostgreSQL + Drizzle ORM |
 | Search | Meilisearch Community Edition, with an in-process catalogue fallback |
@@ -58,3 +58,11 @@ Products, schemes, countries, labs, tests, QCOs and posts form a graph:
 - A **country** points at the schemes that usually apply there.
 
 Search indexes every node. Related-product scoring uses shared schemes, labs, tests and QCOs.
+
+The live catalogue is generated from the BIS / BEE / G-Mark / EU Excel library:
+
+```bash
+npm run library:build
+```
+
+That writes `src/data/generated/library.json` — unique pages for every mapped product, recognised lab, BEE appliance, G-Mark category, EU sector and QCO. Each English URL is also served in Chinese, Spanish, French, Arabic and Russian (`/zh`, `/es`, `/fr`, `/ar`, `/ru`). Hindi remains available at `/hi`.
