@@ -32,7 +32,7 @@ export default async function MediaAdmin({ params }: { params: Promise<{ locale:
       />
       <h1 className="mt-4 font-display text-navy">Trusted-by logos & reviews</h1>
       <p className="mt-3 text-muted">
-        Upload school and customer logos in one place. The strip runs on every public page. The review library is edited here and shown with the same strip.
+        Upload school and customer logos in one place. A single scrolling strip runs on every public page. Edit the customer review library here — those quotes scroll in a matching strip.
       </p>
       <h2 className="mt-10 font-display text-navy">Logo library</h2>
       <div className="mt-4">

@@ -209,3 +209,48 @@ a {
   background: var(--gold);
   color: var(--navy);
 }
+
+@keyframes trust-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.trust-strip {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+
+.trust-track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  gap: 2.75rem;
+  animation: trust-scroll 36s linear infinite;
+}
+
+.trust-track-reviews {
+  gap: 1.25rem;
+  animation-duration: 48s;
+}
+
+.trust-track:hover,
+.trust-track:focus-within {
+  animation-play-state: paused;
+}
+
+html[dir="rtl"] .trust-track {
+  animation-direction: reverse;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trust-track {
+    animation: none;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+  }
+}
