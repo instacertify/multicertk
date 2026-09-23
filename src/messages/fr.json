@@ -56,7 +56,9 @@
     "blurb": "Votre partenaire certification et conformité. Chaque norme de laboratoire et schéma est interrogeable et relié.",
     "contact": "Contact",
     "legal": "Mentions",
-    "explore": "Explorer"
+    "explore": "Explorer",
+    "backend": "Backend",
+    "admin": "Admin"
   },
   "lead": {
     "title": "Vous ne trouvez pas la bonne solution ?",

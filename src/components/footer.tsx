@@ -35,10 +35,23 @@ export async function Footer() {
             <li><Link href="/privacy">{t("legal")} · Privacy</Link></li>
             <li><Link href="/terms">Terms</Link></li>
           </ul>
+          <h3 className="mt-8 font-display text-lg text-gold">{t("backend")}</h3>
+          <ul className="mt-3 space-y-2 text-sm text-white/80">
+            <li>
+              <Link href="/admin" className="font-semibold text-gold">
+                {t("admin")} → /admin
+              </Link>
+            </li>
+            <li><Link href="/admin/content">Headings & articles</Link></li>
+            <li><Link href="/admin/translations">Translations</Link></li>
+          </ul>
         </div>
       </div>
       <div className="border-t border-white/10 py-4 text-center text-xs text-white/50">
-        © {new Date().getFullYear()} {site.name}. {site.tagline}
+        © {new Date().getFullYear()} {site.name}. {site.tagline} ·{" "}
+        <Link href="/admin" className="text-gold hover:underline">
+          {t("admin")}
+        </Link>
       </div>
     </footer>
   );

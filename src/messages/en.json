@@ -56,7 +56,9 @@
     "blurb": "Your solution partner for certification and compliance. Every lab standard and certification scheme is searchable and interlinked.",
     "contact": "Contact",
     "legal": "Legal",
-    "explore": "Explore"
+    "explore": "Explore",
+    "backend": "Backend",
+    "admin": "Admin"
   },
   "lead": {
     "title": "Can’t find the right solution?",
