@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePathname } from "@/i18n/navigation";
 import type { CustomerLogo, CustomerReview } from "@/data/site-media";
 
 export function SocialProof({
@@ -14,7 +14,7 @@ export function SocialProof({
   trustedHeading: string;
   reviewsHeading: string;
 }) {
-  const pathname = usePathname();
+  const pathname = usePathname() || "";
   if (pathname.includes("/admin")) return null;
 
   return (
