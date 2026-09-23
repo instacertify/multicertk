@@ -1,0 +1,79 @@
+import { notFound } from "next/navigation";
+import { setRequestLocale } from "next-intl/server";
+import { Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
+import { getPost, getProduct, getScheme, posts } from "@/data/catalog";
+import { breadcrumbLd, pageMetadata } from "@/lib/seo";
+
+export function generateStaticParams() {
+  return posts.map((post) => ({ slug: post.slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>;
+}) {
+  const { locale, slug } = await params;
+  const post = getPost(slug);
+  if (!post) return {};
+  return pageMetadata({
+    locale,
+    path: `/blog/${post.slug}`,
+    title: post.title,
+    description: post.excerpt,
+  });
+}
+
+export default async function PostPage({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>;
+}) {
+  const { locale, slug } = await params;
+  setRequestLocale(locale);
+  const post = getPost(slug);
+  if (!post) notFound();
+
+  return (
+    <article className="mx-auto max-w-3xl px-4 py-10">
+      <JsonLd
+        data={breadcrumbLd(
+          [
+            { name: "Home", path: "/" },
+            { name: "Blog", path: "/blog" },
+            { name: post.title, path: `/blog/${post.slug}` },
+          ],
+          locale,
+        )}
+      />
+      <Breadcrumbs
+        items={[
+          { href: "/", label: "Home" },
+          { href: "/blog", label: "Blog" },
+          { href: `/blog/${post.slug}`, label: post.title },
+        ]}
+      />
+      <p className="mt-4 text-xs uppercase tracking-wide text-gold-600">{post.date}</p>
+      <h1 className="mt-2 font-display text-4xl text-navy">{post.title}</h1>
+      <p className="mt-3 text-muted">{post.excerpt}</p>
+      <div className="mt-8 space-y-4 text-base leading-7">
+        {post.body.map((paragraph) => (
+          <p key={paragraph}>{paragraph}</p>
+        ))}
+      </div>
+      <h2 className="mt-10 font-display text-2xl text-navy">Linked schemes & standards</h2>
+      <div className="mt-4 grid gap-4">
+        {post.relatedSchemeSlugs.map((schemeSlug) => {
+          const scheme = getScheme(schemeSlug);
+          if (!scheme) return null;
+          return <CardLink key={scheme.slug} href={`/certifications/${scheme.slug}`} title={scheme.name} body={scheme.summary} />;
+        })}
+        {post.relatedProductSlugs.map((productSlug) => {
+          const product = getProduct(productSlug);
+          if (!product) return null;
+          return <CardLink key={product.slug} href={`/product/${product.slug}`} title={product.name} meta={product.standard} />;
+        })}
+      </div>
+    </article>
+  );
+}
