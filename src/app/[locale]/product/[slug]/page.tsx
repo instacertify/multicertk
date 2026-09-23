@@ -161,7 +161,7 @@ export default async function ProductPage({
               key={lab.slug}
               href={`/labs/${lab.slug}`}
               title={lab.name}
-              meta={`${lab.city}, ${lab.state} · ${lab.bisCode}`}
+              meta={`${lab.city}, ${lab.state}`}
               body={lab.standardCodes.slice(0, 8).join(" · ")}
             />
           ))

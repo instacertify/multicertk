@@ -73,7 +73,7 @@ export default async function TestPage({
         {test.labSlugs.map((labSlug) => {
           const lab = getLab(labSlug);
           if (!lab) return null;
-          return <CardLink key={lab.slug} href={`/labs/${lab.slug}`} title={lab.name} meta={`${lab.city} · ${lab.bisCode}`} />;
+          return <CardLink key={lab.slug} href={`/labs/${lab.slug}`} title={lab.name} meta={`${lab.city}, ${lab.state}`} />;
         })}
       </div>
       <div className="mt-12 max-w-xl">

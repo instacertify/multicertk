@@ -133,10 +133,6 @@ export const labs: Lab[] = raw.labs.map((lab) => {
     costMin: prices.length ? Math.min(...prices) : 0,
     costMax: prices.length ? Math.max(...prices) : 0,
     scopes: labScopes.length || lab.standardKeys.length,
-    phone: lab.phone,
-    email: lab.email,
-    address: lab.address,
-    contact: lab.contact,
   };
 });
 

@@ -59,11 +59,8 @@ export default async function LabPage({
             "@context": "https://schema.org",
             "@type": "Laboratory",
             name: lab.name,
-            telephone: lab.phone,
-            email: lab.email,
             address: {
               "@type": "PostalAddress",
-              streetAddress: lab.address,
               addressLocality: lab.city,
               addressRegion: lab.state,
               addressCountry: "IN",
@@ -80,13 +77,10 @@ export default async function LabPage({
       />
       <h1 className="mt-4 font-display text-4xl text-navy">{lab.name}</h1>
       <p className="mt-2 text-muted">
-        {lab.city}, {lab.state} · BIS code {lab.bisCode} · {formatRange(lab.costMin, lab.costMax)}
+        {lab.city}, {lab.state} · {formatRange(lab.costMin, lab.costMax)}
       </p>
-      {lab.address ? <p className="mt-2 text-sm text-muted">{lab.address}</p> : null}
-      <p className="mt-1 text-sm text-muted">
-        {lab.contact ? `${lab.contact} · ` : null}
-        {lab.phone ? lab.phone : null}
-        {lab.email ? ` · ${lab.email}` : null}
+      <p className="mt-2 text-sm text-muted">
+        Request a quote to get the recognised lab assigned for your standard. Direct lab addresses and contact details are not published.
       </p>
       <div className="mt-4 flex flex-wrap gap-2">
         {lab.categorySlugs.map((categorySlug) => (
