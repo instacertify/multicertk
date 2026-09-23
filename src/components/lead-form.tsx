@@ -73,7 +73,7 @@ export function LeadForm({ sourcePath }: { sourcePath?: string }) {
       <button
         type="submit"
         disabled={pending}
-        className="rounded-full bg-navy px-5 py-2.5 text-sm font-semibold text-white hover:bg-navy-800 disabled:opacity-60"
+        className="type-btn rounded-full bg-navy px-5 py-2.5 text-white hover:bg-navy-800 disabled:opacity-60"
       >
         {pending ? "…" : t("submit")}
       </button>

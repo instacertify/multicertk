@@ -60,6 +60,12 @@
     "backend": "Backend",
     "admin": "Admin"
   },
+  "price": {
+    "eyebrow": "Certko pricing",
+    "headline": "Testing price look expensive?",
+    "body": "Don't worry — contact Certko and get up to 30% lesser pricing than the listed laboratory charges.",
+    "cta": "Contact Certko for up to 30% less"
+  },
   "lead": {
     "title": "Can’t find the right solution?",
     "body": "If your product, HSN or market path isn’t clear, talk to a certification expert. We’ll map the certification and testing route — free quote in 24 hours.",

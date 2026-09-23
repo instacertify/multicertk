@@ -1,48 +1,38 @@
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
-import {
-  Plus_Jakarta_Sans,
-  Fraunces,
-  Noto_Sans_Devanagari,
-  Noto_Naskh_Arabic,
-  Noto_Sans_SC,
-  Noto_Sans,
-} from "next/font/google";
+import { Inter, Noto_Sans_Arabic, Noto_Sans_Devanagari, Noto_Sans_SC } from "next/font/google";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { routing } from "@/i18n/routing";
 import { localesMeta, site } from "@/lib/site";
 import "../globals.css";
 
-const sans = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  variable: "--font-plus-jakarta",
-});
-
-const display = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-fraunces",
+const inter = Inter({
+  subsets: ["latin", "latin-ext", "cyrillic"],
+  variable: "--font-inter",
+  display: "swap",
 });
 
 const hindi = Noto_Sans_Devanagari({
-  subsets: ["devanagari"],
+  subsets: ["devanagari", "latin"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-hindi",
+  display: "swap",
 });
 
-const arabic = Noto_Naskh_Arabic({
-  subsets: ["arabic"],
+const arabic = Noto_Sans_Arabic({
+  subsets: ["arabic", "latin"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-arabic",
+  display: "swap",
 });
 
-const cjk = Noto_Sans_SC({
+const chinese = Noto_Sans_SC({
   subsets: ["latin"],
-  variable: "--font-cjk",
-});
-
-const cyrillic = Noto_Sans({
-  subsets: ["cyrillic", "latin", "latin-ext"],
-  variable: "--font-cyrillic",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-chinese",
+  display: "swap",
 });
 
 export function generateStaticParams() {
@@ -76,7 +66,7 @@ export default async function LocaleLayout({
     <html
       lang={meta.htmlLang}
       dir={meta.dir}
-      className={`${sans.variable} ${display.variable} ${hindi.variable} ${arabic.variable} ${cjk.variable} ${cyrillic.variable} h-full antialiased`}
+      className={`${inter.variable} ${hindi.variable} ${arabic.variable} ${chinese.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-white font-sans text-ink">
         <NextIntlClientProvider messages={messages}>

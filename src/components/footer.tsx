@@ -15,7 +15,7 @@ export async function Footer() {
           <p className="mt-4 max-w-md text-sm leading-6 text-white/75">{t("blurb")}</p>
         </div>
         <div>
-          <h3 className="font-display text-lg text-gold">{t("explore")}</h3>
+          <h4 className="font-display text-gold">{t("explore")}</h4>
           <ul className="mt-3 space-y-2 text-sm text-white/80">
             <li><Link href="/products">{nav("products")}</Link></li>
             <li><Link href="/certifications">{nav("certifications")}</Link></li>
@@ -27,7 +27,7 @@ export async function Footer() {
           </ul>
         </div>
         <div>
-          <h3 className="font-display text-lg text-gold">{t("contact")}</h3>
+          <h4 className="font-display text-gold">{t("contact")}</h4>
           <ul className="mt-3 space-y-2 text-sm text-white/80">
             <li>{site.address}</li>
             <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
@@ -35,7 +35,7 @@ export async function Footer() {
             <li><Link href="/privacy">{t("legal")} · Privacy</Link></li>
             <li><Link href="/terms">Terms</Link></li>
           </ul>
-          <h3 className="mt-8 font-display text-lg text-gold">{t("backend")}</h3>
+          <h4 className="mt-8 font-display text-gold">{t("backend")}</h4>
           <ul className="mt-3 space-y-2 text-sm text-white/80">
             <li>
               <Link href="/admin" className="font-semibold text-gold">

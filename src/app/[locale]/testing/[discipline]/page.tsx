@@ -46,7 +46,7 @@ export default async function DisciplinePage({
         ]}
       />
       <h1 className="mt-4 font-display text-4xl text-navy">{item.name}</h1>
-      <p className="mt-3 max-w-3xl text-muted">{item.summary}</p>
+      <p className="lead mt-3 max-w-3xl text-muted">{item.summary}</p>
       <div className="mt-8 grid gap-4 md:grid-cols-2">
         {mapped.map((test) => (
           <CardLink

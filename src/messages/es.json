@@ -60,6 +60,12 @@
     "backend": "Backend",
     "admin": "Admin"
   },
+  "price": {
+    "eyebrow": "Precios Certko",
+    "headline": "¿El precio de ensayo le parece alto?",
+    "body": "No se preocupe: contacte a Certko y obtenga hasta un 30% menos que las tarifas de laboratorio publicadas.",
+    "cta": "Contacte a Certko y ahorre hasta un 30%"
+  },
   "lead": {
     "title": "¿No encuentra la solución?",
     "body": "Si su producto, HSN o mercado no está claro, hable con un experto. Mapeamos la ruta en 24 horas, sin coste.",

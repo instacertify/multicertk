@@ -24,7 +24,7 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
       <div className="mx-auto max-w-7xl px-4 py-10">
         <Breadcrumbs items={[{ href: "/", label: "Home" }, { href: "/products", label: "Products" }]} />
         <h1 className="mt-4 font-display text-4xl text-navy">Certification solutions — products by category</h1>
-        <p className="mt-3 max-w-3xl text-muted">
+        <p className="lead mt-3 max-w-3xl text-muted">
           Match the right mark to your product, then open the HSN / IS record for QCO status, labs and interlinked tests.
         </p>
         <div className="mt-6 max-w-2xl">

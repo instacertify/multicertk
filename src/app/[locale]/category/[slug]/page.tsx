@@ -55,7 +55,7 @@ export default async function CategoryPage({
         ]}
       />
       <h1 className="mt-4 font-display text-4xl text-navy">{category.name}</h1>
-      <p className="mt-3 max-w-3xl text-muted">{category.summary}</p>
+      <p className="lead mt-3 max-w-3xl text-muted">{category.summary}</p>
       <div className="mt-8 grid gap-4 md:grid-cols-2">
         {mapped.map((product) => (
           <article key={product.slug} className="rounded-2xl border border-line p-5">

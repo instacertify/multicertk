@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { LeadForm } from "@/components/lead-form";
+import { PriceReassurance } from "@/components/price-reassurance";
 import { Breadcrumbs, CardLink } from "@/components/ui";
 import { beeProducts, euSectors, getBee, getEu, getGmark, getProduct, getScheme, gmarkProducts } from "@/data/catalog";
 import { pageMetadata } from "@/lib/seo";
@@ -64,7 +65,7 @@ export default async function SchemeProductPage({
         ]}
       />
       <h1 className="mt-4 font-display text-4xl text-navy">{item.name}</h1>
-      <p className="mt-3 text-muted">{item.summary}</p>
+      <p className="lead mt-3 text-muted">{item.summary}</p>
       <p className="mt-6 text-sm">
         Scheme:{" "}
         <Link href={`/certifications/${scheme.slug}`} className="font-semibold underline">
@@ -73,22 +74,25 @@ export default async function SchemeProductPage({
       </p>
 
       {bee ? (
-        <dl className="mt-8 grid gap-4 sm:grid-cols-2">
-          {[
-            ["Regime", bee.regime],
-            ["Test standard", bee.standard],
-            ["Star table", bee.starTable],
-            ["Indicative test price", bee.price],
-            ["Recognised labs", bee.labs],
-          ]
-            .filter(([, value]) => value)
-            .map(([dt, dd]) => (
-              <div key={dt} className="rounded-2xl border border-line p-4">
-                <dt className="text-xs uppercase tracking-wide text-muted">{dt}</dt>
-                <dd className="mt-1 text-sm text-navy">{dd}</dd>
-              </div>
-            ))}
-        </dl>
+        <>
+          <dl className="mt-8 grid gap-4 sm:grid-cols-2">
+            {[
+              ["Regime", bee.regime],
+              ["Test standard", bee.standard],
+              ["Star table", bee.starTable],
+              ["Indicative test price", bee.price],
+              ["Recognised labs", bee.labs],
+            ]
+              .filter(([, value]) => value)
+              .map(([dt, dd]) => (
+                <div key={dt} className="rounded-2xl border border-line p-4">
+                  <dt className="text-xs uppercase tracking-wide text-muted">{dt}</dt>
+                  <dd className="mt-1 text-sm text-navy">{dd}</dd>
+                </div>
+              ))}
+          </dl>
+          {bee.price ? <PriceReassurance className="mt-6" /> : null}
+        </>
       ) : null}
 
       {gmark ? (

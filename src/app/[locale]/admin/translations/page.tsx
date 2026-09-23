@@ -43,7 +43,7 @@ export default async function AdminTranslationsPage({
         <a href="/admin" className="hover:underline">Backend</a> · Human review queue
       </p>
       <h1 className="mt-2 font-display text-4xl text-navy">AI translations + reviewer sign-off</h1>
-      <p className="mt-3 max-w-3xl text-muted">
+      <p className="lead mt-3 max-w-3xl text-muted">
         Generate a draft with the translation API, then approve, edit or reject it. Approved copy is what next-intl can publish for Hindi and Arabic.
       </p>
       <ReviewQueue seeds={seeds} />

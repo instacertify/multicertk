@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { LeadForm } from "@/components/lead-form";
+import { PriceReassurance } from "@/components/price-reassurance";
 import { Badge, Breadcrumbs, CardLink, JsonLd, StatusBadge } from "@/components/ui";
 import {
   beeForProduct,
@@ -63,7 +64,7 @@ export default async function ProductPage({
     },
     {
       q: `How much does testing cost for ${product.standard}?`,
-      a: `Reported laboratory charges range ${formatRange(product.testCostMin, product.testCostMax)} excluding GST across ${product.labCount} recognised labs.`,
+      a: `Listed laboratory charges range ${formatRange(product.testCostMin, product.testCostMax)} excluding GST across ${product.labCount} recognised labs. If that looks expensive, contact Certko — we regularly secure up to 30% lesser pricing.`,
     },
   ];
 
@@ -112,7 +113,7 @@ export default async function ProductPage({
         ))}
       </div>
       <h1 className="mt-4 font-display text-4xl text-navy">{product.name}</h1>
-      <p className="mt-3 max-w-3xl text-muted">{product.excerpt}</p>
+      <p className="lead mt-3 max-w-3xl text-muted">{product.excerpt}</p>
 
       <dl className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {[
@@ -127,6 +128,7 @@ export default async function ProductPage({
           </div>
         ))}
       </dl>
+      <PriceReassurance className="mt-6" />
       {product.unit || product.qcoOrder ? (
         <p className="mt-4 text-sm text-muted">
           {product.unit ? `Unit of product: ${product.unit}. ` : null}
@@ -139,7 +141,7 @@ export default async function ProductPage({
         {Object.entries(product.markingFee).map(([size, value]) => (
           <div key={size} className="rounded-2xl border border-line p-4">
             <p className="text-xs uppercase text-muted">{size}</p>
-            <p className="font-display text-2xl text-navy">{formatInr(value)}</p>
+            <p className="font-semibold text-navy">{formatInr(value)}</p>
           </div>
         ))}
       </div>
@@ -200,6 +202,7 @@ export default async function ProductPage({
               </tbody>
             </table>
           </div>
+          <PriceReassurance compact className="mt-4" />
         </>
       ) : null}
 

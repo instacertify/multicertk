@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
+import { PriceReassurance } from "@/components/price-reassurance";
 import { Badge, Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
 import {
   formatInr,
@@ -76,9 +77,10 @@ export default async function LabPage({
         ]}
       />
       <h1 className="mt-4 font-display text-4xl text-navy">{lab.name}</h1>
-      <p className="mt-2 text-muted">
+      <p className="lead mt-2 text-muted">
         {lab.city}, {lab.state} · {formatRange(lab.costMin, lab.costMax)}
       </p>
+      <PriceReassurance compact className="mt-4" />
       <p className="mt-2 text-sm text-muted">
         Request a quote to get the recognised lab assigned for your standard. Direct lab addresses and contact details are not published.
       </p>

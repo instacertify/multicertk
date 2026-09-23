@@ -38,7 +38,7 @@ export function SearchBox({
         />
         <button
           type="submit"
-          className="m-1 rounded-full bg-navy px-5 text-sm font-semibold text-white hover:bg-navy-800"
+          className="type-btn m-1 rounded-full bg-navy px-5 text-white hover:bg-navy-800"
         >
           {t("submit")}
         </button>

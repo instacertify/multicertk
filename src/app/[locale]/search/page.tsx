@@ -44,7 +44,7 @@ export default async function SearchPage({
       <JsonLd data={websiteLd()} />
       <Breadcrumbs items={[{ href: "/", label: "Home" }, { href: "/search", label: "Search" }]} />
       <h1 className="mt-4 font-display text-4xl text-navy">Search the interlinked catalogue</h1>
-      <p className="mt-2 text-muted">Products, IS standards, HSN codes, schemes, labs, tests, QCOs and destination markets.</p>
+      <p className="lead mt-2 text-muted">Products, IS standards, HSN codes, schemes, labs, tests, QCOs and destination markets.</p>
       <div className="mt-6">
         <SearchBox initialQuery={q} autoFocus />
       </div>

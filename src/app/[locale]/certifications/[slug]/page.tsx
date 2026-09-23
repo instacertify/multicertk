@@ -68,7 +68,7 @@ export default async function SchemePage({
       />
       <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-gold-600">{scheme.regulator}</p>
       <h1 className="mt-2 font-display text-4xl text-navy">{scheme.name}</h1>
-      <p className="mt-3 max-w-3xl text-muted">{scheme.summary}</p>
+      <p className="lead mt-3 max-w-3xl text-muted">{scheme.summary}</p>
       <p className="mt-3 text-sm text-muted">{scheme.whoNeedsIt}</p>
 
       <h2 className="mt-10 font-display text-2xl text-navy">Process</h2>

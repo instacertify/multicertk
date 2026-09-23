@@ -26,7 +26,7 @@ const faqs = [
   },
   {
     q: "How much does BIS certification cost in India?",
-    a: "Total cost is laboratory testing + BIS government fees + marking fee + optional consulting. Every product page shows the reported test-price range across recognised labs.",
+    a: "Total cost is laboratory testing + BIS government fees + marking fee + optional consulting. Listed lab ranges can look high — contact Certko and get up to 30% lesser pricing.",
   },
   {
     q: "Do foreign manufacturers need BIS certification?",
@@ -61,8 +61,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           <div>
             <Logo variant="onDark" className="h-12 w-auto sm:h-14" />
             <p className="mt-6 text-xs font-semibold uppercase tracking-[0.22em] text-gold">{t("eyebrow")}</p>
-            <h1 className="mt-3 font-display text-4xl leading-tight sm:text-5xl">{cms?.title ?? t("title")}</h1>
-            <p className="mt-4 max-w-2xl text-base leading-7 text-white/75">{cms?.intro ?? t("subtitle")}</p>
+            <h1 className="mt-3 font-display text-white">{cms?.title ?? t("title")}</h1>
+            <p className="lead mt-4 max-w-2xl text-white/75">{cms?.intro ?? t("subtitle")}</p>
             <div className="mt-8 max-w-2xl text-navy">
               <SearchBox />
             </div>

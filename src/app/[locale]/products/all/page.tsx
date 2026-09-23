@@ -1,6 +1,7 @@
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { CatalogFilter } from "@/components/catalog-filter";
+import { PriceReassurance } from "@/components/price-reassurance";
 import { Badge, Breadcrumbs, StatusBadge } from "@/components/ui";
 import { categories, filterProducts, formatRange, schemes } from "@/data/catalog";
 import { pageMetadata } from "@/lib/seo";
@@ -37,9 +38,10 @@ export default async function AllProductsPage({
         ]}
       />
       <h1 className="mt-4 font-display text-4xl text-navy">All mapped products</h1>
-      <p className="mt-2 text-sm text-muted">
+      <p className="lead mt-2 text-muted">
         {rows.length} unique Indian Standard / CRS records from the Certko library — each opens as its own interlinked page in every language.
       </p>
+      <PriceReassurance className="mt-6" />
       <CatalogFilter q={filters.q}>
         <label className="text-sm">
           <span className="mb-1 block text-xs uppercase tracking-wide text-muted">Category</span>

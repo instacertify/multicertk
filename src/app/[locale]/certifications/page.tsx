@@ -22,7 +22,7 @@ export default async function CertificationsPage({ params }: { params: Promise<{
       <JsonLd data={breadcrumbLd([{ name: "Home", path: "/" }, { name: "Certifications", path: "/certifications" }], locale)} />
       <Breadcrumbs items={[{ href: "/", label: "Home" }, { href: "/certifications", label: "Certifications" }]} />
       <h1 className="mt-4 font-display text-4xl text-navy">Certifications & global market access</h1>
-      <p className="mt-3 max-w-3xl text-muted">
+      <p className="lead mt-3 max-w-3xl text-muted">
         Start with the GMA framework, then open full programmes. Every scheme is interlinked to products, labs, tests and destination countries.
       </p>
       <h2 className="mt-10 font-display text-2xl text-navy">How GMA works</h2>

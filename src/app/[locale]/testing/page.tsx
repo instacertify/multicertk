@@ -23,7 +23,7 @@ export default async function TestingPage({ params }: { params: Promise<{ locale
       <JsonLd data={breadcrumbLd([{ name: "Home", path: "/" }, { name: "Testing", path: "/testing" }], locale)} />
       <Breadcrumbs items={[{ href: "/", label: "Home" }, { href: "/testing", label: "Testing" }]} />
       <h1 className="mt-4 font-display text-4xl text-navy">Explore the right quality assurance solutions</h1>
-      <p className="mt-3 max-w-3xl text-muted">
+      <p className="lead mt-3 max-w-3xl text-muted">
         Every BIS certification product standard is also a laboratory testing standard — mapped under chemical, electrical, EMC, physical, microbiology and mechanical categories.
       </p>
       <div className="mt-6 max-w-2xl">

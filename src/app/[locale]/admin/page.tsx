@@ -25,7 +25,7 @@ export default async function AdminHome({ params }: { params: Promise<{ locale: 
     <div className="mx-auto max-w-4xl px-4 py-10">
       <p className="text-xs font-semibold uppercase tracking-wide text-gold-600">Backend access</p>
       <h1 className="mt-2 font-display text-4xl text-navy">How to open Admin</h1>
-      <p className="mt-3 max-w-3xl text-muted">
+      <p className="lead mt-3 max-w-3xl text-muted">
         The public catalogue stays searchable. Editors open Admin from the site footer, then edit headings and articles here — or in Directus.
       </p>
 

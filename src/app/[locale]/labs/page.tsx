@@ -1,5 +1,6 @@
 import { setRequestLocale } from "next-intl/server";
 import { CatalogFilter } from "@/components/catalog-filter";
+import { PriceReassurance } from "@/components/price-reassurance";
 import { Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
 import { filterLabs, formatRange, labs } from "@/data/catalog";
 import { breadcrumbLd, pageMetadata } from "@/lib/seo";
@@ -32,9 +33,10 @@ export default async function LabsPage({
       <JsonLd data={breadcrumbLd([{ name: "Home", path: "/" }, { name: "Labs", path: "/labs" }], locale)} />
       <Breadcrumbs items={[{ href: "/", label: "Home" }, { href: "/labs", label: "Labs" }]} />
       <h1 className="mt-4 font-display text-4xl text-navy">BIS testing labs directory</h1>
-      <p className="mt-3 max-w-3xl text-muted">
+      <p className="lead mt-3 max-w-3xl text-muted">
         {rows.length} recognised testing laboratories from the library — compare locations, scopes and indicative charges, then open the standards they unlock.
       </p>
+      <PriceReassurance className="mt-6" />
       <CatalogFilter q={filters.q}>
         <label className="text-sm">
           <span className="mb-1 block text-xs uppercase tracking-wide text-muted">State</span>

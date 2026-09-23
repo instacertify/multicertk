@@ -37,7 +37,7 @@ export function CardLink({
       className="block rounded-2xl border border-line bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-gold"
     >
       {meta ? <p className="text-xs font-semibold uppercase tracking-wide text-gold-600">{meta}</p> : null}
-      <h3 className="mt-1 font-display text-lg text-navy">{title}</h3>
+      <h4 className="mt-1 font-display text-navy">{title}</h4>
       {body ? <p className="mt-2 text-sm leading-6 text-muted">{body}</p> : null}
     </Link>
   );
