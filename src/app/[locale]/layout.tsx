@@ -13,6 +13,16 @@ import { getCookieSettings, getSeo } from "@/lib/site-settings";
 import { localesMeta, site } from "@/lib/site";
 import "../globals.css";
 
+function stripPublicMessages(messages: unknown): Record<string, unknown> {
+  if (!messages || typeof messages !== "object" || Array.isArray(messages)) return {};
+  const next: Record<string, unknown> = {};
+  for (const [key, value] of Object.entries(messages as Record<string, unknown>)) {
+    if (key === "backend" || key === "admin") continue;
+    next[key] = value && typeof value === "object" && !Array.isArray(value) ? stripPublicMessages(value) : value;
+  }
+  return next;
+}
+
 const inter = Inter({
   subsets: ["latin", "latin-ext", "cyrillic"],
   variable: "--font-inter",
@@ -75,7 +85,7 @@ export default async function LocaleLayout({
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
-  const messages = await getMessages();
+  const messages = stripPublicMessages(await getMessages());
   const meta = localesMeta[locale as keyof typeof localesMeta];
   const menu = getMenu();
   const logos = getLogos();

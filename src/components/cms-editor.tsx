@@ -57,14 +57,8 @@ export function PageEditor({ page, locale }: { page: CmsPage; locale: string }) 
         sections,
       }),
     });
-    const json = (await response.json()) as { ok?: boolean; directus?: { ok?: boolean; reason?: string } };
-    setStatus(
-      json.ok
-        ? json.directus?.ok
-          ? "Saved to the site and Directus."
-          : "Saved on the site. Directus is optional — start it to sync."
-        : "Could not save.",
-    );
+    const json = (await response.json()) as { ok?: boolean };
+    setStatus(json.ok ? "Saved. The public page updates immediately." : "Could not save.");
   }
 
   return (
@@ -359,8 +353,8 @@ export function ArticleEditor({ article, locale }: { article: CmsArticle; locale
         tags: article.tags,
       }),
     });
-    const json = (await response.json()) as { ok?: boolean; directus?: { ok?: boolean } };
-    setStatus(json.ok ? (json.directus?.ok ? "Saved to the site and Directus." : "Saved on the site. Directus is optional — start it to sync.") : "Could not save.");
+    const json = (await response.json()) as { ok?: boolean };
+    setStatus(json.ok ? "Saved. The public page updates immediately." : "Could not save.");
   }
 
   function addBlock(block: ArticleBlock) {

@@ -3,7 +3,7 @@ import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { PageEditor } from "@/components/cms-editor";
 import { Breadcrumbs } from "@/components/ui";
-import { directusUrl, getPage } from "@/lib/cms";
+import { getPage } from "@/lib/cms";
 import { pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
@@ -31,7 +31,6 @@ export default async function EditPage({
   setRequestLocale(locale);
   const page = await getPage(slug, locale);
   if (!page) notFound();
-  const studio = directusUrl();
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-10">
@@ -45,15 +44,6 @@ export default async function EditPage({
       <h1 className="mt-4 font-display text-4xl text-navy">Edit page</h1>
       <p className="mt-2 text-sm text-muted">
         Public URL: <Link href={page.path || "/"} className="underline">{page.path || "/"}</Link>
-        {studio ? (
-          <>
-            {" "}
-            ·{" "}
-            <a href={`${studio}/admin/content/cms_pages`} className="underline" rel="noreferrer">
-              Open in Directus
-            </a>
-          </>
-        ) : null}
       </p>
       <div className="mt-8">
         <PageEditor page={page} locale={locale} />

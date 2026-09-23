@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     locale,
     path: "/admin/content",
     title: "Edit headings & articles",
-    description: "Directus-backed editor for page sections and blog articles.",
+    description: "Edit page sections and blog articles.",
     index: false,
   });
 }
@@ -34,7 +34,7 @@ export default async function ContentIndex({ params }: { params: Promise<{ local
       />
       <h1 className="mt-4 font-display text-4xl text-navy">Headings & articles</h1>
       <p className="mt-3 text-muted">
-        Every heading and every article word is editable here — page H1s, section headings, body copy, and blog articles. Add or remove sections, then save. Upload page images on each page. Changes publish on the site and sync to Directus when it is available.
+        Every heading and every article word is editable here — page H1s, section headings, body copy, and blog articles. Add or remove sections, then save. Upload page images on each page. Changes publish on the site immediately.
       </p>
       <div className="mt-6 grid gap-4 md:grid-cols-2">
         <CardLink
