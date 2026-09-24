@@ -114,22 +114,35 @@ async function readToken(token: string | undefined) {
   return payload;
 }
 
-function cookieBase(maxAge: number) {
+export function shouldSecureCookie(request?: Request) {
+  if (process.env.AUTH_COOKIE_SECURE === "1") return true;
+  if (process.env.AUTH_COOKIE_SECURE === "0") return false;
+  const forwarded = request?.headers.get("x-forwarded-proto");
+  if (forwarded) return forwarded.split(",")[0].trim() === "https";
+  try {
+    if (request?.url) return new URL(request.url).protocol === "https:";
+  } catch {
+    /* ignore */
+  }
+  return false;
+}
+
+function cookieBase(maxAge: number, secure: boolean) {
   return {
     httpOnly: true,
     sameSite: "lax" as const,
     path: "/",
-    secure: process.env.NODE_ENV === "production",
+    secure,
     maxAge,
   };
 }
 
-export function applyCookie(response: NextResponse, name: string, value: string, maxAge: number) {
-  response.cookies.set(name, value, cookieBase(maxAge));
+export function applyCookie(response: NextResponse, name: string, value: string, maxAge: number, request?: Request) {
+  response.cookies.set(name, value, cookieBase(maxAge, shouldSecureCookie(request)));
 }
 
-export function clearCookie(response: NextResponse, name: string) {
-  response.cookies.set(name, "", { ...cookieBase(0), maxAge: 0 });
+export function clearCookie(response: NextResponse, name: string, request?: Request) {
+  response.cookies.set(name, "", { ...cookieBase(0, shouldSecureCookie(request)), maxAge: 0 });
 }
 
 export function readCookie(request: Request, name: string) {

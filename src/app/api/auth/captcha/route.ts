@@ -3,7 +3,7 @@ import { applyCookie, CAPTCHA_COOKIE, CAPTCHA_MAX_AGE, createCaptchaToken, rando
 
 export const dynamic = "force-dynamic";
 
-export async function GET() {
+export async function GET(request: Request) {
   const text = randomCaptchaText();
   const token = await createCaptchaToken(text);
   const response = new NextResponse(renderCaptchaSvg(text), {
@@ -13,6 +13,6 @@ export async function GET() {
       "Cache-Control": "no-store, no-cache, must-revalidate",
     },
   });
-  applyCookie(response, CAPTCHA_COOKIE, token, CAPTCHA_MAX_AGE);
+  applyCookie(response, CAPTCHA_COOKIE, token, CAPTCHA_MAX_AGE, request);
   return response;
 }
