@@ -1,6 +1,7 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { NextResponse } from "next/server";
+import { requireEditorSession } from "@/lib/auth";
 
 const folders = new Set(["pages", "blogs", "logos", "reviews", "menu"]);
 const allowed = new Map([
@@ -22,6 +23,8 @@ function slugName(name: string) {
 }
 
 export async function POST(request: Request) {
+  const denied = await requireEditorSession(request);
+  if (denied) return denied;
   const form = await request.formData().catch(() => null);
   if (!form) return NextResponse.json({ error: "Expected multipart form data" }, { status: 400 });
   const file = form.get("file");

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { requireEditorSession } from "@/lib/auth";
 import { getCookieSettings, getSeo, readSiteSettings, saveCookies, saveSeo } from "@/lib/site-settings";
 
 const seoSchema = z.object({
@@ -51,6 +52,8 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
+  const denied = await requireEditorSession(request);
+  if (denied) return denied;
   const raw = await request.json().catch(() => null);
   const seo = seoSchema.safeParse(raw);
   if (seo.success) {

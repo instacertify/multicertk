@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { requireEditorSession } from "@/lib/auth";
 import { getArticle, getPage, listArticles, listPages } from "@/lib/cms";
 import { upsertDirectusItem } from "@/lib/directus-write";
 import { saveArticleOverride, savePageOverride } from "@/lib/cms-store";
@@ -69,6 +70,8 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
+  const denied = await requireEditorSession(request);
+  if (denied) return denied;
   const raw = await request.json().catch(() => null);
   const pageParsed = pageSchema.safeParse(raw);
   const articleParsed = articleSchema.safeParse(raw);

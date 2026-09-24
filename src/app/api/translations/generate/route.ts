@@ -1,8 +1,11 @@
 import { NextResponse } from "next/server";
+import { requireEditorSession } from "@/lib/auth";
 import { generateAiTranslation, upsertTranslation } from "@/lib/translations-store";
 import { translationGenerateSchema } from "@/lib/validation";
 
 export async function POST(request: Request) {
+  const denied = await requireEditorSession(request);
+  if (denied) return denied;
   const body = await request.json().catch(() => null);
   const parsed = translationGenerateSchema.safeParse(body);
   if (!parsed.success) {

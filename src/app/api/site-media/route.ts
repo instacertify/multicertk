@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { requireEditorSession } from "@/lib/auth";
 import { getHeaderChrome, getLogos, getMenu, getReviews, readSiteMedia, saveLogos, saveMenu, saveReviews } from "@/lib/site-media";
 
 const childSchema = z.object({
@@ -71,6 +72,8 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
+  const denied = await requireEditorSession(request);
+  if (denied) return denied;
   const raw = await request.json().catch(() => null);
   const logos = logoSchema.safeParse(raw);
   if (logos.success) {

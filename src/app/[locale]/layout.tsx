@@ -1,11 +1,14 @@
+import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { Inter, Noto_Sans_Arabic, Noto_Sans_Devanagari, Noto_Sans_SC } from "next/font/google";
 import { CookieBanner } from "@/components/cookie-banner";
 import { ConsentScripts } from "@/components/consent-scripts";
+import { EditorBar } from "@/components/editor-bar";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
+import { HideOnAdminLogin } from "@/components/hide-on-login";
 import { SocialProof } from "@/components/trusted-by";
 import { routing } from "@/i18n/routing";
 import { getHeaderChrome, getLogos, getMenu, getReviews } from "@/lib/site-media";
@@ -85,6 +88,7 @@ export default async function LocaleLayout({
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
+  const isLogin = (await headers()).get("x-certko-login") === "1";
   const messages = stripPublicMessages(await getMessages());
   const meta = localesMeta[locale as keyof typeof localesMeta];
   const menu = getMenu();
@@ -105,17 +109,26 @@ export default async function LocaleLayout({
     >
       <body className="flex min-h-full flex-col bg-white font-sans text-ink">
         <NextIntlClientProvider messages={messages}>
-          <Header menu={menu} chrome={chrome} />
+          {isLogin ? null : (
+            <HideOnAdminLogin>
+              <Header menu={menu} chrome={chrome} />
+            </HideOnAdminLogin>
+          )}
+          {isLogin ? null : <EditorBar />}
           <main className="flex-1">{children}</main>
-          <SocialProof
-            logos={logos}
-            reviews={reviews}
-            trustedHeading={navCopy?.trustedBy || "Trusted by"}
-            reviewsHeading={navCopy?.reviewsTitle || "What customers say"}
-          />
-          <Footer />
-          <ConsentScripts settings={cookies} />
-          <CookieBanner settings={cookies} />
+          {isLogin ? null : (
+            <HideOnAdminLogin>
+              <SocialProof
+                logos={logos}
+                reviews={reviews}
+                trustedHeading={navCopy?.trustedBy || "Trusted by"}
+                reviewsHeading={navCopy?.reviewsTitle || "What customers say"}
+              />
+              <Footer />
+            </HideOnAdminLogin>
+          )}
+          {isLogin ? null : <ConsentScripts settings={cookies} />}
+          {isLogin ? null : <CookieBanner settings={cookies} />}
         </NextIntlClientProvider>
       </body>
     </html>
