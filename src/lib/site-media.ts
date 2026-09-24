@@ -70,7 +70,9 @@ export function siteMediaExists() {
 function libraryMenu() {
   return buildDefaultMenu({
     categories: categories.map((category) => ({ slug: category.slug, name: category.name })),
-    articles: listArticles("en").map((article) => ({ slug: article.slug, title: article.title })),
+    articles: listArticles("en")
+      .slice(0, 12)
+      .map((article) => ({ slug: article.slug, title: article.title })),
   });
 }
 

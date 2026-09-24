@@ -75,7 +75,14 @@ function localArticles(locale: string): CmsArticle[] {
       });
     }
   }
-  return [...bySlug.values()].filter((item) => item.status !== "draft");
+  return sortArticles([...bySlug.values()].filter((item) => item.status !== "draft"));
+}
+
+function sortArticles(rows: CmsArticle[]) {
+  return rows.slice().sort((left, right) => {
+    const byDate = (right.date || "").localeCompare(left.date || "");
+    return byDate || left.title.localeCompare(right.title);
+  });
 }
 
 function paragraphs(value: unknown): string[] {
@@ -157,7 +164,7 @@ async function livePages(locale: string): Promise<CmsPage[] | null> {
 async function liveArticles(locale: string): Promise<CmsArticle[] | null> {
   const rows = await directusItems<DirectusArticle>(
     "cms_articles",
-    `filter[locale][_eq]=${encodeURIComponent(locale)}&filter[status][_eq]=published&sort=-date&limit=200`,
+    `filter[locale][_eq]=${encodeURIComponent(locale)}&filter[status][_eq]=published&sort=-date&limit=2000`,
   );
   if (!rows?.length) return null;
   return rows.map((row) => ({
@@ -180,7 +187,7 @@ export function listPages(locale = "en"): CmsPage[] {
 }
 
 export function listArticles(locale = "en"): CmsArticle[] {
-  return localArticles(locale);
+  return sortArticles(localArticles(locale));
 }
 
 export async function getPage(slug: string, locale: string): Promise<CmsPage | undefined> {
@@ -194,7 +201,12 @@ export async function getPages(locale: string): Promise<CmsPage[]> {
 }
 
 export async function getArticles(locale: string): Promise<CmsArticle[]> {
-  return (await liveArticles(locale)) ?? localArticles(locale);
+  const local = localArticles(locale);
+  const live = await liveArticles(locale);
+  if (!live?.length) return sortArticles(local);
+  const bySlug = new Map(local.map((article) => [article.slug, article]));
+  for (const article of live) bySlug.set(article.slug, article);
+  return sortArticles([...bySlug.values()].filter((item) => item.status !== "draft"));
 }
 
 export async function getArticle(slug: string, locale: string): Promise<CmsArticle | undefined> {

@@ -1,3 +1,4 @@
+import crsBlogs from "./generated/crs-blogs.json";
 import { posts } from "./qcos";
 
 export interface CmsSection {
@@ -635,6 +636,7 @@ export const seedArticles: CmsArticle[] = [
     relatedSchemeSlugs: ["bis"],
     status: "published",
   },
+  ...(crsBlogs as CmsArticle[]),
 ];
 
 export function pageKey(slug: string, locale: string) {

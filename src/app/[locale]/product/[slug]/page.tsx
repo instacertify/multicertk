@@ -20,7 +20,7 @@ import {
   scopesForProduct,
   testsForProduct,
 } from "@/data/catalog";
-import { getPage, sectionBody, sectionHeading } from "@/lib/cms";
+import { getPage, listArticles, sectionBody, sectionHeading } from "@/lib/cms";
 import { breadcrumbLd, faqLd, pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -61,6 +61,9 @@ export default async function ProductPage({
   const bee = beeForProduct(product.slug);
   const gmark = gmarkForProduct(product.slug);
   const cms = await getPage("product-detail", locale);
+  const notes = listArticles(locale)
+    .filter((article) => article.relatedProductSlugs.includes(product.slug))
+    .slice(0, 8);
   const faqs = [
     {
       q: `Is certification mandatory for ${product.name}?`,
@@ -253,6 +256,23 @@ export default async function ProductPage({
                 title={item.name}
                 meta={item.standard ?? "G-Mark"}
                 body={item.summary}
+              />
+            ))}
+          </div>
+        </>
+      ) : null}
+
+      {notes.length ? (
+        <>
+          <h2 className="mt-12 font-display text-2xl text-navy">CRS notes for this product</h2>
+          <div className="mt-4 grid gap-4 md:grid-cols-2">
+            {notes.map((article) => (
+              <CardLink
+                key={article.slug}
+                href={`/blog/${article.slug}`}
+                title={article.heading || article.title}
+                meta={article.date}
+                body={article.excerpt}
               />
             ))}
           </div>

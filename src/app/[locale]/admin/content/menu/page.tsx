@@ -41,7 +41,9 @@ export default async function MenuAdmin({ params }: { params: Promise<{ locale: 
           menu={getMenu()}
           chrome={getHeaderChrome()}
           categories={categories.map((category) => ({ slug: category.slug, name: category.name }))}
-          articles={listArticles(locale).map((article) => ({ slug: article.slug, title: article.title }))}
+          articles={listArticles(locale)
+            .slice(0, 24)
+            .map((article) => ({ slug: article.slug, title: article.title }))}
         />
       </div>
     </div>
