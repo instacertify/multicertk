@@ -88,9 +88,7 @@ export default async function LocaleLayout({
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
-  const requestHeaders = await headers();
-  const isLogin = requestHeaders.get("x-certko-login") === "1";
-  const isAdmin = requestHeaders.get("x-certko-admin") === "1";
+  const isLogin = (await headers()).get("x-certko-login") === "1";
   const messages = stripPublicMessages(await getMessages());
   const meta = localesMeta[locale as keyof typeof localesMeta];
   const menu = getMenu();
@@ -111,26 +109,22 @@ export default async function LocaleLayout({
     >
       <body className="flex min-h-full flex-col bg-white font-sans text-ink">
         <NextIntlClientProvider messages={messages}>
-          {isAdmin ? null : (
-            <HideOnAdminLogin>
-              <Header menu={menu} chrome={chrome} />
-            </HideOnAdminLogin>
-          )}
+          <HideOnAdminLogin>
+            <Header menu={menu} chrome={chrome} />
+          </HideOnAdminLogin>
           {isLogin ? null : <EditorBar />}
           <main className="flex-1">{children}</main>
-          {isAdmin ? null : (
-            <HideOnAdminLogin>
-              <SocialProof
-                logos={logos}
-                reviews={reviews}
-                trustedHeading={navCopy?.trustedBy || "Trusted by"}
-                reviewsHeading={navCopy?.reviewsTitle || "What customers say"}
-              />
-              <Footer />
-            </HideOnAdminLogin>
-          )}
-          {isAdmin ? null : <ConsentScripts settings={cookies} />}
-          {isAdmin ? null : <CookieBanner settings={cookies} />}
+          <HideOnAdminLogin>
+            <SocialProof
+              logos={logos}
+              reviews={reviews}
+              trustedHeading={navCopy?.trustedBy || "Trusted by"}
+              reviewsHeading={navCopy?.reviewsTitle || "What customers say"}
+            />
+            <Footer />
+            <ConsentScripts settings={cookies} />
+            <CookieBanner settings={cookies} />
+          </HideOnAdminLogin>
         </NextIntlClientProvider>
       </body>
     </html>
