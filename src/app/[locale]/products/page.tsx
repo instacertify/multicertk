@@ -37,6 +37,25 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
           <SearchBox size="sm" />
         </div>
       </div>
+      <Section title="BIS: CRS or ISI mark">
+        <p className="mb-4 max-w-3xl text-sm text-muted">
+          CRS is part of BIS. Products on the CRS list take Scheme II. Products not covered in CRS take the ISI mark licence.
+        </p>
+        <div className="grid gap-4 md:grid-cols-2">
+          <CardLink
+            href="/products/all?bis=crs"
+            title="CRS registration"
+            meta="Part of BIS"
+            body="Notified electronics and IT goods on the Compulsory Registration list."
+          />
+          <CardLink
+            href="/products/all?bis=isi"
+            title="ISI mark licence"
+            meta="BIS — not on CRS"
+            body="Every other BIS product. If it is not on the CRS list, the path is the ISI mark."
+          />
+        </div>
+      </Section>
       <Section title={sectionHeading(cms, "schemes", "Start with a scheme")}>
         <div className="grid gap-4 md:grid-cols-3">
           {schemes.slice(0, 6).map((scheme) => (

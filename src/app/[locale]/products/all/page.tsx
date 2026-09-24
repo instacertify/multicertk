@@ -4,7 +4,7 @@ import { CatalogFilter } from "@/components/catalog-filter";
 import { PageMedia } from "@/components/page-hero";
 import { ListedPrice, PriceReassurance } from "@/components/price-reassurance";
 import { Badge, Breadcrumbs, StatusBadge } from "@/components/ui";
-import { categories, filterProducts, formatRange, schemes } from "@/data/catalog";
+import { bisRouteLabel, categories, filterProducts, formatRange, isCrsProduct, schemes } from "@/data/catalog";
 import { getPage } from "@/lib/cms";
 import { pageMetadata } from "@/lib/seo";
 
@@ -23,7 +23,7 @@ export default async function AllProductsPage({
   searchParams,
 }: {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<{ q?: string; category?: string; scheme?: string; status?: string }>;
+  searchParams: Promise<{ q?: string; category?: string; scheme?: string; status?: string; bis?: string }>;
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
@@ -43,7 +43,7 @@ export default async function AllProductsPage({
       <h1 className="mt-4 font-display text-4xl text-navy">{cms?.title ?? "All mapped products"}</h1>
       <p className="lead mt-2 text-muted">
         {cms?.intro ??
-          `${rows.length} unique Indian Standard / CRS records from the Certko library — each opens as its own interlinked page in every language.`}
+          `${rows.length} BIS records — CRS if the product is on that list, otherwise the ISI mark licence.`}
       </p>
       <PageMedia src={cms?.heroImageUrl} alt={cms?.heroImageAlt || cms?.title || "All products"} gallery={cms?.galleryUrls} />
       <PriceReassurance className="mt-6" />
@@ -57,6 +57,14 @@ export default async function AllProductsPage({
                 {category.name}
               </option>
             ))}
+          </select>
+        </label>
+        <label className="text-sm">
+          <span className="mb-1 block text-xs uppercase tracking-wide text-muted">BIS route</span>
+          <select name="bis" defaultValue={filters.bis ?? ""} className="rounded-xl border border-line bg-white px-3 py-2">
+            <option value="">CRS and ISI</option>
+            <option value="crs">CRS (part of BIS)</option>
+            <option value="isi">ISI mark (not on CRS)</option>
           </select>
         </label>
         <label className="text-sm">
@@ -106,11 +114,14 @@ export default async function AllProductsPage({
                 </td>
                 <td className="px-4 py-3">
                   <div className="flex flex-wrap gap-1">
-                    {product.schemeSlugs.map((slug) => (
-                      <Link key={slug} href={`/certifications/${slug}`}>
-                        <Badge tone="mist">{slug}</Badge>
-                      </Link>
-                    ))}
+                    <Badge tone={isCrsProduct(product) ? "gold" : "mist"}>{bisRouteLabel(product)}</Badge>
+                    {product.schemeSlugs
+                      .filter((slug) => slug !== "bis")
+                      .map((slug) => (
+                        <Link key={slug} href={`/certifications/${slug}`}>
+                          <Badge tone="mist">{slug}</Badge>
+                        </Link>
+                      ))}
                   </div>
                 </td>
                 <td className="px-4 py-3">

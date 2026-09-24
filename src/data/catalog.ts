@@ -102,7 +102,7 @@ export const products: Product[] = raw.products.map((item) => ({
   hsn4: item.hsn4,
   categorySlug: item.categorySlug,
   schemeSlugs: item.schemeSlugs,
-  schemeLabel: item.schemeLabel,
+  schemeLabel: item.schemeLabel === "CRS Registration" ? "CRS Registration" : "ISI Mark Licence",
   qcoStatus: asStatus(item.qcoStatus),
   qcoSlug: item.qcoSlug,
   qcoLabel: item.qcoLabel,
@@ -239,6 +239,29 @@ export function productsByScheme(slug: string) {
   return products.filter((item) => item.schemeSlugs.includes(slug));
 }
 
+export function isCrsProduct(product: Pick<Product, "schemeLabel">) {
+  return product.schemeLabel === "CRS Registration";
+}
+
+export function bisRoute(product: Pick<Product, "schemeLabel">): "crs" | "isi" {
+  return isCrsProduct(product) ? "crs" : "isi";
+}
+
+export function bisRouteLabel(product: Pick<Product, "schemeLabel">) {
+  return isCrsProduct(product) ? "BIS · CRS registration" : "BIS · ISI mark licence";
+}
+
+export function bisRouteSummary(product: Product) {
+  if (isCrsProduct(product)) {
+    return `CRS is part of BIS. ${product.name} is on the CRS (Scheme II) list against ${product.standard}.`;
+  }
+  return `CRS is part of BIS. ${product.name} is not on the CRS list, so the BIS path is the ISI mark licence (Scheme I) against ${product.standard}.`;
+}
+
+export function productsByBisRoute(route: "crs" | "isi") {
+  return products.filter((item) => bisRoute(item) === route);
+}
+
 export function productsByCountry(slug: string) {
   return products.filter((item) => item.countrySlugs.includes(slug));
 }
@@ -334,11 +357,15 @@ export function filterProducts(filters: {
   category?: string;
   scheme?: string;
   status?: string;
+  bis?: string;
 }) {
   const query = filters.q?.trim().toLowerCase() ?? "";
   return products.filter((item) => {
     if (filters.category && item.categorySlug !== filters.category) return false;
     if (filters.scheme && !item.schemeSlugs.includes(filters.scheme)) return false;
+    if (filters.bis === "crs" || filters.bis === "isi") {
+      if (bisRoute(item) !== filters.bis) return false;
+    }
     if (filters.status && item.qcoStatus !== filters.status) return false;
     if (!query) return true;
     const hay = `${item.name} ${item.standard} ${item.hsn} ${item.hsn4 ?? ""} ${item.excerpt}`.toLowerCase();
@@ -418,6 +445,8 @@ export function buildSearchDocuments(): SearchDocument[] {
         product.hsn4 ?? "",
         product.qcoStatus,
         product.schemeLabel ?? "",
+        bisRouteLabel(product),
+        isCrsProduct(product) ? "CRS" : "ISI",
         category?.name ?? "",
         ...product.schemeSlugs,
       ],

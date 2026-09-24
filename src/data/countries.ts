@@ -9,7 +9,7 @@ export const countries: Country[] = [
     summary:
       "Selling into India usually means mapping your product to BIS (ISI or CRS), then checking wireless, telecom, energy labelling and EPR overlays.",
     checklist: [
-      "BIS QCO — Scheme I (ISI) or Scheme II (CRS)?",
+      "BIS QCO — CRS if the product is on that list, otherwise the ISI mark licence?",
       "Wireless licence-exempt bands → WPC ETA?",
       "Public network / IMEI gear → TEC MTCTE?",
       "BEE star labelling or E-Waste EPR registration?",

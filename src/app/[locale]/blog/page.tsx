@@ -45,7 +45,7 @@ export default async function BlogPage({
       <h1 className="mt-4 font-display text-4xl text-navy">{page?.title ?? "Notes from the certification desk"}</h1>
       {page?.intro ? <p className="mt-3 text-muted">{page.intro}</p> : null}
       <p className="mt-3 text-sm text-muted">
-        {crsCount} CRS product notes were published on 23–24 Sep 2026 — manufacture licences, China and Vietnam import, and the India assembly route from spare parts.
+        CRS is part of BIS. {crsCount} notes cover only products on the CRS list. Products not covered in CRS take the ISI mark licence — they are not in this CRS series.
       </p>
       <div className="mt-4 flex flex-wrap gap-2 text-sm">
         <Link

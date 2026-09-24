@@ -9,12 +9,12 @@ export const schemes: Scheme[] = [
     family: "product-mark",
     countrySlugs: ["india"],
     summary:
-      "India's core product certification — the ISI mark licence (Scheme I) and CRS registration (Scheme II) for products notified under Quality Control Orders.",
+      "CRS is part of BIS. Products on the CRS list take Scheme II registration. Every other BIS product takes the ISI mark licence (Scheme I).",
     process: [
       "Identify the Indian Standard and QCO status for the exact SKU / HSN.",
       "Prepare factory, quality-control and trademark documentation (AIR for foreign factories).",
       "Test samples at a BIS-recognised laboratory against every applicable clause.",
-      "Factory inspection for ISI / FMCS routes; CRS is lab-test based registration.",
+      "If the SKU is not on the CRS list, file the ISI mark licence (factory test + inspection). CRS products file Scheme II registration from a lab report only.",
       "Grant of licence, Standard Mark usage and ongoing surveillance.",
     ],
     whoNeedsIt:

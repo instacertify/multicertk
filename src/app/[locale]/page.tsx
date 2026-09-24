@@ -23,7 +23,7 @@ const faqs = [
   },
   {
     q: "What is the difference between ISI mark and CRS registration?",
-    a: "ISI (Scheme I) needs product testing plus a factory inspection. CRS (Scheme II) is lab-test based registration, mainly for electronics and IT products.",
+    a: "CRS is part of BIS. If the product is on the CRS list it uses Scheme II (lab-test registration). Products not covered in CRS take the ISI mark licence (Scheme I — test plus factory inspection).",
   },
   {
     q: "How much does BIS certification cost in India?",

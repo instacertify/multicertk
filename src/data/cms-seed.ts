@@ -75,7 +75,7 @@ export const seedPages: CmsPage[] = [
         key: "faq-isi",
         heading: "What is the difference between ISI mark and CRS registration?",
         body: [
-          "ISI (Scheme I) needs product testing plus a factory inspection. CRS (Scheme II) is lab-test based registration, mainly for electronics and IT products.",
+          "CRS is part of BIS. CRS products use Scheme II registration. Products not covered in CRS take the ISI mark licence (Scheme I).",
         ],
       },
       {
@@ -121,8 +121,8 @@ export const seedPages: CmsPage[] = [
         key: "schemes",
         heading: "Two schemes",
         body: [
-          "ISI mark (Scheme I) needs testing plus factory inspection and applies to most industrial and consumer products under QCOs.",
-          "CRS (Scheme II) is registration based on testing at a BIS-recognised lab, mainly for electronics and IT products.",
+          "CRS is part of BIS. Products on the MeitY / BIS CRS list take Scheme II registration (lab report, no factory inspection).",
+          "Products not covered in CRS take the ISI mark licence (Scheme I): testing plus factory inspection.",
         ],
       },
       {
@@ -233,7 +233,8 @@ export const seedPages: CmsPage[] = [
     path: "/products/all",
     locale: "en",
     title: "All mapped products",
-    intro: "Unique Indian Standard / CRS records from the Certko library — each opens as its own interlinked page in every language.",
+    intro:
+      "Every BIS record is either CRS or ISI mark. CRS is part of BIS. If a product is not on the CRS list, it takes the ISI mark licence.",
     sections: [],
   },
   {
@@ -632,6 +633,24 @@ export const seedArticles: CmsArticle[] = [
     ],
     date: "2026-09-23",
     tags: ["labs"],
+    relatedProductSlugs: [],
+    relatedSchemeSlugs: ["bis"],
+    status: "published",
+  },
+  {
+    slug: "crs-is-part-of-bis-isi-covers-the-rest",
+    locale: "en",
+    title: "CRS is part of BIS — products not on CRS take the ISI mark",
+    heading: "CRS is part of BIS — products not on CRS take the ISI mark",
+    excerpt:
+      "One parent scheme, two routes. If the SKU is on the CRS list, file Scheme II. If it is not, the BIS path is the ISI mark licence.",
+    body: [
+      "CRS is not a separate regulator. It is Scheme II under the Bureau of Indian Standards. The Compulsory Registration list is a subset of BIS products — mainly electronics and IT goods that are cleared from a recognised-lab report without a factory inspection.",
+      "Every other product in the BIS library takes the ISI mark licence (Scheme I). Cement, steel, cables, appliances that are not on CRS, chemicals, PPE, toys that sit on Scheme I: test the sample, then host the factory inspection, then use the Standard Mark.",
+      "Do not file CRS for a product that is not on that list. Do not file an ISI licence for a product that MeitY / BIS has put on CRS. The catalogue badge is the split: BIS · CRS registration, or BIS · ISI mark licence.",
+    ],
+    date: "2026-09-24",
+    tags: ["BIS", "CRS", "ISI"],
     relatedProductSlugs: [],
     relatedSchemeSlugs: ["bis"],
     status: "published",

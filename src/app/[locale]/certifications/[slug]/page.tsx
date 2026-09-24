@@ -5,7 +5,16 @@ import { CmsArticles } from "@/components/cms-copy";
 import { PageMedia } from "@/components/page-hero";
 import { LeadForm } from "@/components/lead-form";
 import { Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
-import { beeProducts, euSectors, getCountry, getScheme, gmarkProducts, productsByScheme, schemes } from "@/data/catalog";
+import {
+  beeProducts,
+  euSectors,
+  getCountry,
+  getScheme,
+  gmarkProducts,
+  productsByBisRoute,
+  productsByScheme,
+  schemes,
+} from "@/data/catalog";
 import { getPage, sectionHeading } from "@/lib/cms";
 import { breadcrumbLd, pageMetadata } from "@/lib/seo";
 
@@ -100,6 +109,29 @@ export default async function SchemePage({
         ))}
       </div>
 
+      {scheme.slug === "bis" ? (
+        <>
+          <h2 className="mt-10 font-display text-2xl text-navy">Two BIS routes</h2>
+          <p className="mt-2 max-w-3xl text-sm text-muted">
+            CRS is part of BIS. Products on the CRS list take Scheme II registration. Every product that is not covered in CRS takes the ISI mark licence.
+          </p>
+          <div className="mt-4 grid gap-4 md:grid-cols-2">
+            <CardLink
+              href="/products/all?bis=crs"
+              title={`CRS registration · ${productsByBisRoute("crs").length} products`}
+              meta="BIS Scheme II"
+              body="Lab-test registration for the notified CRS list — mainly electronics and IT goods."
+            />
+            <CardLink
+              href="/products/all?bis=isi"
+              title={`ISI mark licence · ${productsByBisRoute("isi").length} products`}
+              meta="BIS Scheme I"
+              body="If the product is not on the CRS list, the BIS path is the ISI mark licence (test plus factory inspection)."
+            />
+          </div>
+        </>
+      ) : null}
+
       <h2 className="mt-10 font-display text-2xl text-navy">{sectionHeading(cms, "mapped", "Mapped products & standards")}</h2>
       <p className="mt-2 text-sm text-muted">{mapped.length} library records interlinked to this scheme.</p>
       <div className="mt-4 grid gap-4 md:grid-cols-2">
@@ -171,7 +203,7 @@ export default async function SchemePage({
         </>
       ) : null}
 
-      <CmsArticles page={cms} skip={["process", "markets", "mapped", "bee", "gmark", "eu"]} />
+      <CmsArticles page={cms} skip={["process", "markets", "mapped", "bee", "gmark", "eu", "schemes"]} />
       <div className="mt-12 max-w-xl">
         <LeadForm sourcePath={`/certifications/${scheme.slug}`} />
       </div>

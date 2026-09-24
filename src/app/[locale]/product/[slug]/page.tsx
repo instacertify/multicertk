@@ -8,6 +8,8 @@ import { ListedPrice, PriceReassurance } from "@/components/price-reassurance";
 import { Badge, Breadcrumbs, CardLink, JsonLd, StatusBadge } from "@/components/ui";
 import {
   beeForProduct,
+  bisRouteLabel,
+  bisRouteSummary,
   formatInr,
   formatRange,
   getCategory,
@@ -15,6 +17,7 @@ import {
   getQco,
   getScheme,
   gmarkForProduct,
+  isCrsProduct,
   labsForProduct,
   relatedProducts,
   scopesForProduct,
@@ -66,6 +69,10 @@ export default async function ProductPage({
     .slice(0, 8);
   const faqs = [
     {
+      q: `Is ${product.name} under CRS or the ISI mark?`,
+      a: bisRouteSummary(product),
+    },
+    {
       q: `Is certification mandatory for ${product.name}?`,
       a: `${product.qcoStatus === "mandatory" ? "Yes." : product.qcoStatus === "upcoming" ? "A QCO has been notified." : "It is currently voluntary / buyer-driven."} ${product.qcoLabel ?? ""} The governing standard is ${product.standard}.`,
     },
@@ -112,7 +119,7 @@ export default async function ProductPage({
       />
       <div className="mt-4 flex flex-wrap gap-2">
         <StatusBadge status={product.qcoStatus} />
-        {product.schemeLabel ? <Badge tone="mist">{product.schemeLabel}</Badge> : null}
+        <Badge tone={isCrsProduct(product) ? "gold" : "mist"}>{bisRouteLabel(product)}</Badge>
         {product.schemeSlugs.map((schemeSlug) => (
           <Link key={schemeSlug} href={`/certifications/${schemeSlug}`}>
             <Badge>{getScheme(schemeSlug)?.shortName ?? schemeSlug}</Badge>
@@ -121,6 +128,7 @@ export default async function ProductPage({
       </div>
       <h1 className="mt-4 font-display text-navy">{product.name}</h1>
       <p className="lead mt-3 max-w-3xl text-muted">{product.excerpt}</p>
+      <p className="mt-3 max-w-3xl rounded-2xl border border-line bg-paper px-4 py-3 text-sm text-ink">{bisRouteSummary(product)}</p>
       <PageMedia src={cms?.heroImageUrl} alt={cms?.heroImageAlt || product.name} gallery={cms?.galleryUrls} />
 
       <dl className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -262,7 +270,7 @@ export default async function ProductPage({
         </>
       ) : null}
 
-      {notes.length ? (
+      {isCrsProduct(product) && notes.length ? (
         <>
           <h2 className="mt-12 font-display text-2xl text-navy">CRS notes for this product</h2>
           <div className="mt-4 grid gap-4 md:grid-cols-2">
