@@ -20,6 +20,7 @@ function applyPageOverride(page: CmsPage, override?: Partial<CmsPage>): CmsPage 
   return {
     ...page,
     title: override.title ?? page.title,
+    path: override.path ?? page.path,
     intro: override.intro ?? page.intro,
     heroImageUrl: override.heroImageUrl ?? page.heroImageUrl,
     heroImageAlt: override.heroImageAlt ?? page.heroImageAlt,
@@ -33,16 +34,99 @@ function applyArticleOverride(article: CmsArticle, override?: Partial<CmsArticle
   return { ...article, ...override, slug: article.slug, locale: override.locale ?? article.locale };
 }
 
+const reservedRouteSlugs = new Set([
+  "admin",
+  "api",
+  "p",
+  "product",
+  "products",
+  "labs",
+  "lab",
+  "blog",
+  "search",
+  "certifications",
+  "testing",
+  "qco",
+  "category",
+  "privacy",
+  "contact",
+  "about",
+  "guide",
+  "tenders",
+  "marketplaces",
+  "terms",
+  "sitemap",
+  "uploads",
+  "robots",
+  "en",
+  "hi",
+  "zh",
+  "es",
+  "fr",
+  "ar",
+  "ru",
+  "bis-certification-consulting",
+  "msds-authoring-service",
+]);
+
+const seedPageSlugs = new Set(seedPages.map((page) => page.slug));
+const seedArticleSlugs = new Set(seedArticles.map((article) => article.slug));
+
+export function slugifyLabel(value: string, max = 80) {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "")
+    .slice(0, max);
+}
+
+export function isReservedPageSlug(slug: string) {
+  return reservedRouteSlugs.has(slug) || seedPageSlugs.has(slug);
+}
+
+export function isCustomCmsPage(page: Pick<CmsPage, "slug" | "path">) {
+  return page.path.startsWith("/p/") || !seedPageSlugs.has(page.slug);
+}
+
+export function isSeedArticle(slug: string) {
+  return seedArticleSlugs.has(slug);
+}
+
+function pageFromOverride(slug: string, locale: string, override: Partial<CmsPage>): CmsPage | null {
+  if (!override.title) return null;
+  return {
+    slug,
+    path: override.path || `/p/${slug}`,
+    locale,
+    title: override.title,
+    intro: override.intro ?? "",
+    heroImageUrl: override.heroImageUrl,
+    heroImageAlt: override.heroImageAlt,
+    galleryUrls: override.galleryUrls,
+    sections: override.sections ?? [],
+  };
+}
+
 function localPages(locale: string): CmsPage[] {
   const overrides = readCmsOverrides();
-  return seedPages
-    .map((page) => {
-      const localized = applyPageOverride(page, overrides.pages[`${page.slug}:${locale}`]);
-      if (locale === "en") return localized;
-      const fallback = applyPageOverride(page, overrides.pages[`${page.slug}:en`]);
-      return applyPageOverride(fallback, overrides.pages[`${page.slug}:${locale}`]);
-    })
-    .map((page) => ({ ...page, locale }));
+  const bySlug = new Map<string, CmsPage>();
+  for (const page of seedPages) {
+    const localized = applyPageOverride(page, overrides.pages[`${page.slug}:${locale}`]);
+    if (locale === "en") {
+      bySlug.set(page.slug, localized);
+      continue;
+    }
+    const fallback = applyPageOverride(page, overrides.pages[`${page.slug}:en`]);
+    bySlug.set(page.slug, applyPageOverride(fallback, overrides.pages[`${page.slug}:${locale}`]));
+  }
+  for (const [key, override] of Object.entries(overrides.pages)) {
+    const [slug, itemLocale] = key.split(":");
+    if (itemLocale !== locale && itemLocale !== "en") continue;
+    if (bySlug.has(slug)) continue;
+    const created = pageFromOverride(slug, itemLocale || locale, override);
+    if (created) bySlug.set(slug, created);
+  }
+  return [...bySlug.values()].map((page) => ({ ...page, locale }));
 }
 
 function localArticles(locale: string): CmsArticle[] {
@@ -190,14 +274,20 @@ export function listArticles(locale = "en"): CmsArticle[] {
   return sortArticles(localArticles(locale));
 }
 
-export async function getPage(slug: string, locale: string): Promise<CmsPage | undefined> {
+export async function getPages(locale: string): Promise<CmsPage[]> {
+  const local = localPages(locale);
   const live = await livePages(locale);
-  const pages = live ?? localPages(locale);
-  return pages.find((page) => page.slug === slug) ?? localPages("en").find((page) => page.slug === slug);
+  if (!live?.length) return local;
+  const bySlug = new Map(local.map((page) => [page.slug, page]));
+  for (const page of live) {
+    if (!bySlug.has(page.slug)) bySlug.set(page.slug, page);
+  }
+  return [...bySlug.values()];
 }
 
-export async function getPages(locale: string): Promise<CmsPage[]> {
-  return (await livePages(locale)) ?? localPages(locale);
+export async function getPage(slug: string, locale: string): Promise<CmsPage | undefined> {
+  const pages = await getPages(locale);
+  return pages.find((page) => page.slug === slug) ?? localPages("en").find((page) => page.slug === slug);
 }
 
 export async function getArticles(locale: string): Promise<CmsArticle[]> {

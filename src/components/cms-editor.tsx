@@ -168,10 +168,11 @@ export function PageEditor({ page, locale }: { page: CmsPage; locale: string }) 
   );
 }
 
-export function NewArticleForm({ locale }: { locale: string }) {
+export function NewPageForm({ locale }: { locale: string }) {
   const [title, setTitle] = useState("");
+  const [slug, setSlug] = useState("");
+  const [intro, setIntro] = useState("");
   const [heading, setHeading] = useState("");
-  const [excerpt, setExcerpt] = useState("");
   const [body, setBody] = useState("");
   const [heroImageUrl, setHeroImageUrl] = useState("");
   const [status, setStatus] = useState("");
@@ -179,17 +180,102 @@ export function NewArticleForm({ locale }: { locale: string }) {
   async function onSubmit(event: React.FormEvent) {
     event.preventDefault();
     setStatus("Saving…");
-    const slug = title
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-|-$/g, "")
-      .slice(0, 80);
+    const nextSlug =
+      slug
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, "")
+        .slice(0, 80) ||
+      title
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, "")
+        .slice(0, 80) ||
+      `page-${Date.now()}`;
+    const response = await fetch("/api/cms", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        kind: "page",
+        slug: nextSlug,
+        locale,
+        title,
+        intro,
+        heroImageUrl,
+        sections: [
+          {
+            key: "intro",
+            heading: heading || title,
+            body: splitBody(body || intro || title),
+          },
+        ],
+      }),
+    });
+    const json = (await response.json()) as { ok?: boolean; slug?: string; error?: string };
+    if (json.ok && json.slug) {
+      window.location.assign(`/admin/content/page/${json.slug}`);
+      return;
+    }
+    setStatus(json.error || "Could not save.");
+  }
+
+  return (
+    <form onSubmit={onSubmit} className="space-y-4 rounded-2xl border border-line bg-white p-5">
+      <p className="caption font-semibold uppercase tracking-wide text-gold-600">Add a page</p>
+      <p className="text-sm text-muted">Creates a public page at /p/… with a title, intro, image and a first section you can keep editing.</p>
+      <label className="block text-sm">
+        <span className="mb-1 block text-xs uppercase tracking-wide text-muted">Page title / H1</span>
+        <input required value={title} onChange={(event) => setTitle(event.target.value)} className="w-full rounded-xl border border-line px-3 py-2" />
+      </label>
+      <label className="block text-sm">
+        <span className="mb-1 block text-xs uppercase tracking-wide text-muted">URL slug (optional)</span>
+        <input value={slug} onChange={(event) => setSlug(event.target.value)} placeholder="our-team" className="w-full rounded-xl border border-line px-3 py-2" />
+      </label>
+      <label className="block text-sm">
+        <span className="mb-1 block text-xs uppercase tracking-wide text-muted">Intro</span>
+        <textarea value={intro} onChange={(event) => setIntro(event.target.value)} rows={3} className="w-full rounded-xl border border-line px-3 py-2" />
+      </label>
+      <label className="block text-sm">
+        <span className="mb-1 block text-xs uppercase tracking-wide text-muted">First section heading</span>
+        <input value={heading} onChange={(event) => setHeading(event.target.value)} className="w-full rounded-xl border border-line px-3 py-2" />
+      </label>
+      <label className="block text-sm">
+        <span className="mb-1 block text-xs uppercase tracking-wide text-muted">First section copy</span>
+        <textarea required value={body} onChange={(event) => setBody(event.target.value)} rows={6} className="w-full rounded-xl border border-line px-3 py-2" />
+      </label>
+      <ImageUpload label="Page image" folder="pages" value={heroImageUrl} onChange={setHeroImageUrl} />
+      <button type="submit" className="rounded-xl bg-navy px-4 py-2 text-sm font-semibold text-white">
+        Create page
+      </button>
+      {status ? <p className="text-sm text-red-700">{status}</p> : null}
+    </form>
+  );
+}
+
+export function NewArticleForm({ locale }: { locale: string }) {
+  const [title, setTitle] = useState("");
+  const [heading, setHeading] = useState("");
+  const [excerpt, setExcerpt] = useState("");
+  const [body, setBody] = useState("");
+  const [tags, setTags] = useState("");
+  const [heroImageUrl, setHeroImageUrl] = useState("");
+  const [status, setStatus] = useState("");
+
+  async function onSubmit(event: React.FormEvent) {
+    event.preventDefault();
+    setStatus("Saving…");
+    const slug =
+      title
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, "")
+        .slice(0, 80) || `article-${Date.now()}`;
     const response = await fetch("/api/cms", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         kind: "article",
-        slug: slug || `article-${Date.now()}`,
+        slug,
         locale,
         title,
         heading: heading || title,
@@ -198,23 +284,23 @@ export function NewArticleForm({ locale }: { locale: string }) {
         body: splitBody(body || title),
         blocks: splitBody(body || title).map((text) => ({ id: newId(), type: "paragraph", text })),
         date: new Date().toISOString().slice(0, 10),
-        tags: [],
+        tags: tags
+          .split(",")
+          .map((tag) => tag.trim())
+          .filter(Boolean),
       }),
     });
-    const json = (await response.json()) as { ok?: boolean };
-    setStatus(json.ok ? "Article published. Open it from the list below after refresh." : "Could not save.");
-    if (json.ok) {
-      setTitle("");
-      setHeading("");
-      setExcerpt("");
-      setBody("");
-      setHeroImageUrl("");
+    const json = (await response.json()) as { ok?: boolean; slug?: string; error?: string };
+    if (json.ok && json.slug) {
+      window.location.assign(`/admin/content/article/${json.slug}`);
+      return;
     }
+    setStatus(json.error || "Could not save.");
   }
 
   return (
-    <form onSubmit={onSubmit} className="mt-6 space-y-4 rounded-2xl border border-line p-5">
-      <p className="caption font-semibold uppercase tracking-wide text-gold-600">Write a new article</p>
+    <form onSubmit={onSubmit} className="space-y-4 rounded-2xl border border-line bg-white p-5">
+      <p className="caption font-semibold uppercase tracking-wide text-gold-600">Write a new blog</p>
       <label className="block text-sm">
         <span className="mb-1 block text-xs uppercase tracking-wide text-muted">Title</span>
         <input required value={title} onChange={(event) => setTitle(event.target.value)} className="w-full rounded-xl border border-line px-3 py-2" />
@@ -231,12 +317,16 @@ export function NewArticleForm({ locale }: { locale: string }) {
         <span className="mb-1 block text-xs uppercase tracking-wide text-muted">Excerpt</span>
         <textarea value={excerpt} onChange={(event) => setExcerpt(event.target.value)} rows={2} className="w-full rounded-xl border border-line px-3 py-2" />
       </label>
-      <ImageUpload label="Article image" folder="blogs" value={heroImageUrl} onChange={setHeroImageUrl} />
-      <p className="caption text-muted">After publish, open the article to add tables, bars, spacers and more images.</p>
+      <label className="block text-sm">
+        <span className="mb-1 block text-xs uppercase tracking-wide text-muted">Tags (comma separated)</span>
+        <input value={tags} onChange={(event) => setTags(event.target.value)} placeholder="CRS, BIS" className="w-full rounded-xl border border-line px-3 py-2" />
+      </label>
+      <ImageUpload label="Blog image" folder="blogs" value={heroImageUrl} onChange={setHeroImageUrl} />
+      <p className="caption text-muted">After publish you can add tables, bars, spacers and more images on the article.</p>
       <button type="submit" className="rounded-xl bg-navy px-4 py-2 text-sm font-semibold text-white">
-        Publish article
+        Publish blog
       </button>
-      {status ? <p className="text-sm text-muted">{status}</p> : null}
+      {status ? <p className="text-sm text-red-700">{status}</p> : null}
     </form>
   );
 }
@@ -329,6 +419,8 @@ export function ArticleEditor({ article, locale }: { article: CmsArticle; locale
   const [title, setTitle] = useState(article.title);
   const [heading, setHeading] = useState(article.heading);
   const [excerpt, setExcerpt] = useState(article.excerpt);
+  const [date, setDate] = useState(article.date);
+  const [tags, setTags] = useState(article.tags.join(", "));
   const [heroImageUrl, setHeroImageUrl] = useState(article.heroImageUrl || "");
   const [blocks, setBlocks] = useState<ArticleBlock[]>(articleBlocks(article));
   const [status, setStatus] = useState("");
@@ -349,8 +441,11 @@ export function ArticleEditor({ article, locale }: { article: CmsArticle; locale
         heroImageUrl,
         body: blocks.flatMap((block) => (block.type === "paragraph" && block.text.trim() ? [block.text] : [])),
         blocks: blocks.filter((block) => block.type !== "image" || block.url),
-        date: article.date,
-        tags: article.tags,
+        date,
+        tags: tags
+          .split(",")
+          .map((tag) => tag.trim())
+          .filter(Boolean),
       }),
     });
     const json = (await response.json()) as { ok?: boolean };
@@ -375,6 +470,16 @@ export function ArticleEditor({ article, locale }: { article: CmsArticle; locale
         <span className="mb-1 block text-xs uppercase tracking-wide text-muted">Excerpt</span>
         <textarea value={excerpt} onChange={(event) => setExcerpt(event.target.value)} rows={3} className="w-full rounded-xl border border-line px-3 py-2" />
       </label>
+      <div className="grid gap-4 sm:grid-cols-2">
+        <label className="block text-sm">
+          <span className="mb-1 block text-xs uppercase tracking-wide text-muted">Date</span>
+          <input value={date} onChange={(event) => setDate(event.target.value)} className="w-full rounded-xl border border-line px-3 py-2" />
+        </label>
+        <label className="block text-sm">
+          <span className="mb-1 block text-xs uppercase tracking-wide text-muted">Tags (comma separated)</span>
+          <input value={tags} onChange={(event) => setTags(event.target.value)} className="w-full rounded-xl border border-line px-3 py-2" />
+        </label>
+      </div>
       <ImageUpload label="Article hero image" folder="blogs" value={heroImageUrl} onChange={setHeroImageUrl} />
       <div className="space-y-4">
         <p className="caption font-semibold uppercase tracking-wide text-gold-600">Article blocks — copy, images, tables, bars, spacers</p>

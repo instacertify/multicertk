@@ -1,9 +1,10 @@
+import { readdir } from "node:fs/promises";
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { NextResponse } from "next/server";
 import { requireEditorSession } from "@/lib/auth";
 
-const folders = new Set(["pages", "blogs", "logos", "reviews", "menu"]);
+const folders = new Set(["pages", "blogs", "logos", "reviews", "menu", "library"]);
 const allowed = new Map([
   ["image/png", "png"],
   ["image/jpeg", "jpg"],
@@ -20,6 +21,26 @@ function slugName(name: string) {
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "")
     .slice(0, 40) || "image";
+}
+
+export async function GET(request: Request) {
+  const denied = await requireEditorSession(request);
+  if (denied) return denied;
+  const root = path.join(process.cwd(), "public", "uploads");
+  const images: { url: string; folder: string; name: string }[] = [];
+  for (const folder of folders) {
+    try {
+      const names = await readdir(path.join(root, folder));
+      for (const name of names) {
+        if (name.startsWith(".")) continue;
+        images.push({ url: `/uploads/${folder}/${name}`, folder, name });
+      }
+    } catch {
+      // folder may not exist yet
+    }
+  }
+  images.sort((left, right) => right.name.localeCompare(left.name));
+  return NextResponse.json({ images });
 }
 
 export async function POST(request: Request) {

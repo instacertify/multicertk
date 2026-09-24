@@ -12,7 +12,7 @@ import {
   schemes,
   tests,
 } from "@/data/catalog";
-import { listArticles } from "@/lib/cms";
+import { listArticles, listPages } from "@/lib/cms";
 import { languageAlternates, site } from "@/lib/site";
 
 function entry(path: string, changefreq: MetadataRoute.Sitemap[number]["changeFrequency"], priority: number) {
@@ -61,5 +61,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...euSectors.map((item) => entry(`/certifications/ce/products/${item.slug}`, "monthly", 0.6)),
     ...qcos.map((item) => entry(`/qco/${item.slug}`, "weekly", 0.6)),
     ...listArticles("en").map((item) => entry(`/blog/${item.slug}`, "monthly", 0.5)),
+    ...listPages("en")
+      .filter((item) => item.path.startsWith("/p/"))
+      .map((item) => entry(item.path, "monthly", 0.5)),
   ];
 }

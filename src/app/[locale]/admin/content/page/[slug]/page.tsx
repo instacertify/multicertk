@@ -2,9 +2,12 @@ import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { PageEditor } from "@/components/cms-editor";
+import { DeleteContentButton } from "@/components/delete-content-button";
 import { Breadcrumbs } from "@/components/ui";
-import { getPage } from "@/lib/cms";
+import { getPage, isCustomCmsPage } from "@/lib/cms";
 import { pageMetadata } from "@/lib/seo";
+
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,
@@ -45,6 +48,11 @@ export default async function EditPage({
       <p className="mt-2 text-sm text-muted">
         Public URL: <Link href={page.path || "/"} className="underline">{page.path || "/"}</Link>
       </p>
+      {isCustomCmsPage(page) ? (
+        <div className="mt-4">
+          <DeleteContentButton kind="page" slug={page.slug} locale={locale} label={page.title} />
+        </div>
+      ) : null}
       <div className="mt-8">
         <PageEditor page={page} locale={locale} />
       </div>

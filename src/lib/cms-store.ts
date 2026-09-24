@@ -40,6 +40,18 @@ export function saveArticleOverride(locale: string, article: Partial<CmsArticle>
   return store.articles[key];
 }
 
+export function deletePageOverride(locale: string, slug: string) {
+  const store = readCmsOverrides();
+  delete store.pages[`${slug}:${locale}`];
+  writeCmsOverrides(store);
+}
+
+export function deleteArticleOverride(locale: string, slug: string) {
+  const store = readCmsOverrides();
+  delete store.articles[`${slug}:${locale}`];
+  writeCmsOverrides(store);
+}
+
 export function overridesExist() {
   return existsSync(storePath);
 }

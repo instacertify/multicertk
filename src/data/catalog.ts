@@ -1,6 +1,6 @@
 import library from "./generated/library.json";
 import { countries } from "./countries";
-import { listArticles } from "@/lib/cms";
+import { listArticles, listPages } from "@/lib/cms";
 import { posts } from "./qcos";
 import { schemes } from "./schemes";
 import { tests as seedTests } from "./tests";
@@ -406,6 +406,7 @@ export type SearchDocType =
   | "country"
   | "qco"
   | "post"
+  | "page"
   | "bee"
   | "gmark"
   | "eu";
@@ -554,6 +555,18 @@ export function buildSearchDocuments(): SearchDocument[] {
       description: item.summary,
       url: `/certifications/ce/products/${item.slug}`,
       tags: ["ce", "eu", item.mandate, item.nb],
+    });
+  }
+
+  for (const page of listPages("en").filter((item) => item.path.startsWith("/p/"))) {
+    docs.push({
+      id: `page:${page.slug}`,
+      type: "page",
+      title: page.title,
+      subtitle: page.path,
+      description: page.intro,
+      url: page.path,
+      tags: ["page", "article"],
     });
   }
 

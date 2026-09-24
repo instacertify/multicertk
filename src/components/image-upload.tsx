@@ -11,7 +11,7 @@ export function ImageUpload({
 }: {
   label: string;
   value?: string;
-  folder: "pages" | "blogs" | "logos" | "reviews" | "menu";
+  folder: "pages" | "blogs" | "logos" | "reviews" | "menu" | "library";
   onChange: (url: string) => void;
   compact?: boolean;
 }) {

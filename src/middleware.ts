@@ -26,9 +26,10 @@ export default async function middleware(request: NextRequest) {
     }
   }
 
-  if (isAdminLoginPath(pathname)) {
+  if (isAdminPath(pathname) || isAdminLoginPath(pathname)) {
     const headers = new Headers(request.headers);
-    headers.set("x-certko-login", "1");
+    headers.set("x-certko-admin", "1");
+    if (isAdminLoginPath(pathname)) headers.set("x-certko-login", "1");
     return intlMiddleware(new NextRequest(request, { headers }));
   }
 

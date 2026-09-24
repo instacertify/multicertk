@@ -62,6 +62,7 @@ export default async function SearchPage({
           ["", "All"],
           ["product", "Products"],
           ["post", "Blog"],
+          ["page", "Pages"],
           ["lab", "Labs"],
           ["scheme", "Schemes"],
           ["qco", "QCO"],

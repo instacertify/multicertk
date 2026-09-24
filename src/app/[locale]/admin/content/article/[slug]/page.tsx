@@ -2,9 +2,12 @@ import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { ArticleEditor } from "@/components/cms-editor";
+import { DeleteContentButton } from "@/components/delete-content-button";
 import { Breadcrumbs } from "@/components/ui";
-import { getArticle } from "@/lib/cms";
+import { getArticle, isSeedArticle } from "@/lib/cms";
 import { pageMetadata } from "@/lib/seo";
+
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,
@@ -45,6 +48,11 @@ export default async function EditArticle({
       <p className="mt-2 text-sm text-muted">
         Public URL: <Link href={`/blog/${article.slug}`} className="underline">/blog/{article.slug}</Link>
       </p>
+      {isSeedArticle(article.slug) ? null : (
+        <div className="mt-4">
+          <DeleteContentButton kind="article" slug={article.slug} locale={locale} label={article.title} />
+        </div>
+      )}
       <div className="mt-8">
         <ArticleEditor article={article} locale={locale} />
       </div>
