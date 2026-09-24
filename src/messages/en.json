@@ -1,0 +1,87 @@
+{
+  "meta": {
+    "homeTitle": "Certification & Compliance Solution Partner",
+    "homeDescription": "Search products, HSN codes and IS standards. Certko maps BIS, BEE, GMARK, CE, FCC, SABER, WPC and the labs that unlock them."
+  },
+  "nav": {
+    "products": "Products",
+    "certification": "Certification",
+    "certifications": "Certifications",
+    "testing": "Testing",
+    "labs": "Labs",
+    "resources": "Resources",
+    "qcos": "QCOs",
+    "qco": "QCO",
+    "trustedBy": "Trusted by",
+    "reviewsTitle": "What customers say",
+    "guide": "Guide",
+    "blog": "Blog",
+    "contact": "Contact",
+    "search": "Search",
+    "countries": "Markets"
+  },
+  "cta": {
+    "quote": "Get a free quote",
+    "talk": "Talk to an expert",
+    "search": "Search schemes, standards, HSN",
+    "bookTesting": "Book testing",
+    "bookConsulting": "Book consulting"
+  },
+  "home": {
+    "eyebrow": "Compliance. Assured.",
+    "title": "Find the right certification and testing for your product",
+    "subtitle": "Type a product name, IS standard or HSN. We’ll show the schemes that usually apply — BIS, BEE, GMARK, CE, FCC, SABER, WPC — plus the tests, labs and ballpark costs so you know what to book next.",
+    "statsProducts": "Products mapped",
+    "statsTests": "Testing solutions",
+    "statsLabs": "Recognised labs",
+    "statsSchemes": "Certification schemes",
+    "needTitle": "What do you need for this product?",
+    "needCert": "Right certification",
+    "needTest": "Right testing",
+    "marketsTitle": "Where are you selling?",
+    "howTitle": "How it works",
+    "step1": "Search your product or HSN",
+    "step1Body": "Start with a product name, IS standard or HSN code. Certko maps the certification and testing routes that usually apply.",
+    "step2": "Pick the right certification",
+    "step2Body": "Compare BIS, BEE, GMARK, CE, FCC, SABER, WPC and more — with scheme notes so you know what is mandatory vs buyer-driven.",
+    "step3": "Lock the testing path",
+    "step3Body": "See indicative lab charges, recognised laboratories and what to book next. Hand the rest to an expert when you are ready.",
+    "popular": "Popular products to check",
+    "categories": "Certification solutions & product categories"
+  },
+  "search": {
+    "submit": "Search",
+    "placeholder": "Search products, CRS, ISI, HSN, labs or blogs",
+    "empty": "Type at least two characters to search the interlinked catalogue.",
+    "noResults": "No matches. Try an IS number (for example IS 302), an HSN, or a scheme name such as BIS or GMARK.",
+    "engineCatalog": "Searching the local catalogue",
+    "engineMeili": "Searching Meilisearch"
+  },
+  "footer": {
+    "blurb": "Your solution partner for certification and compliance. Every lab standard and certification scheme is searchable and interlinked.",
+    "contact": "Contact",
+    "legal": "About Us",
+    "aboutUs": "About Us",
+    "explore": "Explore"
+  },
+  "price": {
+    "eyebrow": "Certko pricing",
+    "headline": "Testing price look expensive?",
+    "body": "Don't worry — contact Certko and get up to 30% lesser pricing than the listed laboratory charges.",
+    "cta": "Contact Certko for up to 30% less",
+    "inline": "Looks expensive? Contact Certko — up to 30% less"
+  },
+  "lead": {
+    "title": "Can’t find the right solution?",
+    "body": "If your product, HSN or market path isn’t clear, talk to a certification expert. We’ll map the certification and testing route — free quote in 24 hours.",
+    "name": "Name",
+    "email": "Work email",
+    "company": "Company",
+    "phone": "Phone",
+    "interest": "What do you need?",
+    "message": "Product, HSN or standard",
+    "submit": "Request a quote",
+    "success": "Thanks — a Certko specialist will reply within 24 hours.",
+    "error": "Please check the form and try again."
+  }
+}

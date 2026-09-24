@@ -1,0 +1,205 @@
+import type { BeeProduct, BlogPost, GmarkProduct, Qco } from "./types";
+
+export const qcos: Qco[] = [
+  {
+    slug: "electronics-crs-qco",
+    name: "Electronics & IT — Compulsory Registration (CRS)",
+    ministry: "MeitY",
+    status: "mandatory",
+    productSlugs: [
+      "information-technology-equipment-safety-part-1-general-requirements",
+      "audio-video-and-similar-electronic-apparatus-safety-requirements",
+      "audio-video-information-and-communication-technology-equipment-part-1",
+      "safety-of-lamp-controlgear-part-2-sec-13-led-modules",
+      "self-ballasted-led-lamps-for-general-lighting-services",
+      "secondary-cells-lithium-systems-portable",
+    ],
+    summary: "Scheme II registration for notified electronics and IT goods. Factory inspection is not required; a BIS-recognised lab report is.",
+  },
+  {
+    slug: "household-appliances-qco",
+    name: "Household & similar electrical appliances QCO",
+    ministry: "DPIIT",
+    status: "upcoming",
+    deadline: "2026-12-31",
+    productSlugs: [
+      "household-and-similar-electrical-appliances-safety-part-1-general-requirements-i",
+      "ceiling-fans-specification",
+      "room-air-conditioners",
+    ],
+    summary: "Moves many IS 302 appliances from voluntary / buyer-driven ISI to a notified Quality Control Order.",
+  },
+  {
+    slug: "toys-qco",
+    name: "Toys Quality Control Order 2020",
+    ministry: "DPIIT",
+    status: "mandatory",
+    productSlugs: ["safety-of-toys-part-1-safety-aspects-related-to-mechanical-and-physical-properties"],
+    summary: "Mandatory ISI for electric and non-electric toys. Enforcement is active on marketplaces.",
+  },
+  {
+    slug: "steel-qco",
+    name: "Steel and steel products Quality Control Orders",
+    ministry: "Ministry of Steel",
+    status: "mandatory",
+    productSlugs: ["high-strength-deformed-steel-bars-and-wires-for-concrete-reinforcement"],
+    summary: "Family of QCOs covering structural steel, TMT bars, sheets and wire products.",
+  },
+  {
+    slug: "cement-qco",
+    name: "Cement Quality Control Order",
+    ministry: "DPIIT",
+    status: "mandatory",
+    productSlugs: ["ordinary-portland-cement-opc-43-grade"],
+    summary: "Long-standing mandatory ISI for cement grades sold in India.",
+  },
+  {
+    slug: "packaged-water-qco",
+    name: "Packaged water — BIS mandatory certification",
+    ministry: "DPIIT / FSSAI overlay",
+    status: "mandatory",
+    productSlugs: [
+      "packaged-drinking-water-other-than-packaged-natural-mineral-water",
+      "packaged-natural-mineral-water",
+    ],
+    summary: "ISI is mandatory; FSSAI licensing is a parallel food-safety overlay, not a substitute.",
+  },
+  {
+    slug: "digital-tv-satellite-qco",
+    name: "Digital television receiver for satellite broadcast transmission",
+    ministry: "MeitY",
+    status: "upcoming",
+    deadline: "2026-10-31",
+    productSlugs: ["audio-video-and-similar-electronic-apparatus-safety-requirements"],
+    summary: "Upcoming CRS expansion for satellite broadcast receivers — start lab mapping now.",
+  },
+  {
+    slug: "n-butyl-acrylate-qco",
+    name: "n-Butyl acrylate",
+    ministry: "DPIIT",
+    status: "upcoming",
+    deadline: "2026-11-15",
+    productSlugs: ["acetic-acid-specification"],
+    summary: "New chemical QCO. Related organic-chemical plants should confirm whether neighbouring monomers are in scope.",
+  },
+];
+
+export const beeProducts: BeeProduct[] = [
+  { slug: "room-air-conditioner-fixed-speed-up-to-10-465-w", name: "Room air conditioner — fixed speed", starMandatory: true, relatedProductSlug: "room-air-conditioners", summary: "ISEER labelling for fixed-speed split and window ACs." },
+  { slug: "room-ac-inverter-variable-speed-incl-cassette-floor-standing-tower-ceiling-corne", name: "Room AC — inverter / variable speed", starMandatory: true, relatedProductSlug: "room-air-conditioners", summary: "Includes cassette, floor-standing, tower and ceiling-corner units." },
+  { slug: "frost-free-refrigerator", name: "Frost-free refrigerator", starMandatory: true, summary: "Mandatory star label; pair with IS 302 / IS 1476 safety where notified." },
+  { slug: "direct-cool-refrigerator", name: "Direct-cool refrigerator", starMandatory: true, summary: "Separate BEE schedule from frost-free models." },
+  { slug: "ceiling-fan-incl-bldc", name: "Ceiling fan (including BLDC)", starMandatory: true, relatedProductSlug: "ceiling-fans-specification", summary: "Service-value based stars on top of IS 374 / IS 302." },
+  { slug: "colour-tv-ultra-hd-tv", name: "Colour TV / Ultra HD TV", starMandatory: true, relatedProductSlug: "audio-video-and-similar-electronic-apparatus-safety-requirements", summary: "Energy label stacked with CRS safety." },
+  { slug: "led-lamp-self-ballasted", name: "LED lamp — self-ballasted", starMandatory: true, relatedProductSlug: "self-ballasted-led-lamps-for-general-lighting-services", summary: "Photometry plus CRS on the same SKU." },
+  { slug: "domestic-lpg-stove", name: "Domestic LPG stove", starMandatory: true, relatedProductSlug: "domestic-gas-stoves-for-use-with-lpg", summary: "Thermal-efficiency stars plus IS 4246 ISI." },
+  { slug: "agricultural-pump-set-monoset-submersible-openwell", name: "Agricultural pump set", starMandatory: true, relatedProductSlug: "submersible-pumpsets", summary: "Monoset, submersible and openwell schedules." },
+  { slug: "electric-storage-water-heater-geyser", name: "Electric storage water heater", starMandatory: true, summary: "Standing-loss based stars; IS 302-2-21 safety sits beside it." },
+  { slug: "washing-machine", name: "Washing machine", starMandatory: true, summary: "Mandatory for notified washer types." },
+  { slug: "computer-notebook-laptop", name: "Computer / notebook / laptop", starMandatory: false, relatedProductSlug: "information-technology-equipment-safety-part-1-general-requirements", summary: "Voluntary BEE label; CRS remains mandatory." },
+];
+
+export const gmarkProducts: GmarkProduct[] = [
+  { slug: "household-refrigerators", name: "Household refrigerators", relatedProductSlug: "room-air-conditioners", summary: "GSO household-appliance list — reuse IEC 60335 + EMC." },
+  { slug: "washing-machines", name: "Washing machines", summary: "Listed G-Mark category across GSO member states." },
+  { slug: "air-conditioners", name: "Air conditioners", relatedProductSlug: "room-air-conditioners", summary: "Stack G-Mark with SABER when the destination is Saudi Arabia." },
+  { slug: "electric-fans", name: "Electric fans", relatedProductSlug: "ceiling-fans-specification", summary: "Ceiling, pedestal, table and wall fans on the GSO list." },
+  { slug: "microwave-ovens", name: "Microwave ovens", summary: "IEC 60335-2-25 plus EMC; CE package usually converts." },
+  { slug: "children-s-toys", name: "Children's toys", relatedProductSlug: "safety-of-toys-part-1-safety-aspects-related-to-mechanical-and-physical-properties", summary: "GSO toy regulation — EN 71 / IS 9873 evidence is the starting pack." },
+  { slug: "storage-water-heaters", name: "Storage water heaters", summary: "Listed appliance; Gulf voltage and plug national differences apply." },
+  { slug: "plugs", name: "Plugs", summary: "GSO electrical-accessories list." },
+  { slug: "socket-outlets", name: "Socket-outlets", summary: "Pair with plugs and travel adaptors on the same technical file." },
+  { slug: "hair-dryers", name: "Hair dryers", summary: "Small appliance on the G-Mark list." },
+];
+
+export const posts: BlogPost[] = [
+  {
+    slug: "guidelines-hs-code-product-compliance-mapping-india-faq",
+    title: "How to map an HS / HSN code to the right certification scheme",
+    excerpt: "One HSN can trigger BIS, WPC and BEE in the same market. Here is the scoping order we use on every call.",
+    date: "2026-08-12",
+    tags: ["HSN", "BIS", "GMA"],
+    relatedProductSlugs: [
+      "laptops-notebooks-is-13252-part-1",
+      "room-air-conditioners-specification-part-1-unitary-air-conditioners-fourth-revision-is-1391-part",
+    ],
+    relatedSchemeSlugs: ["bis", "wpc-eta", "bee"],
+    body: [
+      "Fix the product classification first. A laptop with Wi-Fi is not just 'IT equipment' — it is CRS + WPC, and sometimes a voluntary BEE label.",
+      "Run the four GMA pillars (safety, EMC/wireless, telecom, energy/environment) against each destination market, then check horizontal regimes such as RoHS and EPR.",
+      "Look for a CB Scheme or regional-bloc route before you quote per-country testing.",
+    ],
+  },
+  {
+    slug: "bis-air-conditioners-refrigerators-appliance-certification-faq",
+    title: "BIS + BEE on the same appliance SKU",
+    excerpt: "Why air-conditioners and refrigerators need two filings — and how to avoid burning a second sample batch.",
+    date: "2026-07-02",
+    tags: ["BIS", "BEE", "Appliances"],
+    relatedProductSlugs: [
+      "room-air-conditioners-specification-part-1-unitary-air-conditioners-fourth-revision-is-1391-part",
+      "specification-for-ceiling-fans-electrically-operated-is-374",
+    ],
+    relatedSchemeSlugs: ["bis", "bee"],
+    body: [
+      "Safety (IS 302 / particular part) and energy (BEE schedule) are different legal instruments. Passing one never grants the other.",
+      "Sequence the lab work so the same samples feed both scopes. Inverter ACs in particular lose weeks when ISEER and safety are booked as two campaigns.",
+    ],
+  },
+  {
+    slug: "export-tiles-testing-bis-iso-ce-compliance-checklist",
+    title: "Export tiles: BIS, ISO 10545 and CE in one checklist",
+    excerpt: "What to book once if the same lot will be sold in India and the EU.",
+    date: "2026-05-20",
+    tags: ["Tiles", "CE", "BIS"],
+    relatedProductSlugs: [
+      "pressed-ceramic-tiles-superseding-is-13753-1993-is-13754-1993-is-13755-1993-and-is-13756-1993-is",
+    ],
+    relatedSchemeSlugs: ["bis", "ce"],
+    body: [
+      "IS 15622 and ISO 10545 share most physical and chemical clauses. Ask the lab to report both references on the same job sheet.",
+      "CE for tiles is usually a system 3 / 4 AVCP path — still produce the DoC and keep the factory production-control file.",
+    ],
+  },
+  {
+    slug: "testing-failure-triage-retest-strategy-faq",
+    title: "When a BIS lab report fails: triage before you retest",
+    excerpt: "Most retests are avoidable. Read the failing clause, not just the price of a new sample.",
+    date: "2026-04-08",
+    tags: ["Labs", "BIS"],
+    relatedProductSlugs: [
+      "household-and-similar-electrical-appliances-safety-part-1-general-requirements-seventh-revision-",
+    ],
+    relatedSchemeSlugs: ["bis"],
+    body: [
+      "Map the failing clause back to a design, BOM or process change. Retesting the same construction wastes the marking-fee clock.",
+      "If the lab's scope is tight, moving the retest to a lab that already holds the particular part can recover two weeks.",
+    ],
+  },
+  {
+    slug: "export-southeast-asia-product-certification-overview-faq",
+    title: "Southeast Asia certification: CB Scheme first",
+    excerpt: "Singapore, Malaysia, Thailand, Indonesia and Vietnam all convert IEC evidence differently.",
+    date: "2026-03-15",
+    tags: ["ASEAN", "CB Scheme"],
+    relatedProductSlugs: ["electronic-games-video-is-iec-62368-1-2023"],
+    relatedSchemeSlugs: ["ce", "bis"],
+    body: [
+      "A CB Test Certificate plus national-difference testing is still the cheapest multi-ASEAN route for electrical goods.",
+      "Radio and telecom stay local (IMDA, MCMC, NBTC, SDPPI, MIC) even when safety converts.",
+    ],
+  },
+  {
+    slug: "msds-batteries-dangerous-goods-shipping-faq",
+    title: "Batteries: BIS, UN 38.3 and the SDS are three different documents",
+    excerpt: "CRS does not clear a lithium cell for air freight.",
+    date: "2026-02-01",
+    tags: ["Batteries", "MSDS", "UN 38.3"],
+    relatedProductSlugs: ["sealed-secondary-cells-li-ion-batteries-is-16046-parts-1-2"],
+    relatedSchemeSlugs: ["bis", "ce"],
+    body: [
+      "IS 16046 / IEC 62133 is the product-safety path. UN 38.3 is transport. The SDS / MSDS is hazard communication.",
+      "EU Battery Regulation 2023/1542 adds carbon-footprint and due-diligence data that Indian CRS never asked for.",
+    ],
+  },
+];

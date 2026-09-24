@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="56" viewBox="0 0 200 56" role="img" aria-label="Coastal Maritime School">
+  <rect width="200" height="56" rx="8" fill="#f6f3ec"/>
+  <path d="M18 36 q14-10 28 0" fill="none" stroke="#061428" stroke-width="2"/>
+  <path d="M32 16 v16" stroke="#061428" stroke-width="2"/>
+  <path d="M32 16 l10 6 -10 6" fill="#f5b400"/>
+  <text x="54" y="25" font-family="Georgia, serif" font-size="13" fill="#061428">Coastal</text>
+  <text x="54" y="41" font-family="Georgia, serif" font-size="10" fill="#5b6b7c">Maritime School</text>
+</svg>

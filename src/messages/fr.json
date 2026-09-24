@@ -1,0 +1,87 @@
+{
+  "meta": {
+    "homeTitle": "Partenaire certification et conformité",
+    "homeDescription": "Recherchez produits, codes HSN et normes IS. Certko relie BIS, BEE, GMARK, CE, FCC, SABER, WPC et les laboratoires associés."
+  },
+  "nav": {
+    "products": "Produits",
+    "certification": "Certification",
+    "certifications": "Certifications",
+    "testing": "Essais",
+    "labs": "Laboratoires",
+    "resources": "Ressources",
+    "qcos": "QCO",
+    "qco": "QCO",
+    "trustedBy": "Ils nous font confiance",
+    "reviewsTitle": "Avis clients",
+    "guide": "Guide",
+    "blog": "Blog",
+    "contact": "Contact",
+    "search": "Recherche",
+    "countries": "Marchés"
+  },
+  "cta": {
+    "quote": "Devis gratuit",
+    "talk": "Parler à un expert",
+    "search": "Rechercher schémas, normes, HSN",
+    "bookTesting": "Réserver un essai",
+    "bookConsulting": "Réserver un conseil"
+  },
+  "home": {
+    "eyebrow": "Compliance. Assured.",
+    "title": "Trouvez la bonne certification et le bon essai pour votre produit",
+    "subtitle": "Saisissez un nom de produit, une norme IS ou un HSN. Nous affichons les schémas habituels — BIS, BEE, GMARK, CE, FCC, SABER, WPC — ainsi que les essais, laboratoires et ordres de grandeur de coût.",
+    "statsProducts": "Produits cartographiés",
+    "statsTests": "Solutions d’essai",
+    "statsLabs": "Laboratoires reconnus",
+    "statsSchemes": "Schémas de certification",
+    "needTitle": "De quoi avez-vous besoin pour ce produit ?",
+    "needCert": "La bonne certification",
+    "needTest": "Le bon essai",
+    "marketsTitle": "Où vendez-vous ?",
+    "howTitle": "Comment ça marche",
+    "step1": "Recherchez votre produit ou HSN",
+    "step1Body": "Parte d’un nom, d’une norme IS ou d’un HSN. Certko cartographie les parcours de certification et d’essai habituels.",
+    "step2": "Choisissez la bonne certification",
+    "step2Body": "Comparez BIS, BEE, GMARK, CE, FCC, SABER, WPC — avec la distinction obligatoire / exigence acheteur.",
+    "step3": "Verrouillez le parcours d’essai",
+    "step3Body": "Consultez les tarifs indicatifs, les laboratoires reconnus et l’étape suivante.",
+    "popular": "Produits populaires",
+    "categories": "Solutions de certification et catégories"
+  },
+  "search": {
+    "submit": "Rechercher",
+    "placeholder": "Rechercher produit, norme IS, HSN, laboratoire ou schéma",
+    "empty": "Saisissez au moins deux caractères pour interroger le catalogue interconnecté.",
+    "noResults": "Aucun résultat. Essayez un numéro IS (ex. IS 302), un HSN ou un schéma comme BIS ou GMARK.",
+    "engineCatalog": "Recherche dans le catalogue local",
+    "engineMeili": "Recherche Meilisearch"
+  },
+  "footer": {
+    "blurb": "Votre partenaire certification et conformité. Chaque norme de laboratoire et schéma est interrogeable et relié.",
+    "contact": "Contact",
+    "legal": "À propos",
+    "aboutUs": "À propos",
+    "explore": "Explorer"
+  },
+  "price": {
+    "eyebrow": "Tarifs Certko",
+    "headline": "Le prix des essais vous paraît élevé ?",
+    "body": "Pas d’inquiétude — contactez Certko et obtenez jusqu’à 30 % de moins que les tarifs laboratoire affichés.",
+    "cta": "Contacter Certko pour jusqu’à 30 % de moins",
+    "inline": "Trop cher ? Contactez Certko — jusqu’à 30 % de moins"
+  },
+  "lead": {
+    "title": "Vous ne trouvez pas la bonne solution ?",
+    "body": "Si le produit, le HSN ou le marché n’est pas clair, parlez à un expert. Cartographie gratuite sous 24 h.",
+    "name": "Nom",
+    "email": "Email professionnel",
+    "company": "Société",
+    "phone": "Téléphone",
+    "interest": "De quoi avez-vous besoin ?",
+    "message": "Produit, HSN ou norme",
+    "submit": "Demander un devis",
+    "success": "Merci — un spécialiste Certko répond sous 24 h.",
+    "error": "Vérifiez le formulaire puis réessayez."
+  }
+}
