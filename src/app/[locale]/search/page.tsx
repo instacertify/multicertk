@@ -8,6 +8,8 @@ import { getPage } from "@/lib/cms";
 import { pageMetadata, websiteLd } from "@/lib/seo";
 import { searchQuerySchema } from "@/lib/validation";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata({
   params,
   searchParams,
@@ -39,7 +41,7 @@ export default async function SearchPage({
   const parsed = searchQuerySchema.safeParse(raw);
   const q = parsed.success ? parsed.data.q : "";
   const type = parsed.success ? parsed.data.type : undefined;
-  const result = await searchAll(q, 30, type);
+  const result = await searchAll(q, 40, type);
   const cms = await getPage("search", locale);
 
   return (
@@ -48,7 +50,8 @@ export default async function SearchPage({
       <Breadcrumbs items={[{ href: "/", label: "Home" }, { href: "/search", label: "Search" }]} />
       <h1 className="mt-4 font-display text-4xl text-navy">{cms?.title ?? "Search the interlinked catalogue"}</h1>
       <p className="lead mt-2 text-muted">
-        {cms?.intro ?? "Products, IS standards, HSN codes, schemes, labs, tests, QCOs and destination markets."}
+        {cms?.intro ??
+          "The same live catalogue as the rest of the site — products, ISI / CRS, HSN, IS numbers, labs, tests, blogs and markets."}
       </p>
       <PageMedia src={cms?.heroImageUrl} alt={cms?.heroImageAlt || cms?.title || "Search"} gallery={cms?.galleryUrls} />
       <div className="mt-6">
@@ -58,9 +61,11 @@ export default async function SearchPage({
         {[
           ["", "All"],
           ["product", "Products"],
+          ["post", "Blog"],
           ["lab", "Labs"],
           ["scheme", "Schemes"],
           ["qco", "QCO"],
+          ["test", "Tests"],
           ["bee", "BEE"],
           ["gmark", "G-Mark"],
           ["eu", "EU / CE"],
@@ -80,7 +85,7 @@ export default async function SearchPage({
         })}
       </div>
       <p className="mt-3 text-xs text-muted">
-        Engine: {result.engine === "meilisearch" ? "Meilisearch Community Edition" : "in-process catalogue (Meilisearch optional)"}
+        Live catalogue search — the same index as product, lab and blog pages.
       </p>
       <div className="mt-8 grid gap-4">
         {result.hits.length === 0 ? (

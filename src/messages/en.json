@@ -51,7 +51,7 @@
   },
   "search": {
     "submit": "Search",
-    "placeholder": "Search product, IS standard, HSN, lab or scheme",
+    "placeholder": "Search products, CRS, ISI, HSN, labs or blogs",
     "empty": "Type at least two characters to search the interlinked catalogue.",
     "noResults": "No matches. Try an IS number (for example IS 302), an HSN, or a scheme name such as BIS or GMARK.",
     "engineCatalog": "Searching the local catalogue",

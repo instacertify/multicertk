@@ -5,8 +5,11 @@ import { PageMedia } from "@/components/page-hero";
 import { ListedPrice, PriceReassurance } from "@/components/price-reassurance";
 import { Badge, Breadcrumbs, StatusBadge } from "@/components/ui";
 import { bisRouteLabel, categories, filterProducts, formatRange, isCrsProduct, schemes } from "@/data/catalog";
+import { rankByCatalogSearch } from "@/lib/search";
 import { getPage } from "@/lib/cms";
 import { pageMetadata } from "@/lib/seo";
+
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -28,7 +31,12 @@ export default async function AllProductsPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const filters = await searchParams;
-  const rows = filterProducts(filters);
+  const rows = rankByCatalogSearch(
+    filterProducts({ ...filters, q: undefined }),
+    filters.q,
+    "product",
+    (product) => `/product/${product.slug}`,
+  );
   const cms = await getPage("products-all", locale);
 
   return (
@@ -100,6 +108,13 @@ export default async function AllProductsPage({
             </tr>
           </thead>
           <tbody>
+            {rows.length === 0 ? (
+              <tr>
+                <td colSpan={5} className="px-4 py-6 text-muted">
+                  No products match that search. The table uses the same live catalogue as site search.
+                </td>
+              </tr>
+            ) : null}
             {rows.map((product) => (
               <tr key={product.slug} className="border-t border-line">
                 <td className="px-4 py-3">

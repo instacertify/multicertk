@@ -359,7 +359,6 @@ export function filterProducts(filters: {
   status?: string;
   bis?: string;
 }) {
-  const query = filters.q?.trim().toLowerCase() ?? "";
   return products.filter((item) => {
     if (filters.category && item.categorySlug !== filters.category) return false;
     if (filters.scheme && !item.schemeSlugs.includes(filters.scheme)) return false;
@@ -367,20 +366,15 @@ export function filterProducts(filters: {
       if (bisRoute(item) !== filters.bis) return false;
     }
     if (filters.status && item.qcoStatus !== filters.status) return false;
-    if (!query) return true;
-    const hay = `${item.name} ${item.standard} ${item.hsn} ${item.hsn4 ?? ""} ${item.excerpt}`.toLowerCase();
-    return hay.includes(query) || (item.standardKey ?? "").toLowerCase().includes(query.replace(/\s+/g, ""));
+    return true;
   });
 }
 
 export function filterLabs(filters: { q?: string; state?: string; category?: string }) {
-  const query = filters.q?.trim().toLowerCase() ?? "";
   return labs.filter((lab) => {
     if (filters.state && lab.state.toLowerCase() !== filters.state.toLowerCase()) return false;
     if (filters.category && !lab.categorySlugs.includes(filters.category)) return false;
-    if (!query) return true;
-    const hay = `${lab.name} ${lab.city} ${lab.state} ${lab.bisCode} ${lab.standardCodes.join(" ")} ${lab.categorySlugs.join(" ")}`.toLowerCase();
-    return hay.includes(query);
+    return true;
   });
 }
 
@@ -436,7 +430,7 @@ export function buildSearchDocuments(): SearchDocument[] {
       type: "product",
       title: product.name,
       subtitle: `${product.standard} · HSN ${product.hsn}`,
-      description: product.excerpt,
+      description: `${isCrsProduct(product) ? "BIS CRS Scheme II." : "BIS ISI mark Scheme I."} ${product.excerpt}`,
       url: `/product/${product.slug}`,
       tags: [
         product.standard,
@@ -447,6 +441,8 @@ export function buildSearchDocuments(): SearchDocument[] {
         product.schemeLabel ?? "",
         bisRouteLabel(product),
         isCrsProduct(product) ? "CRS" : "ISI",
+        isCrsProduct(product) ? "Scheme II" : "Scheme I",
+        "BIS",
         category?.name ?? "",
         ...product.schemeSlugs,
       ],
@@ -461,7 +457,7 @@ export function buildSearchDocuments(): SearchDocument[] {
       subtitle: scheme.regulator,
       description: scheme.summary,
       url: `/certifications/${scheme.slug}`,
-      tags: [scheme.shortName, scheme.family, ...scheme.countrySlugs],
+      tags: [scheme.shortName, scheme.family, ...(scheme.slug === "bis" ? ["BIS", "CRS", "ISI"] : []), ...scheme.countrySlugs],
     });
   }
 
@@ -569,7 +565,7 @@ export function buildSearchDocuments(): SearchDocument[] {
       subtitle: post.date,
       description: post.excerpt,
       url: `/blog/${post.slug}`,
-      tags: post.tags,
+      tags: [...post.tags, "blog", "article"],
     });
   }
 

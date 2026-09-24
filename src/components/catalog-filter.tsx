@@ -14,7 +14,7 @@ export function CatalogFilter({
         <input
           name="q"
           defaultValue={q}
-          placeholder="IS number, HSN, product or lab"
+          placeholder="Product, CRS, ISI, HSN, IS number or lab"
           className="w-full rounded-xl border border-line bg-white px-3 py-2 outline-none focus:border-navy"
         />
       </label>

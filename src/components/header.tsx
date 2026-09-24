@@ -6,6 +6,7 @@ import { Link } from "@/i18n/navigation";
 import type { HeaderChrome, NavChild, NavItem } from "@/data/site-media";
 import { LocaleSwitcher } from "./locale-switcher";
 import { Logo } from "./logo";
+import { SearchBox } from "./search-box";
 
 const localeKeys: Record<string, "certification" | "testing" | "qcos" | "labs" | "resources"> = {
   certification: "certification",
@@ -122,7 +123,10 @@ export function Header({ menu, chrome }: { menu: NavItem[]; chrome?: HeaderChrom
           ))}
         </nav>
         <div className="flex items-center gap-3">
-          <Link href="/search" className="type-nav hidden items-center gap-1.5 text-navy hover:text-gold-600 sm:inline-flex">
+          <div className="hidden w-56 xl:block">
+            <SearchBox size="sm" />
+          </div>
+          <Link href="/search" className="type-nav inline-flex items-center gap-1.5 text-navy hover:text-gold-600 xl:hidden">
             <NavIcon src={chrome?.searchIconUrl} />
             {t("search")}
           </Link>
@@ -199,10 +203,7 @@ export function Header({ menu, chrome }: { menu: NavItem[]; chrome?: HeaderChrom
                   : null}
               </div>
             ))}
-            <Link href="/search" className="inline-flex items-center gap-2" onClick={() => setOpen(false)}>
-              <NavIcon src={chrome?.searchIconUrl} />
-              {t("search")}
-            </Link>
+            <SearchBox size="sm" />
             <Link href="/contact" className="inline-flex items-center gap-2" onClick={() => setOpen(false)}>
               <NavIcon src={chrome?.quoteIconUrl} />
               {cta("quote")}

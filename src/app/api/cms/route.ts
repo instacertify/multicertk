@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { requireEditorSession } from "@/lib/auth";
+import { invalidateSearchDocuments } from "@/lib/search";
 import { getArticle, getPage, listArticles, listPages } from "@/lib/cms";
 import { upsertDirectusItem } from "@/lib/directus-write";
 import { saveArticleOverride, savePageOverride } from "@/lib/cms-store";
@@ -122,6 +123,7 @@ export async function POST(request: Request) {
         },
       );
     }
+    invalidateSearchDocuments();
     return NextResponse.json({ ok: true, saved: "page", directus: pageResult });
   }
 
@@ -173,6 +175,7 @@ export async function POST(request: Request) {
         status: "published",
       },
     );
+    invalidateSearchDocuments();
     return NextResponse.json({ ok: true, saved: "article", directus: articleResult });
   }
 

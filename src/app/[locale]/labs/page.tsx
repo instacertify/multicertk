@@ -4,10 +4,11 @@ import { PageMedia } from "@/components/page-hero";
 import { PriceOffer, PriceReassurance } from "@/components/price-reassurance";
 import { Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
 import { categories, filterLabs, formatRange, labs } from "@/data/catalog";
+import { rankByCatalogSearch } from "@/lib/search";
 import { getPage } from "@/lib/cms";
+import { breadcrumbLd, pageMetadata } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
-import { breadcrumbLd, pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -29,7 +30,13 @@ export default async function LabsPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const filters = await searchParams;
-  const rows = filterLabs(filters);
+  const rows = rankByCatalogSearch(
+    filterLabs({ ...filters, q: undefined }),
+    filters.q,
+    "lab",
+    (lab) => `/labs/${lab.slug}`,
+    2000,
+  );
   const states = [...new Set(labs.map((lab) => lab.state).filter(Boolean))].sort();
   const cms = await getPage("labs", locale);
 
@@ -69,6 +76,11 @@ export default async function LabsPage({
         </label>
       </CatalogFilter>
       <div className="mt-8 grid gap-4 md:grid-cols-2">
+        {rows.length === 0 ? (
+          <p className="rounded-2xl border border-line bg-paper p-6 text-muted md:col-span-2">
+            No labs match that search. The directory uses the same live catalogue as site search.
+          </p>
+        ) : null}
         {rows.map((lab) => (
           <div key={lab.slug} className="rounded-2xl border border-line p-1">
             <CardLink
