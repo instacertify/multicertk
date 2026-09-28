@@ -5,6 +5,16 @@ import { isAdminLoginPath, isAdminPath, readSession, safeAdminNext, splitLocaleP
 
 const intlMiddleware = createMiddleware(routing);
 
+function withAdminHeaders(request: NextRequest) {
+  const headers = new Headers(request.headers);
+  headers.set("x-pathname", request.nextUrl.pathname);
+  if (isAdminPath(request.nextUrl.pathname)) {
+    headers.set("x-certko-admin", "1");
+    if (isAdminLoginPath(request.nextUrl.pathname)) headers.set("x-certko-login", "1");
+  }
+  return intlMiddleware(new NextRequest(request, { headers }));
+}
+
 export default async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
@@ -26,14 +36,7 @@ export default async function middleware(request: NextRequest) {
     }
   }
 
-  if (isAdminPath(pathname) || isAdminLoginPath(pathname)) {
-    const headers = new Headers(request.headers);
-    headers.set("x-certko-admin", "1");
-    if (isAdminLoginPath(pathname)) headers.set("x-certko-login", "1");
-    return intlMiddleware(new NextRequest(request, { headers }));
-  }
-
-  return intlMiddleware(request);
+  return withAdminHeaders(request);
 }
 
 export const config = {
