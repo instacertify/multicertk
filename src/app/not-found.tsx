@@ -15,9 +15,12 @@ export default function NotFound() {
           <p className="caption font-semibold uppercase tracking-wide text-gold-600">404</p>
           <h1 className="mt-2 font-display text-navy">Page not found</h1>
           <p className="lead mt-3 text-muted">That scheme, standard or lab record is not in the catalogue yet.</p>
-          <a href="/" className="type-btn mt-6 inline-block rounded-full bg-navy px-5 py-2 text-white">
+          <a href="/" className="type-btn mt-6 inline-block bg-navy px-5 py-2 text-white">
             Back home
           </a>
+          <p className="mt-4 text-sm text-muted">
+            Need a path mapped? <a className="underline" href="/contact">Ask for a quote</a>.
+          </p>
         </div>
       </body>
     </html>

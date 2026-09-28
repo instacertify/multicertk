@@ -13,6 +13,7 @@ export const leadSchema = z.object({
     "tender",
     "marketplace",
     "msds",
+    "privacy",
     "other",
   ]),
   message: z.string().trim().min(10).max(4000),

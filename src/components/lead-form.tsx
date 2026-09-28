@@ -11,6 +11,7 @@ const interests = [
   ["tender", "Government tender"],
   ["marketplace", "Marketplace listing"],
   ["msds", "MSDS / SDS"],
+  ["privacy", "Data request (DPDP / GDPR)"],
   ["other", "Other"],
 ] as const;
 
@@ -18,6 +19,7 @@ export function LeadForm({ sourcePath }: { sourcePath?: string }) {
   const t = useTranslations("lead");
   const [status, setStatus] = useState<"idle" | "ok" | "err">("idle");
   const [pending, setPending] = useState(false);
+  const defaultInterest = sourcePath?.includes("data-request") ? "privacy" : "bis";
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -58,7 +60,7 @@ export function LeadForm({ sourcePath }: { sourcePath?: string }) {
       </div>
       <label className="text-sm font-medium">
         {t("interest")}
-        <select name="interest" className="mt-1 w-full border border-line px-3 py-2" defaultValue="bis">
+        <select name="interest" className="mt-1 w-full border border-line px-3 py-2" defaultValue={defaultInterest}>
           {interests.map(([value, label]) => (
             <option key={value} value={value}>
               {label}
