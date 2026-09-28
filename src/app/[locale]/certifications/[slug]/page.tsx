@@ -102,7 +102,7 @@ export default async function SchemePage({
           <Link
             key={countrySlug}
             href={`/certifications/countries/${countrySlug}`}
-            className="border border-line px-3 py-1 text-sm font-semibold"
+            className="rounded-full border border-line px-3 py-1 text-sm font-semibold hover:border-gold-600 hover:text-gold-600"
           >
             {getCountry(countrySlug)?.name ?? countrySlug}
           </Link>

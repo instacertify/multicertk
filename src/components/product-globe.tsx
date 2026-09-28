@@ -34,10 +34,14 @@ const products: ProductMark[] = [
   { name: "toy", lon: 124, lat: 12, radius: "core" },
   { name: "bottle", lon: 160, lat: -16, radius: "core" },
   { name: "ceramic", lon: 196, lat: 20, radius: "core" },
-  { name: "phone", lon: 232, lat: -28, radius: "core" },
-  { name: "charger", lon: 268, lat: 4, radius: "core" },
-  { name: "helmet", lon: 304, lat: -12, radius: "core" },
-  { name: "cup", lon: 340, lat: 24, radius: "core" },
+  { name: "tv", lon: 232, lat: -28, radius: "core" },
+  { name: "speaker", lon: 268, lat: 4, radius: "core" },
+  { name: "camera", lon: 304, lat: -12, radius: "core" },
+  { name: "watch", lon: 340, lat: 24, radius: "core" },
+  { name: "kettle", lon: 44, lat: 40, radius: "in" },
+  { name: "blender", lon: 154, lat: -36, radius: "in" },
+  { name: "toaster", lon: 224, lat: 36, radius: "mid" },
+  { name: "iron", lon: 334, lat: 30, radius: "mid" },
 ];
 
 export const globeStampNames = [
@@ -73,7 +77,7 @@ export function ProductIcon({ name }: { name: string }) {
     case "phone":
       return (
         <svg viewBox="0 0 24 24" aria-hidden {...common}>
-          <rect x="8" y="3" width="8" height="18" rx="1.4" />
+          <rect x="8" y="3" width="8" height="18" rx="2.2" />
           <path d="M10.5 5.2h3M12 18.6h.01" />
         </svg>
       );
@@ -93,7 +97,7 @@ export function ProductIcon({ name }: { name: string }) {
     case "charger":
       return (
         <svg viewBox="0 0 24 24" aria-hidden {...common}>
-          <rect x="7.5" y="3.5" width="9" height="11.5" />
+          <rect x="7.5" y="3.5" width="9" height="11.5" rx="1.8" />
           <path d="M10.2 15v4.2h3.6V15M11 8.2 13.2 11h-2.2L13.2 14" />
         </svg>
       );
@@ -129,14 +133,14 @@ export function ProductIcon({ name }: { name: string }) {
     case "tablet":
       return (
         <svg viewBox="0 0 24 24" aria-hidden {...common}>
-          <rect x="5.5" y="3.4" width="13" height="17.2" rx="1.2" />
+          <rect x="5.5" y="3.4" width="13" height="17.2" rx="2" />
           <path d="M12 17.6h.01" />
         </svg>
       );
     case "fridge":
       return (
         <svg viewBox="0 0 24 24" aria-hidden {...common}>
-          <rect x="7.4" y="3.4" width="9.2" height="17.2" />
+          <rect x="7.4" y="3.4" width="9.2" height="17.2" rx="1.8" />
           <path d="M7.4 10.2h9.2M14.8 6v2.2M14.8 12.8v3.2" />
         </svg>
       );
@@ -144,8 +148,8 @@ export function ProductIcon({ name }: { name: string }) {
       return (
         <svg viewBox="0 0 24 24" aria-hidden {...common}>
           <path d="M5.6 13.2v-1.6A6.4 6.4 0 0 1 12 5.2a6.4 6.4 0 0 1 6.4 6.4v1.6" />
-          <rect x="4.2" y="12.4" width="3.4" height="6.2" rx="1" />
-          <rect x="16.4" y="12.4" width="3.4" height="6.2" rx="1" />
+          <rect x="4.2" y="12.4" width="3.4" height="6.2" rx="1.4" />
+          <rect x="16.4" y="12.4" width="3.4" height="6.2" rx="1.4" />
         </svg>
       );
     case "toy":
@@ -181,14 +185,14 @@ export function ProductIcon({ name }: { name: string }) {
     case "door":
       return (
         <svg viewBox="0 0 24 24" aria-hidden {...common}>
-          <path d="M6.4 3.6h11.2v16.8H6.4z" />
+          <path d="M6.8 3.8h10.4a1.6 1.6 0 0 1 1.6 1.6v14.8a1.6 1.6 0 0 1-1.6 1.6H6.8A1.6 1.6 0 0 1 5.2 20.2V5.4A1.6 1.6 0 0 1 6.8 3.8z" />
           <path d="M14.8 12.2h.01" />
         </svg>
       );
     case "window":
       return (
         <svg viewBox="0 0 24 24" aria-hidden {...common}>
-          <rect x="5" y="4.2" width="14" height="15.6" />
+          <rect x="5" y="4.2" width="14" height="15.6" rx="1.6" />
           <path d="M12 4.2v15.6M5 12h14" />
         </svg>
       );
@@ -208,14 +212,14 @@ export function ProductIcon({ name }: { name: string }) {
     case "heater":
       return (
         <svg viewBox="0 0 24 24" aria-hidden {...common}>
-          <rect x="5.4" y="4.4" width="13.2" height="15.2" />
+          <rect x="5.4" y="4.4" width="13.2" height="15.2" rx="1.8" />
           <path d="M8.4 8.2v7.4M12 8.2v7.4M15.6 8.2v7.4" />
         </svg>
       );
     case "dryer":
       return (
         <svg viewBox="0 0 24 24" aria-hidden {...common}>
-          <rect x="4.6" y="3.8" width="14.8" height="16.4" />
+          <rect x="4.6" y="3.8" width="14.8" height="16.4" rx="2.2" />
           <circle cx="12" cy="12" r="4.4" />
           <circle cx="12" cy="12" r="1.4" />
         </svg>
@@ -230,7 +234,7 @@ export function ProductIcon({ name }: { name: string }) {
     case "ac":
       return (
         <svg viewBox="0 0 24 24" aria-hidden {...common}>
-          <rect x="3.6" y="5.4" width="16.8" height="8.4" />
+          <rect x="3.6" y="5.4" width="16.8" height="8.4" rx="2" />
           <path d="M6.4 10.2h11.2M8 16.4c1.2 1.4 2.4 1.4 3.6 0M12.4 16.4c1.2 1.4 2.4 1.4 3.6 0" />
         </svg>
       );
@@ -253,6 +257,65 @@ export function ProductIcon({ name }: { name: string }) {
         <svg viewBox="0 0 24 24" aria-hidden {...common}>
           <path d="M7 7.4h8.4v6.4A4.2 4.2 0 0 1 11.2 18H11A4.2 4.2 0 0 1 7 13.8z" />
           <path d="M15.4 8.8h2.4a2.4 2.4 0 0 1 0 4.8h-2.4M8.2 19.6h6.8" />
+        </svg>
+      );
+    case "tv":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden {...common}>
+          <rect x="3.6" y="5.2" width="16.8" height="11.2" rx="1.8" />
+          <path d="M9.2 18.8h5.6M12 16.4v2.4" />
+        </svg>
+      );
+    case "speaker":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden {...common}>
+          <rect x="7.2" y="3.6" width="9.6" height="16.8" rx="2" />
+          <circle cx="12" cy="14.2" r="3" />
+          <circle cx="12" cy="7.4" r="1.1" />
+        </svg>
+      );
+    case "camera":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden {...common}>
+          <rect x="3.8" y="7.2" width="16.4" height="11.2" rx="2" />
+          <path d="M8.2 7.2 9.6 4.8h4.8L16 7.2" />
+          <circle cx="12" cy="12.8" r="3.1" />
+        </svg>
+      );
+    case "watch":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden {...common}>
+          <rect x="7.4" y="6.6" width="9.2" height="10.8" rx="2.4" />
+          <path d="M9.2 6.6V4.2h5.6v2.4M9.2 17.4v2.4h5.6v-2.4M12 9.4v3.2l2 1.2" />
+        </svg>
+      );
+    case "kettle":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden {...common}>
+          <path d="M6.4 9.2h8.8v7.2A3.6 3.6 0 0 1 11.6 20H10a3.6 3.6 0 0 1-3.6-3.6z" />
+          <path d="M15.2 10.4h2.6a2.2 2.2 0 0 1 0 4.4h-1.4M10 6.2V9.2M8.6 6.2h3.2" />
+        </svg>
+      );
+    case "blender":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden {...common}>
+          <path d="M8.2 4.2h7.6L14.4 12H9.6z" />
+          <rect x="7.6" y="12" width="8.8" height="6.4" rx="1.6" />
+          <path d="M9.2 20.2h5.6" />
+        </svg>
+      );
+    case "toaster":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden {...common}>
+          <rect x="4.2" y="8.2" width="15.6" height="9.2" rx="2" />
+          <path d="M7.4 8.2V6.4M12 8.2V6.4M16.6 8.2V6.4M17.6 12.4h1.4" />
+        </svg>
+      );
+    case "iron":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden {...common}>
+          <path d="M4.4 15.2h13.4c1.4 0 2.4-1.2 2.4-2.6 0-3.4-3.8-5.6-8.4-5.6H8.6L4.4 12.4z" />
+          <path d="M6.4 17.8h9.2" />
         </svg>
       );
     default:
@@ -296,7 +359,6 @@ export function ProductGlobe() {
               style={{
                 transform: `rotateY(${item.lon}deg) rotateX(${item.lat}deg) translateZ(var(--item-r))`,
               }}
-              title={item.name}
             >
               <ProductIcon name={item.name} />
             </span>

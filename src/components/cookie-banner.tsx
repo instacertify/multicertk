@@ -63,19 +63,19 @@ export function CookieBanner({ settings }: { settings: CookieSettings }) {
   }
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 border-t border-navy bg-navy px-4 py-2 text-white">
+    <div className="fixed inset-x-3 bottom-3 z-50 rounded-2xl border border-line bg-white px-4 py-3 text-navy shadow-[0_12px_40px_rgba(16,32,51,0.12)]">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3">
-        <p className="max-w-3xl text-[12px] leading-snug text-white/80">
+        <p className="max-w-3xl text-[12px] leading-snug text-muted">
           {settings.message}{" "}
-          <Link href={settings.cookiesPath} className="underline">
+          <Link href={settings.cookiesPath} className="text-navy underline hover:text-gold-600">
             Cookies
           </Link>
         </p>
         <div className="flex shrink-0 gap-2">
-          <button type="button" className="border border-white/30 px-3 py-1 text-[12px]" onClick={() => save(false, false)}>
+          <button type="button" className="rounded-full border border-line px-3 py-1 text-[12px] text-navy" onClick={() => save(false, false)}>
             Essential
           </button>
-          <button type="button" className="bg-gold px-3 py-1 text-[12px] text-navy" onClick={() => save(true, true)}>
+          <button type="button" className="rounded-full bg-gold px-3 py-1 text-[12px] text-navy" onClick={() => save(true, true)}>
             Allow
           </button>
         </div>

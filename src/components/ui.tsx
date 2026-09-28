@@ -14,7 +14,7 @@ export function Badge({
     alert: "bg-amber-100 text-amber-950",
   };
   return (
-    <span className={`inline-flex px-2 py-0.5 text-[11px] font-semibold ${tones[tone]}`}>
+    <span className={`inline-flex rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${tones[tone]}`}>
       {children}
     </span>
   );
@@ -34,7 +34,7 @@ export function CardLink({
   image?: string;
 }) {
   return (
-    <Link href={href} className="block border border-line bg-white hover:border-navy">
+    <Link href={href} className="soft-card block hover:border-gold-600">
       {image ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img src={image} alt="" className="h-40 w-full object-cover" />
@@ -78,7 +78,7 @@ export function StatusBadge({ status }: { status: "mandatory" | "upcoming" | "vo
 }
 
 export function RecordTable({ children }: { children: React.ReactNode }) {
-  return <div className="overflow-x-auto border border-line bg-white">{children}</div>;
+  return <div className="soft-card overflow-x-auto">{children}</div>;
 }
 
 export function JsonLd({ data }: { data: Record<string, unknown> | Record<string, unknown>[] }) {

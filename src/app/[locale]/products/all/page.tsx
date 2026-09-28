@@ -57,7 +57,7 @@ export default async function AllProductsPage({
       <CatalogFilter q={filters.q}>
         <label className="text-sm">
           <span className="mb-1 block text-xs uppercase tracking-wide text-muted">Category</span>
-          <select name="category" defaultValue={filters.category ?? ""} className="border border-line bg-white px-3 py-2">
+          <select name="category" defaultValue={filters.category ?? ""} className="rounded-xl border border-line bg-white px-3 py-2">
             <option value="">All categories</option>
             {categories.map((category) => (
               <option key={category.slug} value={category.slug}>
@@ -68,7 +68,7 @@ export default async function AllProductsPage({
         </label>
         <label className="text-sm">
           <span className="mb-1 block text-xs uppercase tracking-wide text-muted">BIS route</span>
-          <select name="bis" defaultValue={filters.bis ?? ""} className="border border-line bg-white px-3 py-2">
+          <select name="bis" defaultValue={filters.bis ?? ""} className="rounded-xl border border-line bg-white px-3 py-2">
             <option value="">CRS and ISI</option>
             <option value="crs">CRS (part of BIS)</option>
             <option value="isi">ISI mark (not on CRS)</option>
@@ -76,7 +76,7 @@ export default async function AllProductsPage({
         </label>
         <label className="text-sm">
           <span className="mb-1 block text-xs uppercase tracking-wide text-muted">Scheme</span>
-          <select name="scheme" defaultValue={filters.scheme ?? ""} className="border border-line bg-white px-3 py-2">
+          <select name="scheme" defaultValue={filters.scheme ?? ""} className="rounded-xl border border-line bg-white px-3 py-2">
             <option value="">All schemes</option>
             {schemes.map((scheme) => (
               <option key={scheme.slug} value={scheme.slug}>
@@ -87,7 +87,7 @@ export default async function AllProductsPage({
         </label>
         <label className="text-sm">
           <span className="mb-1 block text-xs uppercase tracking-wide text-muted">QCO</span>
-          <select name="status" defaultValue={filters.status ?? ""} className="border border-line bg-white px-3 py-2">
+          <select name="status" defaultValue={filters.status ?? ""} className="rounded-xl border border-line bg-white px-3 py-2">
             <option value="">Any status</option>
             <option value="mandatory">Mandatory</option>
             <option value="upcoming">Upcoming</option>
@@ -97,7 +97,7 @@ export default async function AllProductsPage({
       </CatalogFilter>
       <RecordTable>
         <table className="mt-6 min-w-full text-left text-sm">
-          <thead className="bg-navy text-white">
+          <thead className="bg-gold/20 text-navy">
             <tr>
               <th className="px-4 py-3">Product / standard</th>
               <th className="px-4 py-3">HSN</th>

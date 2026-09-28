@@ -77,7 +77,7 @@ export default async function SearchPage({
             <Link
               key={label}
               href={href}
-              className={`border px-3 py-1 ${type === value || (!type && !value) ? "border-navy bg-navy text-white" : "border-line"}`}
+              className={`rounded-full border px-3 py-1 ${type === value || (!type && !value) ? "border-gold bg-gold text-navy" : "border-line text-navy"}`}
             >
               {label}
             </Link>
@@ -89,7 +89,7 @@ export default async function SearchPage({
       </p>
       <div className="mt-8 grid gap-4">
         {result.hits.length === 0 ? (
-          <p className="border border-line bg-paper p-6 text-muted">
+          <p className="soft-card p-6 text-muted">
             {q ? "No matches. Try an IS number, HSN or scheme name such as BIS, GMARK or SABER." : "Type a product, standard or HSN to begin."}
           </p>
         ) : (

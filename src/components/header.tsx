@@ -110,7 +110,7 @@ export function Header({ menu, chrome }: { menu: NavItem[]; chrome?: HeaderChrom
               </Link>
               {item.children?.length && openId === item.id && !mega ? (
                 <div
-                  className="absolute start-0 top-full z-50 min-w-56 border border-line bg-white p-2 shadow-lg"
+                  className="absolute start-0 top-full z-50 min-w-56 rounded-2xl border border-line bg-white p-2 shadow-lg"
                   onMouseEnter={() => setOpenId(item.id)}
                   onMouseLeave={() => setOpenId(null)}
                 >
@@ -133,14 +133,14 @@ export function Header({ menu, chrome }: { menu: NavItem[]; chrome?: HeaderChrom
           <LocaleSwitcher />
           <Link
             href="/contact"
-            className="type-btn hidden items-center gap-1.5 bg-gold px-3 py-1.5 text-navy hover:bg-gold-600 md:inline-flex"
+            className="type-btn hidden items-center gap-1.5 rounded-full bg-gold px-3 py-1.5 text-navy hover:bg-gold-600 md:inline-flex"
           >
             <NavIcon src={chrome?.quoteIconUrl} />
             {cta("quote")}
           </Link>
           <button
             type="button"
-            className="type-btn inline-flex items-center gap-1.5 border border-line px-3 py-1.5 lg:hidden"
+            className="type-btn inline-flex items-center gap-1.5 rounded-full border border-line px-3 py-1.5 lg:hidden"
             onClick={() => setOpen((value) => !value)}
             aria-expanded={open}
           >

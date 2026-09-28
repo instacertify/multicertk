@@ -15,11 +15,11 @@ export function CatalogFilter({
           name="q"
           defaultValue={q}
           placeholder="Product, CRS, ISI, HSN, IS number or lab"
-          className="w-full border border-line bg-white px-3 py-2 outline-none focus:border-navy"
+          className="w-full rounded-xl border border-line bg-white px-3 py-2 outline-none focus:border-gold-600"
         />
       </label>
       {children}
-      <button type="submit" className="bg-navy px-4 py-2 text-sm font-semibold text-white">
+      <button type="submit" className="rounded-xl bg-gold px-4 py-2 text-sm font-semibold text-navy">
         Filter
       </button>
     </form>

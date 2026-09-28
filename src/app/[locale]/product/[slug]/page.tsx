@@ -123,7 +123,7 @@ export default async function ProductPage({
       </div>
       <h1 className="mt-4 font-display text-navy">{product.name}</h1>
       <p className="lead mt-3 max-w-3xl text-muted">{product.excerpt}</p>
-      <p className="mt-3 max-w-3xl border border-line bg-white px-4 py-3 text-sm text-ink">{bisRouteSummary(product)}</p>
+      <p className="mt-3 max-w-3xl rounded-2xl border border-line bg-white px-4 py-3 text-sm text-ink">{bisRouteSummary(product)}</p>
       <PageMedia src={cms?.heroImageUrl} alt={cms?.heroImageAlt || product.name} gallery={cms?.galleryUrls} />
 
       <RecordTable>
@@ -161,7 +161,7 @@ export default async function ProductPage({
       <h2 className="mt-12 border-b border-navy pb-2 font-display text-navy">{sectionHeading(cms, "marking", "Annual BIS marking fee")}</h2>
       <RecordTable>
         <table className="mt-4 min-w-full text-left">
-          <thead className="bg-navy text-white">
+          <thead className="bg-gold/20 text-navy">
             <tr>
               <th className="px-4 py-2 font-medium">Unit size</th>
               <th className="px-4 py-2 font-medium">Marking fee</th>
@@ -250,7 +250,7 @@ export default async function ProductPage({
       <h2 className="mt-12 border-b border-navy pb-2 font-display text-navy">{sectionHeading(cms, "related", "Related standards & schemes")}</h2>
       <RecordTable>
         <table className="mt-4 min-w-full text-left">
-          <thead className="bg-navy text-white">
+          <thead className="bg-gold/20 text-navy">
             <tr>
               <th className="px-4 py-2 font-medium">Product</th>
               <th className="px-4 py-2 font-medium">Standard</th>

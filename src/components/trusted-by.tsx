@@ -20,7 +20,7 @@ function LogoMark({ logo }: { logo: CustomerLogo }) {
 
 function ReviewCard({ review }: { review: CustomerReview }) {
   return (
-    <blockquote className="w-[20rem] shrink-0 border border-line bg-white p-4">
+    <blockquote className="w-[20rem] shrink-0 rounded-2xl border border-line bg-white p-4">
       <p className="text-gold" aria-label={`${review.rating} out of 5`}>
         {"★".repeat(review.rating)}
         {"☆".repeat(Math.max(0, 5 - review.rating))}

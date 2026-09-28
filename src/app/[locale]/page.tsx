@@ -2,7 +2,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 
 export const dynamic = "force-dynamic";
-import { HomeHeroShapes, HomeStampStrip } from "@/components/home-decor";
+import { HomeHeroShapes, HomeProductGallery } from "@/components/home-decor";
 import { PageHero } from "@/components/page-hero";
 import { ProductGlobe } from "@/components/product-globe";
 import { SearchBox } from "@/components/search-box";
@@ -59,33 +59,33 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   return (
     <>
       <JsonLd data={[organizationLd(), websiteLd(), breadcrumbLd([{ name: "Home", path: "/" }], locale), faqLd(faqs)]} />
-      <section className="home-hero border-b border-navy bg-navy text-white">
+      <section className="home-hero home-hero-light">
         <HomeHeroShapes />
-        <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-10 lg:grid-cols-12 lg:gap-12 lg:py-14">
+        <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-14 lg:grid-cols-12 lg:gap-16 lg:py-20">
           <div className="lg:col-span-5">
-            <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-gold">{t("eyebrow")}</p>
-            <h1 className="mt-4 text-white">{cms?.title ?? t("title")}</h1>
-            <p className="mt-4 max-w-lg text-[15px] leading-7 text-white/80">{cms?.intro ?? t("subtitle")}</p>
+            <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-gold-600">{t("eyebrow")}</p>
+            <h1 className="mt-4 text-navy">{cms?.title ?? t("title")}</h1>
+            <p className="mt-4 max-w-lg text-[15px] leading-7 text-muted">{cms?.intro ?? t("subtitle")}</p>
             {cms?.heroImageUrl ? (
-              <div className="mt-6 overflow-hidden border border-white/15">
+              <div className="mt-6 overflow-hidden rounded-2xl border border-line">
                 <PageHero src={cms.heroImageUrl} alt={cms.heroImageAlt || cms.title} />
               </div>
             ) : null}
-            <div className="mt-7 w-full text-navy">
+            <div className="mt-8 w-full text-navy">
               <SearchBox />
             </div>
-            <dl className="mt-6 grid grid-cols-3 gap-3 font-mono text-[11px] text-white/70">
-              <div className="border border-white/15 px-3 py-2">
-                <dt className="text-white/45">Products</dt>
-                <dd className="mt-1 text-gold">{stats.products}</dd>
+            <dl className="mt-8 grid grid-cols-3 gap-3 font-mono text-[11px]">
+              <div className="home-stat">
+                <dt>Products</dt>
+                <dd>{stats.products}</dd>
               </div>
-              <div className="border border-white/15 px-3 py-2">
-                <dt className="text-white/45">Tests</dt>
-                <dd className="mt-1 text-gold">{stats.tests}</dd>
+              <div className="home-stat">
+                <dt>Tests</dt>
+                <dd>{stats.tests}</dd>
               </div>
-              <div className="border border-white/15 px-3 py-2">
-                <dt className="text-white/45">Schemes</dt>
-                <dd className="mt-1 text-gold">{stats.schemes}</dd>
+              <div className="home-stat">
+                <dt>Schemes</dt>
+                <dd>{stats.schemes}</dd>
               </div>
             </dl>
           </div>
@@ -94,39 +94,39 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               <div className="home-globe-well">
                 <ProductGlobe />
               </div>
-              <p className="home-globe-caption">{t("globeCaption")}</p>
             </div>
           </div>
         </div>
-        <div className="relative mx-auto max-w-7xl px-4 pb-10 lg:pb-14">
-          <div className="home-desk border border-white/15 bg-navy-800">
-            <div className="flex items-center justify-between border-b border-white/10 px-4 py-2.5">
-              <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-gold">{t("deskTitle")}</p>
-              <Link href="/products/all" className="text-[11px] text-white/70 underline">
+        <div className="relative mx-auto max-w-7xl space-y-10 px-4 pb-14 lg:pb-20">
+          <HomeProductGallery />
+          <div className="home-desk">
+            <div className="flex items-center justify-between border-b border-line px-5 py-3">
+              <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-gold-600">{t("deskTitle")}</p>
+              <Link href="/products/all" className="text-[11px] text-navy underline">
                 {t("deskAll")}
               </Link>
             </div>
             <table className="home-desk-table w-full text-left">
-              <thead className="text-white/50">
+              <thead className="text-muted">
                 <tr>
-                  <th className="px-4 py-2 font-medium">Product</th>
-                  <th className="hidden px-4 py-2 font-medium md:table-cell">Standard</th>
-                  <th className="hidden px-4 py-2 font-medium lg:table-cell">HSN</th>
-                  <th className="px-4 py-2 font-medium">Route</th>
+                  <th className="px-5 py-2.5 font-medium">Product</th>
+                  <th className="hidden px-5 py-2.5 font-medium md:table-cell">Standard</th>
+                  <th className="hidden px-5 py-2.5 font-medium lg:table-cell">HSN</th>
+                  <th className="px-5 py-2.5 font-medium">Route</th>
                 </tr>
               </thead>
               <tbody>
                 {featured.map((product) =>
                   product ? (
-                    <tr key={product.slug} className="border-t border-white/10">
-                      <td className="px-4 py-2.5">
-                        <Link href={`/product/${product.slug}`} className="block truncate text-white hover:text-gold" title={product.name}>
+                    <tr key={product.slug} className="border-t border-line">
+                      <td className="px-5 py-3">
+                        <Link href={`/product/${product.slug}`} className="block truncate text-navy hover:text-gold-600" title={product.name}>
                           {product.name}
                         </Link>
                       </td>
-                      <td className="hidden px-4 py-2.5 font-mono text-white/75 md:table-cell">{product.standard}</td>
-                      <td className="hidden px-4 py-2.5 font-mono text-white/75 lg:table-cell">{product.hsn}</td>
-                      <td className="px-4 py-2.5 text-gold">{bisRouteLabel(product).replace("BIS · ", "")}</td>
+                      <td className="hidden px-5 py-3 font-mono text-muted md:table-cell">{product.standard}</td>
+                      <td className="hidden px-5 py-3 font-mono text-muted lg:table-cell">{product.hsn}</td>
+                      <td className="px-5 py-3 font-semibold text-gold-600">{bisRouteLabel(product).replace("BIS · ", "")}</td>
                     </tr>
                   ) : null,
                 )}
@@ -135,26 +135,25 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           </div>
         </div>
       </section>
-      <HomeStampStrip />
 
       <Section title={sectionHeading(cms, "need", t("needTitle"))} eyebrow={t("needEyebrow")}>
-        <div className="grid items-start gap-10 md:grid-cols-2">
-          <div>
+        <div className="grid items-start gap-6 md:grid-cols-2 md:gap-8">
+          <div className="home-panel p-5">
             <h3 className="font-display text-navy">{t("needCert")}</h3>
-            <ul className="mt-4 divide-y divide-line border-y border-line">
+            <ul className="mt-4 divide-y divide-line">
               {schemes.slice(0, 8).map((scheme) => (
                 <li key={scheme.slug}>
-                  <Link href={`/certifications/${scheme.slug}`} className="flex items-baseline justify-between gap-3 py-2 hover:text-gold-600">
+                  <Link href={`/certifications/${scheme.slug}`} className="flex items-baseline justify-between gap-3 py-2.5 hover:text-gold-600">
                     <span>{scheme.shortName}</span>
-                    <span className="font-mono text-[11px] text-muted">{scheme.regulator}</span>
+                    <span className="font-mono text-[11px] text-gold-600">{scheme.regulator}</span>
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
-          <div>
+          <div className="home-panel p-5">
             <h3 className="font-display text-navy">{t("needTest")}</h3>
-            <ul className="mt-4 divide-y divide-line border-y border-line">
+            <ul className="mt-4 divide-y divide-line">
               {[
                 ["chemical-testing", "Chemical"],
                 ["electrical-testing", "Electrical"],
@@ -164,7 +163,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 ["mechanical-testing", "Mechanical"],
               ].map(([slug, label]) => (
                 <li key={slug}>
-                  <Link href={`/testing/${slug}`} className="block py-2 hover:text-gold-600">
+                  <Link href={`/testing/${slug}`} className="block py-2.5 hover:text-gold-600">
                     {label} testing
                   </Link>
                 </li>
@@ -175,12 +174,12 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       </Section>
 
       <Section title={sectionHeading(cms, "markets", t("marketsTitle"))} eyebrow={t("marketsEyebrow")}>
-        <div className="overflow-x-auto border border-line bg-white">
+        <div className="home-panel overflow-x-auto">
           <table className="min-w-full text-left">
-            <thead className="bg-navy text-white">
+            <thead className="bg-gold/20 text-navy">
               <tr>
-                <th className="px-4 py-2 font-medium">Market</th>
-                <th className="px-4 py-2 font-medium">Marks we file against</th>
+                <th className="px-4 py-2.5 font-medium">Market</th>
+                <th className="px-4 py-2.5 font-medium">Marks we file against</th>
               </tr>
             </thead>
             <tbody>
@@ -206,7 +205,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       </Section>
 
       <Section title={sectionHeading(cms, "how", t("howTitle"))}>
-        <ol className="divide-y divide-line border-y border-line bg-white">
+        <ol className="home-panel divide-y divide-line">
           {[
             [t("step1"), t("step1Body")],
             [t("step2"), t("step2Body")],
@@ -224,20 +223,20 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       </Section>
 
       <Section title={sectionHeading(cms, "categories", t("categories"))}>
-        <div className="grid grid-cols-1 gap-x-10 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {categories.map((category) => (
-            <p key={category.slug} className="flex items-baseline justify-between gap-3 border-b border-line py-2">
+            <p key={category.slug} className="home-category">
               <Link href={`/category/${category.slug}`} className="text-navy hover:text-gold-600">
                 {category.name}
               </Link>
-              <span className="font-mono text-[11px] text-muted">{productsByCategory(category.slug).length}</span>
+              <span className="font-mono text-[11px] text-gold-600">{productsByCategory(category.slug).length}</span>
             </p>
           ))}
         </div>
       </Section>
 
       <Section title={sectionHeading(cms, "faq", "Questions people actually ask")}>
-        <div className="divide-y divide-line border-y border-line bg-white">
+        <div className="home-panel divide-y divide-line">
           {(cms?.sections.filter((section) => section.key.startsWith("faq-") && section.body.length).length
             ? cms.sections
                 .filter((section) => section.key.startsWith("faq-"))

@@ -69,7 +69,7 @@ export default async function CategoryPage({
       <PageMedia src={cms?.heroImageUrl} alt={cms?.heroImageAlt || category.name} gallery={cms?.galleryUrls} />
       <RecordTable>
         <table className="mt-6 min-w-full text-left">
-          <thead className="bg-navy text-white">
+          <thead className="bg-gold/20 text-navy">
             <tr>
               <th className="px-4 py-2 font-medium">Product</th>
               <th className="px-4 py-2 font-medium">Standard</th>
