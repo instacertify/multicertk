@@ -323,14 +323,13 @@ html[dir="rtl"] .trust-track {
   top: 50%;
   left: 50%;
   display: flex;
-  width: 2rem;
-  height: 2rem;
-  margin: -1rem;
+  width: 2.35rem;
+  height: 2.35rem;
+  margin: -1.175rem;
   align-items: center;
   justify-content: center;
   color: #f5b400;
   background: transparent;
-  backface-visibility: hidden;
 }
 
 .product-globe-item-mid {
@@ -342,9 +341,9 @@ html[dir="rtl"] .trust-track {
 }
 
 .product-globe-item svg {
-  width: 1.45rem;
-  height: 1.45rem;
-  filter: drop-shadow(0 0 0.35rem rgba(6, 20, 40, 0.95));
+  width: 1.7rem;
+  height: 1.7rem;
+  filter: drop-shadow(0 0 0.4rem rgba(6, 20, 40, 0.95));
 }
 
 .product-globe-outline {
@@ -353,14 +352,9 @@ html[dir="rtl"] .trust-track {
   width: 100%;
   height: 100%;
   fill: none;
-  stroke: rgba(245, 180, 0, 0.55);
-  stroke-width: 1.1;
+  stroke: rgba(245, 180, 0, 0.7);
+  stroke-width: 1.4;
   pointer-events: none;
-}
-
-.product-globe-outline ellipse,
-.product-globe-outline path {
-  stroke: rgba(255, 255, 255, 0.28);
 }
 
 @keyframes globe-spin {

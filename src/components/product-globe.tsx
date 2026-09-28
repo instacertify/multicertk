@@ -184,11 +184,6 @@ export function ProductGlobe() {
       </div>
       <svg className="product-globe-outline" viewBox="0 0 200 200">
         <circle cx="100" cy="100" r="98" />
-        <ellipse cx="100" cy="100" rx="98" ry="22" />
-        <ellipse cx="100" cy="58" rx="84" ry="14" />
-        <ellipse cx="100" cy="142" rx="84" ry="14" />
-        <path d="M100 2 C 68 40 68 160 100 198" />
-        <path d="M100 2 C 132 40 132 160 100 198" />
       </svg>
     </div>
   );
