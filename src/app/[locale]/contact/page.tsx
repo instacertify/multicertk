@@ -36,9 +36,6 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
           </a>
         </li>
       </ul>
-      <p className="mt-6 text-sm text-muted">
-        Use the quote desk below on this page — the same form as the rest of the site.
-      </p>
     </div>
   );
 }

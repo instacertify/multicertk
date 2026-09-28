@@ -32,7 +32,6 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       <p className="mt-3 text-muted">
         Ask for access, correction, deletion or withdrawal of consent as a Data Principal under India’s DPDP Act or as a data subject under GDPR. {settings.grievanceOfficer} at {settings.dpoEmail || settings.controllerEmail} will reply after we can match the request to you.
       </p>
-      <p className="mt-4 text-sm text-muted">Use the quote desk below and choose “Other”, then describe the data request in the message.</p>
     </div>
   );
 }
