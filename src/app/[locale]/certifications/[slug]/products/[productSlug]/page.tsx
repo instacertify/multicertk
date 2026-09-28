@@ -8,6 +8,7 @@ import { Breadcrumbs, CardLink } from "@/components/ui";
 import { beeProducts, euSectors, getBee, getEu, getGmark, getProduct, getScheme, gmarkProducts } from "@/data/catalog";
 import { getPage, sectionHeading } from "@/lib/cms";
 import { pageMetadata } from "@/lib/seo";
+import { asCertkoBrand } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
 
@@ -92,7 +93,7 @@ export default async function SchemeProductPage({
                 <div key={dt} className="border border-line p-4">
                   <dt className="text-xs uppercase tracking-wide text-muted">{dt}</dt>
                   <dd className="mt-1 text-sm text-navy">
-                    {dt === "Indicative test price" ? <ListedPrice amount={String(dd)} /> : dd}
+                    {dt === "Indicative test price" ? <ListedPrice amount={asCertkoBrand(String(dd))} /> : asCertkoBrand(String(dd))}
                   </dd>
                 </div>
               ))}

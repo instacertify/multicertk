@@ -3,6 +3,8 @@ import { locales, type Locale } from "@/i18n/routing";
 export const site = {
   name: "Certko",
   tagline: "Compliance. Assured.",
+  legalName: "Instacertify Labs Private Limited",
+  brandLegal: "Certko by Instacertify Labs Private Limited",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://certko.com",
   email: "info@certko.com",
   phone: "+91-9999118039",
@@ -43,4 +45,11 @@ export function languageAlternates(path: string) {
     languages[localesMeta[locale].hreflang] = absUrl(localizedPath(locale, path));
   }
   return languages;
+}
+
+/** Public copy uses Certko. The legal company name is reserved for About. */
+export function asCertkoBrand(value: string) {
+  return value
+    .replace(/Instacertify Labs Private Limited/gi, site.name)
+    .replace(/Instacertify/gi, site.name);
 }

@@ -51,13 +51,12 @@ export function jsonLd(data: Record<string, unknown> | Record<string, unknown>[]
   };
 }
 
-export function organizationLd() {
-  const seo = getSeo();
+export function organizationLd(opts?: { legal?: boolean }) {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: seo.organizationName || site.name,
-    legalName: "Instacertify Labs Private Limited",
+    name: site.name,
+    ...(opts?.legal ? { legalName: site.legalName } : {}),
     url: site.url,
     email: site.email,
     telephone: site.phone,

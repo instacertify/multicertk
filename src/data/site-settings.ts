@@ -103,7 +103,7 @@ export const defaultSettings: SiteSettings = {
     gdprPath: "/privacy/gdpr-and-dpdp",
     termsPath: "/terms",
     dataRequestPath: "/privacy/data-request",
-    controllerName: "Instacertify Labs Private Limited",
+    controllerName: "Certko",
     controllerEmail: "info@certko.com",
     grievanceOfficer: "Privacy Officer",
     dpoEmail: "info@certko.com",

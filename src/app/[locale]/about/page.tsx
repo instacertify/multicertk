@@ -1,20 +1,23 @@
 import { setRequestLocale } from "next-intl/server";
 import { CmsSimplePage, cmsPageMetadata } from "@/components/cms-page";
+import { JsonLd } from "@/components/ui";
+import { organizationLd } from "@/lib/seo";
+import { site } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  return cmsPageMetadata(
-    locale,
-    "about",
-    "Certko by Instacertify Labs Private Limited",
-    "Certko is the public certification catalogue of Instacertify Labs Private Limited.",
-  );
+  return cmsPageMetadata(locale, "about", site.brandLegal, `${site.brandLegal} — certification catalogue.`);
 }
 
 export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  return <CmsSimplePage slug="about" locale={locale} />;
+  return (
+    <>
+      <JsonLd data={organizationLd({ legal: true })} />
+      <CmsSimplePage slug="about" locale={locale} />
+    </>
+  );
 }

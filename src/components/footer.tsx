@@ -35,6 +35,7 @@ export async function Footer() {
         <div>
           <h4 className="font-display text-gold">{t("aboutUs")}</h4>
           <ul className="mt-3 flex flex-col gap-2 text-sm text-white/80">
+            <li><Link href="/about" className="block">About Certko</Link></li>
             <li><Link href={legal.privacyPath} className="block">Privacy</Link></li>
             <li><Link href={legal.cookiesPath} className="block">Cookies</Link></li>
             <li><Link href={legal.gdprPath} className="block">GDPR & DPDP</Link></li>

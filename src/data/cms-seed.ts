@@ -390,13 +390,13 @@ export const seedPages: CmsPage[] = [
     locale: "en",
     title: "Privacy policy",
     intro:
-      "How Instacertify Labs Private Limited collects and uses personal data on Certko. This notice follows India’s Digital Personal Data Protection Act, 2023 and, where it applies, the EU / UK GDPR.",
+      "How Certko collects and uses personal data. This notice follows India’s Digital Personal Data Protection Act, 2023 and, where it applies, the EU / UK GDPR.",
     sections: [
       {
         key: "about",
         heading: "Who we are",
         body: [
-          "Certko is a certification and compliance information platform operated by Instacertify Labs Private Limited, A-34, 4th Floor, Sector 63A, Noida, Uttar Pradesh 201301, India.",
+          "Certko is a certification and compliance information platform at A-34, 4th Floor, Sector 63A, Noida, Uttar Pradesh 201301, India. The legal company name is on the About page.",
           "Certko is not a certification body, testing laboratory or government authority unless a page says otherwise.",
         ],
       },
@@ -465,7 +465,7 @@ export const seedPages: CmsPage[] = [
         key: "contact",
         heading: "Privacy contact",
         body: [
-          "Privacy Officer, Instacertify Labs Private Limited, A-34, 4th Floor, Sector 63A, Noida, Uttar Pradesh 201301, India. Email info@certko.com. Phone +91-9999118039.",
+          "Privacy Officer, Certko, A-34, 4th Floor, Sector 63A, Noida, Uttar Pradesh 201301, India. Email info@certko.com. Phone +91-9999118039.",
         ],
       },
     ],
@@ -538,7 +538,7 @@ export const seedPages: CmsPage[] = [
     path: "/terms",
     locale: "en",
     title: "Terms of use",
-    intro: "These terms govern use of Certko, operated by Instacertify Labs Private Limited. Catalogue figures are indicative — confirm lab quotes, QCO status and regulator lists before you file.",
+    intro: "These terms govern use of Certko. Catalogue figures are indicative — confirm quotes, QCO status and regulator lists before you file.",
     sections: [
       {
         key: "accept",
@@ -563,14 +563,14 @@ export const seedPages: CmsPage[] = [
         key: "ip",
         heading: "Intellectual property",
         body: [
-          "Text, data compilations, branding and software belong to Instacertify or its licensors. You may use public pages for personal or internal business reference. Republishing or commercial reuse needs written permission.",
+          "Text, data compilations, branding and software belong to Certko or its licensors. You may use public pages for personal or internal business reference. Republishing or commercial reuse needs written permission.",
         ],
       },
       {
         key: "liability",
         heading: "Limitation of liability",
         body: [
-          "To the extent the law allows, Certko and Instacertify are not liable for indirect loss, lost profit or reliance on catalogue figures. Pages are provided as-is.",
+          "To the extent the law allows, Certko is not liable for indirect loss, lost profit or reliance on catalogue figures. Pages are provided as-is.",
         ],
       },
       {
