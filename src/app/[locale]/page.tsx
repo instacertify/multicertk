@@ -102,7 +102,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           <div className="home-desk">
             <div className="flex items-center justify-between border-b border-line px-5 py-3">
               <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-gold-600">{t("deskTitle")}</p>
-              <Link href="/products/all" className="text-[11px] text-navy underline">
+              <Link href="/products/all" className="text-[11px] font-semibold text-gold-600 underline">
                 {t("deskAll")}
               </Link>
             </div>

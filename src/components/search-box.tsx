@@ -20,7 +20,7 @@ function SearchFields({
   const large = size === "lg";
 
   return (
-    <div className={`flex overflow-hidden rounded-xl border border-line bg-white ${large ? "h-11" : "h-9"}`}>
+    <div className={`flex overflow-hidden rounded-xl border border-gold/60 bg-white ${large ? "h-11" : "h-9"}`}>
       <input
         name="q"
         value={query}

@@ -25,7 +25,7 @@ export function ListedPrice({
   if (!amount || amount === "—") {
     return <span className={className}>{amount || "—"}</span>;
   }
-  return <span className={`font-semibold text-navy ${className}`}>{amount}</span>;
+  return <span className={`font-semibold text-gold-600 ${className}`}>{amount}</span>;
 }
 
 export function PriceReassurance({

@@ -86,7 +86,7 @@ export default async function SchemePage({
       <PageMedia src={cms?.heroImageUrl} alt={cms?.heroImageAlt || scheme.name} gallery={cms?.galleryUrls} />
       <p className="mt-3 text-sm text-muted">{scheme.whoNeedsIt}</p>
 
-      <h2 className="mt-10 border-b border-line pb-2 font-display text-navy">{sectionHeading(cms, "process", "Process")}</h2>
+      <h2 className="mt-10 border-b border-gold pb-2 font-display text-navy">{sectionHeading(cms, "process", "Process")}</h2>
       <ol className="mt-4 divide-y divide-line border-y border-line bg-white">
         {scheme.process.map((step, index) => (
           <li key={step} className="grid gap-3 px-4 py-3 sm:grid-cols-[3rem_1fr] text-sm leading-6">

@@ -310,13 +310,13 @@ html[dir="rtl"] .trust-track {
 .product-globe-latitude {
   position: absolute;
   inset: 8%;
-  border: 1px solid rgba(16, 32, 51, 0.18);
+  border: 1px solid rgba(212, 154, 0, 0.28);
   border-radius: 50%;
   background: transparent;
 }
 
 .product-globe-latitude {
-  border-color: rgba(212, 154, 0, 0.42);
+  border-color: rgba(245, 180, 0, 0.55);
 }
 
 .product-globe-item {
@@ -330,7 +330,7 @@ html[dir="rtl"] .trust-track {
   margin: -1.1rem;
   align-items: center;
   justify-content: center;
-  color: #0b1f3d;
+  color: #d49a00;
   background: transparent;
 }
 
@@ -345,7 +345,7 @@ html[dir="rtl"] .trust-track {
 .product-globe-item svg {
   width: 1.55rem;
   height: 1.55rem;
-  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.7));
+  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.85));
 }
 
 .product-globe-outline {
@@ -520,14 +520,14 @@ html[dir="rtl"] .trust-track {
 }
 
 .home-stat {
-  border: 1px solid var(--line);
+  border: 1px solid rgba(212, 154, 0, 0.35);
   border-radius: 1.05rem;
   background: #fff;
   padding: 0.85rem 0.7rem;
 }
 
 .home-stat dt {
-  color: var(--muted);
+  color: var(--gold-600);
   letter-spacing: 0.04em;
 }
 
@@ -561,8 +561,8 @@ html[dir="rtl"] .trust-track {
   width: 2.7rem;
   height: 2.7rem;
   border-radius: 0.95rem;
-  background: rgba(245, 180, 0, 0.16);
-  color: var(--navy);
+  background: rgba(245, 180, 0, 0.22);
+  color: var(--gold-600);
 }
 
 .home-gallery-icon svg {
@@ -571,17 +571,19 @@ html[dir="rtl"] .trust-track {
 }
 
 .home-gallery-card:nth-child(4n + 2) .home-gallery-icon {
-  background: rgba(11, 31, 61, 0.08);
+  background: #fff8e8;
+  color: var(--navy);
+  box-shadow: inset 0 0 0 1px rgba(212, 154, 0, 0.4);
 }
 
 .home-gallery-card:nth-child(4n + 3) .home-gallery-icon {
-  background: #fff8e8;
-  color: var(--gold-600);
-  box-shadow: inset 0 0 0 1px rgba(212, 154, 0, 0.35);
+  background: var(--gold);
+  color: var(--navy);
 }
 
 .home-gallery-card:nth-child(4n + 4) .home-gallery-icon {
-  background: rgba(245, 180, 0, 0.28);
+  background: rgba(245, 180, 0, 0.38);
+  color: var(--navy);
 }
 
 .home-gallery-card figcaption {

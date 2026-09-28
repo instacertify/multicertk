@@ -10,7 +10,7 @@ export function Badge({
   const tones = {
     navy: "border border-gold bg-gold/15 text-navy",
     gold: "bg-gold text-navy",
-    mist: "border border-line bg-mist text-navy",
+    mist: "border border-gold/50 bg-gold/10 text-navy",
     alert: "bg-amber-100 text-amber-950",
   };
   return (
@@ -62,7 +62,7 @@ export function Section({
   return (
     <section className={`mx-auto max-w-7xl px-4 py-10 md:py-14 ${className}`}>
       {eyebrow ? <p className="font-mono text-[11px] uppercase tracking-wide text-gold-600">{eyebrow}</p> : null}
-      <h2 className="mt-1 border-b border-line pb-2 font-display text-navy">{title}</h2>
+      <h2 className="mt-1 border-b border-gold pb-2 font-display text-navy">{title}</h2>
       <div className="mt-6">{children}</div>
     </section>
   );
@@ -97,7 +97,7 @@ export function Breadcrumbs({ items }: { items: { href: string; label: string }[
         {items.map((item, index) => (
           <li key={item.href} className="flex items-center gap-2">
             {index > 0 ? <span>/</span> : null}
-            <Link href={item.href} className="hover:text-navy">
+            <Link href={item.href} className="hover:text-gold-600">
               {item.label}
             </Link>
           </li>
