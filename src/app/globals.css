@@ -457,27 +457,37 @@ html[dir="rtl"] .trust-track {
 
 .home-globe-stage {
   position: relative;
-  display: grid;
+  display: flex;
   min-height: 22rem;
-  place-items: center;
-  padding: 1.5rem 0 0.5rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  padding: 1.25rem 0 0.25rem;
 }
 
-.home-globe-stage::before,
-.home-globe-stage::after {
+.home-globe-well {
+  position: relative;
+  display: grid;
+  width: 100%;
+  place-items: center;
+}
+
+.home-globe-well::before,
+.home-globe-well::after {
   position: absolute;
   content: "";
   pointer-events: none;
 }
 
-.home-globe-stage::before {
+.home-globe-well::before {
   width: min(32rem, 92%);
   aspect-ratio: 1;
   border: 1px solid rgba(239, 232, 216, 0.12);
   transform: rotate(8deg);
 }
 
-.home-globe-stage::after {
+.home-globe-well::after {
   width: min(22rem, 64%);
   aspect-ratio: 1;
   border: 1px solid rgba(245, 180, 0, 0.28);
@@ -487,8 +497,7 @@ html[dir="rtl"] .trust-track {
 .home-globe-caption {
   position: relative;
   z-index: 1;
-  margin-top: 0.85rem;
-  max-width: 22rem;
+  max-width: 24rem;
   text-align: center;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-size: 11px;

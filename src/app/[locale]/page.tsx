@@ -71,7 +71,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 <PageHero src={cms.heroImageUrl} alt={cms.heroImageAlt || cms.title} />
               </div>
             ) : null}
-            <div className="mt-7 text-navy">
+            <div className="mt-7 w-full text-navy">
               <SearchBox />
             </div>
             <dl className="mt-6 grid grid-cols-3 gap-3 font-mono text-[11px] text-white/70">
@@ -91,7 +91,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           </div>
           <div className="lg:col-span-7">
             <div className="home-globe-stage">
-              <ProductGlobe />
+              <div className="home-globe-well">
+                <ProductGlobe />
+              </div>
               <p className="home-globe-caption">{t("globeCaption")}</p>
             </div>
           </div>
