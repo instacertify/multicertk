@@ -54,11 +54,11 @@ export const seedPages: CmsPage[] = [
     slug: "home",
     path: "/",
     locale: "en",
-    title: "IS numbers, HSN codes and the lab behind them",
+    title: "IS numbers, HSN codes and the route behind them",
     intro:
       "Look up a product the way a factory actually talks — IS 13252, HSN 8517, CRS or ISI. We show the scheme, the test cost, and how to file.",
     sections: [
-      { key: "need", heading: "Schemes and lab work", body: [] },
+      { key: "need", heading: "Schemes and testing", body: [] },
       { key: "markets", heading: "If you are shipping outside India", body: [] },
       { key: "how", heading: "What happens after you search", body: [] },
       { key: "popular", heading: "Records people open first", body: [] },

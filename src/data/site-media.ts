@@ -197,7 +197,7 @@ export const seedReviews: CustomerReview[] = [
     id: "iyer",
     name: "Prof. Iyer",
     role: "Harbour Design School",
-    quote: "Our workshop used the lab directory to book EMC without chasing private contact sheets. The school logo strip is the same one our partners see.",
+    quote: "Our workshop booked EMC through Certko without chasing private contact sheets. The school logo strip is the same one our partners see.",
     rating: 5,
   },
 ];
