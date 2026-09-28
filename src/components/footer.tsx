@@ -28,7 +28,6 @@ export async function Footer() {
             <li><Link href="/certifications">{nav("certification")}</Link></li>
             <li><Link href="/testing">{nav("testing")}</Link></li>
             <li><Link href="/qco">{nav("qcos")}</Link></li>
-            <li><Link href="/labs">{nav("labs")}</Link></li>
             <li><Link href="/blog">{nav("resources")}</Link></li>
             <li><Link href="/sitemap">HTML sitemap</Link></li>
           </ul>

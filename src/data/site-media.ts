@@ -132,7 +132,6 @@ export function buildDefaultMenu(library: MenuLibrary = {}): NavItem[] {
   const categories = library.categories ?? [];
   const articles = library.articles ?? [];
   const byCategory = categoryMenuChildren(categories, (slug) => `/category/${slug}`, "Product categories", "cat");
-  const labsByCategory = categoryMenuChildren(categories, (slug) => `/labs?category=${slug}`, "By category", "lab-cat");
 
   return [
     {
@@ -155,13 +154,6 @@ export function buildDefaultMenu(library: MenuLibrary = {}): NavItem[] {
       href: "/qco",
       iconUrl: navIcons.qcos,
       children: [...qcoOverview, ...byCategory],
-    },
-    {
-      id: "labs",
-      label: "Labs",
-      href: "/labs",
-      iconUrl: navIcons.labs,
-      children: [{ id: "labs-dir", label: "Lab directory", href: "/labs", group: "Directory", iconUrl: "/header-icons/labs.svg" }, ...labsByCategory],
     },
     {
       id: "resources",

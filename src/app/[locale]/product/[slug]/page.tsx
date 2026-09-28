@@ -73,7 +73,7 @@ export default async function ProductPage({
     },
     {
       q: `How much does testing cost for ${product.standard}?`,
-      a: `Listed laboratory charges range ${formatRange(product.testCostMin, product.testCostMax)} excluding GST. If that looks expensive, contact Certko — we regularly secure up to 30% lesser pricing.`,
+      a: `Listed laboratory charges range ${formatRange(product.testCostMin, product.testCostMax)} excluding GST.`,
     },
   ];
 

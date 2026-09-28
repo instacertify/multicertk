@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { PageMedia } from "@/components/page-hero";
-import { ListedPrice, PriceReassurance } from "@/components/price-reassurance";
+import { ListedPrice } from "@/components/price-reassurance";
 import { Breadcrumbs, JsonLd, RecordTable, StatusBadge } from "@/components/ui";
 import { bisRouteLabel, categories, formatRange, getCategory, productsByCategory } from "@/data/catalog";
 import { getPage } from "@/lib/cms";
@@ -67,7 +67,6 @@ export default async function CategoryPage({
         CRS is part of BIS. Products in this category that are not on the CRS list take the ISI mark licence.
       </p>
       <PageMedia src={cms?.heroImageUrl} alt={cms?.heroImageAlt || category.name} gallery={cms?.galleryUrls} />
-      <PriceReassurance className="mt-6" />
       <RecordTable>
         <table className="mt-6 min-w-full text-left">
           <thead className="bg-navy text-white">

@@ -76,6 +76,23 @@ function libraryMenu() {
   });
 }
 
+function isLabsHref(href: string) {
+  return href === "/labs" || href.startsWith("/labs/") || href.startsWith("/labs?");
+}
+
+function isLabsNav(item: { id: string; href: string }) {
+  return item.id === "labs" || item.id.startsWith("lab-") || isLabsHref(item.href);
+}
+
+function publicMenu(items: NavItem[]): NavItem[] {
+  return items
+    .filter((item) => !isLabsNav(item))
+    .map((item) => ({
+      ...item,
+      children: item.children?.filter((child) => !isLabsNav(child)),
+    }));
+}
+
 function isCategoryHref(href: string) {
   return href.startsWith("/category/") || href.includes("category=");
 }
@@ -94,7 +111,7 @@ function mergeChildren(stored: NavChild[], generated: NavChild[], itemId: string
     };
   });
   const hrefs = new Set(labeled.map((child) => child.href));
-  const fillCategories = ["certification", "qcos", "labs"].includes(itemId) && !labeled.some((child) => isCategoryHref(child.href));
+  const fillCategories = ["certification", "qcos"].includes(itemId) && !labeled.some((child) => isCategoryHref(child.href));
   const fillBlogs = itemId === "resources" && !labeled.some((child) => isBlogHref(child.href));
   const extra = generated.filter((child) => {
     if (hrefs.has(child.href)) return false;
@@ -126,8 +143,8 @@ function mergeMenu(stored: NavItem[], generated: NavItem[]): NavItem[] {
 export function getMenu() {
   const stored = readSiteMedia().menu;
   const generated = libraryMenu();
-  if (!stored.length) return generated;
-  return mergeMenu(stored, generated);
+  if (!stored.length) return publicMenu(generated);
+  return publicMenu(mergeMenu(stored, generated));
 }
 
 export function getLogos() {

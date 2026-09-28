@@ -3,7 +3,7 @@ import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { CmsArticles } from "@/components/cms-copy";
 import { PageMedia } from "@/components/page-hero";
-import { ListedPrice, PriceReassurance } from "@/components/price-reassurance";
+import { ListedPrice } from "@/components/price-reassurance";
 import { Breadcrumbs, CardLink } from "@/components/ui";
 import { beeProducts, euSectors, getBee, getEu, getGmark, getProduct, getScheme, gmarkProducts } from "@/data/catalog";
 import { getPage, sectionHeading } from "@/lib/cms";
@@ -80,8 +80,7 @@ export default async function SchemeProductPage({
       </p>
 
       {bee ? (
-        <>
-          <dl className="mt-8 grid gap-4 sm:grid-cols-2">
+        <dl className="mt-8 grid gap-4 sm:grid-cols-2">
             {[
               ["Regime", bee.regime],
               ["Test standard", bee.standard],
@@ -97,9 +96,7 @@ export default async function SchemeProductPage({
                   </dd>
                 </div>
               ))}
-          </dl>
-          {bee.price ? <PriceReassurance className="mt-6" /> : null}
-        </>
+        </dl>
       ) : null}
 
       {gmark ? (

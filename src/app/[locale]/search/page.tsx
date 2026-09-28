@@ -22,8 +22,8 @@ export async function generateMetadata({
   return pageMetadata({
     locale,
     path: q ? `/search?q=${encodeURIComponent(q)}` : "/search",
-    title: q ? `Search: ${q}` : "Search certifications, labs and standards",
-    description: "Search every lab standard and certification scheme — products, HSN, IS numbers, labs and markets.",
+    title: q ? `Search: ${q}` : "Search certifications and standards",
+    description: "Search every standard and certification scheme — products, HSN, IS numbers, tests and markets.",
     index: false,
   });
 }
@@ -51,7 +51,7 @@ export default async function SearchPage({
       <h1 className="mt-4 font-display text-4xl text-navy">{cms?.title ?? "Search the interlinked catalogue"}</h1>
       <p className="lead mt-2 text-muted">
         {cms?.intro ??
-          "The same live catalogue as the rest of the site — products, ISI / CRS, HSN, IS numbers, labs, tests, blogs and markets."}
+          "The same live catalogue as the rest of the site — products, ISI / CRS, HSN, IS numbers, tests, blogs and markets."}
       </p>
       <PageMedia src={cms?.heroImageUrl} alt={cms?.heroImageAlt || cms?.title || "Search"} gallery={cms?.galleryUrls} />
       <div className="mt-6">
@@ -63,7 +63,6 @@ export default async function SearchPage({
           ["product", "Products"],
           ["post", "Blog"],
           ["page", "Pages"],
-          ["lab", "Labs"],
           ["scheme", "Schemes"],
           ["qco", "QCO"],
           ["test", "Tests"],
@@ -86,7 +85,7 @@ export default async function SearchPage({
         })}
       </div>
       <p className="mt-3 text-xs text-muted">
-        Live catalogue search — the same index as product, lab and blog pages.
+        Live catalogue search — the same index as product, test and blog pages.
       </p>
       <div className="mt-8 grid gap-4">
         {result.hits.length === 0 ? (

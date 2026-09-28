@@ -8,7 +8,6 @@ import {
   disciplines,
   euSectors,
   gmarkProducts,
-  labs,
   products,
   qcos,
   schemes,
@@ -41,7 +40,6 @@ export default async function HtmlSitemapPage({ params }: { params: Promise<{ lo
         { href: "/certifications", label: "Certifications" },
         { href: "/certifications/countries", label: "Markets" },
         { href: "/testing", label: "Testing" },
-        { href: "/labs", label: "Labs" },
         { href: "/qco", label: "QCO" },
         { href: "/blog", label: "Blog" },
         { href: "/search", label: "Search" },
@@ -60,7 +58,6 @@ export default async function HtmlSitemapPage({ params }: { params: Promise<{ lo
     { title: "Markets", links: countries.map((item) => ({ href: `/certifications/countries/${item.slug}`, label: item.name })) },
     { title: "Categories", links: categories.map((item) => ({ href: `/category/${item.slug}`, label: item.name })) },
     { title: "Products / standards", links: products.map((item) => ({ href: `/product/${item.slug}`, label: `${item.standard} — ${item.name}` })) },
-    { title: "Labs", links: labs.map((item) => ({ href: `/labs/${item.slug}`, label: item.name })) },
     { title: "Tests", links: tests.map((item) => ({ href: `/testing/${item.discipline}/${item.slug}`, label: item.name })) },
     { title: "Disciplines", links: disciplines.map((item) => ({ href: `/testing/${item.slug}`, label: item.name })) },
     { title: "BEE products", links: beeProducts.map((item) => ({ href: `/certifications/bee/products/${item.slug}`, label: item.name })) },
@@ -74,7 +71,7 @@ export default async function HtmlSitemapPage({ params }: { params: Promise<{ lo
     <div className="mx-auto max-w-5xl px-4 py-10">
       <Breadcrumbs items={[{ href: "/", label: "Home" }, { href: "/sitemap", label: "Sitemap" }]} />
       <h1 className="mt-4 font-display text-4xl text-navy">HTML sitemap</h1>
-      <p className="mt-3 text-muted">Mirrors the public certko.com sitemap shape — every scheme, standard, lab and test is one click away.</p>
+      <p className="mt-3 text-muted">Mirrors the public certko.com sitemap shape — every scheme, standard and test is one click away.</p>
       {groups.map((group) => (
         <section key={group.title} className="mt-8">
           <h2 className="font-display text-2xl text-navy">{group.title}</h2>

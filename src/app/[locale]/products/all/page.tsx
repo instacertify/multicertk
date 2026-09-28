@@ -2,7 +2,7 @@ import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { CatalogFilter } from "@/components/catalog-filter";
 import { PageMedia } from "@/components/page-hero";
-import { ListedPrice, PriceReassurance } from "@/components/price-reassurance";
+import { ListedPrice } from "@/components/price-reassurance";
 import { Badge, Breadcrumbs, RecordTable, StatusBadge } from "@/components/ui";
 import { bisRouteLabel, categories, filterProducts, formatRange, isCrsProduct, schemes } from "@/data/catalog";
 import { rankByCatalogSearch } from "@/lib/search";
@@ -54,7 +54,6 @@ export default async function AllProductsPage({
           `${rows.length} BIS records — CRS if the product is on that list, otherwise the ISI mark licence.`}
       </p>
       <PageMedia src={cms?.heroImageUrl} alt={cms?.heroImageAlt || cms?.title || "All products"} gallery={cms?.galleryUrls} />
-      <PriceReassurance className="mt-6" />
       <CatalogFilter q={filters.q}>
         <label className="text-sm">
           <span className="mb-1 block text-xs uppercase tracking-wide text-muted">Category</span>

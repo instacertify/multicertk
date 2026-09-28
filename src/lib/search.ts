@@ -48,7 +48,8 @@ export function scoreDocument(doc: SearchDocument, query: string) {
 }
 
 export function searchCatalog(query: string, limit = 20, type?: SearchDocument["type"]) {
-  const docs = getSearchDocuments().filter((doc) => (type ? doc.type === type : true));
+  if (type === "lab") return [];
+  const docs = getSearchDocuments().filter((doc) => doc.type !== "lab" && (type ? doc.type === type : true));
   if (!query.trim()) return docs.slice(0, limit);
 
   return docs

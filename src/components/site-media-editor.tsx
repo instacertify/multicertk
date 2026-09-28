@@ -363,13 +363,12 @@ export function MenuEditor({
                   className="text-sm font-semibold text-navy underline"
                   onClick={() => {
                     const hrefs = new Set((item.children ?? []).map((child) => child.href));
-                    const labs = item.id === "labs";
                     const extra = categories
                       .map((category) => ({
-                        id: `${labs ? "lab-cat" : "cat"}-${category.slug}`,
+                        id: `cat-${category.slug}`,
                         label: category.name,
-                        href: labs ? `/labs?category=${category.slug}` : `/category/${category.slug}`,
-                        group: labs ? "By category" : "Product categories",
+                        href: `/category/${category.slug}`,
+                        group: "Product categories",
                       }))
                       .filter((child) => !hrefs.has(child.href));
                     patch(index, { ...item, children: [...(item.children ?? []), ...extra] });

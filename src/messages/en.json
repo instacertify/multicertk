@@ -1,7 +1,7 @@
 {
   "meta": {
     "homeTitle": "BIS CRS, ISI mark, HSN and IS standards",
-    "homeDescription": "Look up a product, HSN or IS number. Certko maps BIS CRS and ISI, BEE, G-Mark, CE, FCC, SABER and the labs that test them."
+    "homeDescription": "Look up a product, HSN or IS number. Certko maps BIS CRS and ISI, BEE, G-Mark, CE, FCC and SABER."
   },
   "nav": {
     "products": "Products",
@@ -29,7 +29,7 @@
   },
   "home": {
     "eyebrow": "Instacertify catalogue · Noida",
-    "title": "IS numbers, HSN codes and the lab behind them",
+    "title": "IS numbers, HSN codes and the route behind them",
     "subtitle": "Look up a product the way a factory actually talks — IS 13252, HSN 8517, CRS or ISI. We show the scheme, the test cost, and how to file.",
     "statsProducts": "Products mapped",
     "statsTests": "Testing solutions",
@@ -50,13 +50,13 @@
     "step2": "See the live route, not a slogan",
     "step2Body": "CRS is Scheme II of BIS. Everything else on BIS is the ISI mark licence. Export marks (CE, FCC, G-Mark, SABER) sit next to that.",
     "step3": "Book the lab, then file",
-    "step3Body": "Indicative test charges are listed. Ask Certko if the published range looks high — we work up to 30% under listed lab fees.",
+    "step3Body": "Indicative test charges are listed on each product. Use the quote desk if you want a booked rate.",
     "popular": "Records people open first",
     "categories": "By product family"
   },
   "search": {
     "submit": "Search",
-    "placeholder": "Search products, CRS, ISI, HSN, labs or blogs",
+    "placeholder": "Search products, CRS, ISI, HSN or blogs",
     "empty": "Type at least two characters to search the interlinked catalogue.",
     "noResults": "No matches. Try an IS number (for example IS 302), an HSN, or a scheme name such as BIS or GMARK.",
     "engineCatalog": "Searching the local catalogue",

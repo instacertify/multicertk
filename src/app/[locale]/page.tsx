@@ -28,7 +28,7 @@ const faqs = [
   },
   {
     q: "How much does BIS certification cost in India?",
-    a: "Total cost is laboratory testing + BIS government fees + marking fee + optional consulting. Listed lab ranges can look high — contact Certko and get up to 30% lesser pricing.",
+    a: "Total cost is laboratory testing + BIS government fees + marking fee + optional consulting. Product pages list an indicative range; the quote desk returns a booked rate.",
   },
   {
     q: "Do foreign manufacturers need BIS certification?",
@@ -73,7 +73,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               <SearchBox />
             </div>
             <p className="mt-3 font-mono text-[11px] text-white/55">
-              {stats.products} products · {stats.labs} labs · {stats.tests} tests · {stats.schemes} schemes
+              {stats.products} products · {stats.tests} tests · {stats.schemes} schemes
             </p>
           </div>
           <div className="lg:col-span-6">

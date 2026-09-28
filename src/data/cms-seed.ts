@@ -82,7 +82,7 @@ export const seedPages: CmsPage[] = [
         key: "faq-cost",
         heading: "How much does BIS certification cost in India?",
         body: [
-          "Total cost is laboratory testing + BIS government fees + marking fee + optional consulting. Listed lab ranges can look high — contact Certko and get up to 30% lesser pricing.",
+          "Total cost is laboratory testing + BIS government fees + marking fee + optional consulting. Product pages list an indicative range; the quote desk returns a booked rate.",
         ],
       },
       {
@@ -161,7 +161,7 @@ export const seedPages: CmsPage[] = [
         key: "howto",
         heading: "How to use this",
         body: [
-          "Search the IS number from the tender document. The product page shows the applicable scheme, approved testing labs, marking fees and typical timeline.",
+          "Search the IS number from the tender document. The product page shows the applicable scheme, marking fees and typical timeline.",
           "A licence is specific to one IS standard, one factory and a declared variety list.",
         ],
       },
@@ -241,8 +241,9 @@ export const seedPages: CmsPage[] = [
     slug: "labs",
     path: "/labs",
     locale: "en",
-    title: "BIS testing labs directory",
-    intro: "Compare laboratories by BIS code, scope count and indicative charges, then open the standards they unlock. Direct lab addresses and contact details are not published.",
+    title: "Laboratory testing",
+    intro:
+      "Certko assigns an accredited laboratory for your standard. Recognised-lab names, cities and scope tables are not published. Request a quote and we book the test.",
     sections: [],
   },
   {
@@ -250,7 +251,7 @@ export const seedPages: CmsPage[] = [
     path: "/certifications",
     locale: "en",
     title: "Certifications & global market access",
-    intro: "Pick a scheme, then open the products, labs and destination markets it unlocks.",
+    intro: "Pick a scheme, then open the products and destination markets it unlocks.",
     sections: [
       { key: "how", heading: "How GMA works", body: [] },
       { key: "programmes", heading: "Certification programmes", body: [] },
@@ -278,7 +279,7 @@ export const seedPages: CmsPage[] = [
     path: "/search",
     locale: "en",
     title: "Search the interlinked catalogue",
-    intro: "Products, IS standards, HSN codes, schemes, labs, tests, QCOs and destination markets.",
+    intro: "Products, IS standards, HSN codes, schemes, tests, QCOs and destination markets.",
     sections: [],
   },
   {
@@ -299,8 +300,8 @@ export const seedPages: CmsPage[] = [
     slug: "lab-detail",
     path: "/labs",
     locale: "en",
-    title: "Laboratory record",
-    intro: "Request a quote to get the lab assigned for your standard. Direct lab addresses and contact details are not published.",
+    title: "Laboratory assignment",
+    intro: "Recognised-lab names, cities and scope tables are not published. Request a quote to have the test booked.",
     sections: [
       { key: "scope", heading: "Standards in scope", body: [] },
       { key: "products", heading: "Products / schemes this lab unlocks", body: [] },
@@ -346,10 +347,9 @@ export const seedPages: CmsPage[] = [
     path: "/testing",
     locale: "en",
     title: "Testing record",
-    intro: "Standards, products and labs for this test.",
+    intro: "Standards and products for this test.",
     sections: [
       { key: "products", heading: "Standards / products this unlocks", body: [] },
-      { key: "labs", heading: "Labs that typically run this scope", body: [] },
     ],
   },
   {
@@ -627,7 +627,7 @@ export const seedArticles: CmsArticle[] = [
       },
       { id: "b1", type: "bar", label: "Lab testing share", value: 55 },
       { id: "s1", type: "spacer", size: "md" },
-      { id: "p2", type: "paragraph", text: "If the listed price looks expensive, contact Certko for up to 30% lesser pricing." },
+      { id: "p2", type: "paragraph", text: "Ask the quote desk if you want a booked rate against the listed range." },
     ],
     date: "2026-09-23",
     tags: ["labs"],

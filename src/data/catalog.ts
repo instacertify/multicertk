@@ -462,18 +462,6 @@ export function buildSearchDocuments(): SearchDocument[] {
     });
   }
 
-  for (const lab of labs) {
-    docs.push({
-      id: `lab:${lab.slug}`,
-      type: "lab",
-      title: lab.name,
-      subtitle: `${lab.city}, ${lab.state} · ${lab.bisCode}`,
-      description: lab.standardCodes.slice(0, 12).join(", "),
-      url: `/labs/${lab.slug}`,
-      tags: [lab.bisCode, lab.city, lab.state, ...lab.standardCodes, ...lab.categorySlugs],
-    });
-  }
-
   for (const test of tests) {
     docs.push({
       id: `test:${test.slug}`,
