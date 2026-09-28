@@ -8,7 +8,7 @@ export function Badge({
   tone?: "navy" | "gold" | "mist" | "alert";
 }) {
   const tones = {
-    navy: "bg-navy text-white",
+    navy: "border border-gold bg-gold/15 text-navy",
     gold: "bg-gold text-navy",
     mist: "border border-line bg-mist text-navy",
     alert: "bg-amber-100 text-amber-950",
@@ -62,7 +62,7 @@ export function Section({
   return (
     <section className={`mx-auto max-w-7xl px-4 py-10 md:py-14 ${className}`}>
       {eyebrow ? <p className="font-mono text-[11px] uppercase tracking-wide text-gold-600">{eyebrow}</p> : null}
-      <h2 className="mt-1 border-b border-navy pb-2 font-display text-navy">{title}</h2>
+      <h2 className="mt-1 border-b border-line pb-2 font-display text-navy">{title}</h2>
       <div className="mt-6">{children}</div>
     </section>
   );
@@ -70,7 +70,7 @@ export function Section({
 
 export function StatusBadge({ status }: { status: "mandatory" | "upcoming" | "voluntary" }) {
   const map = {
-    mandatory: { tone: "navy" as const, label: "Mandatory" },
+    mandatory: { tone: "gold" as const, label: "Mandatory" },
     upcoming: { tone: "alert" as const, label: "Upcoming QCO" },
     voluntary: { tone: "mist" as const, label: "Voluntary" },
   };

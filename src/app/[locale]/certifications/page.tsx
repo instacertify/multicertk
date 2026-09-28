@@ -32,7 +32,7 @@ export default async function CertificationsPage({ params }: { params: Promise<{
           "Start with the GMA framework, then open full programmes. Every scheme is interlinked to products, labs, tests and destination countries."}
       </p>
       <PageMedia src={cms?.heroImageUrl} alt={cms?.heroImageAlt || cms?.title || "Certifications"} gallery={cms?.galleryUrls} />
-      <h2 className="mt-10 border-b border-navy pb-2 font-display text-navy">{sectionHeading(cms, "how", "How GMA works")}</h2>
+      <h2 className="mt-10 border-b border-line pb-2 font-display text-navy">{sectionHeading(cms, "how", "How GMA works")}</h2>
       <ol className="mt-4 divide-y divide-line border-y border-line bg-white">
         {["Regulatory determination", "Testing to the national standard", "Local representation", "Filing & follow-up"].map((step, index) => (
           <li key={step} className="grid gap-3 px-4 py-3 sm:grid-cols-[3rem_1fr]">

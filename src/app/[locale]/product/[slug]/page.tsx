@@ -158,7 +158,7 @@ export default async function ProductPage({
         </p>
       ) : null}
 
-      <h2 className="mt-12 border-b border-navy pb-2 font-display text-navy">{sectionHeading(cms, "marking", "Annual BIS marking fee")}</h2>
+      <h2 className="mt-12 border-b border-line pb-2 font-display text-navy">{sectionHeading(cms, "marking", "Annual BIS marking fee")}</h2>
       <RecordTable>
         <table className="mt-4 min-w-full text-left">
           <thead className="bg-gold/20 text-navy">
@@ -191,7 +191,7 @@ export default async function ProductPage({
 
       {tests.length ? (
         <>
-          <h2 className="mt-12 border-b border-navy pb-2 font-display text-navy">{sectionHeading(cms, "tests", "Relevant product testing")}</h2>
+          <h2 className="mt-12 border-b border-line pb-2 font-display text-navy">{sectionHeading(cms, "tests", "Relevant product testing")}</h2>
           <ul className="mt-4 divide-y divide-line border-y border-line bg-white">
             {tests.map((test) => (
               <li key={test.slug}>
@@ -209,7 +209,7 @@ export default async function ProductPage({
 
       {bee.length || gmark.length ? (
         <>
-          <h2 className="mt-12 border-b border-navy pb-2 font-display text-navy">{sectionHeading(cms, "stacked", "Stacked energy & export marks")}</h2>
+          <h2 className="mt-12 border-b border-line pb-2 font-display text-navy">{sectionHeading(cms, "stacked", "Stacked energy & export marks")}</h2>
           <ul className="mt-4 divide-y divide-line border-y border-line bg-white">
             {bee.map((item) => (
               <li key={item.slug}>
@@ -233,7 +233,7 @@ export default async function ProductPage({
 
       {isCrsProduct(product) && notes.length ? (
         <>
-          <h2 className="mt-12 border-b border-navy pb-2 font-display text-navy">CRS notes for this product</h2>
+          <h2 className="mt-12 border-b border-line pb-2 font-display text-navy">CRS notes for this product</h2>
           <ul className="mt-4 divide-y divide-line border-y border-line bg-white">
             {notes.map((article) => (
               <li key={article.slug}>
@@ -247,7 +247,7 @@ export default async function ProductPage({
         </>
       ) : null}
 
-      <h2 className="mt-12 border-b border-navy pb-2 font-display text-navy">{sectionHeading(cms, "related", "Related standards & schemes")}</h2>
+      <h2 className="mt-12 border-b border-line pb-2 font-display text-navy">{sectionHeading(cms, "related", "Related standards & schemes")}</h2>
       <RecordTable>
         <table className="mt-4 min-w-full text-left">
           <thead className="bg-gold/20 text-navy">

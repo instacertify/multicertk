@@ -10,7 +10,7 @@ export function PageLead() {
   if (pathname.includes("/admin")) return null;
 
   return (
-    <section id="quote-desk" className="border-t border-navy bg-white" aria-label={t("title")}>
+    <section id="quote-desk" className="border-t border-line bg-white" aria-label={t("title")}>
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-8 lg:grid-cols-12 lg:items-start">
         <div className="lg:col-span-5">
           <p className="font-mono text-[11px] uppercase tracking-wide text-gold-600">Quote desk</p>

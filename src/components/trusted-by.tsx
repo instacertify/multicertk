@@ -31,7 +31,7 @@ function ReviewCard({ review }: { review: CustomerReview }) {
           // eslint-disable-next-line @next/next/no-img-element
           <img src={review.avatarUrl} alt="" className="h-9 w-9 rounded-full object-cover" />
         ) : (
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-navy text-xs font-semibold text-white">
+          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gold text-xs font-semibold text-navy">
             {review.name.slice(0, 1)}
           </span>
         )}

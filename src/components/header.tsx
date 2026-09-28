@@ -82,7 +82,7 @@ export function Header({ menu, chrome }: { menu: NavItem[]; chrome?: HeaderChrom
 
   return (
     <header
-      className="relative sticky top-0 z-40 border-b border-navy bg-white"
+      className="relative sticky top-0 z-40 border-b border-line bg-white"
       onMouseLeave={() => setOpenId(null)}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2.5">
