@@ -2,7 +2,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 
 export const dynamic = "force-dynamic";
-import { HomeHeroShapes, HomeProductGallery } from "@/components/home-decor";
+import { HomeHeroShapes } from "@/components/home-decor";
 import { PageHero } from "@/components/page-hero";
 import { ProductGlobe } from "@/components/product-globe";
 import { SearchBox } from "@/components/search-box";
@@ -97,8 +97,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             </div>
           </div>
         </div>
-        <div className="relative mx-auto max-w-7xl space-y-10 px-4 pb-14 lg:pb-20">
-          <HomeProductGallery />
+        <div className="relative mx-auto max-w-7xl px-4 pb-14 lg:pb-20">
           <div className="home-desk">
             <div className="flex items-center justify-between border-b border-line px-5 py-3">
               <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-gold-600">{t("deskTitle")}</p>

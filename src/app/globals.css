@@ -281,11 +281,12 @@ html[dir="rtl"] .trust-track {
 }
 
 .product-globe {
-  --item-r: 8.4rem;
+  --item-r: 7.6rem;
   position: relative;
   width: min(28rem, 100%);
   height: min(28rem, 88vw);
   margin-inline: auto;
+  overflow: hidden;
   perspective: 1200px;
   background:
     radial-gradient(circle at 34% 30%, rgba(245, 180, 0, 0.2), transparent 58%),
@@ -320,7 +321,7 @@ html[dir="rtl"] .trust-track {
 }
 
 .product-globe-item {
-  --item-r: 8.4rem;
+  --item-r: 7.6rem;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -370,13 +371,13 @@ html[dir="rtl"] .trust-track {
 
 @media (max-width: 480px) {
   .product-globe {
-    --item-r: 6.2rem;
+    --item-r: 5.6rem;
     width: 18rem;
     height: 18rem;
   }
 
   .product-globe-item {
-    --item-r: 6.2rem;
+    --item-r: 5.6rem;
     width: 1.8rem;
     height: 1.8rem;
     margin: -0.9rem;

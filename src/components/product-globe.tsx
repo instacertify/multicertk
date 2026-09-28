@@ -11,64 +11,35 @@ const featuredMarks = [
   "phone",
   "laptop",
   "charger",
-  "mouse",
-  "helmet",
-  "ac",
   "door",
   "window",
-  "desk",
   "fan",
-  "vacuum",
-  "heater",
-  "dryer",
-  "handle",
-  "backpack",
+  "helmet",
   "cup",
   "food",
 ] as const;
 
-const extraMarks = ["plug", "car", "tablet", "fridge", "tv", "kettle", "apple", "bowl", "bottle", "lamp"] as const;
+const extraMarks = ["mouse", "ac", "desk", "vacuum", "handle", "backpack"] as const;
 
 const shells: ProductMark["radius"][] = ["in", "mid", "core"];
-const latitudes = [16, -14, 28, -26, 8, -32, 22, -10];
+const latitudes = [18, -16, 30, -28, 8, -34, 22, -10];
 
 const products: ProductMark[] = [
   ...featuredMarks.flatMap((name, index) =>
-    shells.map((radius, shell) => ({
+    [...shells, "in" as const].map((radius, shell) => ({
       name,
-      lon: (index * 21.2 + shell * 119) % 360,
-      lat: latitudes[(index + shell * 3) % latitudes.length],
+      lon: (index * 40 + shell * 88) % 360,
+      lat: latitudes[(index + shell * 2) % latitudes.length],
       radius,
     })),
   ),
   ...extraMarks.map((name, index) => ({
     name,
-    lon: (index * 36 + 8) % 360,
-    lat: latitudes[(index + 4) % latitudes.length],
-    radius: shells[index % shells.length],
+    lon: (index * 58 + 24) % 360,
+    lat: latitudes[(index + 3) % latitudes.length],
+    radius: shells[(index + 1) % shells.length],
   })),
 ];
-
-export const globeStampNames = [
-  "phone",
-  "laptop",
-  "charger",
-  "mouse",
-  "door",
-  "window",
-  "desk",
-  "fan",
-  "vacuum",
-  "heater",
-  "dryer",
-  "helmet",
-  "ac",
-  "handle",
-  "backpack",
-  "cup",
-  "food",
-  "car",
-] as const;
 
 export function ProductIcon({ name }: { name: string }) {
   const common = {
