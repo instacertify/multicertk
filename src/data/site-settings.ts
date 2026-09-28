@@ -97,7 +97,7 @@ export const defaultSettings: SiteSettings = {
     analyticsEnabled: false,
     marketingEnabled: false,
     message:
-      "We use necessary cookies to run the site. Analytics and marketing cookies stay off unless you allow them. See the cookie policy for GDPR and DPDP details.",
+      "Necessary cookies only, unless you allow more. Policy: GDPR and DPDP.",
     privacyPath: "/privacy",
     cookiesPath: "/privacy/cookies",
     gdprPath: "/privacy/gdpr-and-dpdp",

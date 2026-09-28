@@ -2,7 +2,7 @@ import { locales, type Locale } from "@/i18n/routing";
 
 export const site = {
   name: "Certko",
-  tagline: "Compliance. Assured.",
+  tagline: "IS · HSN · lab",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://certko.com",
   email: "info@certko.com",
   phone: "+91-9999118039",
@@ -10,7 +10,7 @@ export const site = {
   address:
     "A-34, 4th Floor, Sector 63A, Noida, Gautam Buddha Nagar, Uttar Pradesh – 201301, India",
   description:
-    "Find the right certification and testing for your product. Certko maps BIS, BEE, GMARK, CE, FCC, SABER, WPC and lab standards so every scheme is searchable and interlinked.",
+    "Look up a product, HSN or IS number. Certko maps BIS CRS and ISI, BEE, G-Mark, CE, FCC, SABER and the labs that test them.",
 } as const;
 
 export const localesMeta: Record<

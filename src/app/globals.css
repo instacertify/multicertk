@@ -6,10 +6,10 @@
   --ink: #102033;
   --gold: #f5b400;
   --gold-600: #d49a00;
-  --paper: #f6f3ec;
-  --mist: #e7edf4;
-  --line: #d5dee8;
-  --muted: #5b6b7c;
+  --paper: #efe8d8;
+  --mist: #e4e0d4;
+  --line: #cfc6b4;
+  --muted: #5a5348;
   --font-ui: var(--font-inter);
   --fs-h1: 21px;
   --fs-h2: 17px;
@@ -83,7 +83,7 @@ html[lang="ar"] {
   --color-line: var(--line);
   --color-muted: var(--muted);
   --font-sans: var(--font-ui), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-ui), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-serif), "Source Serif 4", Georgia, serif;
   --text-xs: var(--fs-caption);
   --text-sm: var(--fs-body);
   --text-base: var(--fs-body);
@@ -109,7 +109,7 @@ html {
 }
 
 body {
-  background: #fff;
+  background: var(--paper);
   color: var(--ink);
   font-family: var(--font-ui), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   font-size: var(--fs-body);
@@ -122,8 +122,27 @@ h2,
 h3,
 h4,
 .font-display {
+  font-family: var(--font-serif), "Source Serif 4", Georgia, "Times New Roman", serif;
+  letter-spacing: 0;
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+
+html[lang="hi"] h1,
+html[lang="hi"] h2,
+html[lang="hi"] h3,
+html[lang="hi"] h4,
+html[lang="hi"] .font-display,
+html[lang="zh-Hans"] h1,
+html[lang="zh-Hans"] h2,
+html[lang="zh-Hans"] h3,
+html[lang="zh-Hans"] h4,
+html[lang="zh-Hans"] .font-display,
+html[lang="ar"] h1,
+html[lang="ar"] h2,
+html[lang="ar"] h3,
+html[lang="ar"] h4,
+html[lang="ar"] .font-display {
   font-family: var(--font-ui), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  letter-spacing: -0.02em;
 }
 
 h1,

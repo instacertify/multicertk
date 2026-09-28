@@ -82,7 +82,7 @@ export function Header({ menu, chrome }: { menu: NavItem[]; chrome?: HeaderChrom
 
   return (
     <header
-      className="relative sticky top-0 z-40 border-b border-line/80 bg-white/95 backdrop-blur"
+      className="relative sticky top-0 z-40 border-b border-navy bg-white"
       onMouseLeave={() => setOpenId(null)}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2.5">
@@ -123,7 +123,7 @@ export function Header({ menu, chrome }: { menu: NavItem[]; chrome?: HeaderChrom
           ))}
         </nav>
         <div className="flex items-center gap-3">
-          <div className="hidden w-56 xl:block">
+          <div className="hidden w-72 xl:block">
             <SearchBox size="sm" />
           </div>
           <Link href="/search" className="type-nav inline-flex items-center gap-1.5 text-navy hover:text-gold-600 xl:hidden">
@@ -133,7 +133,7 @@ export function Header({ menu, chrome }: { menu: NavItem[]; chrome?: HeaderChrom
           <LocaleSwitcher />
           <Link
             href="/contact"
-            className="type-btn hidden items-center gap-1.5 rounded-full bg-gold px-3.5 py-1.5 text-navy hover:bg-gold-600 md:inline-flex"
+            className="type-btn hidden items-center gap-1.5 bg-gold px-3 py-1.5 text-navy hover:bg-gold-600 md:inline-flex"
           >
             <NavIcon src={chrome?.quoteIconUrl} />
             {cta("quote")}

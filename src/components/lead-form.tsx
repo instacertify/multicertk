@@ -36,7 +36,7 @@ export function LeadForm({ sourcePath }: { sourcePath?: string }) {
   }
 
   return (
-    <form onSubmit={onSubmit} className="grid gap-3 rounded-2xl border border-line bg-white p-5 shadow-sm">
+    <form onSubmit={onSubmit} className="grid gap-3 border border-line bg-white p-5">
       <input type="hidden" name="sourcePath" value={sourcePath ?? ""} />
       <div className="grid gap-3 sm:grid-cols-2">
         <label className="text-sm font-medium">
@@ -73,7 +73,7 @@ export function LeadForm({ sourcePath }: { sourcePath?: string }) {
       <button
         type="submit"
         disabled={pending}
-        className="type-btn rounded-full bg-navy px-5 py-2.5 text-white hover:bg-navy-800 disabled:opacity-60"
+        className="type-btn bg-navy px-5 py-2.5 text-white hover:bg-navy-800 disabled:opacity-60"
       >
         {pending ? "…" : t("submit")}
       </button>

@@ -20,7 +20,7 @@ function LogoMark({ logo }: { logo: CustomerLogo }) {
 
 function ReviewCard({ review }: { review: CustomerReview }) {
   return (
-    <blockquote className="w-[20rem] shrink-0 rounded-2xl border border-line bg-paper p-5">
+    <blockquote className="w-[20rem] shrink-0 border border-line bg-white p-4">
       <p className="text-gold" aria-label={`${review.rating} out of 5`}>
         {"★".repeat(review.rating)}
         {"☆".repeat(Math.max(0, 5 - review.rating))}
@@ -65,7 +65,7 @@ export function SocialProof({
     <>
       {logos.length ? (
         <section className="border-t border-line bg-paper py-7" aria-label={trustedHeading}>
-          <p className="mb-4 text-center text-xs font-semibold uppercase tracking-[0.18em] text-gold-600">{trustedHeading}</p>
+          <p className="mb-4 text-center font-mono text-[11px] uppercase tracking-wide text-gold-600">{trustedHeading}</p>
           <div className="trust-strip">
             <div className="trust-track">
               {logoLoop.map((logo, index) => (
@@ -77,7 +77,7 @@ export function SocialProof({
       ) : null}
       {reviews.length ? (
         <section className="border-t border-line bg-white py-7" aria-label={reviewsHeading}>
-          <p className="mb-4 text-center text-xs font-semibold uppercase tracking-[0.18em] text-gold-600">{reviewsHeading}</p>
+          <p className="mb-4 text-center font-mono text-[11px] uppercase tracking-wide text-gold-600">{reviewsHeading}</p>
           <div className="trust-strip">
             <div className="trust-track trust-track-reviews">
               {reviewLoop.map((review, index) => (

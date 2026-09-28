@@ -10,11 +10,11 @@ export function Badge({
   const tones = {
     navy: "bg-navy text-white",
     gold: "bg-gold text-navy",
-    mist: "bg-mist text-navy",
-    alert: "bg-amber-100 text-amber-900",
+    mist: "border border-line bg-mist text-navy",
+    alert: "bg-amber-100 text-amber-950",
   };
   return (
-    <span className={`inline-flex rounded-full px-2.5 py-0.5 text-xs font-semibold ${tones[tone]}`}>
+    <span className={`inline-flex px-2 py-0.5 text-[11px] font-semibold ${tones[tone]}`}>
       {children}
     </span>
   );
@@ -34,18 +34,15 @@ export function CardLink({
   image?: string;
 }) {
   return (
-    <Link
-      href={href}
-      className="block overflow-hidden rounded-2xl border border-line bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-gold"
-    >
+    <Link href={href} className="block border border-line bg-white hover:border-navy">
       {image ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img src={image} alt="" className="h-40 w-full object-cover" />
       ) : null}
-      <div className="p-5">
-      {meta ? <p className="text-xs font-semibold uppercase tracking-wide text-gold-600">{meta}</p> : null}
-      <h4 className="mt-1 font-display text-navy">{title}</h4>
-      {body ? <p className="mt-2 text-muted">{body}</p> : null}
+      <div className="border-l-[3px] border-gold p-4">
+        {meta ? <p className="font-mono text-[11px] text-gold-600">{meta}</p> : null}
+        <h4 className="mt-1 font-display text-navy">{title}</h4>
+        {body ? <p className="mt-2 text-sm text-muted">{body}</p> : null}
       </div>
     </Link>
   );
@@ -61,10 +58,10 @@ export function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section className="mx-auto max-w-7xl px-4 py-8 md:py-10">
-      {eyebrow ? <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold-600">{eyebrow}</p> : null}
-      <h2 className="mt-1 font-display text-3xl text-navy">{title}</h2>
-      <div className="mt-6">{children}</div>
+    <section className="mx-auto max-w-7xl px-4 py-8 md:py-9">
+      {eyebrow ? <p className="font-mono text-[11px] uppercase tracking-wide text-gold-600">{eyebrow}</p> : null}
+      <h2 className="mt-1 border-b border-navy pb-2 font-display text-navy">{title}</h2>
+      <div className="mt-5">{children}</div>
     </section>
   );
 }

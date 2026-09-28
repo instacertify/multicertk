@@ -20,16 +20,16 @@ function SearchFields({
   const large = size === "lg";
 
   return (
-    <div className={`flex overflow-hidden rounded-full border border-line bg-white shadow-sm ${large ? "h-11" : "h-9"}`}>
+    <div className={`flex overflow-hidden border border-line bg-white ${large ? "h-11" : "h-9"}`}>
       <input
         name="q"
         value={query}
         autoFocus={autoFocus}
         onChange={(event) => onQueryChange(event.target.value)}
         placeholder={t("placeholder")}
-        className={`min-w-0 flex-1 bg-transparent px-5 text-navy outline-none placeholder:text-muted ${large ? "text-base" : "text-sm"}`}
+        className={`min-w-0 flex-1 bg-transparent px-3 text-navy outline-none placeholder:text-muted ${large ? "text-base" : "text-sm"}`}
       />
-      <button type="submit" className="type-btn m-1 rounded-full bg-navy px-5 text-white hover:bg-navy-800">
+      <button type="submit" className="type-btn bg-navy px-4 text-white hover:bg-navy-800">
         {t("submit")}
       </button>
     </div>
