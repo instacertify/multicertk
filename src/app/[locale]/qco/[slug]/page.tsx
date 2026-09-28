@@ -9,6 +9,7 @@ import { getPage, sectionHeading } from "@/lib/cms";
 import { breadcrumbLd, pageMetadata } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
+export const dynamicParams = true;
 
 export function generateStaticParams() {
   return qcos.map((qco) => ({ slug: qco.slug }));
