@@ -63,7 +63,7 @@ export function CookieBanner({ settings }: { settings: CookieSettings }) {
   }
 
   return (
-    <div className="fixed inset-x-3 bottom-3 z-50 rounded-2xl border border-line bg-white px-4 py-3 text-navy shadow-[0_12px_40px_rgba(16,32,51,0.12)]">
+    <div className="fixed inset-x-3 bottom-3 z-50 rounded-3xl border border-line bg-white px-4 py-3 text-navy shadow-[0_12px_40px_rgba(16,32,51,0.12)]">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3">
         <p className="max-w-3xl text-[12px] leading-snug text-muted">
           {settings.message}{" "}

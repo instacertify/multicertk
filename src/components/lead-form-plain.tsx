@@ -23,7 +23,7 @@ export function LeadFormPlain({ sourcePath }: { sourcePath?: string }) {
   }
 
   return (
-    <form onSubmit={onSubmit} className="mt-8 grid gap-3 rounded-2xl border border-line bg-white p-5 text-start">
+    <form onSubmit={onSubmit} className="mt-8 grid gap-3 rounded-3xl border border-line bg-white p-5 text-start">
       <input type="hidden" name="sourcePath" value={sourcePath ?? "/404"} />
       <p className="font-mono text-[11px] uppercase tracking-wide text-gold-600">Quote desk</p>
       <p className="font-display text-navy">Can’t find the right solution?</p>

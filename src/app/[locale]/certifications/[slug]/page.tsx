@@ -87,7 +87,7 @@ export default async function SchemePage({
       <p className="mt-3 text-sm text-muted">{scheme.whoNeedsIt}</p>
 
       <h2 className="mt-10 border-b border-gold pb-2 font-display text-navy">{sectionHeading(cms, "process", "Process")}</h2>
-      <ol className="mt-4 divide-y divide-line border-y border-line bg-white">
+      <ol className="home-panel mt-4 divide-y divide-line">
         {scheme.process.map((step, index) => (
           <li key={step} className="grid gap-3 px-4 py-3 sm:grid-cols-[3rem_1fr] text-sm leading-6">
             <span className="font-mono text-[11px] text-gold-600">{String(index + 1).padStart(2, "0")}</span>

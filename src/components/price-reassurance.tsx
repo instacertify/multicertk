@@ -39,7 +39,7 @@ export function PriceReassurance({
 
   return (
     <aside
-      className={`rounded-2xl border border-gold bg-gold/15 ${compact ? "p-4" : "p-5"} ${className}`}
+      className={`rounded-3xl border border-gold bg-gold/15 ${compact ? "p-4" : "p-5"} ${className}`}
     >
       <p className="caption font-semibold uppercase tracking-wide text-gold-600">{t("eyebrow")}</p>
       <p className={`mt-1 font-semibold text-navy ${compact ? "" : "lead"}`}>{t("headline")}</p>

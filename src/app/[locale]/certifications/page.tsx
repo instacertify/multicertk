@@ -33,7 +33,7 @@ export default async function CertificationsPage({ params }: { params: Promise<{
       </p>
       <PageMedia src={cms?.heroImageUrl} alt={cms?.heroImageAlt || cms?.title || "Certifications"} gallery={cms?.galleryUrls} />
       <h2 className="mt-10 border-b border-gold pb-2 font-display text-navy">{sectionHeading(cms, "how", "How GMA works")}</h2>
-      <ol className="mt-4 divide-y divide-line border-y border-line bg-white">
+      <ol className="home-panel mt-4 divide-y divide-line">
         {["Regulatory determination", "Testing to the national standard", "Local representation", "Filing & follow-up"].map((step, index) => (
           <li key={step} className="grid gap-3 px-4 py-3 sm:grid-cols-[3rem_1fr]">
             <p className="font-mono text-[11px] text-gold-600">{String(index + 1).padStart(2, "0")}</p>

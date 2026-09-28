@@ -448,7 +448,7 @@ html[dir="rtl"] .trust-track {
   width: 5.2rem;
   height: 5.2rem;
   border: 1.5px solid rgba(212, 154, 0, 0.4);
-  border-radius: 1.35rem;
+  border-radius: 1.85rem;
   background: rgba(245, 180, 0, 0.12);
   transform: rotate(14deg);
 }
@@ -508,7 +508,7 @@ html[dir="rtl"] .trust-track {
   width: min(32rem, 94%);
   aspect-ratio: 1;
   border: 1.5px solid rgba(212, 154, 0, 0.28);
-  border-radius: 2.4rem;
+  border-radius: 3rem;
   background: rgba(255, 255, 255, 0.38);
 }
 
@@ -521,7 +521,7 @@ html[dir="rtl"] .trust-track {
 
 .home-stat {
   border: 1px solid rgba(212, 154, 0, 0.35);
-  border-radius: 1.05rem;
+  border-radius: 1.35rem;
   background: #fff;
   padding: 0.85rem 0.7rem;
 }
@@ -550,7 +550,7 @@ html[dir="rtl"] .trust-track {
   align-items: center;
   gap: 0.4rem;
   border: 1px solid var(--line);
-  border-radius: 1.15rem;
+  border-radius: 1.5rem;
   background: #fff;
   padding: 0.9rem 0.4rem 0.7rem;
 }
@@ -560,7 +560,7 @@ html[dir="rtl"] .trust-track {
   place-items: center;
   width: 2.7rem;
   height: 2.7rem;
-  border-radius: 0.95rem;
+  border-radius: 999px;
   background: rgba(245, 180, 0, 0.22);
   color: var(--gold-600);
 }
@@ -596,7 +596,7 @@ html[dir="rtl"] .trust-track {
 .home-panel {
   overflow: hidden;
   border: 1px solid var(--line);
-  border-radius: 1.25rem;
+  border-radius: 1.65rem;
   background: #fff;
 }
 
@@ -630,7 +630,7 @@ html[dir="rtl"] .trust-track {
   justify-content: space-between;
   gap: 0.75rem;
   border: 1px solid var(--line);
-  border-radius: 1rem;
+  border-radius: 1.35rem;
   background: #fff;
   padding: 0.7rem 0.9rem;
 }
@@ -638,6 +638,6 @@ html[dir="rtl"] .trust-track {
 .soft-card {
   overflow: hidden;
   border: 1px solid var(--line);
-  border-radius: 1.15rem;
+  border-radius: 1.65rem;
   background: #fff;
 }

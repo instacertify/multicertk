@@ -33,7 +33,7 @@ export default async function QcoPage({ params }: { params: Promise<{ locale: st
       <PageMedia src={cms?.heroImageUrl} alt={cms?.heroImageAlt || cms?.title || "QCOs"} gallery={cms?.galleryUrls} />
       <div className="mt-8 space-y-5">
         {qcos.map((qco) => (
-          <article id={qco.slug} key={qco.slug} className="scroll-mt-24 rounded-2xl border border-line bg-white p-5">
+          <article id={qco.slug} key={qco.slug} className="scroll-mt-24 rounded-3xl border border-line bg-white p-5">
             <div className="flex flex-wrap items-center gap-2">
               <StatusBadge status={qco.status} />
               {qco.deadline ? <span className="text-xs text-muted">Deadline {qco.deadline}</span> : null}

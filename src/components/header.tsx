@@ -110,7 +110,7 @@ export function Header({ menu, chrome }: { menu: NavItem[]; chrome?: HeaderChrom
               </Link>
               {item.children?.length && openId === item.id && !mega ? (
                 <div
-                  className="absolute start-0 top-full z-50 min-w-56 rounded-2xl border border-line bg-white p-2 shadow-lg"
+                  className="absolute start-0 top-full z-50 min-w-56 rounded-3xl border border-line bg-white p-2 shadow-lg"
                   onMouseEnter={() => setOpenId(item.id)}
                   onMouseLeave={() => setOpenId(null)}
                 >

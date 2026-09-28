@@ -67,7 +67,7 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
       <Section title="Browse by product family">
         <div className="columns-1 gap-x-10 sm:columns-2 lg:columns-3">
           {categories.map((category) => (
-            <p key={category.slug} className="mb-2 break-inside-avoid border-b border-line pb-2">
+            <p key={category.slug} className="home-category mb-2 break-inside-avoid">
               <Link href={`/category/${category.slug}`} className="text-navy hover:text-gold-600">
                 {category.name}
               </Link>

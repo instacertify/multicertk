@@ -123,7 +123,7 @@ export default async function ProductPage({
       </div>
       <h1 className="mt-4 font-display text-navy">{product.name}</h1>
       <p className="lead mt-3 max-w-3xl text-muted">{product.excerpt}</p>
-      <p className="mt-3 max-w-3xl rounded-2xl border border-gold bg-gold/10 px-4 py-3 text-sm text-ink">{bisRouteSummary(product)}</p>
+      <p className="mt-3 max-w-3xl rounded-3xl border border-gold bg-gold/10 px-4 py-3 text-sm text-ink">{bisRouteSummary(product)}</p>
       <PageMedia src={cms?.heroImageUrl} alt={cms?.heroImageAlt || product.name} gallery={cms?.galleryUrls} />
 
       <RecordTable>
@@ -192,7 +192,7 @@ export default async function ProductPage({
       {tests.length ? (
         <>
           <h2 className="mt-12 border-b border-gold pb-2 font-display text-navy">{sectionHeading(cms, "tests", "Relevant product testing")}</h2>
-          <ul className="mt-4 divide-y divide-line border-y border-line bg-white">
+          <ul className="home-panel mt-4 divide-y divide-line px-4">
             {tests.map((test) => (
               <li key={test.slug}>
                 <Link href={`/testing/${test.discipline}/${test.slug}`} className="flex items-baseline justify-between gap-4 py-2.5 hover:text-gold-600">
@@ -210,7 +210,7 @@ export default async function ProductPage({
       {bee.length || gmark.length ? (
         <>
           <h2 className="mt-12 border-b border-gold pb-2 font-display text-navy">{sectionHeading(cms, "stacked", "Stacked energy & export marks")}</h2>
-          <ul className="mt-4 divide-y divide-line border-y border-line bg-white">
+          <ul className="home-panel mt-4 divide-y divide-line px-4">
             {bee.map((item) => (
               <li key={item.slug}>
                 <Link href={`/certifications/bee/products/${item.slug}`} className="block py-2.5 hover:text-gold-600">
@@ -234,7 +234,7 @@ export default async function ProductPage({
       {isCrsProduct(product) && notes.length ? (
         <>
           <h2 className="mt-12 border-b border-gold pb-2 font-display text-navy">CRS notes for this product</h2>
-          <ul className="mt-4 divide-y divide-line border-y border-line bg-white">
+          <ul className="home-panel mt-4 divide-y divide-line px-4">
             {notes.map((article) => (
               <li key={article.slug}>
                 <Link href={`/blog/${article.slug}`} className="flex items-baseline justify-between gap-4 py-2.5 hover:text-gold-600">
