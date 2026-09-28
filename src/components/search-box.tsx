@@ -29,7 +29,7 @@ function SearchFields({
         placeholder={t("placeholder")}
         className={`min-w-0 flex-1 bg-transparent px-3 text-navy outline-none placeholder:text-muted ${large ? "text-base" : "text-sm"}`}
       />
-      <button type="submit" className="type-btn bg-navy px-4 text-white hover:bg-navy-800">
+      <button type="submit" className="type-btn shrink-0 bg-navy px-4 text-white hover:bg-navy-800">
         {t("submit")}
       </button>
     </div>

@@ -110,8 +110,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               <thead className="text-white/50">
                 <tr>
                   <th className="px-4 py-2 font-medium">Product</th>
-                  <th className="px-4 py-2 font-medium">Standard</th>
-                  <th className="hidden px-4 py-2 font-medium sm:table-cell">HSN</th>
+                  <th className="hidden px-4 py-2 font-medium md:table-cell">Standard</th>
+                  <th className="hidden px-4 py-2 font-medium lg:table-cell">HSN</th>
                   <th className="px-4 py-2 font-medium">Route</th>
                 </tr>
               </thead>
@@ -124,8 +124,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                           {product.name}
                         </Link>
                       </td>
-                      <td className="px-4 py-2.5 font-mono text-white/75">{product.standard}</td>
-                      <td className="hidden px-4 py-2.5 font-mono text-white/75 sm:table-cell">{product.hsn}</td>
+                      <td className="hidden px-4 py-2.5 font-mono text-white/75 md:table-cell">{product.standard}</td>
+                      <td className="hidden px-4 py-2.5 font-mono text-white/75 lg:table-cell">{product.hsn}</td>
                       <td className="px-4 py-2.5 text-gold">{bisRouteLabel(product).replace("BIS · ", "")}</td>
                     </tr>
                   ) : null,
