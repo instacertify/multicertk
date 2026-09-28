@@ -7,41 +7,46 @@ type ProductMark = {
   radius: "in" | "mid" | "core";
 };
 
+const featuredMarks = [
+  "phone",
+  "laptop",
+  "charger",
+  "mouse",
+  "helmet",
+  "ac",
+  "door",
+  "window",
+  "desk",
+  "fan",
+  "vacuum",
+  "heater",
+  "dryer",
+  "handle",
+  "backpack",
+  "cup",
+  "food",
+] as const;
+
+const extraMarks = ["plug", "car", "tablet", "fridge", "tv", "kettle", "apple", "bowl", "bottle", "lamp"] as const;
+
+const shells: ProductMark["radius"][] = ["in", "mid", "core"];
+const latitudes = [16, -14, 28, -26, 8, -32, 22, -10];
+
 const products: ProductMark[] = [
-  { name: "phone", lon: 4, lat: 14, radius: "in" },
-  { name: "laptop", lon: 38, lat: -12, radius: "in" },
-  { name: "charger", lon: 72, lat: 20, radius: "in" },
-  { name: "mouse", lon: 108, lat: -18, radius: "in" },
-  { name: "helmet", lon: 142, lat: 10, radius: "in" },
-  { name: "ac", lon: 176, lat: -22, radius: "in" },
-  { name: "door", lon: 210, lat: 16, radius: "in" },
-  { name: "window", lon: 246, lat: -10, radius: "in" },
-  { name: "desk", lon: 282, lat: 22, radius: "in" },
-  { name: "fan", lon: 318, lat: -16, radius: "in" },
-  { name: "vacuum", lon: 22, lat: 32, radius: "mid" },
-  { name: "heater", lon: 58, lat: -30, radius: "mid" },
-  { name: "dryer", lon: 96, lat: 8, radius: "mid" },
-  { name: "handle", lon: 132, lat: -28, radius: "mid" },
-  { name: "backpack", lon: 168, lat: 28, radius: "mid" },
-  { name: "cup", lon: 204, lat: -8, radius: "mid" },
-  { name: "food", lon: 240, lat: 34, radius: "mid" },
-  { name: "plug", lon: 276, lat: -32, radius: "mid" },
-  { name: "car", lon: 312, lat: 6, radius: "mid" },
-  { name: "tablet", lon: 348, lat: -24, radius: "mid" },
-  { name: "lamp", lon: 16, lat: -6, radius: "core" },
-  { name: "fridge", lon: 52, lat: 18, radius: "core" },
-  { name: "headphones", lon: 88, lat: -20, radius: "core" },
-  { name: "toy", lon: 124, lat: 12, radius: "core" },
-  { name: "bottle", lon: 160, lat: -16, radius: "core" },
-  { name: "ceramic", lon: 196, lat: 20, radius: "core" },
-  { name: "tv", lon: 232, lat: -28, radius: "core" },
-  { name: "speaker", lon: 268, lat: 4, radius: "core" },
-  { name: "camera", lon: 304, lat: -12, radius: "core" },
-  { name: "watch", lon: 340, lat: 24, radius: "core" },
-  { name: "kettle", lon: 44, lat: 40, radius: "in" },
-  { name: "blender", lon: 154, lat: -36, radius: "in" },
-  { name: "toaster", lon: 224, lat: 36, radius: "mid" },
-  { name: "iron", lon: 334, lat: 30, radius: "mid" },
+  ...featuredMarks.flatMap((name, index) =>
+    shells.map((radius, shell) => ({
+      name,
+      lon: (index * 21.2 + shell * 119) % 360,
+      lat: latitudes[(index + shell * 3) % latitudes.length],
+      radius,
+    })),
+  ),
+  ...extraMarks.map((name, index) => ({
+    name,
+    lon: (index * 36 + 8) % 360,
+    lat: latitudes[(index + 4) % latitudes.length],
+    radius: shells[index % shells.length],
+  })),
 ];
 
 export const globeStampNames = [
@@ -75,6 +80,7 @@ export function ProductIcon({ name }: { name: string }) {
   };
   switch (name) {
     case "phone":
+    case "cellphone":
       return (
         <svg viewBox="0 0 24 24" aria-hidden {...common}>
           <rect x="8" y="3" width="8" height="18" rx="2.2" />
@@ -185,8 +191,8 @@ export function ProductIcon({ name }: { name: string }) {
     case "door":
       return (
         <svg viewBox="0 0 24 24" aria-hidden {...common}>
-          <path d="M6.8 3.8h10.4a1.6 1.6 0 0 1 1.6 1.6v14.8a1.6 1.6 0 0 1-1.6 1.6H6.8A1.6 1.6 0 0 1 5.2 20.2V5.4A1.6 1.6 0 0 1 6.8 3.8z" />
-          <path d="M14.8 12.2h.01" />
+          <path d="M6.6 3.6h10.8v16.8H6.6z" />
+          <circle cx="14.6" cy="12.2" r="0.9" />
         </svg>
       );
     case "window":
@@ -199,14 +205,17 @@ export function ProductIcon({ name }: { name: string }) {
     case "desk":
       return (
         <svg viewBox="0 0 24 24" aria-hidden {...common}>
-          <path d="M3.6 9.2h16.8M5.2 9.2v10.4M18.8 9.2v10.4M5.2 14.4h6.2V19.6H5.2z" />
+          <path d="M3.2 8.2h17.6" />
+          <path d="M5 8.2v11.2M19 8.2v11.2" />
+          <rect x="5" y="12.4" width="6.4" height="6.8" rx="0.8" />
+          <path d="M9.4 15.8h.01" />
         </svg>
       );
     case "vacuum":
       return (
         <svg viewBox="0 0 24 24" aria-hidden {...common}>
-          <circle cx="9.2" cy="13.4" r="4.4" />
-          <path d="M12.8 11.2 18.4 5.8h2M7.6 17.6h3.2" />
+          <circle cx="9" cy="13.6" r="4.2" />
+          <path d="M12.4 11.2 19 5.4h2.2M7.4 17.8h3.2M19 5.4v4.2" />
         </svg>
       );
     case "heater":
@@ -241,15 +250,15 @@ export function ProductIcon({ name }: { name: string }) {
     case "handle":
       return (
         <svg viewBox="0 0 24 24" aria-hidden {...common}>
-          <circle cx="8.2" cy="12" r="2.2" />
-          <path d="M10.2 12h8.4c1.2 0 2 .8 2 1.8s-.8 1.8-2 1.8H14" />
+          <circle cx="7.4" cy="12" r="2.4" />
+          <path d="M9.6 12h9.2a2 2 0 0 1 0 4H14" />
         </svg>
       );
     case "backpack":
       return (
         <svg viewBox="0 0 24 24" aria-hidden {...common}>
-          <path d="M8 8.4h8v11.2H8z" />
-          <path d="M9.4 8.4V6.6a2.6 2.6 0 0 1 5.2 0v1.8M8 12.4h8" />
+          <rect x="7.4" y="8" width="9.2" height="11.6" rx="2" />
+          <path d="M9.4 8V6.4a2.6 2.6 0 0 1 5.2 0V8M7.4 12.6h9.2" />
         </svg>
       );
     case "cup":
@@ -318,6 +327,20 @@ export function ProductIcon({ name }: { name: string }) {
           <path d="M6.4 17.8h9.2" />
         </svg>
       );
+    case "apple":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden {...common}>
+          <path d="M12 7.6c3.6 0 6.2 2.8 6.2 6.4 0 3.8-2.8 6.6-6.2 6.6s-6.2-2.8-6.2-6.6c0-3.6 2.6-6.4 6.2-6.4z" />
+          <path d="M12 7.6c.4-2.2 1.8-3.6 3.6-4" />
+        </svg>
+      );
+    case "bowl":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden {...common}>
+          <path d="M5 11.2h14s-.5 7.2-7 7.2-7-7.2-7-7.2z" />
+          <path d="M8.2 11.2c.5-3.2 1.8-5.2 3.8-6.6 2 1.4 3.3 3.4 3.8 6.6" />
+        </svg>
+      );
     default:
       return (
         <svg viewBox="0 0 24 24" aria-hidden {...common}>
@@ -330,7 +353,7 @@ export function ProductIcon({ name }: { name: string }) {
 
 export function ProductGlobe() {
   const meridians = [0, 30, 60, 90, 120, 150];
-  const latitudes = [
+  const rings = [
     { y: "-42%", scale: 0.38 },
     { y: "-22%", scale: 0.78 },
     { y: "0%", scale: 1 },
@@ -345,7 +368,7 @@ export function ProductGlobe() {
           {meridians.map((deg) => (
             <span key={deg} className="product-globe-meridian" style={{ transform: `rotateY(${deg}deg)` }} />
           ))}
-          {latitudes.map((ring) => (
+          {rings.map((ring) => (
             <span
               key={ring.y}
               className="product-globe-latitude"

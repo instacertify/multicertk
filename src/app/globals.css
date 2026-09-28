@@ -325,9 +325,9 @@ html[dir="rtl"] .trust-track {
   top: 50%;
   left: 50%;
   display: flex;
-  width: 2.05rem;
-  height: 2.05rem;
-  margin: -1.025rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  margin: -1.1rem;
   align-items: center;
   justify-content: center;
   color: #0b1f3d;
@@ -343,8 +343,8 @@ html[dir="rtl"] .trust-track {
 }
 
 .product-globe-item svg {
-  width: 1.45rem;
-  height: 1.45rem;
+  width: 1.55rem;
+  height: 1.55rem;
   filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.7));
 }
 
