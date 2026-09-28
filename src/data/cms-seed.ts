@@ -96,9 +96,9 @@ export const seedPages: CmsPage[] = [
     slug: "about",
     path: "/about",
     locale: "en",
-    title: "About Certko",
+    title: "Certko by Instacertify Labs Private Limited",
     intro:
-      "Certko helps manufacturers, importers and marketplace sellers map the right certification scheme to the right laboratory standard — then book the work.",
+      "Certko is the public certification catalogue of Instacertify Labs Private Limited. We help manufacturers, importers and marketplace sellers map the right scheme to the right laboratory standard — then book the work.",
     sections: [
       {
         key: "graph",

@@ -2,6 +2,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 
 export const dynamic = "force-dynamic";
+import { HomeHeroShapes, HomeStampStrip } from "@/components/home-decor";
 import { PageHero } from "@/components/page-hero";
 import { ProductGlobe } from "@/components/product-globe";
 import { SearchBox } from "@/components/search-box";
@@ -58,38 +59,52 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   return (
     <>
       <JsonLd data={[organizationLd(), websiteLd(), breadcrumbLd([{ name: "Home", path: "/" }], locale), faqLd(faqs)]} />
-      <section className="border-b border-navy bg-navy text-white">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-8 lg:grid-cols-12 lg:items-center lg:gap-10 lg:py-10">
-          <div className="lg:col-span-6">
-            <p className="font-mono text-[11px] text-gold">{t("eyebrow")}</p>
-            <h1 className="mt-3 max-w-xl text-white">{cms?.title ?? t("title")}</h1>
-            <p className="mt-4 max-w-xl text-[15px] leading-7 text-white/80">{cms?.intro ?? t("subtitle")}</p>
+      <section className="home-hero border-b border-navy bg-navy text-white">
+        <HomeHeroShapes />
+        <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-10 lg:grid-cols-12 lg:gap-12 lg:py-14">
+          <div className="lg:col-span-5">
+            <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-gold">{t("eyebrow")}</p>
+            <h1 className="mt-4 text-white">{cms?.title ?? t("title")}</h1>
+            <p className="mt-4 max-w-lg text-[15px] leading-7 text-white/80">{cms?.intro ?? t("subtitle")}</p>
             {cms?.heroImageUrl ? (
-              <div className="mt-5 overflow-hidden border border-white/15">
+              <div className="mt-6 overflow-hidden border border-white/15">
                 <PageHero src={cms.heroImageUrl} alt={cms.heroImageAlt || cms.title} />
               </div>
             ) : null}
-            <div className="mt-6 max-w-xl text-navy">
+            <div className="mt-7 text-navy">
               <SearchBox />
             </div>
-            <p className="mt-3 font-mono text-[11px] text-white/55">
-              {stats.products} products · {stats.tests} tests · {stats.schemes} schemes
-            </p>
+            <dl className="mt-6 grid grid-cols-3 gap-3 font-mono text-[11px] text-white/70">
+              <div className="border border-white/15 px-3 py-2">
+                <dt className="text-white/45">Products</dt>
+                <dd className="mt-1 text-gold">{stats.products}</dd>
+              </div>
+              <div className="border border-white/15 px-3 py-2">
+                <dt className="text-white/45">Tests</dt>
+                <dd className="mt-1 text-gold">{stats.tests}</dd>
+              </div>
+              <div className="border border-white/15 px-3 py-2">
+                <dt className="text-white/45">Schemes</dt>
+                <dd className="mt-1 text-gold">{stats.schemes}</dd>
+              </div>
+            </dl>
           </div>
-          <div className="lg:col-span-6">
-            <ProductGlobe />
-            <p className="mt-3 text-center font-mono text-[11px] uppercase tracking-wide text-white/50">{t("globeCaption")}</p>
+          <div className="lg:col-span-7">
+            <div className="home-globe-stage">
+              <ProductGlobe />
+              <p className="home-globe-caption">{t("globeCaption")}</p>
+            </div>
           </div>
         </div>
-        <div className="mx-auto max-w-7xl px-4 pb-8">
-          <div className="border border-white/15 bg-navy-800">
-            <div className="flex items-center justify-between border-b border-white/10 px-4 py-2">
-              <p className="font-mono text-[11px] uppercase tracking-wide text-gold">{t("deskTitle")}</p>
+        <div className="relative mx-auto max-w-7xl px-4 pb-10 lg:pb-14">
+          <div className="home-desk border border-white/15 bg-navy-800">
+            <div className="flex items-center justify-between border-b border-white/10 px-4 py-2.5">
+              <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-gold">{t("deskTitle")}</p>
               <Link href="/products/all" className="text-[11px] text-white/70 underline">
                 {t("deskAll")}
               </Link>
             </div>
-            <table className="w-full text-left text-[12px]">
+            <table className="home-desk-table w-full text-left">
               <thead className="text-white/50">
                 <tr>
                   <th className="px-4 py-2 font-medium">Product</th>
@@ -103,7 +118,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                   product ? (
                     <tr key={product.slug} className="border-t border-white/10">
                       <td className="px-4 py-2.5">
-                        <Link href={`/product/${product.slug}`} className="text-white hover:text-gold">
+                        <Link href={`/product/${product.slug}`} className="block truncate text-white hover:text-gold" title={product.name}>
                           {product.name}
                         </Link>
                       </td>
@@ -118,12 +133,13 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           </div>
         </div>
       </section>
+      <HomeStampStrip />
 
       <Section title={sectionHeading(cms, "need", t("needTitle"))} eyebrow={t("needEyebrow")}>
-        <div className="grid gap-8 md:grid-cols-2">
+        <div className="grid items-start gap-10 md:grid-cols-2">
           <div>
             <h3 className="font-display text-navy">{t("needCert")}</h3>
-            <ul className="mt-3 divide-y divide-line border-y border-line">
+            <ul className="mt-4 divide-y divide-line border-y border-line">
               {schemes.slice(0, 8).map((scheme) => (
                 <li key={scheme.slug}>
                   <Link href={`/certifications/${scheme.slug}`} className="flex items-baseline justify-between gap-3 py-2 hover:text-gold-600">
@@ -136,7 +152,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           </div>
           <div>
             <h3 className="font-display text-navy">{t("needTest")}</h3>
-            <ul className="mt-3 divide-y divide-line border-y border-line">
+            <ul className="mt-4 divide-y divide-line border-y border-line">
               {[
                 ["chemical-testing", "Chemical"],
                 ["electrical-testing", "Electrical"],
@@ -206,13 +222,13 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       </Section>
 
       <Section title={sectionHeading(cms, "categories", t("categories"))}>
-        <div className="columns-1 gap-x-10 sm:columns-2 lg:columns-3">
+        <div className="grid grid-cols-1 gap-x-10 sm:grid-cols-2 lg:grid-cols-3">
           {categories.map((category) => (
-            <p key={category.slug} className="mb-2 break-inside-avoid border-b border-line pb-2">
+            <p key={category.slug} className="flex items-baseline justify-between gap-3 border-b border-line py-2">
               <Link href={`/category/${category.slug}`} className="text-navy hover:text-gold-600">
                 {category.name}
               </Link>
-              <span className="ms-2 font-mono text-[11px] text-muted">{productsByCategory(category.slug).length}</span>
+              <span className="font-mono text-[11px] text-muted">{productsByCategory(category.slug).length}</span>
             </p>
           ))}
         </div>

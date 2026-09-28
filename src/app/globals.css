@@ -283,11 +283,11 @@ html[dir="rtl"] .trust-track {
 .product-globe {
   --item-r: 8.4rem;
   position: relative;
-  width: min(26rem, 100%);
-  height: min(26rem, 92vw);
+  width: min(28rem, 100%);
+  height: min(28rem, 88vw);
   margin-inline: auto;
   perspective: 1200px;
-  background: radial-gradient(circle at 34% 30%, rgba(245, 180, 0, 0.1), transparent 58%);
+  background: radial-gradient(circle at 34% 30%, rgba(245, 180, 0, 0.12), transparent 58%);
   border-radius: 50%;
 }
 
@@ -301,7 +301,7 @@ html[dir="rtl"] .trust-track {
   position: absolute;
   inset: 0;
   transform-style: preserve-3d;
-  animation: globe-spin 28s linear infinite;
+  animation: globe-spin 32s linear infinite;
 }
 
 .product-globe-meridian,
@@ -323,9 +323,9 @@ html[dir="rtl"] .trust-track {
   top: 50%;
   left: 50%;
   display: flex;
-  width: 2.35rem;
-  height: 2.35rem;
-  margin: -1.175rem;
+  width: 2.05rem;
+  height: 2.05rem;
+  margin: -1.025rem;
   align-items: center;
   justify-content: center;
   color: #f5b400;
@@ -341,8 +341,8 @@ html[dir="rtl"] .trust-track {
 }
 
 .product-globe-item svg {
-  width: 1.7rem;
-  height: 1.7rem;
+  width: 1.45rem;
+  height: 1.45rem;
   filter: drop-shadow(0 0 0.4rem rgba(6, 20, 40, 0.95));
 }
 
@@ -368,21 +368,24 @@ html[dir="rtl"] .trust-track {
 
 @media (max-width: 480px) {
   .product-globe {
-    --item-r: 6.4rem;
-    width: 18.5rem;
-    height: 18.5rem;
+    --item-r: 6.2rem;
+    width: 18rem;
+    height: 18rem;
   }
 
   .product-globe-item {
-    --item-r: 6.4rem;
+    --item-r: 6.2rem;
+    width: 1.8rem;
+    height: 1.8rem;
+    margin: -0.9rem;
   }
 
   .product-globe-item-mid {
-    --item-r: 4.7rem;
+    --item-r: 4.5rem;
   }
 
   .product-globe-item-core {
-    --item-r: 3.1rem;
+    --item-r: 3rem;
   }
 }
 
@@ -391,4 +394,154 @@ html[dir="rtl"] .trust-track {
     animation: none;
     transform: rotateX(-16deg) rotateY(28deg);
   }
+}
+
+.home-hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.home-hero-shapes {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+}
+
+.home-shape {
+  position: absolute;
+  display: block;
+}
+
+.home-shape-rule,
+.home-shape-rule-2 {
+  left: 0;
+  right: 0;
+  height: 0;
+  border-top: 1px dashed rgba(245, 180, 0, 0.18);
+}
+
+.home-shape-rule {
+  top: 18%;
+}
+
+.home-shape-rule-2 {
+  top: 72%;
+}
+
+.home-shape-disc {
+  top: -6rem;
+  right: -4rem;
+  width: 18rem;
+  height: 18rem;
+  border: 1px solid rgba(245, 180, 0, 0.22);
+  border-radius: 50%;
+}
+
+.home-shape-square {
+  bottom: 12%;
+  left: 6%;
+  width: 4.5rem;
+  height: 4.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  transform: rotate(12deg);
+}
+
+.home-shape-arc {
+  right: 22%;
+  bottom: -5rem;
+  width: 14rem;
+  height: 14rem;
+  border: 1px solid rgba(245, 180, 0, 0.16);
+  border-radius: 50%;
+}
+
+.home-globe-stage {
+  position: relative;
+  display: grid;
+  min-height: 22rem;
+  place-items: center;
+  padding: 1.5rem 0 0.5rem;
+}
+
+.home-globe-stage::before,
+.home-globe-stage::after {
+  position: absolute;
+  content: "";
+  pointer-events: none;
+}
+
+.home-globe-stage::before {
+  width: min(32rem, 92%);
+  aspect-ratio: 1;
+  border: 1px solid rgba(239, 232, 216, 0.12);
+  transform: rotate(8deg);
+}
+
+.home-globe-stage::after {
+  width: min(22rem, 64%);
+  aspect-ratio: 1;
+  border: 1px solid rgba(245, 180, 0, 0.28);
+  border-radius: 50%;
+}
+
+.home-globe-caption {
+  position: relative;
+  z-index: 1;
+  margin-top: 0.85rem;
+  max-width: 22rem;
+  text-align: center;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  line-height: 1.45;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.home-desk-table {
+  table-layout: fixed;
+}
+
+.home-desk-table th:nth-child(1),
+.home-desk-table td:nth-child(1) {
+  width: 46%;
+}
+
+.home-desk-table th:nth-child(2),
+.home-desk-table td:nth-child(2) {
+  width: 20%;
+}
+
+.home-desk-table th:nth-child(3),
+.home-desk-table td:nth-child(3) {
+  width: 16%;
+}
+
+.home-desk-table th:last-child,
+.home-desk-table td:last-child {
+  width: 18%;
+}
+
+.home-stamp-strip {
+  border-bottom: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 8% 50%, rgba(245, 180, 0, 0.12), transparent 42%),
+    var(--paper);
+  padding: 1.35rem 0;
+}
+
+.home-stamp {
+  display: inline-flex;
+  width: 2.4rem;
+  height: 2.4rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--navy);
+}
+
+.home-stamp svg {
+  width: 1.35rem;
+  height: 1.35rem;
 }

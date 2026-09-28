@@ -52,16 +52,18 @@ export function Section({
   title,
   children,
   eyebrow,
+  className = "",
 }: {
   title: string;
   eyebrow?: string;
   children: React.ReactNode;
+  className?: string;
 }) {
   return (
-    <section className="mx-auto max-w-7xl px-4 py-8 md:py-9">
+    <section className={`mx-auto max-w-7xl px-4 py-10 md:py-14 ${className}`}>
       {eyebrow ? <p className="font-mono text-[11px] uppercase tracking-wide text-gold-600">{eyebrow}</p> : null}
       <h2 className="mt-1 border-b border-navy pb-2 font-display text-navy">{title}</h2>
-      <div className="mt-5">{children}</div>
+      <div className="mt-6">{children}</div>
     </section>
   );
 }

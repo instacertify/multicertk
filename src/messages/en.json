@@ -28,7 +28,7 @@
     "bookConsulting": "Book consulting"
   },
   "home": {
-    "eyebrow": "Instacertify catalogue · Noida",
+    "eyebrow": "Certko catalogue · Noida",
     "title": "IS numbers, HSN codes and the route behind them",
     "subtitle": "Look up a product the way a factory actually talks — IS 13252, HSN 8517, CRS or ISI. We show the scheme, the test cost, and how to file.",
     "statsProducts": "Products mapped",
@@ -37,7 +37,7 @@
     "statsSchemes": "Certification schemes",
     "deskTitle": "On the desk today",
     "deskAll": "Full product table",
-    "globeCaption": "Phones, laptops, plugs, chargers, cars, ceramics and food — revolving inside",
+    "globeCaption": "Phones, laptops, chargers, doors, windows, fans, helmets, cups and food — revolving inside",
     "needTitle": "Schemes and testing",
     "needEyebrow": "India and export",
     "needCert": "Certification we file",
@@ -63,7 +63,7 @@
     "engineMeili": "Searching Meilisearch"
   },
   "footer": {
-    "blurb": "Public catalogue of Instacertify Labs, Noida. BIS CRS and ISI, BEE, G-Mark, CE, FCC, SABER — searchable by product, HSN and IS number.",
+    "blurb": "Certko public catalogue. BIS CRS and ISI, BEE, G-Mark, CE, FCC, SABER — searchable by product, HSN and IS number.",
     "contact": "Contact",
     "legal": "About Us",
     "aboutUs": "About Us",

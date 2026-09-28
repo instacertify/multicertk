@@ -89,7 +89,7 @@ export const defaultSettings: SiteSettings = {
     indexable: true,
     googleSiteVerification: "",
     bingSiteVerification: "",
-    organizationName: "Instacertify Labs Private Limited",
+    organizationName: "Certko",
     twitterHandle: "",
   },
   cookies: {

@@ -57,6 +57,7 @@ export function organizationLd() {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: seo.organizationName || site.name,
+    legalName: "Instacertify Labs Private Limited",
     url: site.url,
     email: site.email,
     telephone: site.phone,

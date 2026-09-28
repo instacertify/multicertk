@@ -8,24 +8,60 @@ type ProductMark = {
 };
 
 const products: ProductMark[] = [
-  { name: "phone", lon: 8, lat: 18, radius: "in" },
-  { name: "laptop", lon: 52, lat: -12, radius: "in" },
-  { name: "plug", lon: 98, lat: 22, radius: "in" },
-  { name: "charger", lon: 148, lat: -18, radius: "in" },
-  { name: "car", lon: 196, lat: 8, radius: "in" },
-  { name: "ceramic", lon: 244, lat: -24, radius: "in" },
-  { name: "food", lon: 292, lat: 16, radius: "in" },
-  { name: "lamp", lon: 332, lat: -8, radius: "in" },
-  { name: "tablet", lon: 28, lat: -32, radius: "mid" },
-  { name: "fridge", lon: 118, lat: 4, radius: "mid" },
-  { name: "headphones", lon: 208, lat: 28, radius: "mid" },
-  { name: "toy", lon: 278, lat: -6, radius: "mid" },
-  { name: "bottle", lon: 70, lat: 36, radius: "core" },
-  { name: "helmet", lon: 170, lat: -36, radius: "core" },
-  { name: "fan", lon: 250, lat: 14, radius: "core" },
+  { name: "phone", lon: 4, lat: 14, radius: "in" },
+  { name: "laptop", lon: 38, lat: -12, radius: "in" },
+  { name: "charger", lon: 72, lat: 20, radius: "in" },
+  { name: "mouse", lon: 108, lat: -18, radius: "in" },
+  { name: "helmet", lon: 142, lat: 10, radius: "in" },
+  { name: "ac", lon: 176, lat: -22, radius: "in" },
+  { name: "door", lon: 210, lat: 16, radius: "in" },
+  { name: "window", lon: 246, lat: -10, radius: "in" },
+  { name: "desk", lon: 282, lat: 22, radius: "in" },
+  { name: "fan", lon: 318, lat: -16, radius: "in" },
+  { name: "vacuum", lon: 22, lat: 32, radius: "mid" },
+  { name: "heater", lon: 58, lat: -30, radius: "mid" },
+  { name: "dryer", lon: 96, lat: 8, radius: "mid" },
+  { name: "handle", lon: 132, lat: -28, radius: "mid" },
+  { name: "backpack", lon: 168, lat: 28, radius: "mid" },
+  { name: "cup", lon: 204, lat: -8, radius: "mid" },
+  { name: "food", lon: 240, lat: 34, radius: "mid" },
+  { name: "plug", lon: 276, lat: -32, radius: "mid" },
+  { name: "car", lon: 312, lat: 6, radius: "mid" },
+  { name: "tablet", lon: 348, lat: -24, radius: "mid" },
+  { name: "lamp", lon: 16, lat: -6, radius: "core" },
+  { name: "fridge", lon: 52, lat: 18, radius: "core" },
+  { name: "headphones", lon: 88, lat: -20, radius: "core" },
+  { name: "toy", lon: 124, lat: 12, radius: "core" },
+  { name: "bottle", lon: 160, lat: -16, radius: "core" },
+  { name: "ceramic", lon: 196, lat: 20, radius: "core" },
+  { name: "phone", lon: 232, lat: -28, radius: "core" },
+  { name: "charger", lon: 268, lat: 4, radius: "core" },
+  { name: "helmet", lon: 304, lat: -12, radius: "core" },
+  { name: "cup", lon: 340, lat: 24, radius: "core" },
 ];
 
-function Icon({ name }: { name: string }) {
+export const globeStampNames = [
+  "phone",
+  "laptop",
+  "charger",
+  "mouse",
+  "door",
+  "window",
+  "desk",
+  "fan",
+  "vacuum",
+  "heater",
+  "dryer",
+  "helmet",
+  "ac",
+  "handle",
+  "backpack",
+  "cup",
+  "food",
+  "car",
+] as const;
+
+export function ProductIcon({ name }: { name: string }) {
   const common = {
     fill: "none",
     stroke: "currentColor",
@@ -134,6 +170,91 @@ function Icon({ name }: { name: string }) {
           <path d="M4.6 13.6h14.8v2.4H4.6z" />
         </svg>
       );
+    case "fan":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden {...common}>
+          <circle cx="12" cy="11" r="2" />
+          <path d="M12 9c2.4-3.6 6.4-3.2 6.8-.4C16.6 8.2 13.6 9.4 12 9zM13.8 12.2c3.4.8 4.8 4.4 2.6 6.2-1.4-2.4-3.6-3.8-4.8-4.2zM10.2 12.2C7 13.4 4.4 11.4 5 8.6c2.6 1.2 4.6 2.6 5.2 3.6z" />
+          <path d="M12 13.2v7.2M9.2 20.4h5.6" />
+        </svg>
+      );
+    case "door":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden {...common}>
+          <path d="M6.4 3.6h11.2v16.8H6.4z" />
+          <path d="M14.8 12.2h.01" />
+        </svg>
+      );
+    case "window":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden {...common}>
+          <rect x="5" y="4.2" width="14" height="15.6" />
+          <path d="M12 4.2v15.6M5 12h14" />
+        </svg>
+      );
+    case "desk":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden {...common}>
+          <path d="M3.6 9.2h16.8M5.2 9.2v10.4M18.8 9.2v10.4M5.2 14.4h6.2V19.6H5.2z" />
+        </svg>
+      );
+    case "vacuum":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden {...common}>
+          <circle cx="9.2" cy="13.4" r="4.4" />
+          <path d="M12.8 11.2 18.4 5.8h2M7.6 17.6h3.2" />
+        </svg>
+      );
+    case "heater":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden {...common}>
+          <rect x="5.4" y="4.4" width="13.2" height="15.2" />
+          <path d="M8.4 8.2v7.4M12 8.2v7.4M15.6 8.2v7.4" />
+        </svg>
+      );
+    case "dryer":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden {...common}>
+          <rect x="4.6" y="3.8" width="14.8" height="16.4" />
+          <circle cx="12" cy="12" r="4.4" />
+          <circle cx="12" cy="12" r="1.4" />
+        </svg>
+      );
+    case "mouse":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden {...common}>
+          <path d="M8.2 8.4c0-3.2 1.6-5 3.8-5s3.8 1.8 3.8 5v6.4c0 3.2-1.6 5.2-3.8 5.2s-3.8-2-3.8-5.2z" />
+          <path d="M12 3.4v6.4" />
+        </svg>
+      );
+    case "ac":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden {...common}>
+          <rect x="3.6" y="5.4" width="16.8" height="8.4" />
+          <path d="M6.4 10.2h11.2M8 16.4c1.2 1.4 2.4 1.4 3.6 0M12.4 16.4c1.2 1.4 2.4 1.4 3.6 0" />
+        </svg>
+      );
+    case "handle":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden {...common}>
+          <circle cx="8.2" cy="12" r="2.2" />
+          <path d="M10.2 12h8.4c1.2 0 2 .8 2 1.8s-.8 1.8-2 1.8H14" />
+        </svg>
+      );
+    case "backpack":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden {...common}>
+          <path d="M8 8.4h8v11.2H8z" />
+          <path d="M9.4 8.4V6.6a2.6 2.6 0 0 1 5.2 0v1.8M8 12.4h8" />
+        </svg>
+      );
+    case "cup":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden {...common}>
+          <path d="M7 7.4h8.4v6.4A4.2 4.2 0 0 1 11.2 18H11A4.2 4.2 0 0 1 7 13.8z" />
+          <path d="M15.4 8.8h2.4a2.4 2.4 0 0 1 0 4.8h-2.4M8.2 19.6h6.8" />
+        </svg>
+      );
     default:
       return (
         <svg viewBox="0 0 24 24" aria-hidden {...common}>
@@ -168,16 +289,16 @@ export function ProductGlobe() {
               style={{ transform: `translateY(${ring.y}) rotateX(90deg) scaleX(${ring.scale})` }}
             />
           ))}
-          {products.map((item) => (
+          {products.map((item, index) => (
             <span
-              key={`${item.name}-${item.lon}`}
+              key={`${item.name}-${item.lon}-${index}`}
               className={`product-globe-item product-globe-item-${item.radius}`}
               style={{
                 transform: `rotateY(${item.lon}deg) rotateX(${item.lat}deg) translateZ(var(--item-r))`,
               }}
               title={item.name}
             >
-              <Icon name={item.name} />
+              <ProductIcon name={item.name} />
             </span>
           ))}
         </div>

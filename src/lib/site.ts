@@ -2,7 +2,7 @@ import { locales, type Locale } from "@/i18n/routing";
 
 export const site = {
   name: "Certko",
-  tagline: "IS · HSN · lab",
+  tagline: "Compliance. Assured.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://certko.com",
   email: "info@certko.com",
   phone: "+91-9999118039",

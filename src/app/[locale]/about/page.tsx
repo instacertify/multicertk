@@ -5,7 +5,12 @@ export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  return cmsPageMetadata(locale, "about", "About Certko", "Certification and compliance solution partner.");
+  return cmsPageMetadata(
+    locale,
+    "about",
+    "Certko by Instacertify Labs Private Limited",
+    "Certko is the public certification catalogue of Instacertify Labs Private Limited.",
+  );
 }
 
 export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
