@@ -57,7 +57,7 @@ function MenuLink({
     <Link
       href={splitHref(child.href)}
       onClick={onClick}
-      className={className || "flex items-start gap-2 rounded-lg px-3 py-2 hover:bg-paper hover:text-gold-600"}
+      className={className || "flex items-start gap-2 px-3 py-2 hover:bg-paper hover:text-gold-600"}
     >
       <NavIcon src={child.iconUrl} />
       <span className="leading-snug">{child.label}</span>
@@ -96,7 +96,7 @@ export function Header({ menu, chrome }: { menu: NavItem[]; chrome?: HeaderChrom
             >
               <Link
                 href={item.href}
-                className="inline-flex items-center gap-1.5 rounded-md px-3 py-2 hover:text-gold-600"
+                className="inline-flex items-center gap-1.5 px-3 py-2 hover:text-gold-600"
                 aria-expanded={Boolean(item.children?.length && openId === item.id)}
                 onFocus={() => setOpenId(item.id)}
               >
@@ -110,7 +110,7 @@ export function Header({ menu, chrome }: { menu: NavItem[]; chrome?: HeaderChrom
               </Link>
               {item.children?.length && openId === item.id && !mega ? (
                 <div
-                  className="absolute start-0 top-full z-50 min-w-56 rounded-xl border border-line bg-white p-2 shadow-lg"
+                  className="absolute start-0 top-full z-50 min-w-56 border border-line bg-white p-2 shadow-lg"
                   onMouseEnter={() => setOpenId(item.id)}
                   onMouseLeave={() => setOpenId(null)}
                 >
@@ -140,7 +140,7 @@ export function Header({ menu, chrome }: { menu: NavItem[]; chrome?: HeaderChrom
           </Link>
           <button
             type="button"
-            className="type-btn inline-flex items-center gap-1.5 rounded-md border border-line px-3 py-1.5 lg:hidden"
+            className="type-btn inline-flex items-center gap-1.5 border border-line px-3 py-1.5 lg:hidden"
             onClick={() => setOpen((value) => !value)}
             aria-expanded={open}
           >
@@ -166,7 +166,7 @@ export function Header({ menu, chrome }: { menu: NavItem[]; chrome?: HeaderChrom
                     <MenuLink
                       key={child.id}
                       child={child}
-                      className="mb-0.5 flex items-start gap-2 rounded-lg px-2 py-1.5 hover:bg-paper hover:text-gold-600"
+                      className="mb-0.5 flex items-start gap-2 px-2 py-1.5 hover:bg-paper hover:text-gold-600"
                     />
                   ))}
                 </div>

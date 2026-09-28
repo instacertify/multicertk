@@ -25,12 +25,7 @@ export function ListedPrice({
   if (!amount || amount === "—") {
     return <span className={className}>{amount || "—"}</span>;
   }
-  return (
-    <div className={className}>
-      <p className="font-semibold text-navy">{amount}</p>
-      <PriceOffer />
-    </div>
-  );
+  return <span className={`font-semibold text-navy ${className}`}>{amount}</span>;
 }
 
 export function PriceReassurance({

@@ -10,7 +10,7 @@ export function SimplePage({
   heroImageAlt,
   galleryUrls,
   sections,
-  showLead = true,
+  showLead = false,
   crumbs,
 }: {
   title: string;

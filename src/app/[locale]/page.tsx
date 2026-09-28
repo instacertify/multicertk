@@ -3,6 +3,7 @@ import { Link } from "@/i18n/navigation";
 
 export const dynamic = "force-dynamic";
 import { PageHero } from "@/components/page-hero";
+import { ProductGlobe } from "@/components/product-globe";
 import { SearchBox } from "@/components/search-box";
 import { JsonLd, Section } from "@/components/ui";
 import {
@@ -58,7 +59,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     <>
       <JsonLd data={[organizationLd(), websiteLd(), breadcrumbLd([{ name: "Home", path: "/" }], locale), faqLd(faqs)]} />
       <section className="border-b border-navy bg-navy text-white">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-8 lg:grid-cols-12 lg:items-start lg:gap-10 lg:py-10">
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-8 lg:grid-cols-12 lg:items-center lg:gap-10 lg:py-10">
           <div className="lg:col-span-6">
             <p className="font-mono text-[11px] text-gold">{t("eyebrow")}</p>
             <h1 className="mt-3 max-w-xl text-white">{cms?.title ?? t("title")}</h1>
@@ -75,7 +76,13 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               {stats.products} products · {stats.labs} labs · {stats.tests} tests · {stats.schemes} schemes
             </p>
           </div>
-          <div className="border border-white/15 bg-navy-800 lg:col-span-6">
+          <div className="lg:col-span-6">
+            <ProductGlobe />
+            <p className="mt-3 text-center font-mono text-[11px] uppercase tracking-wide text-white/50">{t("globeCaption")}</p>
+          </div>
+        </div>
+        <div className="mx-auto max-w-7xl px-4 pb-8">
+          <div className="border border-white/15 bg-navy-800">
             <div className="flex items-center justify-between border-b border-white/10 px-4 py-2">
               <p className="font-mono text-[11px] uppercase tracking-wide text-gold">{t("deskTitle")}</p>
               <Link href="/products/all" className="text-[11px] text-white/70 underline">
@@ -181,16 +188,18 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       </Section>
 
       <Section title={sectionHeading(cms, "how", t("howTitle"))}>
-        <ol className="grid gap-px bg-line md:grid-cols-3">
+        <ol className="divide-y divide-line border-y border-line bg-white">
           {[
             [t("step1"), t("step1Body")],
             [t("step2"), t("step2Body")],
             [t("step3"), t("step3Body")],
           ].map(([title, body], index) => (
-            <li key={title} className="bg-white p-5">
+            <li key={title} className="grid gap-3 px-4 py-4 sm:grid-cols-[3rem_1fr] sm:items-start">
               <p className="font-mono text-[11px] text-gold-600">{String(index + 1).padStart(2, "0")}</p>
-              <h3 className="mt-2 font-display text-navy">{title}</h3>
-              <p className="mt-2 text-sm leading-6 text-muted">{body}</p>
+              <div>
+                <h3 className="font-display text-navy">{title}</h3>
+                <p className="mt-1 text-sm leading-6 text-muted">{body}</p>
+              </div>
             </li>
           ))}
         </ol>

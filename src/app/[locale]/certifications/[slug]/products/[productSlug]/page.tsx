@@ -3,7 +3,6 @@ import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { CmsArticles } from "@/components/cms-copy";
 import { PageMedia } from "@/components/page-hero";
-import { LeadForm } from "@/components/lead-form";
 import { ListedPrice, PriceReassurance } from "@/components/price-reassurance";
 import { Breadcrumbs, CardLink } from "@/components/ui";
 import { beeProducts, euSectors, getBee, getEu, getGmark, getProduct, getScheme, gmarkProducts } from "@/data/catalog";
@@ -88,11 +87,10 @@ export default async function SchemeProductPage({
               ["Test standard", bee.standard],
               ["Star table", bee.starTable],
               ["Indicative test price", bee.price],
-              ["Recognised labs", bee.labs],
             ]
               .filter(([, value]) => value)
               .map(([dt, dd]) => (
-                <div key={dt} className="rounded-2xl border border-line p-4">
+                <div key={dt} className="border border-line p-4">
                   <dt className="text-xs uppercase tracking-wide text-muted">{dt}</dt>
                   <dd className="mt-1 text-sm text-navy">
                     {dt === "Indicative test price" ? <ListedPrice amount={String(dd)} /> : dd}
@@ -117,7 +115,7 @@ export default async function SchemeProductPage({
           ]
             .filter(([, value]) => value)
             .map(([dt, dd]) => (
-              <div key={dt} className="rounded-2xl border border-line p-4">
+              <div key={dt} className="border border-line p-4">
                 <dt className="text-xs uppercase tracking-wide text-muted">{dt}</dt>
                 <dd className="mt-1 text-sm text-navy">{dd}</dd>
               </div>
@@ -138,7 +136,7 @@ export default async function SchemeProductPage({
           ]
             .filter(([, value]) => value)
             .map(([dt, dd]) => (
-              <div key={dt} className="rounded-2xl border border-line p-4">
+              <div key={dt} className="border border-line p-4">
                 <dt className="text-xs uppercase tracking-wide text-muted">{dt}</dt>
                 <dd className="mt-1 text-sm text-navy">{dd}</dd>
               </div>
@@ -165,9 +163,6 @@ export default async function SchemeProductPage({
       ) : null}
 
       <CmsArticles page={cms} skip={["linked"]} />
-      <div className="mt-10 max-w-xl">
-        <LeadForm sourcePath={`/certifications/${scheme.slug}/products/${item.slug}`} />
-      </div>
     </div>
   );
 }

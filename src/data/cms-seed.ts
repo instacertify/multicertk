@@ -56,7 +56,7 @@ export const seedPages: CmsPage[] = [
     locale: "en",
     title: "IS numbers, HSN codes and the lab behind them",
     intro:
-      "Look up a product the way a factory actually talks — IS 13252, HSN 8517, CRS or ISI. We show the scheme, the recognised lab and what the test usually costs.",
+      "Look up a product the way a factory actually talks — IS 13252, HSN 8517, CRS or ISI. We show the scheme, the test cost, and how to file.",
     sections: [
       { key: "need", heading: "Schemes and lab work", body: [] },
       { key: "markets", heading: "If you are shipping outside India", body: [] },
@@ -222,8 +222,8 @@ export const seedPages: CmsPage[] = [
     slug: "products",
     path: "/products",
     locale: "en",
-    title: "Certification solutions — products by category",
-    intro: "Match the right mark to your product, then open the HSN / IS record for QCO status, labs and interlinked tests.",
+    title: "Products by IS number and HSN",
+    intro: "Match the right mark to your product, then open the HSN / IS record for QCO status and fees.",
     sections: [
       { key: "schemes", heading: "Start with a scheme", body: [] },
     ],
@@ -286,11 +286,9 @@ export const seedPages: CmsPage[] = [
     path: "/product",
     locale: "en",
     title: "Product record",
-    intro: "IS standard, HSN, test cost, marking fee, recognised labs and related schemes.",
+    intro: "IS standard, HSN, test cost, marking fee and related schemes.",
     sections: [
       { key: "marking", heading: "Annual BIS marking fee", body: [] },
-      { key: "labs", heading: "Recognised labs", body: [] },
-      { key: "prices", heading: "Scope & indicative test prices", body: [] },
       { key: "tests", heading: "Relevant product testing", body: [] },
       { key: "stacked", heading: "Stacked energy & export marks", body: [] },
       { key: "related", heading: "Related standards & schemes", body: [] },
@@ -302,7 +300,7 @@ export const seedPages: CmsPage[] = [
     path: "/labs",
     locale: "en",
     title: "Laboratory record",
-    intro: "Request a quote to get the recognised lab assigned for your standard. Direct lab addresses and contact details are not published.",
+    intro: "Request a quote to get the lab assigned for your standard. Direct lab addresses and contact details are not published.",
     sections: [
       { key: "scope", heading: "Standards in scope", body: [] },
       { key: "products", heading: "Products / schemes this lab unlocks", body: [] },

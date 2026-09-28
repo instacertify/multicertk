@@ -279,3 +279,128 @@ html[dir="rtl"] .trust-track {
     justify-content: center;
   }
 }
+
+.product-globe {
+  position: relative;
+  width: min(22rem, 100%);
+  height: min(22rem, 100vw);
+  margin-inline: auto;
+  perspective: 1100px;
+}
+
+.product-globe-sphere {
+  position: absolute;
+  inset: 16%;
+  border-radius: 50%;
+  border: 1px solid rgba(245, 180, 0, 0.5);
+  background: radial-gradient(circle at 32% 28%, rgba(245, 180, 0, 0.08), transparent 58%);
+  transform-style: preserve-3d;
+  animation: globe-spin 42s linear infinite;
+}
+
+.product-globe-meridian,
+.product-globe-latitude {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 50%;
+}
+
+.product-globe-equator {
+  position: absolute;
+  inset: 16%;
+  border-radius: 50%;
+  border: 1px dashed rgba(245, 180, 0, 0.45);
+  pointer-events: none;
+}
+
+.product-globe-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  width: 2.15rem;
+  height: 2.15rem;
+  margin: -1.075rem;
+  align-items: center;
+  justify-content: center;
+  color: #f5b400;
+  background: rgba(6, 20, 40, 0.72);
+  border: 1px solid rgba(245, 180, 0, 0.55);
+}
+
+.product-globe-item svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.product-globe-item-outer {
+  animation: globe-orbit-outer 28s linear infinite;
+}
+
+.product-globe-item-inner {
+  animation: globe-orbit-inner 18s linear infinite reverse;
+}
+
+@keyframes globe-spin {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+@keyframes globe-orbit-outer {
+  from {
+    transform: rotate(0deg) translateX(10.4rem) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(10.4rem) rotate(-360deg);
+  }
+}
+
+@keyframes globe-orbit-inner {
+  from {
+    transform: rotate(0deg) translateX(6.4rem) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(6.4rem) rotate(-360deg);
+  }
+}
+
+@media (max-width: 480px) {
+  .product-globe {
+    width: 18rem;
+    height: 18rem;
+  }
+
+  @keyframes globe-orbit-outer {
+    from {
+      transform: rotate(0deg) translateX(8.4rem) rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg) translateX(8.4rem) rotate(-360deg);
+    }
+  }
+
+  @keyframes globe-orbit-inner {
+    from {
+      transform: rotate(0deg) translateX(5.2rem) rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg) translateX(5.2rem) rotate(-360deg);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-globe-sphere,
+  .product-globe-item {
+    animation: none;
+  }
+
+  .product-globe-item-outer {
+    transform: rotate(var(--rest, 40deg)) translateX(8.4rem);
+  }
+}

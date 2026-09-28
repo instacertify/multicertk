@@ -9,6 +9,7 @@ import { EditorBar } from "@/components/editor-bar";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { HideOnAdminLogin } from "@/components/hide-on-login";
+import { PageLead } from "@/components/page-lead";
 import { SocialProof } from "@/components/trusted-by";
 import { routing } from "@/i18n/routing";
 import { getHeaderChrome, getLogos, getMenu, getReviews } from "@/lib/site-media";
@@ -128,6 +129,7 @@ export default async function LocaleLayout({
           <main className="flex-1">{children}</main>
           {isAdmin ? null : (
             <HideOnAdminLogin>
+              <PageLead />
               <SocialProof
                 logos={logos}
                 reviews={reviews}

@@ -1,8 +1,7 @@
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
-import { LeadForm } from "@/components/lead-form";
 import { Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
-import { getLab, getProduct, getTest, tests } from "@/data/catalog";
+import { getProduct, getTest, tests } from "@/data/catalog";
 import { CmsArticles } from "@/components/cms-copy";
 import { PageMedia } from "@/components/page-hero";
 import { getPage, sectionHeading } from "@/lib/cms";
@@ -75,18 +74,7 @@ export default async function TestPage({
           );
         })}
       </div>
-      <h2 className="mt-10 font-display text-2xl text-navy">{sectionHeading(cms, "labs", "Labs that typically run this scope")}</h2>
-      <div className="mt-4 grid gap-4 md:grid-cols-2">
-        {test.labSlugs.map((labSlug) => {
-          const lab = getLab(labSlug);
-          if (!lab) return null;
-          return <CardLink key={lab.slug} href={`/labs/${lab.slug}`} title={lab.name} meta={`${lab.city}, ${lab.state}`} />;
-        })}
-      </div>
       <CmsArticles page={cms} skip={["products", "labs"]} />
-      <div className="mt-12 max-w-xl">
-        <LeadForm sourcePath={`/testing/${test.discipline}/${test.slug}`} />
-      </div>
     </div>
   );
 }

@@ -19,7 +19,7 @@ export function ArticleBlocks({ blocks }: { blocks: ArticleBlock[] }) {
         }
         if (block.type === "image") {
           return (
-            <figure key={block.id} className="overflow-hidden rounded-2xl border border-line bg-paper">
+            <figure key={block.id} className="overflow-hidden border border-line bg-paper">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={block.url} alt={block.alt || block.caption || ""} className="max-h-96 w-full object-cover" />
               {block.caption ? <figcaption className="caption px-3 py-2 text-muted">{block.caption}</figcaption> : null}
@@ -30,7 +30,7 @@ export function ArticleBlocks({ blocks }: { blocks: ArticleBlock[] }) {
           const [head, ...rows] = block.rows;
           if (!head?.length) return null;
           return (
-            <div key={block.id} className="overflow-x-auto rounded-2xl border border-line">
+            <div key={block.id} className="overflow-x-auto border border-line">
               {block.caption ? <p className="caption border-b border-line px-3 py-2 text-muted">{block.caption}</p> : null}
               <table className="w-full">
                 <thead className="bg-paper">
@@ -65,8 +65,8 @@ export function ArticleBlocks({ blocks }: { blocks: ArticleBlock[] }) {
                 <span>{block.label}</span>
                 <span>{width}%</span>
               </div>
-              <div className="h-2.5 overflow-hidden rounded-full bg-mist">
-                <div className="h-full rounded-full bg-gold" style={{ width: `${width}%` }} />
+              <div className="h-2.5 overflow-hidden bg-mist">
+                <div className="h-full bg-gold" style={{ width: `${width}%` }} />
               </div>
             </div>
           );

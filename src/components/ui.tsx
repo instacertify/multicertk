@@ -75,6 +75,10 @@ export function StatusBadge({ status }: { status: "mandatory" | "upcoming" | "vo
   return <Badge tone={map[status].tone}>{map[status].label}</Badge>;
 }
 
+export function RecordTable({ children }: { children: React.ReactNode }) {
+  return <div className="overflow-x-auto border border-line bg-white">{children}</div>;
+}
+
 export function JsonLd({ data }: { data: Record<string, unknown> | Record<string, unknown>[] }) {
   return (
     <script

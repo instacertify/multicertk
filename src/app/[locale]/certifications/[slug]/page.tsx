@@ -3,7 +3,6 @@ import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { CmsArticles } from "@/components/cms-copy";
 import { PageMedia } from "@/components/page-hero";
-import { LeadForm } from "@/components/lead-form";
 import { Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
 import {
   beeProducts,
@@ -87,11 +86,12 @@ export default async function SchemePage({
       <PageMedia src={cms?.heroImageUrl} alt={cms?.heroImageAlt || scheme.name} gallery={cms?.galleryUrls} />
       <p className="mt-3 text-sm text-muted">{scheme.whoNeedsIt}</p>
 
-      <h2 className="mt-10 font-display text-2xl text-navy">{sectionHeading(cms, "process", "Process")}</h2>
-      <ol className="mt-4 grid gap-3 md:grid-cols-2">
+      <h2 className="mt-10 border-b border-navy pb-2 font-display text-navy">{sectionHeading(cms, "process", "Process")}</h2>
+      <ol className="mt-4 divide-y divide-line border-y border-line bg-white">
         {scheme.process.map((step, index) => (
-          <li key={step} className="rounded-2xl border border-line p-4 text-sm leading-6">
-            <span className="font-display text-gold">{index + 1}.</span> {step}
+          <li key={step} className="grid gap-3 px-4 py-3 sm:grid-cols-[3rem_1fr] text-sm leading-6">
+            <span className="font-mono text-[11px] text-gold-600">{String(index + 1).padStart(2, "0")}</span>
+            <span>{step}</span>
           </li>
         ))}
       </ol>
@@ -102,7 +102,7 @@ export default async function SchemePage({
           <Link
             key={countrySlug}
             href={`/certifications/countries/${countrySlug}`}
-            className="rounded-full border border-line px-3 py-1 text-sm font-semibold"
+            className="border border-line px-3 py-1 text-sm font-semibold"
           >
             {getCountry(countrySlug)?.name ?? countrySlug}
           </Link>
@@ -204,9 +204,6 @@ export default async function SchemePage({
       ) : null}
 
       <CmsArticles page={cms} skip={["process", "markets", "mapped", "bee", "gmark", "eu", "schemes"]} />
-      <div className="mt-12 max-w-xl">
-        <LeadForm sourcePath={`/certifications/${scheme.slug}`} />
-      </div>
     </div>
   );
 }

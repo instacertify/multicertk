@@ -69,7 +69,7 @@ export default async function CountryPage({
       <h2 className="mt-10 font-display text-2xl text-navy">{sectionHeading(cms, "checklist", "Scoping checklist")}</h2>
       <ol className="mt-4 grid gap-3 md:grid-cols-2">
         {country.checklist.map((item, index) => (
-          <li key={item} className="rounded-2xl border border-line p-4 text-sm">
+          <li key={item} className="border-b border-line py-3 text-sm">
             {index + 1}. {item}
           </li>
         ))}

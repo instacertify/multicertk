@@ -1,4 +1,5 @@
 import { setRequestLocale } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { Breadcrumbs, CardLink, JsonLd, Section } from "@/components/ui";
 import { PageMedia } from "@/components/page-hero";
 import { SearchBox } from "@/components/search-box";
@@ -13,8 +14,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return pageMetadata({
     locale,
     path: "/products",
-    title: "Certification solutions — products by category",
-    description: "Match the right certification to your product, then browse the mapped IS standard, HSN, QCO status, fees and labs.",
+    title: "Products by IS number and HSN",
+    description: "Match the right certification to your product, then browse the mapped IS standard, HSN, QCO status and fees.",
   });
 }
 
@@ -28,9 +29,9 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
       <JsonLd data={breadcrumbLd([{ name: "Home", path: "/" }, { name: "Products", path: "/products" }], locale)} />
       <div className="mx-auto max-w-7xl px-4 py-10">
         <Breadcrumbs items={[{ href: "/", label: "Home" }, { href: "/products", label: "Products" }]} />
-        <h1 className="mt-4 font-display text-4xl text-navy">{cms?.title ?? "Certification solutions — products by category"}</h1>
+        <h1 className="mt-4 font-display text-navy">{cms?.title ?? "Products by IS number and HSN"}</h1>
         <p className="lead mt-3 max-w-3xl text-muted">
-          {cms?.intro ?? "Match the right mark to your product, then open the HSN / IS record for QCO status, labs and interlinked tests."}
+          {cms?.intro ?? "Match the right mark to your product, then open the HSN / IS record for QCO status and fees."}
         </p>
         <PageMedia src={cms?.heroImageUrl} alt={cms?.heroImageAlt || cms?.title || "Products"} gallery={cms?.galleryUrls} />
         <div className="mt-6 max-w-2xl">
@@ -63,22 +64,21 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
           ))}
         </div>
       </Section>
-      <Section title="Browse by product category">
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      <Section title="Browse by product family">
+        <div className="columns-1 gap-x-10 sm:columns-2 lg:columns-3">
           {categories.map((category) => (
-            <CardLink
-              key={category.slug}
-              href={`/category/${category.slug}`}
-              title={category.name}
-              meta={`${productsByCategory(category.slug).length} products`}
-              body={category.summary}
-            />
+            <p key={category.slug} className="mb-2 break-inside-avoid border-b border-line pb-2">
+              <Link href={`/category/${category.slug}`} className="text-navy hover:text-gold-600">
+                {category.name}
+              </Link>
+              <span className="ms-2 font-mono text-[11px] text-muted">{productsByCategory(category.slug).length}</span>
+            </p>
           ))}
         </div>
         <p className="mt-6">
-          <a className="font-semibold text-navy underline" href="/products/all">
+          <Link className="font-semibold text-navy underline" href="/products/all">
             Open the full product table →
-          </a>
+          </Link>
         </p>
       </Section>
     </div>

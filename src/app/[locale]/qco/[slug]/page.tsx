@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { LeadForm } from "@/components/lead-form";
 import { Breadcrumbs, CardLink, JsonLd, StatusBadge } from "@/components/ui";
 import { getProduct, getQco, qcos } from "@/data/catalog";
 import { CmsArticles } from "@/components/cms-copy";
@@ -94,9 +93,6 @@ export default async function QcoDetailPage({
         </Link>
       </p>
       <CmsArticles page={cms} skip={["mapped"]} />
-      <div className="mt-10 max-w-xl">
-        <LeadForm sourcePath={`/qco/${qco.slug}`} />
-      </div>
     </div>
   );
 }

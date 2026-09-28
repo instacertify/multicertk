@@ -57,13 +57,13 @@ export default async function BlogPage({
       <div className="mt-4 flex flex-wrap gap-2 text-sm">
         <Link
           href={{ pathname: "/blog", query: query.q ? { q: query.q } : {} }}
-          className={`rounded-full px-3 py-1 ${!tag ? "bg-navy text-white" : "border border-line text-navy"}`}
+          className={`px-3 py-1 ${!tag ? "bg-navy text-white" : "border border-line text-navy"}`}
         >
           All ({all.length})
         </Link>
         <Link
           href={{ pathname: "/blog", query: { tag: "CRS", ...(query.q ? { q: query.q } : {}) } }}
-          className={`rounded-full px-3 py-1 ${tag === "CRS" ? "bg-navy text-white" : "border border-line text-navy"}`}
+          className={`px-3 py-1 ${tag === "CRS" ? "bg-navy text-white" : "border border-line text-navy"}`}
         >
           CRS ({crsCount})
         </Link>
@@ -74,7 +74,7 @@ export default async function BlogPage({
       <PageMedia src={page?.heroImageUrl} alt={page?.heroImageAlt || page?.title || "Blog"} gallery={page?.galleryUrls} />
       <div className="mt-8 grid gap-4">
         {slice.length === 0 ? (
-          <p className="rounded-2xl border border-line bg-paper p-6 text-muted">
+          <p className="border border-line bg-paper p-6 text-muted">
             No notes match that search. Try a product name, CRS, or HSN — the same live catalogue as site search.
           </p>
         ) : (

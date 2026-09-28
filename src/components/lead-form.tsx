@@ -41,24 +41,24 @@ export function LeadForm({ sourcePath }: { sourcePath?: string }) {
       <div className="grid gap-3 sm:grid-cols-2">
         <label className="text-sm font-medium">
           {t("name")}
-          <input required name="name" className="mt-1 w-full rounded-lg border border-line px-3 py-2" />
+          <input required name="name" className="mt-1 w-full border border-line px-3 py-2" />
         </label>
         <label className="text-sm font-medium">
           {t("email")}
-          <input required type="email" name="email" className="mt-1 w-full rounded-lg border border-line px-3 py-2" />
+          <input required type="email" name="email" className="mt-1 w-full border border-line px-3 py-2" />
         </label>
         <label className="text-sm font-medium">
           {t("company")}
-          <input name="company" className="mt-1 w-full rounded-lg border border-line px-3 py-2" />
+          <input name="company" className="mt-1 w-full border border-line px-3 py-2" />
         </label>
         <label className="text-sm font-medium">
           {t("phone")}
-          <input name="phone" className="mt-1 w-full rounded-lg border border-line px-3 py-2" />
+          <input name="phone" className="mt-1 w-full border border-line px-3 py-2" />
         </label>
       </div>
       <label className="text-sm font-medium">
         {t("interest")}
-        <select name="interest" className="mt-1 w-full rounded-lg border border-line px-3 py-2" defaultValue="bis">
+        <select name="interest" className="mt-1 w-full border border-line px-3 py-2" defaultValue="bis">
           {interests.map(([value, label]) => (
             <option key={value} value={value}>
               {label}
@@ -68,7 +68,7 @@ export function LeadForm({ sourcePath }: { sourcePath?: string }) {
       </label>
       <label className="text-sm font-medium">
         {t("message")}
-        <textarea required name="message" rows={4} className="mt-1 w-full rounded-lg border border-line px-3 py-2" />
+        <textarea required name="message" rows={4} className="mt-1 w-full border border-line px-3 py-2" />
       </label>
       <button
         type="submit"

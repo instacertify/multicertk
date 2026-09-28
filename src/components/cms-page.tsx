@@ -16,7 +16,7 @@ export async function cmsPageMetadata(locale: string, slug: string, fallbackTitl
 export async function CmsSimplePage({
   slug,
   locale,
-  showLead = true,
+  showLead = false,
   crumbs,
   children,
 }: {
