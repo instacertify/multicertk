@@ -242,7 +242,7 @@ export const seedPages: CmsPage[] = [
     path: "/labs",
     locale: "en",
     title: "BIS testing labs directory",
-    intro: "Recognised testing laboratories from the library — compare locations, scopes and indicative charges, then open the standards they unlock.",
+    intro: "Compare laboratories by BIS code, scope count and indicative charges, then open the standards they unlock. Direct lab addresses and contact details are not published.",
     sections: [],
   },
   {
