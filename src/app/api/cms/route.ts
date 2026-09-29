@@ -32,6 +32,7 @@ const pageSchema = z.object({
         body: z.array(z.string().trim().max(4000)).max(12),
         imageUrl: z.string().trim().max(240).optional(),
         imageAlt: z.string().trim().max(160).optional(),
+        iconUrl: z.string().trim().max(240).optional(),
       }),
     )
     .max(20),
@@ -133,6 +134,7 @@ export async function POST(request: Request) {
           body: section.body.join("\n\n"),
           image_url: section.imageUrl || "",
           image_alt: section.imageAlt || "",
+          icon_url: section.iconUrl || "",
           sort: index + 1,
         },
       );

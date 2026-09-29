@@ -1,9 +1,9 @@
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { CmsArticles } from "@/components/cms-copy";
+import { CmsArticles, CmsHeading } from "@/components/cms-copy";
 import { PageMedia } from "@/components/page-hero";
-import { Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
+import { Breadcrumbs, CardLink, HighlightIcon, JsonLd } from "@/components/ui";
 import {
   beeProducts,
   euSectors,
@@ -14,7 +14,8 @@ import {
   productsByScheme,
   schemes,
 } from "@/data/catalog";
-import { getPage, sectionHeading } from "@/lib/cms";
+import { getPage } from "@/lib/cms";
+import { defaultHighlightIcon } from "@/lib/highlight-icons";
 import { breadcrumbLd, pageMetadata } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
@@ -86,17 +87,17 @@ export default async function SchemePage({
       <PageMedia src={cms?.heroImageUrl} alt={cms?.heroImageAlt || scheme.name} gallery={cms?.galleryUrls} />
       <p className="mt-3 text-sm text-muted">{scheme.whoNeedsIt}</p>
 
-      <h2 className="mt-10 border-b border-gold pb-2 font-display text-navy">{sectionHeading(cms, "process", "Process")}</h2>
+      <CmsHeading page={cms} sectionKey="process" fallback="Process" className="mt-10 border-b border-gold pb-2" />
       <ol className="home-panel mt-4 divide-y divide-line">
         {scheme.process.map((step, index) => (
-          <li key={step} className="grid gap-3 px-4 py-3 sm:grid-cols-[3rem_1fr] text-sm leading-6">
-            <span className="font-mono text-[11px] text-gold-600">{String(index + 1).padStart(2, "0")}</span>
+          <li key={step} className="flex items-start gap-3 px-4 py-3 text-sm leading-6">
+            <HighlightIcon src={defaultHighlightIcon(`how-${index + 1}`)} />
             <span>{step}</span>
           </li>
         ))}
       </ol>
 
-      <h2 className="mt-10 font-display text-2xl text-navy">{sectionHeading(cms, "markets", "Markets")}</h2>
+      <CmsHeading page={cms} sectionKey="markets" fallback="Markets" className="mt-10" />
       <div className="mt-4 flex flex-wrap gap-3">
         {scheme.countrySlugs.map((countrySlug) => (
           <Link
@@ -132,7 +133,7 @@ export default async function SchemePage({
         </>
       ) : null}
 
-      <h2 className="mt-10 font-display text-2xl text-navy">{sectionHeading(cms, "mapped", "Mapped products & standards")}</h2>
+      <CmsHeading page={cms} sectionKey="mapped" fallback="Mapped products & standards" className="mt-10" />
       <p className="mt-2 text-sm text-muted">{mapped.length} library records interlinked to this scheme.</p>
       <div className="mt-4 grid gap-4 md:grid-cols-2">
         {mapped.slice(0, 24).map((product) => (
@@ -155,7 +156,7 @@ export default async function SchemePage({
 
       {scheme.slug === "bee" ? (
         <>
-          <h2 className="mt-10 font-display text-2xl text-navy">{sectionHeading(cms, "bee", "BEE labelled appliances")}</h2>
+          <CmsHeading page={cms} sectionKey="bee" fallback="BEE labelled appliances" className="mt-10" />
           <div className="mt-4 grid gap-4 md:grid-cols-2">
             {beeProducts.map((item) => (
               <CardLink
@@ -172,7 +173,7 @@ export default async function SchemePage({
 
       {scheme.slug === "g-mark" ? (
         <>
-          <h2 className="mt-10 font-display text-2xl text-navy">{sectionHeading(cms, "gmark", "G-Mark listed categories")}</h2>
+          <CmsHeading page={cms} sectionKey="gmark" fallback="G-Mark listed categories" className="mt-10" />
           <div className="mt-4 grid gap-4 md:grid-cols-2">
             {gmarkProducts.map((item) => (
               <CardLink
@@ -188,7 +189,7 @@ export default async function SchemePage({
 
       {scheme.slug === "ce" ? (
         <>
-          <h2 className="mt-10 font-display text-2xl text-navy">{sectionHeading(cms, "eu", "EU sector mandates")}</h2>
+          <CmsHeading page={cms} sectionKey="eu" fallback="EU sector mandates" className="mt-10" />
           <div className="mt-4 grid gap-4 md:grid-cols-2">
             {euSectors.map((item) => (
               <CardLink

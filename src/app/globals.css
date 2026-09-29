@@ -6,8 +6,8 @@
   --ink: #102033;
   --gold: #f5b400;
   --gold-600: #d49a00;
-  --paper: #efe8d8;
-  --mist: #e4e0d4;
+  --paper: #f7f1e4;
+  --mist: #f0eadc;
   --line: #cfc6b4;
   --muted: #5a5348;
   --font-ui: var(--font-inter);
@@ -406,10 +406,10 @@ html[dir="rtl"] .trust-track {
 
 .home-hero-light {
   background:
-    radial-gradient(circle at 8% 12%, rgba(245, 180, 0, 0.2), transparent 34%),
-    radial-gradient(circle at 92% 6%, rgba(11, 31, 61, 0.07), transparent 28%),
+    radial-gradient(circle at 8% 12%, rgba(245, 180, 0, 0.18), transparent 34%),
+    radial-gradient(circle at 92% 6%, rgba(245, 180, 0, 0.12), transparent 28%),
     radial-gradient(circle at 78% 78%, rgba(245, 180, 0, 0.1), transparent 32%),
-    linear-gradient(180deg, #f8f2e6 0%, var(--paper) 42%, #f4ecdc 100%);
+    linear-gradient(180deg, #fbf6ea 0%, var(--paper) 42%, #f8f2e4 100%);
 }
 
 .home-hero-shapes {
@@ -521,6 +521,9 @@ html[dir="rtl"] .trust-track {
 }
 
 .home-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
   border: 1px solid rgba(212, 154, 0, 0.35);
   border-radius: 1.35rem;
   background: #fff;
@@ -627,7 +630,7 @@ html[dir="rtl"] .trust-track {
 
 .home-category {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
   border: 1px solid var(--line);
@@ -641,4 +644,38 @@ html[dir="rtl"] .trust-track {
   border: 1px solid var(--line);
   border-radius: 1.65rem;
   background: #fff;
+}
+
+.highlight-icon {
+  display: grid;
+  place-items: center;
+  width: 2.15rem;
+  height: 2.15rem;
+  flex-shrink: 0;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 154, 0, 0.4);
+  background: #fff8e8;
+}
+
+.highlight-icon img {
+  width: 1.15rem;
+  height: 1.15rem;
+  object-fit: contain;
+}
+
+.highlight-icon-sm {
+  width: 1.7rem;
+  height: 1.7rem;
+}
+
+.highlight-icon-sm img {
+  width: 0.95rem;
+  height: 0.95rem;
+}
+
+.highlight-title {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  width: 100%;
 }

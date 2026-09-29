@@ -1,10 +1,10 @@
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { Breadcrumbs, CardLink, JsonLd, Section } from "@/components/ui";
+import { Breadcrumbs, CardLink, HighlightIcon, JsonLd, Section } from "@/components/ui";
 import { PageMedia } from "@/components/page-hero";
 import { SearchBox } from "@/components/search-box";
 import { categories, productsByCategory, schemes } from "@/data/catalog";
-import { getPage, sectionHeading } from "@/lib/cms";
+import { getPage, sectionHeading, sectionIcon } from "@/lib/cms";
 
 export const dynamic = "force-dynamic";
 import { breadcrumbLd, pageMetadata } from "@/lib/seo";
@@ -25,7 +25,7 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
   const cms = await getPage("products", locale);
 
   return (
-    <div className="bg-paper/40">
+    <div>
       <JsonLd data={breadcrumbLd([{ name: "Home", path: "/" }, { name: "Products", path: "/products" }], locale)} />
       <div className="mx-auto max-w-7xl px-4 py-10">
         <Breadcrumbs items={[{ href: "/", label: "Home" }, { href: "/products", label: "Products" }]} />
@@ -38,7 +38,7 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
           <SearchBox size="sm" />
         </div>
       </div>
-      <Section title="BIS: CRS or ISI mark">
+      <Section title="BIS: CRS or ISI mark" iconUrl={sectionIcon(cms, "route")}>
         <p className="mb-4 max-w-3xl text-sm text-muted">
           CRS is part of BIS. Products on the CRS list take Scheme II. Products not covered in CRS take the ISI mark licence.
         </p>
@@ -47,30 +47,35 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
             href="/products/all?bis=crs"
             title="CRS registration"
             meta="Part of BIS"
+            iconKey="route"
             body="Notified electronics and IT goods on the Compulsory Registration list."
           />
           <CardLink
             href="/products/all?bis=isi"
             title="ISI mark licence"
             meta="BIS — not on CRS"
+            iconKey="route"
             body="Every other BIS product. If it is not on the CRS list, the path is the ISI mark."
           />
         </div>
       </Section>
-      <Section title={sectionHeading(cms, "schemes", "Start with a scheme")}>
+      <Section title={sectionHeading(cms, "schemes", "Start with a scheme")} iconUrl={sectionIcon(cms, "schemes")}>
         <div className="grid gap-4 md:grid-cols-3">
           {schemes.slice(0, 6).map((scheme) => (
-            <CardLink key={scheme.slug} href={`/certifications/${scheme.slug}`} title={scheme.name} body={scheme.summary} />
+            <CardLink key={scheme.slug} href={`/certifications/${scheme.slug}`} title={scheme.name} body={scheme.summary} iconKey="schemes" />
           ))}
         </div>
       </Section>
-      <Section title="Browse by product family">
+      <Section title="Browse by product family" iconUrl={sectionIcon(cms, "categories")}>
         <div className="columns-1 gap-x-10 sm:columns-2 lg:columns-3">
           {categories.map((category) => (
             <p key={category.slug} className="home-category mb-2 break-inside-avoid">
-              <Link href={`/category/${category.slug}`} className="text-navy hover:text-gold-600">
-                {category.name}
-              </Link>
+              <span className="flex min-w-0 items-center gap-2">
+                <HighlightIcon src={sectionIcon(cms, `cat-${category.slug}`)} size="sm" />
+                <Link href={`/category/${category.slug}`} className="truncate text-navy hover:text-gold-600">
+                  {category.name}
+                </Link>
+              </span>
               <span className="ms-2 font-mono text-[11px] text-muted">{productsByCategory(category.slug).length}</span>
             </p>
           ))}

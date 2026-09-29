@@ -1,12 +1,12 @@
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { CmsArticles } from "@/components/cms-copy";
+import { CmsArticles, CmsHeading } from "@/components/cms-copy";
 import { PageMedia } from "@/components/page-hero";
 import { ListedPrice } from "@/components/price-reassurance";
 import { Breadcrumbs, CardLink } from "@/components/ui";
 import { beeProducts, euSectors, getBee, getEu, getGmark, getProduct, getScheme, gmarkProducts } from "@/data/catalog";
-import { getPage, sectionHeading } from "@/lib/cms";
+import { getPage } from "@/lib/cms";
 import { pageMetadata } from "@/lib/seo";
 import { asCertkoBrand } from "@/lib/site";
 
@@ -153,7 +153,7 @@ export default async function SchemeProductPage({
 
       {related ? (
         <div className="mt-8">
-          <h2 className="font-display text-2xl text-navy">{sectionHeading(cms, "linked", "Linked IS / product record")}</h2>
+          <CmsHeading page={cms} sectionKey="linked" fallback="Linked IS / product record" />
           <div className="mt-4">
             <CardLink href={`/product/${related.slug}`} title={related.name} meta={related.standard} body={related.excerpt} />
           </div>

@@ -129,7 +129,7 @@ export default async function LocaleLayout({
           <main className="flex-1">{children}</main>
           {isAdmin ? null : (
             <HideOnAdminLogin>
-              <PageLead />
+              <PageLead iconUrl={chrome.quoteIconUrl} />
               <SocialProof
                 logos={logos}
                 reviews={reviews}

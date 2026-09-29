@@ -101,7 +101,22 @@ export function PageEditor({ page, locale }: { page: CmsPage; locale: string }) 
       </div>
       {sections.map((section, index) => (
         <fieldset key={section.key} className="rounded-2xl border border-line p-4">
-          <legend className="px-1 text-xs font-semibold uppercase tracking-wide text-gold-600">Section {index + 1}</legend>
+          <legend className="px-1 text-xs font-semibold uppercase tracking-wide text-gold-600">Highlight {index + 1}</legend>
+          <p className="mt-1 font-mono text-[11px] text-muted">Key: {section.key}</p>
+          <p className="mt-1 text-xs text-muted">Gold circle on the public heading. Upload an icon or paste a URL. Clear it to leave the empty well.</p>
+          <div className="mt-3">
+            <ImageUpload
+              compact
+              label="Highlight icon"
+              folder="pages"
+              value={section.iconUrl}
+              onChange={(url) => {
+                const next = [...sections];
+                next[index] = { ...section, iconUrl: url };
+                setSections(next);
+              }}
+            />
+          </div>
           <label className="mt-2 block text-sm">
             <span className="mb-1 block text-xs uppercase tracking-wide text-muted">Heading</span>
             <input
@@ -148,13 +163,19 @@ export function PageEditor({ page, locale }: { page: CmsPage; locale: string }) 
           </button>
         </fieldset>
       ))}
+      <p className="text-sm text-muted">Every heading, article and highlight icon on this page is editable.</p>
       <button
         type="button"
         className="rounded-xl border border-line px-4 py-2 text-sm font-semibold text-navy"
         onClick={() =>
           setSections([
             ...sections,
-            { key: `section-${Date.now()}`, heading: "New heading", body: ["Write every word of this article here."] },
+            {
+              key: `section-${Date.now()}`,
+              heading: "New heading",
+              body: ["Write every word of this article here."],
+              iconUrl: "",
+            },
           ])
         }
       >

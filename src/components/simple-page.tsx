@@ -1,5 +1,5 @@
 import { PageMedia, SectionImage } from "./page-hero";
-import { Breadcrumbs } from "./ui";
+import { Breadcrumbs, HighlightTitle } from "./ui";
 import { LeadForm } from "./lead-form";
 
 export function SimplePage({
@@ -19,7 +19,7 @@ export function SimplePage({
   heroImageUrl?: string;
   heroImageAlt?: string;
   galleryUrls?: string[];
-  sections: { heading: string; body: string[]; imageUrl?: string; imageAlt?: string }[];
+  sections: { heading: string; body: string[]; imageUrl?: string; imageAlt?: string; iconUrl?: string }[];
   showLead?: boolean;
   crumbs?: { href: string; label: string }[];
 }) {
@@ -31,7 +31,7 @@ export function SimplePage({
       <PageMedia src={heroImageUrl} alt={heroImageAlt || title} gallery={galleryUrls} />
       {sections.map((section) => (
         <section key={section.heading} className="mt-8">
-          <h2 className="font-display text-navy">{section.heading}</h2>
+          <HighlightTitle iconUrl={section.iconUrl}>{section.heading}</HighlightTitle>
           <SectionImage src={section.imageUrl} alt={section.imageAlt || section.heading} />
           {section.body.map((paragraph) => (
             <p key={paragraph} className="mt-3 text-ink">

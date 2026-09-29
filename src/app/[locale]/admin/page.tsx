@@ -32,7 +32,7 @@ export default async function AdminHome({ params }: { params: Promise<{ locale: 
       <p className="text-xs font-semibold uppercase tracking-wide text-gold-600">After sign in</p>
       <h1 className="mt-2 font-display text-navy">Site editor</h1>
       <p className="lead mt-3 max-w-3xl text-muted">
-        Add pages, blogs and images here. Every heading and article field is editable. Saves show on the public site immediately.
+        Add pages, blogs and images here. Every heading and article field is editable. Each gold highlight has a place for an icon. Saves show on the public site immediately.
       </p>
 
       <section className="mt-10">

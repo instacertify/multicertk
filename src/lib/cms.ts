@@ -1,4 +1,5 @@
 import { seedArticles, seedPages, type CmsArticle, type CmsPage, type CmsSection } from "@/data/cms-seed";
+import { defaultHighlightIcon } from "./highlight-icons";
 import { readCmsOverrides } from "./cms-store";
 
 export type { CmsArticle, CmsPage, CmsSection };
@@ -15,8 +16,30 @@ export function directusConfigured() {
   return Boolean(directusUrl() && env("DIRECTUS_TOKEN"));
 }
 
+function withSectionIcon(section: CmsSection): CmsSection {
+  return {
+    ...section,
+    iconUrl: section.iconUrl === undefined ? defaultHighlightIcon(section.key) : section.iconUrl,
+  };
+}
+
+function mergeSections(seed: CmsSection[], override?: CmsSection[]): CmsSection[] {
+  if (!override) return seed.map(withSectionIcon);
+  const seen = new Set<string>();
+  const merged: CmsSection[] = [];
+  for (const section of override) {
+    seen.add(section.key);
+    const base = seed.find((item) => item.key === section.key);
+    merged.push(withSectionIcon({ ...base, ...section, key: section.key }));
+  }
+  for (const section of seed) {
+    if (!seen.has(section.key)) merged.push(withSectionIcon(section));
+  }
+  return merged;
+}
+
 function applyPageOverride(page: CmsPage, override?: Partial<CmsPage>): CmsPage {
-  if (!override) return page;
+  if (!override) return { ...page, sections: mergeSections(page.sections) };
   return {
     ...page,
     title: override.title ?? page.title,
@@ -25,7 +48,7 @@ function applyPageOverride(page: CmsPage, override?: Partial<CmsPage>): CmsPage 
     heroImageUrl: override.heroImageUrl ?? page.heroImageUrl,
     heroImageAlt: override.heroImageAlt ?? page.heroImageAlt,
     galleryUrls: override.galleryUrls ?? page.galleryUrls,
-    sections: override.sections ?? page.sections,
+    sections: mergeSections(page.sections, override.sections),
   };
 }
 
@@ -103,7 +126,7 @@ function pageFromOverride(slug: string, locale: string, override: Partial<CmsPag
     heroImageUrl: override.heroImageUrl,
     heroImageAlt: override.heroImageAlt,
     galleryUrls: override.galleryUrls,
-    sections: override.sections ?? [],
+    sections: mergeSections([], override.sections ?? []),
   };
 }
 
@@ -203,7 +226,17 @@ async function directusItems<T>(collection: string, query: string): Promise<T[] 
 }
 
 type DirectusPage = { slug: string; locale: string; title: string; intro: string; path?: string };
-type DirectusSection = { page_slug: string; locale: string; sort?: number; key?: string; heading: string; body: string };
+type DirectusSection = {
+  page_slug: string;
+  locale: string;
+  sort?: number;
+  key?: string;
+  heading: string;
+  body: string;
+  image_url?: string;
+  image_alt?: string;
+  icon_url?: string;
+};
 type DirectusArticle = {
   slug: string;
   locale: string;
@@ -241,6 +274,9 @@ async function livePages(locale: string): Promise<CmsPage[] | null> {
         key: section.key || section.heading.toLowerCase().replace(/\s+/g, "-"),
         heading: section.heading,
         body: paragraphs(section.body),
+        imageUrl: section.image_url || undefined,
+        imageAlt: section.image_alt || undefined,
+        iconUrl: section.icon_url || defaultHighlightIcon(section.key || section.heading),
       })),
   }));
 }
@@ -311,4 +347,10 @@ export function sectionHeading(page: CmsPage | undefined, key: string, fallback:
 export function sectionBody(page: CmsPage | undefined, key: string, fallback = "") {
   const body = page?.sections.find((section) => section.key === key)?.body ?? [];
   return body.length ? body.join(" ") : fallback;
+}
+
+export function sectionIcon(page: CmsPage | undefined, key: string) {
+  const section = page?.sections.find((item) => item.key === key);
+  if (section?.iconUrl !== undefined) return section.iconUrl;
+  return defaultHighlightIcon(key);
 }

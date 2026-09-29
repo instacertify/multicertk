@@ -2,9 +2,10 @@
 
 import { useTranslations } from "next-intl";
 import { usePathname } from "@/i18n/navigation";
+import { HighlightTitle } from "./ui";
 import { LeadForm } from "./lead-form";
 
-export function PageLead() {
+export function PageLead({ iconUrl }: { iconUrl?: string }) {
   const pathname = usePathname() || "/";
   const t = useTranslations("lead");
   if (pathname.includes("/admin")) return null;
@@ -14,7 +15,7 @@ export function PageLead() {
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-8 lg:grid-cols-12 lg:items-start">
         <div className="lg:col-span-5">
           <p className="font-mono text-[11px] uppercase tracking-wide text-gold-600">Quote desk</p>
-          <h2 className="mt-1 font-display text-navy">{t("title")}</h2>
+          <HighlightTitle iconUrl={iconUrl}>{t("title")}</HighlightTitle>
           <p className="mt-2 max-w-md text-sm leading-6 text-muted">{t("body")}</p>
         </div>
         <div className="lg:col-span-7">

@@ -3,11 +3,12 @@ import { setRequestLocale } from "next-intl/server";
 
 export const dynamic = "force-dynamic";
 import { ArticleBlocks } from "@/components/article-blocks";
+import { CmsHeading } from "@/components/cms-copy";
 import { PageHero } from "@/components/page-hero";
 import { Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
 import { getProduct, getScheme } from "@/data/catalog";
 import { articleBlocks } from "@/data/cms-seed";
-import { getArticle, getPage, listArticles, sectionHeading } from "@/lib/cms";
+import { getArticle, getPage, listArticles } from "@/lib/cms";
 import { breadcrumbLd, pageMetadata } from "@/lib/seo";
 
 export function generateStaticParams() {
@@ -65,7 +66,7 @@ export default async function PostPage({
       <p className="mt-3 text-muted">{article.excerpt}</p>
       <PageHero src={article.heroImageUrl} alt={article.heading || article.title} />
       <ArticleBlocks blocks={articleBlocks(article)} />
-      <h2 className="mt-10 font-display text-2xl text-navy">{sectionHeading(cms, "linked", "Linked schemes & standards")}</h2>
+      <CmsHeading page={cms} sectionKey="linked" fallback="Linked schemes & standards" className="mt-10" />
       <div className="mt-4 grid gap-4">
         {article.relatedSchemeSlugs.map((schemeSlug) => {
           const scheme = getScheme(schemeSlug);

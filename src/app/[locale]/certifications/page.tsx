@@ -1,8 +1,9 @@
 import { setRequestLocale } from "next-intl/server";
+import { CmsHeading } from "@/components/cms-copy";
 import { PageMedia } from "@/components/page-hero";
-import { Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
+import { Breadcrumbs, CardLink, HighlightIcon, JsonLd } from "@/components/ui";
 import { countries, productsByScheme, schemes } from "@/data/catalog";
-import { getPage, sectionHeading } from "@/lib/cms";
+import { getPage, sectionIcon } from "@/lib/cms";
 
 export const dynamic = "force-dynamic";
 import { breadcrumbLd, pageMetadata } from "@/lib/seo";
@@ -32,16 +33,23 @@ export default async function CertificationsPage({ params }: { params: Promise<{
           "Start with the GMA framework, then open full programmes. Every scheme is interlinked to products, labs, tests and destination countries."}
       </p>
       <PageMedia src={cms?.heroImageUrl} alt={cms?.heroImageAlt || cms?.title || "Certifications"} gallery={cms?.galleryUrls} />
-      <h2 className="mt-10 border-b border-gold pb-2 font-display text-navy">{sectionHeading(cms, "how", "How GMA works")}</h2>
+      <CmsHeading page={cms} sectionKey="how" fallback="How GMA works" className="mt-10 border-b border-gold pb-2" />
       <ol className="home-panel mt-4 divide-y divide-line">
-        {["Regulatory determination", "Testing to the national standard", "Local representation", "Filing & follow-up"].map((step, index) => (
-          <li key={step} className="grid gap-3 px-4 py-3 sm:grid-cols-[3rem_1fr]">
-            <p className="font-mono text-[11px] text-gold-600">{String(index + 1).padStart(2, "0")}</p>
+        {(
+          [
+            ["how-1", "Regulatory determination"],
+            ["how-2", "Testing to the national standard"],
+            ["how-3", "Local representation"],
+            ["how-4", "Filing & follow-up"],
+          ] as const
+        ).map(([key, step]) => (
+          <li key={key} className="flex items-start gap-3 px-4 py-3">
+            <HighlightIcon src={sectionIcon(cms, key)} />
             <p className="font-semibold text-navy">{step}</p>
           </li>
         ))}
       </ol>
-      <h2 className="mt-12 font-display text-2xl text-navy">{sectionHeading(cms, "programmes", "Certification programmes")}</h2>
+      <CmsHeading page={cms} sectionKey="programmes" fallback="Certification programmes" className="mt-12" />
       <div className="mt-4 grid gap-4 md:grid-cols-2">
         {schemes.map((scheme) => (
           <CardLink
@@ -49,11 +57,12 @@ export default async function CertificationsPage({ params }: { params: Promise<{
             href={`/certifications/${scheme.slug}`}
             title={scheme.name}
             meta={`${productsByScheme(scheme.slug).length} products · ${scheme.regulator}`}
+            iconKey="schemes"
             body={scheme.summary}
           />
         ))}
       </div>
-      <h2 className="mt-12 font-display text-2xl text-navy">{sectionHeading(cms, "markets", "Destination markets")}</h2>
+      <CmsHeading page={cms} sectionKey="markets" fallback="Destination markets" className="mt-12" />
       <p className="mt-2 text-sm">
         <a className="font-semibold text-navy underline" href="/certifications/countries">
           Browse all country guides →
@@ -61,7 +70,7 @@ export default async function CertificationsPage({ params }: { params: Promise<{
       </p>
       <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {countries.slice(0, 8).map((country) => (
-          <CardLink key={country.slug} href={`/certifications/countries/${country.slug}`} title={country.name} meta={country.region} />
+          <CardLink key={country.slug} href={`/certifications/countries/${country.slug}`} title={country.name} meta={country.region} iconKey="markets" />
         ))}
       </div>
     </div>

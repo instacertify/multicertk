@@ -1,10 +1,10 @@
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { CmsArticles } from "@/components/cms-copy";
+import { CmsArticles, CmsHeading } from "@/components/cms-copy";
 import { PageMedia } from "@/components/page-hero";
 import { ListedPrice, PriceReassurance } from "@/components/price-reassurance";
-import { Badge, Breadcrumbs, JsonLd, RecordTable, StatusBadge } from "@/components/ui";
+import { Badge, Breadcrumbs, HighlightIcon, JsonLd, RecordTable, StatusBadge } from "@/components/ui";
 import {
   beeForProduct,
   bisRouteLabel,
@@ -20,7 +20,7 @@ import {
   relatedProducts,
   testsForProduct,
 } from "@/data/catalog";
-import { getPage, listArticles, sectionHeading } from "@/lib/cms";
+import { getPage, listArticles, sectionIcon } from "@/lib/cms";
 import { breadcrumbLd, faqLd, pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -123,7 +123,10 @@ export default async function ProductPage({
       </div>
       <h1 className="mt-4 font-display text-navy">{product.name}</h1>
       <p className="lead mt-3 max-w-3xl text-muted">{product.excerpt}</p>
-      <p className="mt-3 max-w-3xl rounded-3xl border border-gold bg-gold/10 px-4 py-3 text-sm text-ink">{bisRouteSummary(product)}</p>
+      <p className="mt-3 flex max-w-3xl items-start gap-3 rounded-3xl border border-gold bg-gold/10 px-4 py-3 text-sm text-ink">
+        <HighlightIcon src={sectionIcon(cms, "route")} />
+        <span>{bisRouteSummary(product)}</span>
+      </p>
       <PageMedia src={cms?.heroImageUrl} alt={cms?.heroImageAlt || product.name} gallery={cms?.galleryUrls} />
 
       <RecordTable>
@@ -150,7 +153,7 @@ export default async function ProductPage({
           </tbody>
         </table>
       </RecordTable>
-      <PriceReassurance className="mt-6" />
+      <PriceReassurance className="mt-6" iconUrl={sectionIcon(cms, "price")} />
       {product.unit || product.qcoOrder ? (
         <p className="mt-4 text-sm text-muted">
           {product.unit ? `Unit of product: ${product.unit}. ` : null}
@@ -158,7 +161,7 @@ export default async function ProductPage({
         </p>
       ) : null}
 
-      <h2 className="mt-12 border-b border-gold pb-2 font-display text-navy">{sectionHeading(cms, "marking", "Annual BIS marking fee")}</h2>
+      <CmsHeading page={cms} sectionKey="marking" fallback="Annual BIS marking fee" className="mt-12 border-b border-gold pb-2" />
       <RecordTable>
         <table className="mt-4 min-w-full text-left">
           <thead className="bg-gold/20 text-navy">
@@ -191,7 +194,7 @@ export default async function ProductPage({
 
       {tests.length ? (
         <>
-          <h2 className="mt-12 border-b border-gold pb-2 font-display text-navy">{sectionHeading(cms, "tests", "Relevant product testing")}</h2>
+          <CmsHeading page={cms} sectionKey="tests" fallback="Relevant product testing" className="mt-12 border-b border-gold pb-2" />
           <ul className="home-panel mt-4 divide-y divide-line px-4">
             {tests.map((test) => (
               <li key={test.slug}>
@@ -209,7 +212,7 @@ export default async function ProductPage({
 
       {bee.length || gmark.length ? (
         <>
-          <h2 className="mt-12 border-b border-gold pb-2 font-display text-navy">{sectionHeading(cms, "stacked", "Stacked energy & export marks")}</h2>
+          <CmsHeading page={cms} sectionKey="stacked" fallback="Stacked energy & export marks" className="mt-12 border-b border-gold pb-2" />
           <ul className="home-panel mt-4 divide-y divide-line px-4">
             {bee.map((item) => (
               <li key={item.slug}>
@@ -233,7 +236,7 @@ export default async function ProductPage({
 
       {isCrsProduct(product) && notes.length ? (
         <>
-          <h2 className="mt-12 border-b border-gold pb-2 font-display text-navy">CRS notes for this product</h2>
+          <CmsHeading page={cms} sectionKey="quote" fallback="CRS notes for this product" className="mt-12 border-b border-gold pb-2" />
           <ul className="home-panel mt-4 divide-y divide-line px-4">
             {notes.map((article) => (
               <li key={article.slug}>
@@ -247,7 +250,7 @@ export default async function ProductPage({
         </>
       ) : null}
 
-      <h2 className="mt-12 border-b border-gold pb-2 font-display text-navy">{sectionHeading(cms, "related", "Related standards & schemes")}</h2>
+      <CmsHeading page={cms} sectionKey="related" fallback="Related standards & schemes" className="mt-12 border-b border-gold pb-2" />
       <RecordTable>
         <table className="mt-4 min-w-full text-left">
           <thead className="bg-gold/20 text-navy">

@@ -47,6 +47,7 @@ export default async function EditPage({
       <h1 className="mt-4 font-display text-4xl text-navy">Edit page</h1>
       <p className="mt-2 text-sm text-muted">
         Public URL: <Link href={page.path || "/"} className="underline">{page.path || "/"}</Link>
+        {". "}Each highlight has a gold icon well you can replace.
       </p>
       {isCustomCmsPage(page) ? (
         <div className="mt-4">

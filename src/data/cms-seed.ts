@@ -7,6 +7,7 @@ export interface CmsSection {
   body: string[];
   imageUrl?: string;
   imageAlt?: string;
+  iconUrl?: string;
 }
 
 export interface CmsPage {
@@ -58,9 +59,18 @@ export const seedPages: CmsPage[] = [
     intro:
       "Look up a product the way a factory actually talks — IS 13252, HSN 8517, CRS or ISI. We show the scheme, the test cost, and how to file.",
     sections: [
+      { key: "stat-products", heading: "Products", body: [] },
+      { key: "stat-tests", heading: "Tests", body: [] },
+      { key: "stat-schemes", heading: "Schemes", body: [] },
+      { key: "desk", heading: "On the desk today", body: [] },
       { key: "need", heading: "Schemes and testing", body: [] },
+      { key: "need-cert", heading: "Certification we file", body: [] },
+      { key: "need-test", heading: "Tests we book", body: [] },
       { key: "markets", heading: "If you are shipping outside India", body: [] },
       { key: "how", heading: "What happens after you search", body: [] },
+      { key: "how-1", heading: "Match the IS / HSN record", body: [] },
+      { key: "how-2", heading: "See the live route, not a slogan", body: [] },
+      { key: "how-3", heading: "Book the lab, then file", body: [] },
       { key: "popular", heading: "Records people open first", body: [] },
       { key: "categories", heading: "By product family", body: [] },
       { key: "faq", heading: "Questions people actually ask", body: [] },
@@ -254,6 +264,10 @@ export const seedPages: CmsPage[] = [
     intro: "Pick a scheme, then open the products and destination markets it unlocks.",
     sections: [
       { key: "how", heading: "How GMA works", body: [] },
+      { key: "how-1", heading: "Regulatory determination", body: [] },
+      { key: "how-2", heading: "Testing to the national standard", body: [] },
+      { key: "how-3", heading: "Local representation", body: [] },
+      { key: "how-4", heading: "Filing & follow-up", body: [] },
       { key: "programmes", heading: "Certification programmes", body: [] },
       { key: "markets", heading: "Destination markets", body: [] },
     ],
@@ -289,6 +303,8 @@ export const seedPages: CmsPage[] = [
     title: "Product record",
     intro: "IS standard, HSN, test cost, marking fee and related schemes.",
     sections: [
+      { key: "route", heading: "BIS route", body: [] },
+      { key: "price", heading: "Certko pricing", body: [] },
       { key: "marking", heading: "Annual BIS marking fee", body: [] },
       { key: "tests", heading: "Relevant product testing", body: [] },
       { key: "stacked", heading: "Stacked energy & export marks", body: [] },
