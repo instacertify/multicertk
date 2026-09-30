@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="56" viewBox="0 0 200 56" role="img" aria-label="Apex Industrial Academy">
+  <rect width="200" height="56" rx="8" fill="#f6f3ec"/>
+  <path d="M20 40 L32 16 L44 40 H38 L32 28 L26 40 Z" fill="#061428"/>
+  <text x="54" y="25" font-family="Georgia, serif" font-size="13" fill="#061428">Apex</text>
+  <text x="54" y="41" font-family="Georgia, serif" font-size="10" fill="#5b6b7c">Industrial Academy</text>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="56" viewBox="0 0 200 56" role="img" aria-label="Deccan Materials School">
+  <rect width="200" height="56" rx="8" fill="#f6f3ec"/>
+  <rect x="18" y="30" width="10" height="12" fill="#061428"/>
+  <rect x="30" y="22" width="10" height="20" fill="#f5b400"/>
+  <rect x="42" y="16" width="10" height="26" fill="#061428"/>
+  <text x="60" y="25" font-family="Georgia, serif" font-size="13" fill="#061428">Deccan</text>
+  <text x="60" y="41" font-family="Georgia, serif" font-size="10" fill="#5b6b7c">Materials School</text>
+</svg>

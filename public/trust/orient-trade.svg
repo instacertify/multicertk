@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="56" viewBox="0 0 200 56" role="img" aria-label="Orient Trade Academy">
+  <rect width="200" height="56" rx="8" fill="#f6f3ec"/>
+  <path d="M20 36 a14 14 0 1 1 20-16" fill="none" stroke="#061428" stroke-width="2"/>
+  <circle cx="40" cy="20" r="3" fill="#f5b400"/>
+  <text x="54" y="25" font-family="Georgia, serif" font-size="13" fill="#061428">Orient</text>
+  <text x="54" y="41" font-family="Georgia, serif" font-size="10" fill="#5b6b7c">Trade Academy</text>
+</svg>

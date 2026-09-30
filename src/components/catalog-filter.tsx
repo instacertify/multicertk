@@ -1,0 +1,27 @@
+import type { ReactNode } from "react";
+
+export function CatalogFilter({
+  q,
+  children,
+}: {
+  q?: string;
+  children?: ReactNode;
+}) {
+  return (
+    <form method="get" className="mt-6 flex flex-wrap items-end gap-3">
+      <label className="min-w-[16rem] flex-1 text-sm">
+        <span className="mb-1 block text-[13px] text-muted">Search</span>
+        <input
+          name="q"
+          defaultValue={q}
+          placeholder="Product, CRS, ISI, HSN, IS number or lab"
+          className="w-full rounded-md border border-line bg-white px-3 py-2 outline-none focus:border-gold-600"
+        />
+      </label>
+      {children}
+      <button type="submit" className="rounded-md bg-gold px-4 py-2 text-sm font-semibold text-navy">
+        Filter
+      </button>
+    </form>
+  );
+}

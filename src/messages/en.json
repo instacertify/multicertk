@@ -1,0 +1,92 @@
+{
+  "meta": {
+    "homeTitle": "BIS CRS, ISI mark, HSN and IS standards",
+    "homeDescription": "Look up a product, HSN or IS number. Certko maps BIS CRS and ISI, BEE, G-Mark, CE, FCC and SABER."
+  },
+  "nav": {
+    "products": "Products",
+    "certification": "Certification",
+    "certifications": "Certifications",
+    "testing": "Testing",
+    "labs": "Labs",
+    "resources": "Resources",
+    "qcos": "QCOs",
+    "qco": "QCO",
+    "trustedBy": "On file",
+    "reviewsTitle": "From recent work",
+    "guide": "Guide",
+    "blog": "Blog",
+    "contact": "Contact",
+    "search": "Search",
+    "countries": "Markets"
+  },
+  "cta": {
+    "quote": "Request a quote",
+    "talk": "Write to the desk",
+    "search": "Search schemes, standards, HSN",
+    "bookTesting": "Book testing",
+    "bookConsulting": "Book consulting"
+  },
+  "home": {
+    "eyebrow": "Certko catalogue · Noida",
+    "title": "IS numbers, HSN codes and the route behind them",
+    "subtitle": "Look up a product the way a factory actually talks — IS 13252, HSN 8517, CRS or ISI. We show the scheme, the test cost, and how to file.",
+    "statsProducts": "Products mapped",
+    "statsTests": "Testing solutions",
+    "statsLabs": "Recognised labs",
+    "statsSchemes": "Certification schemes",
+    "deskTitle": "On the desk today",
+    "deskAll": "Full product table",
+    "globeCaption": "Phones, laptops, chargers, doors, windows, fans, helmets, cups and food — revolving inside",
+    "needTitle": "Schemes and testing",
+    "needEyebrow": "India and export",
+    "needCert": "Certification we file",
+    "needTest": "Tests we book",
+    "marketsTitle": "If you are shipping outside India",
+    "marketsEyebrow": "Export marks",
+    "howTitle": "After you search",
+    "step1": "Match the IS / HSN record",
+    "step1Body": "Open the product page. You get the standard, QCO status, CRS or ISI route, and the listed test range.",
+    "step2": "Read the route on the product page",
+    "step2Body": "CRS is Scheme II of BIS. Everything else on BIS is the ISI mark licence. Export marks (CE, FCC, G-Mark, SABER) sit next to that.",
+    "step3": "Book the lab, then file",
+    "step3Body": "Indicative test charges are listed on each product. Use the quote desk if you want a booked rate.",
+    "popular": "Records people open first",
+    "categories": "By product family"
+  },
+  "search": {
+    "submit": "Search",
+    "placeholder": "Search products, CRS, ISI, HSN or blogs",
+    "empty": "Type at least two characters to search the interlinked catalogue.",
+    "noResults": "No matches. Try an IS number (for example IS 302), an HSN, or a scheme name such as BIS or GMARK.",
+    "engineCatalog": "Searching the local catalogue",
+    "engineMeili": "Searching Meilisearch"
+  },
+  "footer": {
+    "blurb": "Certko public catalogue. BIS CRS and ISI, BEE, G-Mark, CE, FCC, SABER — searchable by product, HSN and IS number.",
+    "contact": "Contact",
+    "legal": "About Us",
+    "aboutUs": "About Us",
+    "explore": "Explore"
+  },
+  "price": {
+    "eyebrow": "Certko pricing",
+    "headline": "Listed lab charges often run high.",
+    "body": "Ask Certko for a booked rate. It is usually up to 30% under the listed laboratory range.",
+    "cta": "Ask for the booked rate",
+    "inline": "Ask Certko for a booked rate — usually up to 30% less"
+  },
+  "lead": {
+    "title": "Need a quote for a product?",
+    "body": "Send the IS number, HSN or destination market. The desk maps the scheme and testing path and replies within a day.",
+    "name": "Name",
+    "email": "Work email",
+    "company": "Company",
+    "phone": "Phone",
+    "interest": "What do you need?",
+    "message": "Product, HSN or standard",
+    "submit": "Request a quote",
+    "success": "Received. Someone from the desk will reply within a day.",
+    "error": "Please check the form and try again."
+  }
+}
