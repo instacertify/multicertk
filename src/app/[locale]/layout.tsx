@@ -2,7 +2,7 @@ import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
-import { Inter, Noto_Sans_Arabic, Noto_Sans_Devanagari, Noto_Sans_SC, Source_Serif_4 } from "next/font/google";
+import { Inter, Noto_Sans_Arabic, Noto_Sans_Devanagari, Noto_Sans_SC } from "next/font/google";
 import { CookieBanner } from "@/components/cookie-banner";
 import { ConsentScripts } from "@/components/consent-scripts";
 import { EditorBar } from "@/components/editor-bar";
@@ -51,13 +51,6 @@ const chinese = Noto_Sans_SC({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-chinese",
-  display: "swap",
-});
-
-const serif = Source_Serif_4({
-  subsets: ["latin", "latin-ext", "cyrillic"],
-  weight: ["400", "600", "700"],
-  variable: "--font-serif",
   display: "swap",
 });
 
@@ -114,9 +107,9 @@ export default async function LocaleLayout({
       lang={meta.htmlLang}
       dir={meta.dir}
       data-font={
-        locale === "hi" ? "noto-sans-devanagari" : locale === "zh" ? "noto-sans-sc" : locale === "ar" ? "noto-sans-arabic" : "serif"
+        locale === "hi" ? "noto-sans-devanagari" : locale === "zh" ? "noto-sans-sc" : locale === "ar" ? "noto-sans-arabic" : "inter"
       }
-      className={`${inter.variable} ${serif.variable} ${hindi.variable} ${arabic.variable} ${chinese.variable} h-full`}
+      className={`${inter.variable} ${hindi.variable} ${arabic.variable} ${chinese.variable} h-full`}
     >
       <body className="flex min-h-full flex-col bg-paper font-sans text-ink">
         <NextIntlClientProvider messages={messages}>

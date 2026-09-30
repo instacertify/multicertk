@@ -83,7 +83,7 @@ html[lang="ar"] {
   --color-line: var(--line);
   --color-muted: var(--muted);
   --font-sans: var(--font-ui), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-serif), "Source Serif 4", Georgia, serif;
+  --font-display: var(--font-ui), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --text-xs: var(--fs-caption);
   --text-sm: var(--fs-body);
   --text-base: var(--fs-body);
@@ -124,7 +124,7 @@ h2,
 h3,
 h4,
 .font-display {
-  font-family: var(--font-serif), "Source Serif 4", Georgia, "Times New Roman", serif;
+  font-family: var(--font-ui), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   letter-spacing: 0;
   font-feature-settings: "kern" 1, "liga" 1;
 }
@@ -478,7 +478,7 @@ html[dir="rtl"] .trust-track {
 .home-stat dd {
   margin-top: 0.15rem;
   color: var(--navy);
-  font-family: var(--font-serif), "Source Serif 4", Georgia, serif;
+  font-family: var(--font-ui), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   font-size: 1.2rem;
   font-weight: 600;
 }
