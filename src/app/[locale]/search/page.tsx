@@ -77,7 +77,7 @@ export default async function SearchPage({
             <Link
               key={label}
               href={href}
-              className={`rounded-full border px-3 py-1 ${type === value || (!type && !value) ? "border-gold bg-gold text-navy" : "border-line text-navy"}`}
+              className={`rounded-md border px-3 py-1 ${type === value || (!type && !value) ? "border-gold bg-gold text-navy" : "border-line text-navy"}`}
             >
               {label}
             </Link>

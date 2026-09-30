@@ -1,13 +1,13 @@
 import { Link } from "@/i18n/navigation";
-import { defaultHighlightIcon } from "@/lib/highlight-icons";
+import { publicHighlightIcon } from "@/lib/highlight-icons";
 
 export function HighlightIcon({ src, size = "md" }: { src?: string; size?: "sm" | "md" }) {
+  const shown = publicHighlightIcon(src);
+  if (!shown) return null;
   return (
     <span className={`highlight-icon${size === "sm" ? " highlight-icon-sm" : ""}`} aria-hidden="true">
-      {src ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img src={src} alt="" />
-      ) : null}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={shown} alt="" />
     </span>
   );
 }
@@ -23,10 +23,11 @@ export function HighlightTitle({
   children: React.ReactNode;
   className?: string;
 }) {
+  const icon = publicHighlightIcon(iconUrl);
   return (
-    <Tag className={`highlight-title font-display text-navy ${className}`.trim()}>
-      <HighlightIcon src={iconUrl} />
-      <span>{children}</span>
+    <Tag className={`${icon ? "highlight-title " : ""}font-display text-navy ${className}`.trim()}>
+      {icon ? <HighlightIcon src={icon} /> : null}
+      {icon ? <span>{children}</span> : children}
     </Tag>
   );
 }
@@ -45,7 +46,7 @@ export function Badge({
     alert: "bg-amber-100 text-amber-950",
   };
   return (
-    <span className={`inline-flex rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${tones[tone]}`}>
+    <span className={`inline-flex rounded px-2 py-0.5 text-[11px] font-medium ${tones[tone]}`}>
       {children}
     </span>
   );
@@ -58,7 +59,6 @@ export function CardLink({
   body,
   image,
   iconUrl,
-  iconKey,
 }: {
   href: string;
   title: string;
@@ -68,20 +68,20 @@ export function CardLink({
   iconUrl?: string;
   iconKey?: string;
 }) {
-  const icon = iconUrl || defaultHighlightIcon(iconKey || "card");
+  const icon = publicHighlightIcon(iconUrl);
   return (
-    <Link href={href} className="soft-card block hover:border-gold-600">
+    <Link href={href} className="soft-card block hover:border-line">
       {image ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img src={image} alt="" className="h-40 w-full object-cover" />
       ) : null}
-      <div className="border-l-[3px] border-gold p-4">
-        <div className="flex items-start gap-3">
-          <HighlightIcon src={icon} />
+      <div className="p-4">
+        <div className={icon ? "flex items-start gap-3" : undefined}>
+          {icon ? <HighlightIcon src={icon} /> : null}
           <div className="min-w-0">
-            {meta ? <p className="font-mono text-[11px] text-gold-600">{meta}</p> : null}
-            <h4 className="mt-1 font-display text-navy">{title}</h4>
-            {body ? <p className="mt-2 text-sm text-muted">{body}</p> : null}
+            {meta ? <p className="text-[12px] text-muted">{meta}</p> : null}
+            <h4 className={`${meta ? "mt-1" : ""} font-display text-navy`}>{title}</h4>
+            {body ? <p className="mt-2 text-sm leading-6 text-muted">{body}</p> : null}
           </div>
         </div>
       </div>
@@ -104,8 +104,8 @@ export function Section({
 }) {
   return (
     <section className={`mx-auto max-w-7xl px-4 py-10 md:py-14 ${className}`}>
-      {eyebrow ? <p className="font-mono text-[11px] uppercase tracking-wide text-gold-600">{eyebrow}</p> : null}
-      <HighlightTitle iconUrl={iconUrl} className="mt-1 border-b border-gold pb-2">
+      {eyebrow ? <p className="text-[13px] text-muted">{eyebrow}</p> : null}
+      <HighlightTitle iconUrl={iconUrl} className="mt-1 border-b border-line pb-2">
         {title}
       </HighlightTitle>
       <div className="mt-6">{children}</div>

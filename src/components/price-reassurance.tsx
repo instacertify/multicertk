@@ -42,15 +42,15 @@ export function PriceReassurance({
 
   return (
     <aside
-      className={`rounded-3xl border border-gold bg-gold/15 ${compact ? "p-4" : "p-5"} ${className}`}
+      className={`border border-gold bg-gold/10 ${compact ? "p-4" : "px-4 py-4"} ${className}`}
     >
       <div className="flex items-start gap-3">
         <HighlightIcon src={iconUrl} />
         <div>
-          <p className="caption font-semibold uppercase tracking-wide text-gold-600">{t("eyebrow")}</p>
-          <p className={`mt-1 font-semibold text-navy ${compact ? "" : "lead"}`}>{t("headline")}</p>
+          <p className="text-[13px] text-muted">{t("eyebrow")}</p>
+          <p className={`mt-1 font-display text-navy ${compact ? "" : "lead"}`}>{t("headline")}</p>
           <p className="mt-1 text-muted">{t("body")}</p>
-          <Link href="/contact" className="type-btn mt-4 inline-flex rounded-xl bg-gold px-4 py-2 text-navy hover:bg-gold-600">
+          <Link href="/contact" className="type-btn mt-3 inline-flex rounded-md bg-gold px-3 py-1.5 text-navy hover:bg-gold-600">
             {t("cta")}
           </Link>
         </div>

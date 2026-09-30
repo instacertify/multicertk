@@ -6,7 +6,7 @@ import { HomeHeroShapes } from "@/components/home-decor";
 import { PageHero } from "@/components/page-hero";
 import { ProductGlobe } from "@/components/product-globe";
 import { SearchBox } from "@/components/search-box";
-import { HighlightIcon, JsonLd, Section } from "@/components/ui";
+import { JsonLd, Section } from "@/components/ui";
 import {
   bisRouteLabel,
   catalogStats,
@@ -63,18 +63,18 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <HomeHeroShapes />
         <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-14 lg:grid-cols-12 lg:gap-16 lg:py-20">
           <div className="lg:col-span-5">
-            <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-gold-600">{t("eyebrow")}</p>
-            <h1 className="mt-4 text-navy">{cms?.title ?? t("title")}</h1>
+            <p className="text-[13px] text-muted">{t("eyebrow")}</p>
+            <h1 className="mt-3 text-navy">{cms?.title ?? t("title")}</h1>
             <p className="mt-4 max-w-lg text-[15px] leading-7 text-muted">{cms?.intro ?? t("subtitle")}</p>
             {cms?.heroImageUrl ? (
-              <div className="mt-6 overflow-hidden rounded-2xl border border-line">
+              <div className="mt-6 overflow-hidden rounded-md border border-line">
                 <PageHero src={cms.heroImageUrl} alt={cms.heroImageAlt || cms.title} />
               </div>
             ) : null}
             <div className="mt-8 w-full text-navy">
               <SearchBox />
             </div>
-            <dl className="mt-8 grid grid-cols-3 gap-3 font-mono text-[11px]">
+            <dl className="mt-8 grid grid-cols-3 gap-6 text-[12px]">
               {(
                 [
                   ["stat-products", "Products", stats.products],
@@ -83,7 +83,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 ] as const
               ).map(([key, label, value]) => (
                 <div key={key} className="home-stat">
-                  <HighlightIcon src={sectionIcon(cms, key)} size="sm" />
                   <dt>{sectionHeading(cms, key, label)}</dt>
                   <dd>{value}</dd>
                 </div>
@@ -101,11 +100,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <div className="relative mx-auto max-w-7xl px-4 pb-14 lg:pb-20">
           <div className="home-desk">
             <div className="flex items-center justify-between border-b border-line px-5 py-3">
-              <p className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-gold-600">
-                <HighlightIcon src={sectionIcon(cms, "desk")} size="sm" />
-                {sectionHeading(cms, "desk", t("deskTitle"))}
-              </p>
-              <Link href="/products/all" className="text-[11px] font-semibold text-gold-600 underline">
+              <p className="text-[13px] text-muted">{sectionHeading(cms, "desk", t("deskTitle"))}</p>
+              <Link href="/products/all" className="text-[13px] text-navy underline">
                 {t("deskAll")}
               </Link>
             </div>
@@ -129,7 +125,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                       </td>
                       <td className="hidden px-5 py-3 font-mono text-muted md:table-cell">{product.standard}</td>
                       <td className="hidden px-5 py-3 font-mono text-muted lg:table-cell">{product.hsn}</td>
-                      <td className="px-5 py-3 font-semibold text-gold-600">{bisRouteLabel(product).replace("BIS · ", "")}</td>
+                      <td className="px-5 py-3 text-muted">{bisRouteLabel(product).replace("BIS · ", "")}</td>
                     </tr>
                   ) : null,
                 )}
@@ -142,26 +138,20 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <Section title={sectionHeading(cms, "need", t("needTitle"))} eyebrow={t("needEyebrow")} iconUrl={sectionIcon(cms, "need")}>
         <div className="grid items-start gap-6 md:grid-cols-2 md:gap-8">
           <div className="home-panel p-5">
-            <h3 className="flex items-center gap-2 font-display text-navy">
-              <HighlightIcon src={sectionIcon(cms, "need-cert")} size="sm" />
-              {sectionHeading(cms, "need-cert", t("needCert"))}
-            </h3>
+            <h3 className="font-display text-navy">{sectionHeading(cms, "need-cert", t("needCert"))}</h3>
             <ul className="mt-4 divide-y divide-line">
               {schemes.slice(0, 8).map((scheme) => (
                 <li key={scheme.slug}>
                   <Link href={`/certifications/${scheme.slug}`} className="flex items-baseline justify-between gap-3 py-2.5 hover:text-gold-600">
                     <span>{scheme.shortName}</span>
-                    <span className="font-mono text-[11px] text-gold-600">{scheme.regulator}</span>
+                    <span className="text-[12px] text-muted">{scheme.regulator}</span>
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
           <div className="home-panel p-5">
-            <h3 className="flex items-center gap-2 font-display text-navy">
-              <HighlightIcon src={sectionIcon(cms, "need-test")} size="sm" />
-              {sectionHeading(cms, "need-test", t("needTest"))}
-            </h3>
+            <h3 className="font-display text-navy">{sectionHeading(cms, "need-test", t("needTest"))}</h3>
             <ul className="mt-4 divide-y divide-line">
               {[
                 ["chemical-testing", "Chemical"],
@@ -185,7 +175,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <Section title={sectionHeading(cms, "markets", t("marketsTitle"))} eyebrow={t("marketsEyebrow")} iconUrl={sectionIcon(cms, "markets")}>
         <div className="home-panel overflow-x-auto">
           <table className="min-w-full text-left">
-            <thead className="bg-gold/20 text-navy">
+            <thead className="bg-mist text-navy">
               <tr>
                 <th className="px-4 py-2.5 font-medium">Market</th>
                 <th className="px-4 py-2.5 font-medium">Marks we file against</th>
@@ -219,9 +209,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             ["how-1", t("step1"), t("step1Body")],
             ["how-2", t("step2"), t("step2Body")],
             ["how-3", t("step3"), t("step3Body")],
-          ].map(([key, title, body]) => (
-            <li key={key} className="grid gap-3 px-4 py-4 sm:grid-cols-[3rem_1fr] sm:items-start">
-              <HighlightIcon src={sectionIcon(cms, key)} />
+          ].map(([key, title, body], index) => (
+            <li key={key} className="grid gap-3 px-4 py-4 sm:grid-cols-[2.25rem_1fr] sm:items-start">
+              <p className="text-[12px] text-muted">{String(index + 1).padStart(2, "0")}</p>
               <div>
                 <h3 className="font-display text-navy">{sectionHeading(cms, key, title)}</h3>
                 <p className="mt-1 text-sm leading-6 text-muted">{body}</p>
@@ -235,19 +225,16 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {categories.map((category) => (
             <p key={category.slug} className="home-category">
-              <span className="flex min-w-0 items-center gap-2">
-                <HighlightIcon src={sectionIcon(cms, `cat-${category.slug}`)} size="sm" />
-                <Link href={`/category/${category.slug}`} className="truncate text-navy hover:text-gold-600">
-                  {category.name}
-                </Link>
-              </span>
-              <span className="font-mono text-[11px] text-gold-600">{productsByCategory(category.slug).length}</span>
+              <Link href={`/category/${category.slug}`} className="truncate text-navy hover:underline">
+                {category.name}
+              </Link>
+              <span className="text-[12px] text-muted">{productsByCategory(category.slug).length}</span>
             </p>
           ))}
         </div>
       </Section>
 
-      <Section title={sectionHeading(cms, "faq", "Questions people actually ask")} iconUrl={sectionIcon(cms, "faq")}>
+      <Section title={sectionHeading(cms, "faq", "Common questions")} iconUrl={sectionIcon(cms, "faq")}>
         <div className="home-panel divide-y divide-line">
           {(cms?.sections.filter((section) => section.key.startsWith("faq-") && section.body.length).length
             ? cms.sections
@@ -256,11 +243,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             : faqs.map((item, index) => ({ key: `faq-${index}`, q: item.q, a: item.a }))
           ).map((item) => (
             <details key={item.key} className="group px-4 py-3">
-              <summary className="flex cursor-pointer list-none items-center gap-2 font-display text-navy [&::-webkit-details-marker]:hidden">
-                <HighlightIcon src={sectionIcon(cms, item.key)} size="sm" />
-                {item.q}
-              </summary>
-              <p className="mt-2 max-w-3xl pl-9 text-sm text-muted">{item.a}</p>
+              <summary className="cursor-pointer font-display text-navy">{item.q}</summary>
+              <p className="mt-2 max-w-3xl text-sm text-muted">{item.a}</p>
             </details>
           ))}
         </div>

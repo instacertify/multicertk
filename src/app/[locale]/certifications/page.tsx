@@ -1,9 +1,9 @@
 import { setRequestLocale } from "next-intl/server";
 import { CmsHeading } from "@/components/cms-copy";
 import { PageMedia } from "@/components/page-hero";
-import { Breadcrumbs, CardLink, HighlightIcon, JsonLd } from "@/components/ui";
+import { Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
 import { countries, productsByScheme, schemes } from "@/data/catalog";
-import { getPage, sectionIcon } from "@/lib/cms";
+import { getPage } from "@/lib/cms";
 
 export const dynamic = "force-dynamic";
 import { breadcrumbLd, pageMetadata } from "@/lib/seo";
@@ -30,10 +30,10 @@ export default async function CertificationsPage({ params }: { params: Promise<{
       <h1 className="mt-4 font-display text-4xl text-navy">{cms?.title ?? "Certifications & global market access"}</h1>
       <p className="lead mt-3 max-w-3xl text-muted">
         {cms?.intro ??
-          "Start with the GMA framework, then open full programmes. Every scheme is interlinked to products, labs, tests and destination countries."}
+          "Start with the scheme you need, then open the products and markets it covers."}
       </p>
       <PageMedia src={cms?.heroImageUrl} alt={cms?.heroImageAlt || cms?.title || "Certifications"} gallery={cms?.galleryUrls} />
-      <CmsHeading page={cms} sectionKey="how" fallback="How GMA works" className="mt-10 border-b border-gold pb-2" />
+      <CmsHeading page={cms} sectionKey="how" fallback="How GMA works" className="mt-10 border-b border-line pb-2" />
       <ol className="home-panel mt-4 divide-y divide-line">
         {(
           [
@@ -42,9 +42,9 @@ export default async function CertificationsPage({ params }: { params: Promise<{
             ["how-3", "Local representation"],
             ["how-4", "Filing & follow-up"],
           ] as const
-        ).map(([key, step]) => (
-          <li key={key} className="flex items-start gap-3 px-4 py-3">
-            <HighlightIcon src={sectionIcon(cms, key)} />
+        ).map(([key, step], index) => (
+          <li key={key} className="grid grid-cols-[2.25rem_1fr] items-start gap-3 px-4 py-3">
+            <p className="text-[12px] text-muted">{String(index + 1).padStart(2, "0")}</p>
             <p className="font-semibold text-navy">{step}</p>
           </li>
         ))}

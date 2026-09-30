@@ -62,14 +62,14 @@ export default async function CountryPage({
           { href: `/certifications/countries/${country.slug}`, label: country.name },
         ]}
       />
-      <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-gold-600">{country.region}</p>
+      <p className="mt-4 text-[13px] text-muted">{country.region}</p>
       <h1 className="mt-2 font-display text-4xl text-navy">{country.name} certifications</h1>
       <p className="lead mt-3 max-w-3xl text-muted">{country.summary}</p>
       <PageMedia src={cms?.heroImageUrl} alt={cms?.heroImageAlt || country.name} gallery={cms?.galleryUrls} />
       <CmsHeading page={cms} sectionKey="checklist" fallback="Scoping checklist" className="mt-10" />
       <ol className="mt-4 grid gap-3 md:grid-cols-2">
         {country.checklist.map((item, index) => (
-          <li key={item} className="rounded-2xl border border-line bg-white px-4 py-3 text-sm">
+          <li key={item} className="home-panel px-4 py-3 text-sm">
             {index + 1}. {item}
           </li>
         ))}

@@ -36,7 +36,7 @@ export default async function LabsPage({
           "Certko assigns an accredited laboratory for your standard. Recognised-lab names, cities and scope tables are not published. Use the quote desk and we book the test."}
       </p>
       <PageMedia src={cms?.heroImageUrl} alt={cms?.heroImageAlt || cms?.title || "Laboratory testing"} gallery={cms?.galleryUrls} />
-      <p className="mt-6 rounded-2xl border border-line bg-white px-4 py-3 text-sm text-ink">
+      <p className="home-panel mt-6 px-4 py-3 text-sm text-ink">
         Named testing laboratories, locations and indicative lab-scope prices stay off this site. Product pages list the IS standard and a test-cost range only.
       </p>
     </div>

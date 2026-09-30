@@ -13,7 +13,7 @@ export function LocaleSwitcher() {
     <label className="flex items-center gap-2 text-xs font-medium text-navy">
       <span className="sr-only">Language</span>
       <select
-        className="rounded-full border border-line bg-white px-2 py-1.5 text-xs font-semibold text-navy"
+        className="rounded-md border border-line bg-white px-2 py-1.5 text-xs text-navy"
         value={locale}
         onChange={(event) => router.replace(pathname, { locale: event.target.value })}
       >

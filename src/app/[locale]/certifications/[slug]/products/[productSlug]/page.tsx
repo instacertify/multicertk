@@ -90,8 +90,8 @@ export default async function SchemeProductPage({
             ]
               .filter(([, value]) => value)
               .map(([dt, dd]) => (
-                <div key={dt} className="rounded-2xl border border-line p-4">
-                  <dt className="text-xs uppercase tracking-wide text-muted">{dt}</dt>
+                <div key={dt} className="home-panel p-4">
+                  <dt className="text-[13px] text-muted">{dt}</dt>
                   <dd className="mt-1 text-sm text-navy">
                     {dt === "Indicative test price" ? <ListedPrice amount={asCertkoBrand(String(dd))} /> : asCertkoBrand(String(dd))}
                   </dd>
@@ -113,8 +113,8 @@ export default async function SchemeProductPage({
           ]
             .filter(([, value]) => value)
             .map(([dt, dd]) => (
-              <div key={dt} className="rounded-2xl border border-line p-4">
-                <dt className="text-xs uppercase tracking-wide text-muted">{dt}</dt>
+              <div key={dt} className="home-panel p-4">
+                <dt className="text-[13px] text-muted">{dt}</dt>
                 <dd className="mt-1 text-sm text-navy">{dd}</dd>
               </div>
             ))}
@@ -134,8 +134,8 @@ export default async function SchemeProductPage({
           ]
             .filter(([, value]) => value)
             .map(([dt, dd]) => (
-              <div key={dt} className="rounded-2xl border border-line p-4">
-                <dt className="text-xs uppercase tracking-wide text-muted">{dt}</dt>
+              <div key={dt} className="home-panel p-4">
+                <dt className="text-[13px] text-muted">{dt}</dt>
                 <dd className="mt-1 text-sm text-navy">{dd}</dd>
               </div>
             ))}

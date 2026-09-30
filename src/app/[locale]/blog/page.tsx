@@ -57,13 +57,13 @@ export default async function BlogPage({
       <div className="mt-4 flex flex-wrap gap-2 text-sm">
         <Link
           href={{ pathname: "/blog", query: query.q ? { q: query.q } : {} }}
-          className={`rounded-full px-3 py-1 ${!tag ? "bg-gold text-navy" : "border border-line text-navy"}`}
+          className={`rounded-md px-3 py-1 ${!tag ? "bg-gold text-navy" : "border border-line text-navy"}`}
         >
           All ({all.length})
         </Link>
         <Link
           href={{ pathname: "/blog", query: { tag: "CRS", ...(query.q ? { q: query.q } : {}) } }}
-          className={`rounded-full px-3 py-1 ${tag === "CRS" ? "bg-gold text-navy" : "border border-line text-navy"}`}
+          className={`rounded-md px-3 py-1 ${tag === "CRS" ? "bg-gold text-navy" : "border border-line text-navy"}`}
         >
           CRS ({crsCount})
         </Link>

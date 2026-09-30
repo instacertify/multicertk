@@ -123,7 +123,7 @@ export default async function ProductPage({
       </div>
       <h1 className="mt-4 font-display text-navy">{product.name}</h1>
       <p className="lead mt-3 max-w-3xl text-muted">{product.excerpt}</p>
-      <p className="mt-3 flex max-w-3xl items-start gap-3 rounded-3xl border border-gold bg-gold/10 px-4 py-3 text-sm text-ink">
+      <p className="mt-3 flex max-w-3xl items-start gap-3 border border-gold bg-gold/10 px-4 py-3 text-sm text-ink">
         <HighlightIcon src={sectionIcon(cms, "route")} />
         <span>{bisRouteSummary(product)}</span>
       </p>
@@ -161,7 +161,7 @@ export default async function ProductPage({
         </p>
       ) : null}
 
-      <CmsHeading page={cms} sectionKey="marking" fallback="Annual BIS marking fee" className="mt-12 border-b border-gold pb-2" />
+      <CmsHeading page={cms} sectionKey="marking" fallback="Annual BIS marking fee" className="mt-12 border-b border-line pb-2" />
       <RecordTable>
         <table className="mt-4 min-w-full text-left">
           <thead className="bg-gold/20 text-navy">
@@ -194,7 +194,7 @@ export default async function ProductPage({
 
       {tests.length ? (
         <>
-          <CmsHeading page={cms} sectionKey="tests" fallback="Relevant product testing" className="mt-12 border-b border-gold pb-2" />
+          <CmsHeading page={cms} sectionKey="tests" fallback="Relevant product testing" className="mt-12 border-b border-line pb-2" />
           <ul className="home-panel mt-4 divide-y divide-line px-4">
             {tests.map((test) => (
               <li key={test.slug}>
@@ -212,7 +212,7 @@ export default async function ProductPage({
 
       {bee.length || gmark.length ? (
         <>
-          <CmsHeading page={cms} sectionKey="stacked" fallback="Stacked energy & export marks" className="mt-12 border-b border-gold pb-2" />
+          <CmsHeading page={cms} sectionKey="stacked" fallback="Stacked energy & export marks" className="mt-12 border-b border-line pb-2" />
           <ul className="home-panel mt-4 divide-y divide-line px-4">
             {bee.map((item) => (
               <li key={item.slug}>
@@ -236,7 +236,7 @@ export default async function ProductPage({
 
       {isCrsProduct(product) && notes.length ? (
         <>
-          <CmsHeading page={cms} sectionKey="quote" fallback="CRS notes for this product" className="mt-12 border-b border-gold pb-2" />
+          <CmsHeading page={cms} sectionKey="quote" fallback="CRS notes for this product" className="mt-12 border-b border-line pb-2" />
           <ul className="home-panel mt-4 divide-y divide-line px-4">
             {notes.map((article) => (
               <li key={article.slug}>
@@ -250,7 +250,7 @@ export default async function ProductPage({
         </>
       ) : null}
 
-      <CmsHeading page={cms} sectionKey="related" fallback="Related standards & schemes" className="mt-12 border-b border-gold pb-2" />
+      <CmsHeading page={cms} sectionKey="related" fallback="Related standards & schemes" className="mt-12 border-b border-line pb-2" />
       <RecordTable>
         <table className="mt-4 min-w-full text-left">
           <thead className="bg-gold/20 text-navy">

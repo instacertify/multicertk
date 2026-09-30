@@ -1,6 +1,6 @@
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { Breadcrumbs, CardLink, HighlightIcon, JsonLd, Section } from "@/components/ui";
+import { Breadcrumbs, CardLink, JsonLd, Section } from "@/components/ui";
 import { PageMedia } from "@/components/page-hero";
 import { SearchBox } from "@/components/search-box";
 import { categories, productsByCategory, schemes } from "@/data/catalog";
@@ -70,13 +70,10 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
         <div className="columns-1 gap-x-10 sm:columns-2 lg:columns-3">
           {categories.map((category) => (
             <p key={category.slug} className="home-category mb-2 break-inside-avoid">
-              <span className="flex min-w-0 items-center gap-2">
-                <HighlightIcon src={sectionIcon(cms, `cat-${category.slug}`)} size="sm" />
-                <Link href={`/category/${category.slug}`} className="truncate text-navy hover:text-gold-600">
-                  {category.name}
-                </Link>
-              </span>
-              <span className="ms-2 font-mono text-[11px] text-muted">{productsByCategory(category.slug).length}</span>
+              <Link href={`/category/${category.slug}`} className="truncate text-navy hover:underline">
+                {category.name}
+              </Link>
+              <span className="ms-2 text-[12px] text-muted">{productsByCategory(category.slug).length}</span>
             </p>
           ))}
         </div>

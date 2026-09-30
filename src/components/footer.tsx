@@ -23,7 +23,7 @@ export async function Footer() {
           </ul>
         </div>
         <div>
-          <h4 className="font-display text-gold-600">{t("explore")}</h4>
+          <h4 className="font-display text-navy">{t("explore")}</h4>
           <ul className="mt-3 space-y-2 text-sm text-ink">
             <li><Link href="/certifications" className="hover:text-gold-600">{nav("certification")}</Link></li>
             <li><Link href="/testing" className="hover:text-gold-600">{nav("testing")}</Link></li>
@@ -33,7 +33,7 @@ export async function Footer() {
           </ul>
         </div>
         <div>
-          <h4 className="font-display text-gold-600">{t("aboutUs")}</h4>
+          <h4 className="font-display text-navy">{t("aboutUs")}</h4>
           <ul className="mt-3 flex flex-col gap-2 text-sm text-ink">
             <li><Link href="/about" className="block hover:text-gold-600">About Certko</Link></li>
             <li><Link href={legal.privacyPath} className="block hover:text-gold-600">Privacy</Link></li>

@@ -55,6 +55,12 @@ const BY_KEY: Record<string, string> = {
   card: ICONS.resources,
 };
 
+export function publicHighlightIcon(url?: string) {
+  if (!url) return undefined;
+  if (url.startsWith("/header-icons/")) return undefined;
+  return url;
+}
+
 export function defaultHighlightIcon(key = "card"): string {
   if (BY_KEY[key]) return BY_KEY[key];
   if (key.startsWith("faq")) return ICONS.resources;

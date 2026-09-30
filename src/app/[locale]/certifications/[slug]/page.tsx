@@ -3,7 +3,7 @@ import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { CmsArticles, CmsHeading } from "@/components/cms-copy";
 import { PageMedia } from "@/components/page-hero";
-import { Breadcrumbs, CardLink, HighlightIcon, JsonLd } from "@/components/ui";
+import { Breadcrumbs, CardLink, JsonLd } from "@/components/ui";
 import {
   beeProducts,
   euSectors,
@@ -15,7 +15,6 @@ import {
   schemes,
 } from "@/data/catalog";
 import { getPage } from "@/lib/cms";
-import { defaultHighlightIcon } from "@/lib/highlight-icons";
 import { breadcrumbLd, pageMetadata } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
@@ -81,17 +80,17 @@ export default async function SchemePage({
           { href: `/certifications/${scheme.slug}`, label: scheme.shortName },
         ]}
       />
-      <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-gold-600">{scheme.regulator}</p>
+      <p className="mt-4 text-[13px] text-muted">{scheme.regulator}</p>
       <h1 className="mt-2 font-display text-4xl text-navy">{scheme.name}</h1>
       <p className="lead mt-3 max-w-3xl text-muted">{scheme.summary}</p>
       <PageMedia src={cms?.heroImageUrl} alt={cms?.heroImageAlt || scheme.name} gallery={cms?.galleryUrls} />
       <p className="mt-3 text-sm text-muted">{scheme.whoNeedsIt}</p>
 
-      <CmsHeading page={cms} sectionKey="process" fallback="Process" className="mt-10 border-b border-gold pb-2" />
+      <CmsHeading page={cms} sectionKey="process" fallback="Process" className="mt-10 border-b border-line pb-2" />
       <ol className="home-panel mt-4 divide-y divide-line">
         {scheme.process.map((step, index) => (
-          <li key={step} className="flex items-start gap-3 px-4 py-3 text-sm leading-6">
-            <HighlightIcon src={defaultHighlightIcon(`how-${index + 1}`)} />
+          <li key={step} className="grid grid-cols-[2.25rem_1fr] items-start gap-3 px-4 py-3 text-sm leading-6">
+            <span className="text-[12px] text-muted">{String(index + 1).padStart(2, "0")}</span>
             <span>{step}</span>
           </li>
         ))}
@@ -103,7 +102,7 @@ export default async function SchemePage({
           <Link
             key={countrySlug}
             href={`/certifications/countries/${countrySlug}`}
-            className="rounded-full border border-line px-3 py-1 text-sm font-semibold hover:border-gold-600 hover:text-gold-600"
+            className="rounded-md border border-line px-3 py-1 text-sm hover:border-gold-600 hover:text-gold-600"
           >
             {getCountry(countrySlug)?.name ?? countrySlug}
           </Link>

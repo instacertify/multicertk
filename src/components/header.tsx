@@ -110,7 +110,7 @@ export function Header({ menu, chrome }: { menu: NavItem[]; chrome?: HeaderChrom
               </Link>
               {item.children?.length && openId === item.id && !mega ? (
                 <div
-                  className="absolute start-0 top-full z-50 min-w-56 rounded-3xl border border-line bg-white p-2 shadow-lg"
+                  className="absolute start-0 top-full z-50 min-w-56 border border-line bg-white p-2 shadow-sm"
                   onMouseEnter={() => setOpenId(item.id)}
                   onMouseLeave={() => setOpenId(null)}
                 >
@@ -133,14 +133,14 @@ export function Header({ menu, chrome }: { menu: NavItem[]; chrome?: HeaderChrom
           <LocaleSwitcher />
           <Link
             href="/contact"
-            className="type-btn hidden items-center gap-1.5 rounded-full bg-gold px-3 py-1.5 text-navy hover:bg-gold-600 md:inline-flex"
+            className="type-btn hidden items-center gap-1.5 rounded-md bg-gold px-3 py-1.5 text-navy hover:bg-gold-600 md:inline-flex"
           >
             <NavIcon src={chrome?.quoteIconUrl} />
             {cta("quote")}
           </Link>
           <button
             type="button"
-            className="type-btn inline-flex items-center gap-1.5 rounded-full border border-line px-3 py-1.5 lg:hidden"
+            className="type-btn inline-flex items-center gap-1.5 rounded-md border border-line px-3 py-1.5 lg:hidden"
             onClick={() => setOpen((value) => !value)}
             aria-expanded={open}
           >
@@ -159,7 +159,7 @@ export function Header({ menu, chrome }: { menu: NavItem[]; chrome?: HeaderChrom
             {groupChildren(openChildren).map((group) => (
               <div key={group.name || "links"} className={group.items.length > 10 ? "md:col-span-2 xl:col-span-3" : ""}>
                 {group.name ? (
-                  <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-gold-600">{group.name}</p>
+                  <p className="mb-2 text-[13px] text-muted">{group.name}</p>
                 ) : null}
                 <div className={group.items.length > 10 ? "columns-2 gap-x-6 xl:columns-3" : "flex flex-col"}>
                   {group.items.map((child) => (
@@ -188,7 +188,7 @@ export function Header({ menu, chrome }: { menu: NavItem[]; chrome?: HeaderChrom
                   ? groupChildren(item.children).map((group) => (
                       <div key={group.name || "links"} className="ms-3 mt-1 flex flex-col gap-1 text-muted">
                         {group.name ? (
-                          <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-gold-600">{group.name}</p>
+                          <p className="mt-2 text-[13px] text-muted">{group.name}</p>
                         ) : null}
                         {group.items.map((child) => (
                           <MenuLink

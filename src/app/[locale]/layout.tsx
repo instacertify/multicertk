@@ -133,8 +133,8 @@ export default async function LocaleLayout({
               <SocialProof
                 logos={logos}
                 reviews={reviews}
-                trustedHeading={navCopy?.trustedBy || "Trusted by"}
-                reviewsHeading={navCopy?.reviewsTitle || "What customers say"}
+                trustedHeading={navCopy?.trustedBy || "On file"}
+                reviewsHeading={navCopy?.reviewsTitle || "From recent work"}
               />
               <Footer />
               <ConsentScripts settings={cookies} />

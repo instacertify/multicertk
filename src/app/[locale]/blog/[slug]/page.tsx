@@ -61,7 +61,7 @@ export default async function PostPage({
           { href: `/blog/${article.slug}`, label: article.title },
         ]}
       />
-      <p className="mt-4 text-xs uppercase tracking-wide text-gold-600">{article.date}</p>
+      <p className="mt-4 text-[13px] text-muted">{article.date}</p>
       <h1 className="mt-2 font-display text-navy">{article.heading || article.title}</h1>
       <p className="mt-3 text-muted">{article.excerpt}</p>
       <PageHero src={article.heroImageUrl} alt={article.heading || article.title} />

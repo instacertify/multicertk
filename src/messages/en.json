@@ -12,8 +12,8 @@
     "resources": "Resources",
     "qcos": "QCOs",
     "qco": "QCO",
-    "trustedBy": "Trusted by",
-    "reviewsTitle": "What customers say",
+    "trustedBy": "On file",
+    "reviewsTitle": "From recent work",
     "guide": "Guide",
     "blog": "Blog",
     "contact": "Contact",
@@ -21,8 +21,8 @@
     "countries": "Markets"
   },
   "cta": {
-    "quote": "Ask for a quote",
-    "talk": "Talk to an expert",
+    "quote": "Request a quote",
+    "talk": "Write to the desk",
     "search": "Search schemes, standards, HSN",
     "bookTesting": "Book testing",
     "bookConsulting": "Book consulting"
@@ -44,10 +44,10 @@
     "needTest": "Tests we book",
     "marketsTitle": "If you are shipping outside India",
     "marketsEyebrow": "Export marks",
-    "howTitle": "What happens after you search",
+    "howTitle": "After you search",
     "step1": "Match the IS / HSN record",
     "step1Body": "Open the product page. You get the standard, QCO status, CRS or ISI route, and the listed test range.",
-    "step2": "See the live route, not a slogan",
+    "step2": "Read the route on the product page",
     "step2Body": "CRS is Scheme II of BIS. Everything else on BIS is the ISI mark licence. Export marks (CE, FCC, G-Mark, SABER) sit next to that.",
     "step3": "Book the lab, then file",
     "step3Body": "Indicative test charges are listed on each product. Use the quote desk if you want a booked rate.",
@@ -71,14 +71,14 @@
   },
   "price": {
     "eyebrow": "Certko pricing",
-    "headline": "Testing price look expensive?",
-    "body": "Don't worry — contact Certko and get up to 30% lesser pricing than the listed laboratory charges.",
-    "cta": "Contact Certko for up to 30% less",
-    "inline": "Looks expensive? Contact Certko — up to 30% less"
+    "headline": "Listed lab charges often run high.",
+    "body": "Ask Certko for a booked rate. It is usually up to 30% under the listed laboratory range.",
+    "cta": "Ask for the booked rate",
+    "inline": "Ask Certko for a booked rate — usually up to 30% less"
   },
   "lead": {
-    "title": "Can’t find the right solution?",
-    "body": "If your product, HSN or market path isn’t clear, talk to a certification expert. We’ll map the certification and testing route — free quote in 24 hours.",
+    "title": "Need a quote for a product?",
+    "body": "Send the IS number, HSN or destination market. The desk maps the scheme and testing path and replies within a day.",
     "name": "Name",
     "email": "Work email",
     "company": "Company",
@@ -86,7 +86,7 @@
     "interest": "What do you need?",
     "message": "Product, HSN or standard",
     "submit": "Request a quote",
-    "success": "Thanks — a Certko specialist will reply within 24 hours.",
+    "success": "Received. Someone from the desk will reply within a day.",
     "error": "Please check the form and try again."
   }
 }
