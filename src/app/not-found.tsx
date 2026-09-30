@@ -10,8 +10,8 @@ const inter = Inter({
 
 export default function NotFound() {
   return (
-    <html lang="en" className={`${inter.variable} h-full antialiased`}>
-      <body className="flex min-h-screen items-center justify-center bg-paper px-4 font-sans text-ink">
+    <html lang="en" data-font="inter" className={`${inter.className} ${inter.variable} h-full antialiased`}>
+      <body className={`${inter.className} flex min-h-screen items-center justify-center bg-paper px-4 font-sans text-ink`}>
         <div className="w-full max-w-xl py-12">
           <p className="text-[13px] text-muted">404</p>
           <h1 className="mt-2 font-display text-navy">Page not found</h1>

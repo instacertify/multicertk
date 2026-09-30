@@ -106,12 +106,10 @@ export default async function LocaleLayout({
     <html
       lang={meta.htmlLang}
       dir={meta.dir}
-      data-font={
-        locale === "hi" ? "noto-sans-devanagari" : locale === "zh" ? "noto-sans-sc" : locale === "ar" ? "noto-sans-arabic" : "inter"
-      }
-      className={`${inter.variable} ${hindi.variable} ${arabic.variable} ${chinese.variable} h-full`}
+      data-font="inter"
+      className={`${inter.className} ${inter.variable} ${hindi.variable} ${arabic.variable} ${chinese.variable} h-full`}
     >
-      <body className="flex min-h-full flex-col bg-paper font-sans text-ink">
+      <body className={`${inter.className} flex min-h-full flex-col bg-paper font-sans text-ink`}>
         <NextIntlClientProvider messages={messages}>
           {isAdmin ? null : (
             <HideOnAdminLogin>

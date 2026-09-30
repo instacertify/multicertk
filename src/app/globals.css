@@ -53,23 +53,20 @@
   }
 }
 
-html[lang="en"],
-html[lang="es"],
-html[lang="fr"],
-html[lang="ru"] {
+html {
   --font-ui: var(--font-inter);
 }
 
 html[lang="hi"] {
-  --font-ui: var(--font-hindi);
+  --font-ui: var(--font-inter), var(--font-hindi);
 }
 
 html[lang="zh-Hans"] {
-  --font-ui: var(--font-chinese);
+  --font-ui: var(--font-inter), var(--font-chinese);
 }
 
 html[lang="ar"] {
-  --font-ui: var(--font-arabic);
+  --font-ui: var(--font-inter), var(--font-arabic);
 }
 
 @theme inline {
@@ -123,7 +120,8 @@ h1,
 h2,
 h3,
 h4,
-.font-display {
+.font-display,
+.font-mono {
   font-family: var(--font-ui), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   letter-spacing: 0;
   font-feature-settings: "kern" 1, "liga" 1;
